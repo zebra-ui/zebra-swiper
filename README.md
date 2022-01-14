@@ -1,5 +1,5 @@
 <p align="center">
-	<img alt="logo" src="https://cdn.zebraui.com/zebra-swiper/logo.png" width="220" style="margin-bottom: 10px;">
+	<img alt="logo" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/logo.png" width="220" style="margin-bottom: 10px;">
 </p>
 
 <h1 align="center">ZebraSwiper</h1>
