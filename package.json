@@ -19,6 +19,9 @@
 	"homepage": "https://github.com/zebra-ui/zebra-uniapp-swiper#readme",
 	"author": "zebra-ui",
 	"license": "ISC",
+	"publishConfig": {
+		"access": "public"
+	},
 	"engines": {
 		"HBuilderX": "^3.1.0"
 	},
