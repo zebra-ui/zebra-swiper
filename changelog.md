@@ -1,5 +1,3 @@
-# 更新日志
-
 `2022-01-14`
 ### [v1.0.1](https://github.com/zebra-ui/zebra-uniapp-swiper)
 **Feature**

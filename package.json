@@ -6,12 +6,12 @@
 	"description": "适配多端的高度自定义轮播组件",
 	"main": "index.js",
 	"keywords": [
-		"zebra-swiper",
-		"uniapp",
-		"swiper",
-		"轮播",
-		"3D"
-	],
+        "zebra-swiper",
+        "uniapp",
+        "swiper",
+        "轮播",
+        "3D"
+    ],
 	"repository": "https://github.com/zebra-ui/zebra-uniapp-swiper",
 	"bugs": {
 		"url": "https://github.com/zebra-ui/zebra-uniapp-swiper/issues"
@@ -42,9 +42,9 @@
 			"qq": ""
 		},
 		"declaration": {
-			"ads": "",
-			"data": "",
-			"permissions": ""
+			"ads": "无",
+			"data": "插件不采集任何数据",
+			"permissions": "无"
 		},
 		"npmurl": "https://www.npmjs.com/package/@zebra-ui/swiper"
 	},
