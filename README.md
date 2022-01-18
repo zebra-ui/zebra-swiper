@@ -36,14 +36,6 @@ npm i @zebra-ui/swiper
 ```
 
 ```js
-// main.js
-
-import Swiper from '@zebra-ui/swiper';
-Vue.use(Swiper);
-
-```
-
-```js
 // pages.json
 
 {
@@ -54,3 +46,18 @@ Vue.use(Swiper);
 	"globalStyle": {...}
 }
 ```
+
+### uni_modules方式
+
+[插件市场](https://ext.dcloud.net.cn/)直接导入即可
+
+
+## 预览
+<div style="display:flex;flex-wrap:wrap;margin-top:30px;">
+ <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif1.gif" width="300" style="margin:20px;" />
+ <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif2.gif" width="300" style="margin:20px;" />
+ <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif3.gif" width="300" style="margin:20px;" />
+ <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif4.gif" width="300" style="margin:20px;" />
+ <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif5.gif" width="300" style="margin:20px;" />
+ <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif6.gif" width="300" style="margin:20px;" />
+</div>
