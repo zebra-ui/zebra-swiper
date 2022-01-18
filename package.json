@@ -2,7 +2,7 @@
 	"name": "@zebra-ui/swiper",
 	"id": "zebra-swiper",
 	"displayName": "zebra-swiper3D轮播",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "适配多端的高度自定义轮播组件",
 	"main": "index.js",
 	"keywords": [
