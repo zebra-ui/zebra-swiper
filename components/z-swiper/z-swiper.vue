@@ -297,10 +297,16 @@
 			async initialize(active = +this.initialSwipe) {
 				clearTimeout(this.timer);
 				let rectInfo = await getRect(this, '.zebra-swipe');
-				const rect = {
-					width: rectInfo.width,
-					height: rectInfo.height,
+				let rect = {
+					width: 0,
+					height: 0
 				};
+				if (rectInfo) {
+					rect = {
+						width: rectInfo.width,
+						height: rectInfo.height,
+					};
+				}
 				this.rect = rect;
 				this.swiping = true;
 				this.active = active;

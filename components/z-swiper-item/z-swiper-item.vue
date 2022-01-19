@@ -1,5 +1,5 @@
 <template>
-	<view :class="[bemMethods('swipe-item', [effect])]" :style="[style]">
+	<view :class="[bemMethods('swipe-item', [effect])]" :style="[itemStyle]">
 		<template v-if="shouldRender">
 			<slot></slot>
 			<template v-if="effect == 'cube'">
@@ -23,7 +23,7 @@
 				offset: 0,
 				inited: false,
 				mounted: false,
-				style: {},
+				itemStyle: {},
 				leftStyle: {},
 				rightStyle: {},
 				shouldRender: false,
@@ -353,7 +353,7 @@
 					}
 				}
 
-				this.style = style;
+				this.itemStyle = style;
 				this.leftStyle = leftStyle;
 				this.rightStyle = rightStyle;
 			},
