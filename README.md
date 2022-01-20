@@ -51,6 +51,8 @@ npm i @zebra-ui/swiper
 
 [插件市场](https://ext.dcloud.net.cn/)直接导入即可
 
+## 手机预览
+
 
 ## 预览
 <div style="display:flex;flex-wrap:wrap;margin-top:30px;">
