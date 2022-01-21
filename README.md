@@ -53,6 +53,20 @@ npm i @zebra-ui/swiper
 
 ## 手机预览
 
+<div style="margin-top:30px;display:flex;flex-wrap:wrap;">
+    <div style="display: flex;flex-direction: column;align-items: center;">
+	    <img alt="wx" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/wx.jpg" width="300" style="margin:20px;" />
+		<div style="font-size:20px;">微信小程序</div>
+	</div>
+	<div style="display: flex;flex-direction: column;align-items: center;">
+	    <img alt="ali" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/ali.jpg" width="300" style="margin:20px;" />
+		<div style="font-size:20px;">支付宝小程序</div>
+	</div>
+	<div style="display: flex;flex-direction: column;align-items: center;">
+	    <img alt="h5" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/h5.png" width="300" style="margin:20px;" />
+		<div style="font-size:20px;">H5</div>
+	</div>
+</div>
 
 ## 预览
 <div style="display:flex;flex-wrap:wrap;margin-top:30px;">
