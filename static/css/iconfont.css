@@ -1,0 +1,25 @@
+@font-face {
+	font-family: 'iconfont';
+	/* project id 3161382 */
+	src: url('?#iefix') format('embedded-opentype'),
+		url('//at.alicdn.com/t/font_3161382_m9empg4v7s.woff2') format('woff2'),
+		url('//at.alicdn.com/t/font_3161382_m9empg4v7s.woff') format('woff'),
+		url('//at.alicdn.com/t/font_3161382_m9empg4v7s.ttf') format('truetype'),
+		url('#iconfont') format('svg');
+}
+
+.zebra-icon {
+	font-family: "iconfont" !important;
+	font-size: inherit;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.zebra-icon-circle_chevron_left:before {
+	content: "\e611";
+}
+
+.zebra-icon-circle_chevron_right:before {
+	content: "\e615";
+}

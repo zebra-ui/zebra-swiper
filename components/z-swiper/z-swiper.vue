@@ -20,16 +20,18 @@
 				</template>
 			</view>
 		</template>
-		<slot name="pre-button"></slot>
-		<slot name="next-button"></slot>
-		<template v-if="showPrevButton&&count > 1">
-			<view :class="['zebra-swipe__prev--button',!prevButtonStatus?'zebra-swipe__prev--button--disable':'']">
-				<!-- <z-icon name="chevron_big_left" @click="prevClick"></z-icon> -->
+		<template v-if="(showPrevButton||showPrevButtonSlot)&&count > 1">
+			<view :class="['zebra-swipe__prev--button',!prevButtonStatus?'zebra-swipe__prev--button--disable':'']"
+				@click="prevClick">
+				<view v-if="!showPrevButtonSlot" class="zebra-icon zebra-icon-circle_chevron_left"></view>
+				<slot v-else name="pre-button"></slot>
 			</view>
 		</template>
-		<template v-if="showNextButton&&count > 1">
-			<view :class="['zebra-swipe__next--button',!nextButtonStatus?'zebra-swipe__next--button--disable':'']">
-				<!-- <z-icon name="chevron_big_right" @click="nextClick"></z-icon> -->
+		<template v-if="(showNextButton||showNextButtonSlot)&&count > 1">
+			<view :class="['zebra-swipe__next--button',!nextButtonStatus?'zebra-swipe__next--button--disable':'']"
+				@click="nextClick">
+				<view v-if="!showNextButtonSlot" class="zebra-icon zebra-icon-circle_chevron_right"></view>
+				<slot v-else name="next-button"></slot>
 			</view>
 		</template>
 	</view>
@@ -64,7 +66,7 @@
 			indicatorColor: String,
 			loop: {
 				type: Boolean,
-				default: true,
+				default: false,
 			},
 			duration: {
 				type: [Number, String],
@@ -88,7 +90,9 @@
 			},
 			customStyle: String,
 			showPrevButton: Boolean,
+			showPrevButtonSlot: Boolean,
 			showNextButton: Boolean,
+			showNextButtonSlot: Boolean,
 			effect: String,
 			cubeShadow: Boolean,
 			options: {
@@ -285,12 +289,12 @@
 		},
 		methods: {
 			prevClick() {
-				if (this.showPrevButton && this.prevButtonStatus) {
+				if ((this.showPrevButton || this.showPrevButtonSlot) && this.prevButtonStatus) {
 					this.prev();
 				}
 			},
 			nextClick() {
-				if (this.showNextButton && this.nextButtonStatus) {
+				if ((this.showNextButton || this.showNextButtonSlot) && this.nextButtonStatus) {
 					this.next();
 				}
 			},
@@ -450,13 +454,13 @@
 			prev() {
 				this.correctPosition();
 				this.resetTouchStatus();
-				requestAnimationFrame(() => {
+				setTimeout(() => {
 					this.swiping = false;
 					this.move({
 						pace: -1,
 						emitChange: true,
 					});
-				});
+				}, 30);
 			},
 			next() {
 				this.correctPosition();
@@ -534,6 +538,7 @@
 </script>
 
 <style scoped lang="scss">
+	@import "../../static/css/iconfont.css";
 	@import "../../static/css/var";
 
 	.zebra-swipe {
@@ -650,7 +655,7 @@
 			left: 30rpx;
 			top: 50%;
 			display: flex;
-			color: $gray-3;
+			color: #1989fa;
 			font-size: 44rpx;
 		}
 
@@ -659,8 +664,9 @@
 			left: 30rpx;
 			top: 50%;
 			display: flex;
-			color: $gray-8;
+			color: #1989fa;
 			font-size: 44rpx;
+			opacity: .35;
 		}
 
 		&__next--button {
@@ -668,7 +674,7 @@
 			right: 30rpx;
 			top: 50%;
 			display: flex;
-			color: $gray-3;
+			color: #1989fa;
 			font-size: 44rpx;
 		}
 
@@ -677,8 +683,9 @@
 			right: 30rpx;
 			top: 50%;
 			display: flex;
-			color: $gray-8;
+			color: #1989fa;
 			font-size: 44rpx;
+			opacity: .35;
 		}
 
 		&__indicator {
