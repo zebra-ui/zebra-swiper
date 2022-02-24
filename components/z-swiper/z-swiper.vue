@@ -3,7 +3,7 @@
 		<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClick" @touchstart.stop="onTouchStart"
 			@touchmove.stop.prevent="onTouchMove" @touchend.stop="onTouchEnd">
 			<slot></slot>
-			<!-- åœ¨loopæ¨¡å¼ä¸‹ï¼Œä¸ºgroupå¡«å……ç©ºç™½slide -->
+			<!-- ÔÚloopÄ£Ê½ÏÂ£¬ÎªgroupÌî³ä¿Õ°×slide -->
 			<template v-if="loopBlankShow">
 				<z-swiper-item v-for="(item,index) in loopBlankNumber" :key="index">
 				</z-swiper-item>
