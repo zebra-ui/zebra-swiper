@@ -1,0 +1,8 @@
+.swiper-creative {
+
+}
+  .swiper-slide-creative {
+    backface-visibility: hidden;
+    overflow: hidden;
+    transition-property: transform, opacity, height;
+  }

@@ -1,0 +1,265 @@
+<template>
+	<view :class="['swiper',contentClass,options.direction === 'vertical'?'swiper-vertical':'']" :style="customStyle">
+		<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClick" @touchstart.stop="onTouchStart"
+			@touchmove.stop.prevent="onTouchMove" @touchend.stop="onTouchEnd">
+			<slot></slot>
+			<!-- 在loop模式下，为group填充空白slide -->
+			<template v-if="loopBlankShow">
+				<z-swiper-item v-for="(item,index) in loopBlankNumber" :key="index">
+				</z-swiper-item>
+			</template>
+			<template v-if="cubeShadowShowWrapper">
+				<view class="swiper-cube-shadow" :style="[cubeShadowStyle]"></view>
+			</template>
+		</view>
+		<template v-if="cubeShadowShowRoot">
+			<view class="swiper-cube-shadow" :style="[cubeShadowStyle]"></view>
+		</template>
+		<slot name="indicator"></slot>
+		<template v-if="showIndicators">
+			<view :class="['swiper-pagination',paginationClass]" :style="[paginationStyle]">
+				<template v-if="paginationType == 'bullets'">
+					<view v-for="(item,index) in paginationContent" :key="index" :class="[item.classContent.join(' ')]"
+						:style="[item.styleContent]" @click="paginationItemClick(index)">
+
+					</view>
+				</template>
+				<template v-if="paginationType == 'fraction'">
+					<text :class="paginationContent.currentClass">{{paginationContent.text}}</text>/<text
+						:class="paginationContent.totalClass">{{paginationContent.total}}</text>
+				</template>
+				<template v-if="paginationType == 'progressbar'">
+					<text :class="paginationContent.progressbarFillClass"
+						:style="[paginationContent.styleContent]"></text>
+				</template>
+			</view>
+		</template>
+		<template v-if="(showPrevButton||showPrevButtonSlot)">
+			<view :class="['swiper-button-prev',prevClass]" @click="prevClick">
+				<view v-if="!showPrevButtonSlot" class="zebra-icon zebra-icon-circle_chevron_left"></view>
+				<slot v-else name="pre-button"></slot>
+			</view>
+		</template>
+		<template v-if="(showNextButton||showNextButtonSlot)">
+			<view :class="['swiper-button-next',nextClass]" @click="nextClick">
+				<view v-if="!showNextButtonSlot" class="zebra-icon zebra-icon-circle_chevron_right"></view>
+				<slot v-else name="next-button"></slot>
+			</view>
+		</template>
+	</view>
+</template>
+
+<script>
+	import Swiper from '../../index.js';
+	import {
+		ParentMixin
+	} from '../../libs/mixins/relation.js';
+	import addUnit from '../../libs/utils/add-unit.js';
+	import {
+		getAllRect,
+		getRect
+	} from '../../libs/utils/utils.js';
+	export default {
+		name: "z-swipe",
+		mixins: [
+			ParentMixin('zSwipe')
+		],
+		props: {
+			customStyle: String,
+			options: {
+				type: Object,
+				default: () => {
+					return {}
+				}
+			}
+		},
+		data() {
+			return {
+				wrapperStyle: {},
+				contentClass: '',
+				nextElClass: [],
+				prevElClass: [],
+				paginationElClass: [],
+				paginationItemElClass: [],
+				loopFirstShow: false,
+				loopLastShow: false,
+				loopBlankShow: false,
+				loopBlankNumber: 0,
+				cubeShadowShowWrapper: false,
+				cubeShadowShowRoot: false,
+				cubeShadowStyle: {},
+				rectInfo: null,
+				eventsListeners: {},
+				showPrevButton: false,
+				showPrevButtonSlot: false,
+				showNextButton: false,
+				showNextButtonSlot: false,
+				showIndicators: false,
+				paginationContent: [],
+				paginationType: '',
+				paginationStyle: {},
+			};
+		},
+		computed: {
+			nextClass() {
+				return this.nextElClass.join(" ");
+			},
+			prevClass() {
+				return this.prevElClass.join(" ");
+			},
+			paginationClass() {
+				return this.paginationElClass.join(" ");
+			},
+			paginationItemClass() {
+				return this.paginationItemElClass.join(" ");
+			}
+		},
+		created() {
+			uni.$on("childrenReady" + this._uid, (children) => {
+				children.dataSwiperSlideIndex = children.index;
+				this.count = this.children.length;
+			})
+		},
+		mounted() {
+			setTimeout(() => {
+				Promise.all(this.children.map((item) => {
+					return item.promiseMethod();
+				})).then(async (res) => {
+					let rectInfo = await this.getRect();
+					this.rectInfo = rectInfo;
+					this.initSwiper(this.options);
+				})
+			}, 0)
+		},
+		beforeDestroy() {
+			if (this.swiper) {
+				this.swiper.destroy();
+			}
+		},
+		methods: {
+			async getRect() {
+				let rectInfo = await getRect(this, '.swiper');
+				return rectInfo;
+			},
+			toJSON() {
+				return this;
+			},
+			transform(value) {
+				this.$set(this.wrapperStyle, 'transform', value)
+			},
+			transition(value) {
+				this.$set(this.wrapperStyle, 'transitionDuration', value)
+			},
+			addClass(value) {
+				this.contentClass = value;
+			},
+			addPaginationClass(value) {
+				this.paginationElClass = Array.from(new Set([...this.paginationElClass, ...value.split(" ")]));
+			},
+			removePaginationClass(value) {
+				this.paginationElClass = this.paginationElClass.filter(item => !value.split(" ").includes(item));
+			},
+			setPaginationCss(value) {
+				Object.keys(value).forEach((item) => {
+					this.$set(this.paginationStyle, item, value[item])
+				})
+			},
+			addNextElClass(value) {
+				this.nextElClass = Array.from(new Set([...this.nextElClass, ...value.split(" ")]));
+			},
+			addPrevElClass(value) {
+				this.prevElClass = Array.from(new Set([...this.prevElClass, ...value.split(" ")]));
+			},
+			removeNextElClass(value) {
+				this.nextElClass = this.nextElClass.filter(item => !value.split(" ").includes(item));
+			},
+			removePrevElClass(value) {
+				this.prevElClass = this.prevElClass.filter(item => !value.split(" ").includes(item));
+			},
+			setSwiperOn(event, callback) {
+				if (!this.eventsListeners[event]) this.eventsListeners[event] = {};
+				this.eventsListeners[event] = callback;
+			},
+			paginationItemClick(index) {
+				this.swiper.emit("paginationItemClick", index)
+			},
+			initSwiper(options) {
+				options.on = this.eventsListeners;
+				const swiper = new Swiper('.swiper', options, this);
+				this.swiper = swiper;
+				swiper.on("init", () => {
+					this.children.forEach((item) => {
+						item.swiperInited = true;
+					})
+				})
+			},
+			prevClick() {
+				this.swiper.emit("prevClick");
+			},
+			nextClick() {
+				this.swiper.emit("nextClick");
+			},
+			onTouchStart(event) {
+				this.swiper.onTouchStart(event);
+			},
+			onTouchMove(event) {
+				this.swiper.onTouchMove(event);
+			},
+			onTouchEnd(event) {
+				this.swiper.onTouchEnd(event);
+			},
+			onClick(event) {
+				this.$emit("click", event);
+			},
+		}
+	}
+</script>
+
+<style scoped lang="scss">
+	@import '../../libs/core.scss';
+	@import "../../static/css/iconfont.css";
+
+	.swiper {
+		&__prev--button {
+			position: absolute;
+			left: 30rpx;
+			top: 50%;
+			display: flex;
+			color: #1989fa;
+			font-size: 44rpx;
+			z-index: 10;
+		}
+
+		&__prev--button--disable {
+			position: absolute;
+			left: 30rpx;
+			top: 50%;
+			display: flex;
+			color: #1989fa;
+			font-size: 44rpx;
+			opacity: .35;
+			z-index: 10;
+		}
+
+		&__next--button {
+			position: absolute;
+			right: 30rpx;
+			top: 50%;
+			display: flex;
+			color: #1989fa;
+			font-size: 44rpx;
+			z-index: 10;
+		}
+
+		&__next--button--disable {
+			position: absolute;
+			right: 30rpx;
+			top: 50%;
+			display: flex;
+			color: #1989fa;
+			font-size: 44rpx;
+			opacity: .35;
+			z-index: 10;
+		}
+	}
+</style>
