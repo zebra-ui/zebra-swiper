@@ -1,6 +1,6 @@
 <template>
 	<view :class="['swiper',contentClass,options.direction === 'vertical'?'swiper-vertical':'']" :style="customStyle">
-		<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClick" @touchstart.stop="onTouchStart"
+		<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClickWrapper" @touchstart="onTouchStart"
 			@touchmove.stop.prevent="onTouchMove" @touchend.stop="onTouchEnd">
 			<slot></slot>
 			<!-- 在loop模式下，为group填充空白slide -->
@@ -208,7 +208,7 @@
 			onTouchEnd(event) {
 				this.swiper.onTouchEnd(event);
 			},
-			onClick(event) {
+			onClickWrapper(event) {
 				this.$emit("click", event);
 			},
 		}

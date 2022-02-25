@@ -44,7 +44,7 @@ export default function onTouchEnd(event) {
 
 	if (swiper.allowClick) {
 		const pathTree = e.path || e.composedPath && e.composedPath();
-		swiper.updateClickedSlide(pathTree && pathTree[0] || e.target);
+		// swiper.updateClickedSlide(pathTree && pathTree[0] || e.target);
 		swiper.emit('tap click', e);
 
 		if (timeDiff < 300 && touchEndTime - data.lastClickTime < 300) {

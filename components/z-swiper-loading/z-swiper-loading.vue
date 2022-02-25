@@ -1,9 +1,11 @@
 <template>
-	<view class="container z-swiper-loading">
-		<view class="shape shape1"></view>
-		<view class="shape shape2"></view>
-		<view class="shape shape3"></view>
-		<view class="shape shape4"></view>
+	<view class="z-swiper-loading-wrapper">
+		<view class="container z-swiper-loading">
+			<view class="shape shape1"></view>
+			<view class="shape shape2"></view>
+			<view class="shape shape3"></view>
+			<view class="shape shape4"></view>
+		</view>
 	</view>
 </template>
 
@@ -17,7 +19,19 @@
 		}
 	}
 </script>
-<style scoped="true">
+<style lang="scss" scoped>
+	.z-swiper-loading-wrapper {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+
 	.container {
 		width: 30px;
 		height: 30px;

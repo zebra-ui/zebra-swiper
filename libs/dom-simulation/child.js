@@ -10,7 +10,10 @@ class ChildDomSimulation {
 				vueNative.transform(value)
 			},
 			addClass(value) {
-				vueNative['wrapperClass'] = value;
+				vueNative.addClass(value);
+			},
+			removeClass(value) {
+				vueNative.removeClass(value);
 			},
 			addStyle(value) {
 				vueNative['wrapperStyle'] = {

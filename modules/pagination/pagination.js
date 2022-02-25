@@ -114,8 +114,6 @@ export default function Pagination({
 			let midIndex;
 			if (params.dynamicBullets) {
 				bulletSize = bullets[0][swiper.isHorizontal() ? 'outerWidth' : 'outerHeight'];
-				// console.log(swiper.isHorizontal() ? 'width' : 'height',
-				// 	`${bulletSize * (params.dynamicMainBullets + 4)}px`)
 				swiper.$wrapperEl.paginationCss({
 					[swiper.isHorizontal() ? 'width' :
 						'height'
@@ -236,7 +234,6 @@ export default function Pagination({
 			emit('paginationUpdate', $el[0]);
 		}
 		if (swiper.params.watchOverflow && swiper.enabled) {
-			// console.log($el)
 			swiper.$wrapperEl[swiper.isLocked ? 'addPaginationClass' : 'removePaginationClass'](params.lockClass);
 		}
 	}

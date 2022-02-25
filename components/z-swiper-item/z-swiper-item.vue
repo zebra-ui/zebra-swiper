@@ -1,12 +1,10 @@
 <template>
-	<view :class="['swiper-slide',slideClass]" :style="[itemStyle,customStyle]">
+	<view :class="['swiper-slide',slideClass]" :style="[itemStyle,customStyle]" @click.stop="onClickSlide">
 		<template v-if="swiperInited">
 			<slot></slot>
 		</template>
 		<template v-else>
-			<view class="swiper-slide-loading">
-				<z-swiper-loading></z-swiper-loading>
-			</view>
+			<z-swiper-loading></z-swiper-loading>
 		</template>
 	</view>
 </template>
@@ -56,6 +54,14 @@
 		methods: {
 			toJSON() {
 				return this;
+			},
+			onClickSlide(event) {
+				this.$emit("click", {
+					event,
+					index: this.index
+				});
+				this.parent.swiper.updateClickedSlide(this.index);
+				this.parent.swiper.emit("slideClick", this.index);
 			},
 			transform(value) {
 				this.$set(this.itemStyle, 'transform', value)
