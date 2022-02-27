@@ -249,6 +249,78 @@ class Swiper {
 		});
 		return true;
 	}
+	async update(el) {
+		const swiper = this;
+		if (!swiper || swiper.destroyed) return;
+		const {
+			snapGrid,
+			params
+		} = swiper; // Breakpoints
+
+
+		el = swiper.native.rectInfo;
+		if (!el) {
+			return false;
+		}
+		let $wrapperEl = new DomSimulation(swiper.native);
+		let $el = new DomSimulation(swiper.native);
+		if (swiper.native && swiper.native.children && swiper.native.children.length) {
+			swiper.native.children.forEach((item) => {
+				item.$itemEl = new ChildDomSimulation(item);
+			})
+		}
+		Object.assign(swiper, {
+			$el,
+			el,
+			$wrapperEl,
+			wrapperEl: $wrapperEl.native,
+			mounted: true,
+		});
+
+		if (params.breakpoints) {
+			swiper.setBreakpoint();
+		}
+
+		await swiper.updateSize();
+		await swiper.updateSlides();
+		swiper.updateProgress();
+		swiper.updateSlidesClasses();
+
+		function setTranslate() {
+			const translateValue = swiper.rtlTranslate ? swiper.translate * -1 : swiper.translate;
+			const newTranslate = Math.min(Math.max(translateValue, swiper.maxTranslate()), swiper.minTranslate());
+			swiper.setTranslate(newTranslate);
+			swiper.updateActiveIndex();
+			swiper.updateSlidesClasses();
+		}
+
+		let translated;
+
+		if (swiper.params.freeMode && swiper.params.freeMode.enabled) {
+			setTranslate();
+
+			if (swiper.params.autoHeight) {
+				swiper.updateAutoHeight();
+			}
+		} else {
+			if ((swiper.params.slidesPerView === 'auto' || swiper.params.slidesPerView > 1) && swiper.isEnd && !
+				swiper.params.centeredSlides) {
+				translated = swiper.slideTo(swiper.slides.length - 1, 0, false, true);
+			} else {
+				translated = swiper.slideTo(swiper.activeIndex, 0, false, true);
+			}
+
+			if (!translated) {
+				setTranslate();
+			}
+		}
+
+		if (params.watchOverflow && snapGrid !== swiper.snapGrid) {
+			swiper.checkOverflow();
+		}
+
+		swiper.emit('update');
+	}
 	async mount(el) {
 		const swiper = this;
 		if (swiper.mounted) return true; // Find el
@@ -256,6 +328,7 @@ class Swiper {
 		if (!el) {
 			return false;
 		}
+		swiper.emit('beforeMount'); // Set breakpoint
 		let $wrapperEl = new DomSimulation(swiper.native);
 		let $el = new DomSimulation(swiper.native);
 		if (swiper.native && swiper.native.children && swiper.native.children.length) {

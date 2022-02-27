@@ -63,7 +63,7 @@ export default function EffectCoverflow({
 			$slideEl.$itemEl.css({
 				zIndex: -Math.abs(Math.round(offsetMultiplier)) + 1
 			})
-
+			$slideEl.addClass('swiper-slide-coverflow')
 			// if (params.slideShadows) {
 			//   // Set shadows
 			//   let $shadowBeforeEl = isHorizontal ? $slideEl.find('.swiper-slide-shadow-left') : $slideEl.find('.swiper-slide-shadow-top');

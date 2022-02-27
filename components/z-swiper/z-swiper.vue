@@ -3,7 +3,7 @@
 		<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClickWrapper" @touchstart="onTouchStart"
 			@touchmove.stop.prevent="onTouchMove" @touchend.stop="onTouchEnd">
 			<slot></slot>
-			<!-- ��loopģʽ�£�Ϊgroup���հ�slide -->
+			<!-- 在loop模式下，为group填充空白slide -->
 			<template v-if="loopBlankShow">
 				<z-swiper-item v-for="(item,index) in loopBlankNumber" :key="index">
 				</z-swiper-item>
@@ -46,6 +46,15 @@
 				<slot v-else name="next-button"></slot>
 			</view>
 		</template>
+		<template v-if="scrollbarShow">
+			<view :class="['swiper-scrollbar',scrollbarClass]" :style="[scrollbarStyle]" @click.stop="onClickScrollbar"
+				@touchstart.stop="onTouchStartScrollbar" @touchmove.stop.prevent="onTouchMoveScrollbar"
+				@touchend.stop="onTouchEndScrollbar">
+				<view class="swiper-scrollbar-drag" :style="[scrollbarItemStyle]">
+
+				</view>
+			</view>
+		</template>
 	</view>
 </template>
 
@@ -70,6 +79,12 @@
 				type: Object,
 				default: () => {
 					return {}
+				}
+			},
+			value: {
+				type: Array,
+				default: () => {
+					return []
 				}
 			}
 		},
@@ -98,6 +113,10 @@
 				paginationContent: [],
 				paginationType: '',
 				paginationStyle: {},
+				scrollbarShow: false,
+				scrollbarElClass: [],
+				scrollbarStyle: {},
+				scrollbarItemStyle: {}
 			};
 		},
 		computed: {
@@ -112,24 +131,53 @@
 			},
 			paginationItemClass() {
 				return this.paginationItemElClass.join(" ");
+			},
+			scrollbarClass() {
+				return this.scrollbarElClass.join(" ");
 			}
 		},
+		// 百度小程序v-model值改变后无法触发数据更新，所以监听
+		// #ifdef MP-BAIDU
+		watch: {
+			async value(val) {
+				this.count = this.children.length;
+				if (this.children.length == this.value.length) {
+					if (this.swiper) {
+						this.swiper.update();
+					} else {
+						let rectInfo = await this.getRect();
+						this.rectInfo = rectInfo;
+						this.initSwiper(this.options);
+					}
+				}
+			}
+		},
+		// #endif
 		created() {
-			uni.$on("childrenReady" + this._uid, (children) => {
+			uni.$on("childrenReady" + this._uid, async (children) => {
 				children.dataSwiperSlideIndex = children.index;
 				this.count = this.children.length;
+				if (this.children.length == this.value.length) {
+					if (this.swiper) {
+						this.swiper.update();
+					} else {
+						let rectInfo = await this.getRect();
+						this.rectInfo = rectInfo;
+						this.initSwiper(this.options);
+					}
+				}
 			})
 		},
 		mounted() {
-			setTimeout(() => {
-				Promise.all(this.children.map((item) => {
-					return item.promiseMethod();
-				})).then(async (res) => {
-					let rectInfo = await this.getRect();
-					this.rectInfo = rectInfo;
-					this.initSwiper(this.options);
-				})
-			}, 0)
+			// setTimeout(() => {
+			// 	Promise.all(this.children.map((item) => {
+			// 		return item.promiseMethod();
+			// 	})).then(async (res) => {
+			// 		let rectInfo = await this.getRect();
+			// 		this.rectInfo = rectInfo;
+			// 		this.initSwiper(this.options);
+			// 	})
+			// }, 0)
 		},
 		beforeDestroy() {
 			if (this.swiper) {
@@ -141,6 +189,10 @@
 				let rectInfo = await getRect(this, '.swiper');
 				return rectInfo;
 			},
+			async getRectScrollbar() {
+				let rectInfo = await getRect(this, '.swiper-scrollbar');
+				return rectInfo;
+			},
 			toJSON() {
 				return this;
 			},
@@ -149,6 +201,18 @@
 			},
 			transition(value) {
 				this.$set(this.wrapperStyle, 'transitionDuration', value)
+			},
+			scrollbarTransform(value) {
+				this.$set(this.scrollbarStyle, 'transform', value)
+			},
+			scrollbarTransition(value) {
+				this.$set(this.scrollbarStyle, 'transitionDuration', value)
+			},
+			scrollbarItemTransform(value) {
+				this.$set(this.scrollbarItemStyle, 'transform', value)
+			},
+			scrollbarItemTransition(value) {
+				this.$set(this.scrollbarItemStyle, 'transitionDuration', value)
 			},
 			addClass(value) {
 				this.contentClass = value;
@@ -159,9 +223,30 @@
 			removePaginationClass(value) {
 				this.paginationElClass = this.paginationElClass.filter(item => !value.split(" ").includes(item));
 			},
+			addScrollbarClass(value) {
+				this.scrollbarElClass = Array.from(new Set([...this.scrollbarElClass, ...value.split(" ")]));
+			},
+			removeScrollbarClass(value) {
+				this.scrollbarElClass = this.scrollbarElClass.filter(item => !value.split(" ").includes(item));
+			},
+			setCss(value) {
+				Object.keys(value).forEach((item) => {
+					this.$set(this.wrapperStyle, item, value[item])
+				})
+			},
 			setPaginationCss(value) {
 				Object.keys(value).forEach((item) => {
 					this.$set(this.paginationStyle, item, value[item])
+				})
+			},
+			setScrollbarCss(value) {
+				Object.keys(value).forEach((item) => {
+					this.$set(this.scrollbarStyle, item, value[item])
+				})
+			},
+			setScrollbarItemCss(value) {
+				Object.keys(value).forEach((item) => {
+					this.$set(this.scrollbarItemStyle, item, value[item])
 				})
 			},
 			addNextElClass(value) {
@@ -187,11 +272,16 @@
 				options.on = this.eventsListeners;
 				const swiper = new Swiper('.swiper', options, this);
 				this.swiper = swiper;
-				swiper.on("init", () => {
+				swiper.on("init update", () => {
 					this.children.forEach((item) => {
 						item.swiperInited = true;
 					})
 				})
+				// #ifdef MP-TOUTIAO
+				this.children.forEach((item) => {
+					item.swiperInited = true;
+				})
+				// #endif
 			},
 			prevClick() {
 				this.swiper.emit("prevClick");
@@ -210,6 +300,18 @@
 			},
 			onClickWrapper(event) {
 				this.$emit("click", event);
+			},
+			onClickScrollbar(event) {
+				this.$emit("scrollbarClick", event);
+			},
+			onTouchStartScrollbar(event) {
+				this.swiper.emit('touchStartScrollbar', event);
+			},
+			onTouchMoveScrollbar(event) {
+				this.swiper.emit('touchMoveScrollbar', event);
+			},
+			onTouchEndScrollbar(event) {
+				this.swiper.emit('touchEndScrollbar', event);
 			},
 		}
 	}

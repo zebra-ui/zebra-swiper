@@ -13,6 +13,7 @@
     pointer-events: none;
     backface-visibility: hidden;
     z-index: 1;
+	transform-style: preserve-3d;
     .swiper-slide {
       pointer-events: none;
     }

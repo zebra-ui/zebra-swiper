@@ -145,5 +145,6 @@ export {
 	now,
 	setCSSProperty,
 	animateCSSModeScroll,
-	getTranslate
+	getTranslate,
+	isObject
 };

@@ -1,3 +1,37 @@
+## 2.1.0（2022-02-27）
+`2022-02-27`
+
+:::warning 更新须知
+使用组件时，需在z-swiper标签上以`v-model`的形式传入list数据，也就是要循环的列表数据，该属性为强制性，不加会导致意外错误。例：
+之前的方式：
+```vue
+<z-swiper>
+        <z-swiper-item v-for="(item,index) in list" :key="index">
+		<image class="image" :src="item" mode="aspectFill">
+		</image>
+	</z-swiper-item>
+</z-swiper>
+```
+现在的方式：
+```vue
+<z-swiper v-model="list"> //这里传入的需和下方循环的保持一致
+	<z-swiper-item v-for="(item,index) in list" :key="index">
+		<image class="image" :src="item" mode="aspectFill">
+		</image>
+	</z-swiper-item>
+</z-swiper>
+```
+:::
+这个操作也为swiper接管数据操作铺垫，对后续很多新功能非常有用，也为loop无限循环的痛点提供了解决方案。
+
+**Fix**
+
+- 修复数据为空时报错。
+- 修复请求数据时swiper提前初始化的问题。
+
+**Feat**
+
+- 新增滚动条功能。
 ## 2.0.1（2022-02-25）
 `2022-02-25`
 

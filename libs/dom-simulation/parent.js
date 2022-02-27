@@ -3,7 +3,7 @@ class DomSimulation {
 		let domSimulation = this;
 		Object.assign(domSimulation, {
 			native: vueNative,
-			transition(name, value) {
+			transition(value) {
 				vueNative.transition(`${value}ms`)
 			},
 			transform(value) {
@@ -19,10 +19,7 @@ class DomSimulation {
 				};
 			},
 			css(value) {
-				vueNative['wrapperStyle'] = {
-					...vueNative['wrapperStyle'],
-					...value
-				};
+				vueNative.setCss(value);
 			},
 			cubeShadowCss(value) {
 				vueNative['cubeShadowStyle'] = {
@@ -73,6 +70,30 @@ class DomSimulation {
 			},
 			paginationCss(value) {
 				vueNative.setPaginationCss(value)
+			},
+			addScrollbarClass(value) {
+				vueNative.addScrollbarClass(value);
+			},
+			removeScrollbarClass(value) {
+				vueNative.removeScrollbarClass(value);
+			},
+			scrollbarCss(value) {
+				vueNative.setScrollbarCss(value)
+			},
+			scrollbarTransition(value) {
+				vueNative.scrollbarTransition(`${value}ms`)
+			},
+			scrollbarTransform(value) {
+				vueNative.scrollbarTransform(value)
+			},
+			scrollbarItemCss(value) {
+				vueNative.setScrollbarItemCss(value)
+			},
+			scrollbarItemTransition(value) {
+				vueNative.scrollbarItemTransition(`${value}ms`)
+			},
+			scrollbarItemTransform(value) {
+				vueNative.scrollbarItemTransform(value)
 			},
 		})
 		return domSimulation;

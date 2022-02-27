@@ -7,6 +7,7 @@ export default function updateSlidesClasses() {
 		activeIndex,
 		realIndex
 	} = swiper;
+	if (!slides.length) return;
 	const isVirtual = swiper.virtual && params.virtual.enabled;
 	for (var i = 0; i < slides.length; i++) {
 		slides[i].removeClass(
