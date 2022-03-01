@@ -1,9 +1,23 @@
+## 2.1.1（2022-03-01）
+`2022-03-01`
+
+**Fix**
+
+- 修复字节小程序轮播内容不显示的问题。
+- 修复字节小程序获取位置信息错误的问题。
+
+**Docs**
+
+- [文档新增事件。](https://swiper.zebraui.com/basic/events/)
 ## 2.1.0（2022-02-27）
 `2022-02-27`
 
-:::warning 更新须知
+更新须知
+
 使用组件时，需在z-swiper标签上以`v-model`的形式传入list数据，也就是要循环的列表数据，该属性为强制性，不加会导致意外错误。例：
+
 之前的方式：
+
 ```vue
 <z-swiper>
         <z-swiper-item v-for="(item,index) in list" :key="index">
@@ -12,7 +26,9 @@
 	</z-swiper-item>
 </z-swiper>
 ```
+
 现在的方式：
+
 ```vue
 <z-swiper v-model="list"> //这里传入的需和下方循环的保持一致
 	<z-swiper-item v-for="(item,index) in list" :key="index">
@@ -21,7 +37,7 @@
 	</z-swiper-item>
 </z-swiper>
 ```
-:::
+
 这个操作也为swiper接管数据操作铺垫，对后续很多新功能非常有用，也为loop无限循环的痛点提供了解决方案。
 
 **Fix**

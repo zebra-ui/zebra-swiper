@@ -185,6 +185,16 @@
 			}
 		},
 		methods: {
+			initSwiper(options) {
+				options.on = this.eventsListeners;
+				const swiper = new Swiper('.swiper', options, this);
+				this.swiper = swiper;
+				swiper.on("init update", () => {
+					this.children.forEach((item) => {
+						item.swiperInited = true;
+					})
+				})
+			},
 			async getRect() {
 				let rectInfo = await getRect(this, '.swiper');
 				return rectInfo;
@@ -192,9 +202,6 @@
 			async getRectScrollbar() {
 				let rectInfo = await getRect(this, '.swiper-scrollbar');
 				return rectInfo;
-			},
-			toJSON() {
-				return this;
 			},
 			transform(value) {
 				this.$set(this.wrapperStyle, 'transform', value)
@@ -267,21 +274,6 @@
 			},
 			paginationItemClick(index) {
 				this.swiper.emit("paginationItemClick", index)
-			},
-			initSwiper(options) {
-				options.on = this.eventsListeners;
-				const swiper = new Swiper('.swiper', options, this);
-				this.swiper = swiper;
-				swiper.on("init update", () => {
-					this.children.forEach((item) => {
-						item.swiperInited = true;
-					})
-				})
-				// #ifdef MP-TOUTIAO
-				this.children.forEach((item) => {
-					item.swiperInited = true;
-				})
-				// #endif
 			},
 			prevClick() {
 				this.swiper.emit("prevClick");

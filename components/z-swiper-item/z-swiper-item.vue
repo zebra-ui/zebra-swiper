@@ -52,9 +52,6 @@
 			}
 		},
 		methods: {
-			toJSON() {
-				return this;
-			},
 			onClickSlide(event) {
 				this.$emit("click", {
 					event,
@@ -83,7 +80,7 @@
 				let rectInfoParent = await getRect(this.parent, '.swiper');
 				let rectInfo = await getRect(this, '.swiper-slide');
 				/*
-				 * °Ù¶ÈĞ¡³ÌĞòµÈ´ı´Ëbug±»ĞŞ¸´ £¨https://ask.dcloud.net.cn/question/139681?notification_id-1037363__rf-false£©
+				 * ç™¾åº¦å°ç¨‹åºç­‰å¾…æ­¤bugè¢«ä¿®å¤ ï¼ˆhttps://ask.dcloud.net.cn/question/139681?notification_id-1037363__rf-falseï¼‰
 				 */
 				// #ifndef MP-BAIDU
 				this.offsetLeft = rectInfo.left - rectInfoParent.left;
