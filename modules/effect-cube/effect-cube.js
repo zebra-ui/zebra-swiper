@@ -58,6 +58,7 @@ export default function EffectCube({
 				round = Math.floor(-slideAngle / 360);
 			}
 			const progress = Math.max(Math.min($slideEl.progress, 1), -1);
+			
 			let tx = 0;
 			let ty = 0;
 			let tz = 0;

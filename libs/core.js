@@ -318,7 +318,6 @@ class Swiper {
 		if (params.watchOverflow && snapGrid !== swiper.snapGrid) {
 			swiper.checkOverflow();
 		}
-
 		swiper.emit('update');
 	}
 	async mount(el) {
@@ -356,7 +355,7 @@ class Swiper {
 		swiper.addClasses(); // Create loop
 
 		if (swiper.params.loop) {
-			swiper.loopCreate();
+			await swiper.loopCreate();
 		} // Update size
 
 		swiper.updateSize(); // Update slides
@@ -373,9 +372,11 @@ class Swiper {
 		}
 
 		if (swiper.params.loop) {
-			swiper.slideTo(swiper.params.initialSlide + swiper.loopedSlides, 0, swiper.params.runCallbacksOnInit,
-				false, true);
-			// debugger
+			swiper.on("update", () => {
+				swiper.slideTo(swiper.params.initialSlide + swiper.loopedSlides, 0, swiper.params
+					.runCallbacksOnInit,
+					false, true);
+			})
 		} else {
 			swiper.slideTo(swiper.params.initialSlide, 0, swiper.params.runCallbacksOnInit, false, true);
 		} // Attach events

@@ -21,7 +21,6 @@
 				<template v-if="paginationType == 'bullets'">
 					<view v-for="(item,index) in paginationContent" :key="index" :class="[item.classContent.join(' ')]"
 						:style="[item.styleContent]" @click="paginationItemClick(index)">
-
 					</view>
 				</template>
 				<template v-if="paginationType == 'fraction'">

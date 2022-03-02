@@ -7,7 +7,9 @@ export default function updateSlidesProgress(translate = this && this.translate 
 		snapGrid
 	} = swiper;
 	if (slides.length === 0) return;
-	if (typeof slides[0].swiperSlideOffset === 'undefined') swiper.updateSlidesOffset();
+	if (typeof slides[0].swiperSlideOffset === 'undefined' || typeof slides[slides.length - 1].swiperSlideOffset ===
+		'undefined') swiper
+		.updateSlidesOffset();
 	let offsetCenter = -translate;
 	if (rtl) offsetCenter = translate; // Visible Slides
 
@@ -17,7 +19,6 @@ export default function updateSlidesProgress(translate = this && this.translate 
 	for (let i = 0; i < slides.length; i += 1) {
 		const slide = slides[i];
 		let slideOffset = slide.swiperSlideOffset;
-
 		if (params.cssMode && params.centeredSlides) {
 			slideOffset -= slides[0].swiperSlideOffset;
 		}

@@ -41,6 +41,27 @@ export default function updateActiveIndex(newActiveIndex) {
 
 	if (snapIndex >= snapGrid.length) snapIndex = snapGrid.length - 1;
 
+
+
+	if (swiper.loopedSlides) {
+		swiper.slides.filter((item) => item.index >= swiper.loopedSlides && item.index < swiper.slides.length - swiper
+			.loopedSlides).forEach((item, index) => {
+			item.dataSwiperSlideIndex = item.index - swiper.loopedSlides;
+		})
+		swiper.slides.filter((item) => item.index < swiper.loopedSlides).forEach((item, index) => {
+			if (swiper.slides[swiper.slides.length - swiper.loopedSlides * 3 + index]) {
+				item.dataSwiperSlideIndex = swiper.slides[swiper.slides.length - swiper.loopedSlides * 3 +
+						index]
+					.index;
+			}
+		})
+		swiper.slides.filter((item) => item.index >= swiper.slides.length - swiper
+			.loopedSlides).forEach((item, index) => {
+			item.dataSwiperSlideIndex = swiper.slides[index].index;
+		})
+	}
+
+
 	if (activeIndex === previousIndex) {
 		if (snapIndex !== previousSnapIndex) {
 			swiper.snapIndex = snapIndex;
@@ -50,9 +71,6 @@ export default function updateActiveIndex(newActiveIndex) {
 		return;
 	} // Get real index
 
-
-	// const realIndex = parseInt(swiper.slides.eq(activeIndex).attr('data-swiper-slide-index') || activeIndex, 10);
-	// const realIndex = parseInt(activeIndex, 10);
 	let realIndex = parseInt(swiper.slides[activeIndex].dataSwiperSlideIndex || activeIndex, 10);
 	if (swiper.slides[activeIndex].dataSwiperSlideIndex == undefined || swiper.slides[activeIndex]
 		.dataSwiperSlideIndex == null) {

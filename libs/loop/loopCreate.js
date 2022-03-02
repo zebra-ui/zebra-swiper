@@ -36,11 +36,16 @@ export default function loopCreate() {
 			appendSlides.push(el);
 		}
 	});
+	let list = [...swiper.native.value];
+	let newList = [...list];
+	swiper.originalDataList = [...swiper.native.value];
 	for (let i = 0; i < appendSlides.length; i += 1) {
-
+		newList.push(list[appendSlides[i].index]);
 	}
 
 	for (let i = prependSlides.length - 1; i >= 0; i -= 1) {
-
+		newList.unshift(list[prependSlides[i].index]);
 	}
+	swiper.native.$emit("input", newList)
+	return true;
 }

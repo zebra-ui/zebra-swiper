@@ -403,7 +403,8 @@ export default function Pagination({
 		}
 	}
 
-	on('init', () => {
+	on('init update', () => {
+		if (swiper.native.paginationContent) swiper.native.paginationContent = [];
 		init();
 		render();
 		update();

@@ -69,3 +69,9 @@ npm i @zebra-ui/swiper
  <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif5.gif" width="300" style="margin:20px;" />
  <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif6.gif" width="300" style="margin:20px;" />
 </div>
+
+## 群
+
+QQ群：947159437
+
+![image](https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/zebra-swiper-group-code.png)

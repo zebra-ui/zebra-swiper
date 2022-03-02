@@ -122,7 +122,7 @@ export default function Autoplay({
 
 	function onTransitionEnd(e) {
 		if (!swiper || swiper.destroyed || !swiper.$wrapperEl) return;
-		if (e.target !== swiper.$wrapperEl[0]) return;
+		// if (e.target !== swiper.$wrapperEl[0]) return;
 		['transitionEnd', 'webkitTransitionEnd'].forEach(event => {
 			swiper.$wrapperEl.native.$off(event, onTransitionEnd);
 		});
@@ -157,14 +157,12 @@ export default function Autoplay({
 	}
 
 	function attachMouseEvents() {
-		if (swiper.params.autoplay.pauseOnMouseEnter) {
-		}
+		if (swiper.params.autoplay.pauseOnMouseEnter) {}
 	}
 
-	function detachMouseEvents() {
-	}
+	function detachMouseEvents() {}
 
-	on('init', () => {
+	on('init update', () => {
 		if (swiper.params.autoplay.enabled) {
 			start();
 			attachMouseEvents();
@@ -175,7 +173,10 @@ export default function Autoplay({
 			if (internal || !swiper.params.autoplay.disableOnInteraction) {
 				swiper.autoplay.pause(speed);
 			} else {
-				stop();
+				if (!swiper.params.loop) {
+					stop();
+				}
+
 			}
 		}
 	});

@@ -77,8 +77,8 @@
 				});
 			},
 			async getRect() {
-				let rectInfoParent = await getRect(this.parent, '.swiper');
 				let rectInfo = await getRect(this, '.swiper-slide');
+				let rectInfoParent = await getRect(this.parent, '.swiper');
 				/*
 				 * 百度小程序等待此bug被修复 （https://ask.dcloud.net.cn/question/139681?notification_id-1037363__rf-false）
 				 */
@@ -94,10 +94,12 @@
 			async getWidth() {
 				let rectInfo = await getRect(this, '.swiper-slide');
 				this.width = rectInfo.width;
+				return rectInfo.width;
 			},
 			async getHeight() {
 				let rectInfo = await getRect(this, '.swiper-slide');
 				this.height = rectInfo.height;
+				return rectInfo.height;
 			},
 			addClass(value) {
 				this.itemClass = Array.from(new Set([...this.itemClass, ...value.split(" ")]));

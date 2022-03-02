@@ -119,7 +119,7 @@ export default async function updateSlides() {
 			if (params.roundLengths) {
 				slideSize = swiper.isHorizontal() ? slide.outerWidth(true) : slide.outerHeight(true);
 			} else {
-				const width = swiper.isHorizontal() ? slide.width : slide.height;
+				const width = swiper.isHorizontal() ? await slide.getWidth() : await slide.getHeight();
 				const paddingLeft = getDirectionPropertyValue(slideStyles, 'padding-left');
 				const paddingRight = getDirectionPropertyValue(slideStyles, 'padding-right');
 				const marginLeft = getDirectionPropertyValue(slideStyles, 'margin-left');
@@ -145,7 +145,6 @@ export default async function updateSlides() {
 		} else {
 			slideSize = (swiperSize - (params.slidesPerView - 1) * spaceBetween) / params.slidesPerView;
 			if (params.roundLengths) slideSize = Math.floor(slideSize);
-
 			if (slides[i] && slides[i].$itemEl) {
 				slides[i].$itemEl.css({
 					[getDirectionLabel('width')]: `${slideSize}px`
@@ -304,6 +303,5 @@ export default async function updateSlides() {
 		setTimeout(() => {
 			swiper.updateSlidesOffset();
 		}, 0)
-
 	}
 }

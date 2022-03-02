@@ -9,6 +9,9 @@ export default async function updateSlidesOffset() {
 		}
 		slides[i].swiperSlideOffset = swiper.isHorizontal() ? slides[i].offsetLeft :
 			slides[i].offsetTop;
+		// slides[i].swiperSlideOffset = swiper.isHorizontal() ? slides[i].swiperSlideSize * i :
+		// 	slides[i].swiperSlideSize * i;
+
 	}
 
 
