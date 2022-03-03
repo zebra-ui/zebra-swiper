@@ -1,5 +1,6 @@
 <template>
-	<view :class="['swiper-slide',slideClass]" :style="[itemStyle,customStyle]" @click.stop="onClickSlide">
+	<view :class="['swiper-slide',slideClass]" :style="[itemStyle,customStyle]" @click.stop="onClickSlide"
+		:prop="itemWxsProp" :change:prop="zSwiperWxs.itemPropObserver">
 		<template v-if="swiperInited">
 			<slot></slot>
 		</template>
@@ -8,7 +9,9 @@
 		</template>
 	</view>
 </template>
-
+<!-- #ifdef MP-WEIXIN || MP-QQ  -->
+<script src="../../wxs/z-swiper-wxs.wxs" module="zSwiperWxs" lang="wxs"></script>
+<!-- #endif -->
 <script>
 	import {
 		ChildrenMixin
@@ -33,6 +36,9 @@
 		},
 		data() {
 			return {
+				itemWxsProp: {
+					itemStyle: {}
+				},
 				itemStyle: {},
 				offsetLeft: 0,
 				offsetTop: 0,
@@ -61,15 +67,32 @@
 				this.parent.swiper.emit("slideClick", this.index);
 			},
 			transform(value) {
+				// #ifndef MP-WEIXIN || MP-QQ
 				this.$set(this.itemStyle, 'transform', value)
+				// #endif
+				// #ifdef MP-WEIXIN || MP-QQ
+				this.$set(this.itemWxsProp.itemStyle, 'transform', value)
+				// #endif
 			},
 			transition(value) {
+				// #ifndef MP-WEIXIN || MP-QQ
 				this.$set(this.itemStyle, 'transitionDuration', value)
+				// #endif
+				// #ifdef MP-WEIXIN || MP-QQ
+				this.$set(this.itemWxsProp.itemStyle, 'transition-duration', value)
+				// #endif
 			},
 			setCss(value) {
+				// #ifndef MP-WEIXIN || MP-QQ
 				Object.keys(value).forEach((item) => {
 					this.$set(this.itemStyle, item, value[item])
 				})
+				// #endif
+				// #ifdef MP-WEIXIN || MP-QQ
+				Object.keys(value).forEach((item) => {
+					this.$set(this.itemWxsProp.itemStyle, item, value[item])
+				})
+				// #endif
 			},
 			promiseMethod() {
 				return new Promise((resolve, reject) => {

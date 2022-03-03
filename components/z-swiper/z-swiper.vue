@@ -1,62 +1,72 @@
 <template>
 	<view :class="['swiper',contentClass,options.direction === 'vertical'?'swiper-vertical':'']" :style="customStyle">
+		<!-- #ifndef MP-WEIXIN || MP-QQ -->
 		<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClickWrapper" @touchstart="onTouchStart"
 			@touchmove.stop.prevent="onTouchMove" @touchend.stop="onTouchEnd">
-			<slot></slot>
-			<!-- 在loop模式下，为group填充空白slide -->
-			<template v-if="loopBlankShow">
-				<z-swiper-item v-for="(item,index) in loopBlankNumber" :key="index">
-				</z-swiper-item>
-			</template>
-			<template v-if="cubeShadowShowWrapper">
+			<!-- #endif -->
+			<!-- #ifdef MP-WEIXIN || MP-QQ -->
+			<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClickWrapper"
+				@touchstart="zSwiperWxs.onTouchStartWxs" @touchmove="zSwiperWxs.onTouchMoveWxs"
+				@touchend="zSwiperWxs.onTouchEndWxs" :prop="wxsProp" :change:prop="zSwiperWxs.propObserver">
+				<!-- #endif -->
+				<slot></slot>
+				<!-- 在loop模式下，为group填充空白slide -->
+				<template v-if="loopBlankShow">
+					<z-swiper-item v-for="(item,index) in loopBlankNumber" :key="index">
+					</z-swiper-item>
+				</template>
+				<template v-if="cubeShadowShowWrapper">
+					<view class="swiper-cube-shadow" :style="[cubeShadowStyle]"></view>
+				</template>
+			</view>
+			<template v-if="cubeShadowShowRoot">
 				<view class="swiper-cube-shadow" :style="[cubeShadowStyle]"></view>
 			</template>
-		</view>
-		<template v-if="cubeShadowShowRoot">
-			<view class="swiper-cube-shadow" :style="[cubeShadowStyle]"></view>
-		</template>
-		<slot name="indicator"></slot>
-		<template v-if="showIndicators">
-			<view :class="['swiper-pagination',paginationClass]" :style="[paginationStyle]">
-				<template v-if="paginationType == 'bullets'">
-					<view v-for="(item,index) in paginationContent" :key="index" :class="[item.classContent.join(' ')]"
-						:style="[item.styleContent]" @click="paginationItemClick(index)">
-					</view>
-				</template>
-				<template v-if="paginationType == 'fraction'">
-					<text :class="paginationContent.currentClass">{{paginationContent.text}}</text>/<text
-						:class="paginationContent.totalClass">{{paginationContent.total}}</text>
-				</template>
-				<template v-if="paginationType == 'progressbar'">
-					<text :class="paginationContent.progressbarFillClass"
-						:style="[paginationContent.styleContent]"></text>
-				</template>
-			</view>
-		</template>
-		<template v-if="(showPrevButton||showPrevButtonSlot)">
-			<view :class="['swiper-button-prev',prevClass]" @click="prevClick">
-				<view v-if="!showPrevButtonSlot" class="zebra-icon zebra-icon-circle_chevron_left"></view>
-				<slot v-else name="pre-button"></slot>
-			</view>
-		</template>
-		<template v-if="(showNextButton||showNextButtonSlot)">
-			<view :class="['swiper-button-next',nextClass]" @click="nextClick">
-				<view v-if="!showNextButtonSlot" class="zebra-icon zebra-icon-circle_chevron_right"></view>
-				<slot v-else name="next-button"></slot>
-			</view>
-		</template>
-		<template v-if="scrollbarShow">
-			<view :class="['swiper-scrollbar',scrollbarClass]" :style="[scrollbarStyle]" @click.stop="onClickScrollbar"
-				@touchstart.stop="onTouchStartScrollbar" @touchmove.stop.prevent="onTouchMoveScrollbar"
-				@touchend.stop="onTouchEndScrollbar">
-				<view class="swiper-scrollbar-drag" :style="[scrollbarItemStyle]">
-
+			<slot name="indicator"></slot>
+			<template v-if="showIndicators">
+				<view :class="['swiper-pagination',paginationClass]" :style="[paginationStyle]">
+					<template v-if="paginationType == 'bullets'">
+						<view v-for="(item,index) in paginationContent" :key="index"
+							:class="[item.classContent.join(' ')]" :style="[item.styleContent]"
+							@click="paginationItemClick(index)">
+						</view>
+					</template>
+					<template v-if="paginationType == 'fraction'">
+						<text :class="paginationContent.currentClass">{{paginationContent.text}}</text>/<text
+							:class="paginationContent.totalClass">{{paginationContent.total}}</text>
+					</template>
+					<template v-if="paginationType == 'progressbar'">
+						<text :class="paginationContent.progressbarFillClass"
+							:style="[paginationContent.styleContent]"></text>
+					</template>
 				</view>
-			</view>
-		</template>
-	</view>
-</template>
+			</template>
+			<template v-if="(showPrevButton||showPrevButtonSlot)">
+				<view :class="['swiper-button-prev',prevClass]" @click="prevClick">
+					<view v-if="!showPrevButtonSlot" class="zebra-icon zebra-icon-circle_chevron_left"></view>
+					<slot v-else name="pre-button"></slot>
+				</view>
+			</template>
+			<template v-if="(showNextButton||showNextButtonSlot)">
+				<view :class="['swiper-button-next',nextClass]" @click="nextClick">
+					<view v-if="!showNextButtonSlot" class="zebra-icon zebra-icon-circle_chevron_right"></view>
+					<slot v-else name="next-button"></slot>
+				</view>
+			</template>
+			<template v-if="scrollbarShow">
+				<view :class="['swiper-scrollbar',scrollbarClass]" :style="[scrollbarStyle]"
+					@click.stop="onClickScrollbar" @touchstart.stop="onTouchStartScrollbar"
+					@touchmove.stop.prevent="onTouchMoveScrollbar" @touchend.stop="onTouchEndScrollbar">
+					<view class="swiper-scrollbar-drag" :style="[scrollbarItemStyle]">
 
+					</view>
+				</view>
+			</template>
+		</view>
+</template>
+<!-- #ifdef MP-WEIXIN || MP-QQ -->
+<script src="../../wxs/z-swiper-wxs.wxs" module="zSwiperWxs" lang="wxs"></script>
+<!-- #endif -->
 <script>
 	import Swiper from '../../index.js';
 	import {
@@ -89,6 +99,9 @@
 		},
 		data() {
 			return {
+				wxsProp: {
+					wrapperStyle: {}
+				},
 				wrapperStyle: {},
 				contentClass: '',
 				nextElClass: [],
@@ -203,10 +216,20 @@
 				return rectInfo;
 			},
 			transform(value) {
+				// #ifndef MP-WEIXIN || MP-QQ
 				this.$set(this.wrapperStyle, 'transform', value)
+				// #endif
+				// #ifdef MP-WEIXIN || MP-QQ
+				this.$set(this.wxsProp.wrapperStyle, 'transform', value)
+				// #endif
 			},
 			transition(value) {
+				// #ifndef MP-WEIXIN || MP-QQ
 				this.$set(this.wrapperStyle, 'transitionDuration', value)
+				// #endif
+				// #ifdef MP-WEIXIN || MP-QQ
+				this.$set(this.wxsProp.wrapperStyle, 'transition-duration', value)
+				// #endif
 			},
 			scrollbarTransform(value) {
 				this.$set(this.scrollbarStyle, 'transform', value)
@@ -236,9 +259,16 @@
 				this.scrollbarElClass = this.scrollbarElClass.filter(item => !value.split(" ").includes(item));
 			},
 			setCss(value) {
+				// #ifndef MP-WEIXIN || MP-QQ
 				Object.keys(value).forEach((item) => {
 					this.$set(this.wrapperStyle, item, value[item])
 				})
+				// #endif
+				// #ifdef MP-WEIXIN || MP-QQ
+				Object.keys(value).forEach((item) => {
+					this.$set(this.wxsProp.wrapperStyle, item, value[item])
+				})
+				// #endif
 			},
 			setPaginationCss(value) {
 				Object.keys(value).forEach((item) => {
@@ -283,10 +313,19 @@
 			onTouchStart(event) {
 				this.swiper.onTouchStart(event);
 			},
+			onTouchStartSwiperWxs(event) {
+				this.swiper.onTouchStart(event);
+			},
 			onTouchMove(event) {
 				this.swiper.onTouchMove(event);
 			},
+			onTouchMoveSwiperWxs(event) {
+				this.swiper.onTouchMove(event);
+			},
 			onTouchEnd(event) {
+				this.swiper.onTouchEnd(event);
+			},
+			onTouchEndSwiperWxs(event) {
 				this.swiper.onTouchEnd(event);
 			},
 			onClickWrapper(event) {

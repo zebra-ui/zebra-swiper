@@ -18,7 +18,7 @@ export default async function updateSlides() {
 			'margin-right': 'margin-bottom',
 			'padding-left': 'padding-top',
 			'padding-right': 'padding-bottom',
-			'marginRight': 'marginBottom'
+			'margin-right': 'margin-bottom'
 		} [property];
 	}
 
@@ -221,7 +221,7 @@ export default async function updateSlides() {
 	if (snapGrid.length === 0) snapGrid = [0];
 
 	if (params.spaceBetween !== 0) {
-		const key = swiper.isHorizontal() && rtl ? 'marginLeft' : getDirectionLabel('marginRight');
+		const key = swiper.isHorizontal() && rtl ? 'margin-left' : getDirectionLabel('margin-right');
 		slides.filter((_, slideIndex) => {
 			if (!params.cssMode) return true;
 

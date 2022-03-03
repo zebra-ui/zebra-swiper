@@ -1,0 +1,44 @@
+function onTouchStartWxs(event, ins) {
+	ins.callMethod("onTouchStartSwiperWxs", {
+		changedTouches: event.changedTouches,
+		currentTarget: event.currentTarget,
+		touches: event.touches,
+		type: event.type
+	})
+}
+
+function onTouchMoveWxs(event, ins) {
+	ins.callMethod("onTouchMoveSwiperWxs", {
+		changedTouches: event.changedTouches,
+		currentTarget: event.currentTarget,
+		touches: event.touches,
+		type: event.type
+	})
+	return false
+}
+
+function onTouchEndWxs(event, ins) {
+	ins.callMethod("onTouchEndSwiperWxs", {
+		changedTouches: event.changedTouches,
+		currentTarget: event.currentTarget,
+		touches: event.touches,
+		type: event.type
+	})
+}
+
+function propObserver(newValue, oldValue, ownerInstance, instance) {
+	instance.setStyle(newValue.wrapperStyle)
+}
+
+function itemPropObserver(newValue, oldValue, ownerInstance, instance) {
+	instance.setStyle(newValue.itemStyle);
+}
+
+
+module.exports = {
+	onTouchStartWxs: onTouchStartWxs,
+	onTouchMoveWxs: onTouchMoveWxs,
+	onTouchEndWxs: onTouchEndWxs,
+	propObserver: propObserver,
+	itemPropObserver: itemPropObserver
+}

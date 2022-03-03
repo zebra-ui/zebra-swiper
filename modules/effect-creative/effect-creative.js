@@ -137,7 +137,7 @@ export default function EffectCreative({
 			});
 			if (data.origin) {
 				$targetEl.$itemEl.css({
-					transformOrigin: data.origin
+					'transform-origin': data.origin
 				});
 			}
 			slides[i].addClass('swiper-slide-creative')

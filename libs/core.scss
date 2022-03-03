@@ -57,7 +57,9 @@ $themeColor: #007aff !default;
     transition-property: transform, height;
   }
 }
-
+  .swiper-slide-3d{
+	   transform-style: preserve-3d;
+  }
 /* 3D Effects */
 .swiper-3d {
   &,
