@@ -9,6 +9,9 @@ class DomSimulation {
 			transform(value) {
 				vueNative.transform(value)
 			},
+			willChange(value) {
+				vueNative.willChange(value)
+			},
 			addClass(value) {
 				vueNative.addClass(value);
 			},

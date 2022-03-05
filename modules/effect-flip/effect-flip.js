@@ -64,6 +64,9 @@ export default function EffectFlip({
 			const transform = `translate3d(${tx}px, ${ty}px, 0px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 			const $targetEl = effectTarget(params, $slideEl);
 			$targetEl.$itemEl.transform(transform);
+			if (swiper.params.willChange) {
+				$targetEl.$itemEl.willChange("transform");
+			}
 			slides[i].addClass('swiper-slide-flip')
 		}
 	};

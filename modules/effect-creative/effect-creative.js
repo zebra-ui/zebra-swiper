@@ -140,6 +140,9 @@ export default function EffectCreative({
 					'transform-origin': data.origin
 				});
 			}
+			if (swiper.params.willChange) {
+				slides[i].$itemEl.willChange("transform,opacity");
+			}
 			slides[i].addClass('swiper-slide-creative')
 		}
 	};

@@ -50,7 +50,7 @@
 		},
 		mounted() {
 			this.getWidth();
-			this.getHeight();
+			// this.getHeight();
 		},
 		computed: {
 			slideClass() {
@@ -82,6 +82,14 @@
 				this.$set(this.itemWxsProp.itemStyle, 'transition-duration', value)
 				// #endif
 			},
+			willChange(value) {
+				// #ifndef MP-WEIXIN || MP-QQ
+				this.$set(this.itemStyle, 'will-change', value)
+				// #endif
+				// #ifdef MP-WEIXIN || MP-QQ
+				this.$set(this.itemWxsProp.itemStyle, 'will-change', value)
+				// #endif
+			},
 			setCss(value) {
 				// #ifndef MP-WEIXIN || MP-QQ
 				Object.keys(value).forEach((item) => {
@@ -107,11 +115,12 @@
 				 */
 				// #ifndef MP-BAIDU
 				this.offsetLeft = rectInfo.left - rectInfoParent.left;
+				this.offsetTop = rectInfo.top - rectInfoParent.top;
 				// #endif
 				// #ifdef MP-BAIDU
 				this.offsetLeft = rectInfo.width * this.index;
+				this.offsetTop = rectInfo.height * this.index;
 				// #endif
-				this.offsetTop = rectInfo.top - rectInfoParent.top;
 				return true;
 			},
 			async getWidth() {

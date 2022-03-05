@@ -12,12 +12,13 @@ import Navigation from './modules/navigation/navigation.js';
 import Pagination from './modules/pagination/pagination.js';
 import Thumbs from './modules/thumbs/thumbs.js';
 import Scrollbar from './modules/scrollbar/scrollbar.js';
+import WillChange from './modules/will-change/will-change.js';
 export {
 	default as Swiper,
 	default
 }
 from './libs/core.js';
 const modules = [Autoplay, FreeMode, EffectFade, EffectCube, EffectCoverflow, EffectFlip, EffectCards, EffectCreative,
-	EffectPanorama, Navigation, Pagination, Thumbs, Scrollbar
+	EffectPanorama, Navigation, Pagination, Thumbs, Scrollbar, WillChange
 ];
 Swiper.use(modules);

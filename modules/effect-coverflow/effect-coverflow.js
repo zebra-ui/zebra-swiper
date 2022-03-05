@@ -63,6 +63,9 @@ export default function EffectCoverflow({
 			$slideEl.$itemEl.css({
 				zIndex: -Math.abs(Math.round(offsetMultiplier)) + 1
 			})
+			if (swiper.params.willChange) {
+				$targetEl.$itemEl.willChange("transform");
+			}
 			$slideEl.addClass('swiper-slide-coverflow')
 			// if (params.slideShadows) {
 			//   // Set shadows

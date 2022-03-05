@@ -215,6 +215,14 @@
 				let rectInfo = await getRect(this, '.swiper-scrollbar');
 				return rectInfo;
 			},
+			willChange(value) {
+				// #ifndef MP-WEIXIN || MP-QQ
+				this.$set(this.wrapperStyle, 'will-change', value)
+				// #endif
+				// #ifdef MP-WEIXIN || MP-QQ
+				this.$set(this.wxsProp.wrapperStyle, 'will-change', value)
+				// #endif
+			},
 			transform(value) {
 				// #ifndef MP-WEIXIN || MP-QQ
 				this.$set(this.wrapperStyle, 'transform', value)

@@ -46,6 +46,9 @@ export default function Panorama({
 			const translateZ = `${radius * angleCos - depth}px`;
 			slideEl.$itemEl.transform(
 				`translateX(${translateX}) translateZ(${translateZ}) rotateY(${rotateY}deg)`);
+			if (swiper.params.willChange) {
+				slideEl.$itemEl.willChange("transform");
+			}
 			slideEl.addClass('swiper-slide-panorama')
 		}
 	});

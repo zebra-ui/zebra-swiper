@@ -38,6 +38,9 @@ export default function EffectFade({
 				opacity: slideOpacity
 			})
 			$targetEl.$itemEl.transform(`translate3d(${tx}px, ${ty}px, 0px)`);
+			if (swiper.params.willChange) {
+				$targetEl.$itemEl.willChange("opacity");
+			}
 			slides[i].addClass('swiper-slide-fade')
 		}
 	};

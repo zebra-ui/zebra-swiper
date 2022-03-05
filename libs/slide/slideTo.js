@@ -99,7 +99,9 @@ export default function slideTo(index = 0, speed = this.params.speed, runCallbac
 		swiper.updateActiveIndex(slideIndex); // Update Height
 
 		if (params.autoHeight) {
-			swiper.updateAutoHeight();
+			setTimeout(() => {
+				swiper.updateAutoHeight();
+			}, 0)
 		}
 
 		swiper.updateSlidesClasses();

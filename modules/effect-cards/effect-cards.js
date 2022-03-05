@@ -103,6 +103,9 @@ export default function EffectCards({
 			})
 			const $targetEl = effectTarget(params, $slideEl);
 			$targetEl.$itemEl.transform(transform);
+			if (swiper.params.willChange) {
+				$targetEl.$itemEl.willChange("transform");
+			}
 			slides[i].addClass('swiper-slide-cards')
 		}
 	};
