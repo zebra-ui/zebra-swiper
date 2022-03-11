@@ -350,6 +350,7 @@ class Swiper {
 		if (swiper.initialized) return swiper;
 		const mounted = await swiper.mount(el);
 		if (mounted === false) return swiper;
+		swiper.emit('swiper'); // Init
 		swiper.emit('beforeInit'); // Set breakpoint
 
 		swiper.addClasses(); // Create loop

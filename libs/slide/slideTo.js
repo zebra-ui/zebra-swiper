@@ -178,7 +178,9 @@ export default function slideTo(index = 0, speed = this.params.speed, runCallbac
 			};
 		}
 		timer = setTimeout(() => {
-			swiper.onSlideToWrapperTransitionEnd();
+			if (swiper.onSlideToWrapperTransitionEnd) {
+				swiper.onSlideToWrapperTransitionEnd();
+			}
 		}, speed)
 	}
 

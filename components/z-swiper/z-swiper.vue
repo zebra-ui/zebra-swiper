@@ -72,7 +72,6 @@
 	import {
 		ParentMixin
 	} from '../../libs/mixins/relation.js';
-	import addUnit from '../../libs/utils/add-unit.js';
 	import {
 		getAllRect,
 		getRect
