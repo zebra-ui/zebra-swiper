@@ -1,5 +1,6 @@
 <template>
-	<view :class="['swiper',contentClass,options.direction === 'vertical'?'swiper-vertical':'']" :style="customStyle">
+	<view :class="['swiper',contentClass,containerClasses,options.direction === 'vertical'?'swiper-vertical':'']"
+		:style="[customStyle]">
 		<!-- #ifndef MP-WEIXIN || MP-QQ -->
 		<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClickWrapper" @touchstart="onTouchStart"
 			@touchmove.stop.prevent="onTouchMove" @touchend.stop="onTouchEnd">
@@ -68,21 +69,56 @@
 <script src="../../wxs/z-swiper-wxs.wxs" module="zSwiperWxs" lang="wxs"></script>
 <!-- #endif -->
 <script>
-	import Swiper from '../../index.js';
-	import {
-		ParentMixin
-	} from '../../libs/mixins/relation.js';
 	import {
 		getAllRect,
 		getRect
 	} from '../../libs/utils/utils.js';
+	// vue2
+	import {
+		getParams
+	} from '../../libs/vue2/get-params.js';
+	import {
+		initSwiper,
+		mountSwiper
+	} from '../../libs/vue2/init-swiper.js';
+	import {
+		needsScrollbar,
+		needsNavigation,
+		needsPagination,
+		uniqueClasses,
+		extend,
+	} from '../../libs/vue2/utils.js';
+	import {
+		renderLoop,
+		calcLoopedSlides
+	} from '../../libs/vue2/loop.js';
+	import {
+		getChangedParams
+	} from '../../libs/vue2/get-changed-params.js';
+	import {
+		updateSwiper
+	} from '../../libs/vue2/update-swiper.js';
+	import {
+		renderVirtual,
+		updateOnVirtualData
+	} from '../../libs/vue2/virtual.js';
+	//mixin
+	import {
+		ParentMixin
+	} from '../../libs/mixins/relation.js';
+
 	export default {
 		name: "z-swipe",
 		mixins: [
 			ParentMixin('zSwipe')
 		],
 		props: {
-			customStyle: String,
+			customStyle: {
+				type: Object,
+				default: () => {
+					return {};
+				}
+			},
 			options: {
 				type: Object,
 				default: () => {
@@ -107,14 +143,11 @@
 				prevElClass: [],
 				paginationElClass: [],
 				paginationItemElClass: [],
-				loopFirstShow: false,
-				loopLastShow: false,
 				loopBlankShow: false,
 				loopBlankNumber: 0,
 				cubeShadowShowWrapper: false,
 				cubeShadowShowRoot: false,
 				cubeShadowStyle: {},
-				rectInfo: null,
 				eventsListeners: {},
 				showPrevButton: false,
 				showPrevButtonSlot: false,
@@ -124,10 +157,17 @@
 				paginationContent: [],
 				paginationType: '',
 				paginationStyle: {},
-				scrollbarShow: false,
 				scrollbarElClass: [],
 				scrollbarStyle: {},
-				scrollbarItemStyle: {}
+				scrollbarItemStyle: {},
+				rectInfo: null,
+
+				// vue2
+				containerClasses: 'swiper',
+				virtualData: [],
+				firstLoad: true,
+				originalDataList: [],
+				loopUpdateData: false
 			};
 		},
 		computed: {
@@ -145,74 +185,245 @@
 			},
 			scrollbarClass() {
 				return this.scrollbarElClass.join(" ");
+			},
+			scrollbarShow() {
+				return needsScrollbar(this.options)
 			}
 		},
-		// 百度小程序v-model值改变后无法触发数据更新，所以监听
-		// #ifdef MP-BAIDU
-		watch: {
-			async value(val) {
-				this.count = this.children.length;
-				if (this.children.length == this.value.length) {
-					if (this.swiper) {
-						this.swiper.update();
+		created() {
+			const {
+				params: swiperParams,
+				passedParams
+			} = getParams(this.options);
+			this.swiperElRef = 'swiper';
+			this.swiperParams = swiperParams;
+			this.oldPassedParamsRef = passedParams;
+			let slidesRef = this.slidesRef;
+
+			swiperParams.onAny = (event, ...args) => {
+				// #ifdef MP
+				// 字节小程序此处报错，因此无法使用v-on监听事件
+				// #ifndef MP-TOUTIAO
+				this.$emit(event, {}, ...args.filter((item, index) => {
+					return index > 0
+				}));
+				// #endif
+				// #endif
+				// #ifndef MP
+				this.$emit(event, ...args);
+				// #endif
+			};
+			Object.assign(swiperParams.on, {
+				_containerClasses(swiper, classes) {
+					this.containerClasses = classes;
+				},
+			});
+			this.$watch(() => {
+				return {
+					value: this.value,
+					options: this.options
+				}
+			}, (val) => {
+				if (this.swiperParams && this.swiperParams.loop) {
+					if (this.originalDataList.length && (this.originalDataList.toString() == val.value
+							.toString())) {
+						this.loopUpdateData = true;
+						// 百度小程序watch晚于子组件加载
+						// #ifdef MP-BAIDU
+						if (this.firstLoad) {
+							this.loadSwiper();
+						}
+						// #endif
 					} else {
-						let rectInfo = await this.getRect();
-						this.rectInfo = rectInfo;
-						this.initSwiper(this.options);
+						this.loopUpdateData = false;
+						let slides = renderLoop(this, this.swiperParams, this.value);
+						if (this.swiperParams.loop && !this.loopUpdateData && slides.data.toString() !=
+							val.value.toString()) {
+							this.loopUpdateData = true;
+							this.$emit("input", slides.data)
+							return
+						}
 					}
 				}
-			}
-		},
-		// #endif
-		created() {
+				if (this.swiper && !this.firstLoad) {
+					this.updateSwiper(val.value, val.options, this.children);
+				}
+			}, {
+				deep: true,
+				immediate: true
+			})
+			this.$watch(() => {
+				return this.$data
+			}, (val) => {
+				if (this.swiper && this.swiper.native) {
+					Object.assign(this.swiper.native, {
+						val
+					});
+				}
+			}, {
+				deep: true
+			})
 			uni.$on("childrenReady" + this._uid, async (children) => {
 				children.dataSwiperSlideIndex = children.index;
-				this.count = this.children.length;
 				if (this.children.length == this.value.length) {
-					if (this.swiper) {
-						this.swiper.update();
-					} else {
-						let rectInfo = await this.getRect();
-						this.rectInfo = rectInfo;
-						this.initSwiper(this.options);
-					}
+					Promise.all(this.children.map((item) => {
+						return item.getSize();
+					})).then((res) => {
+						if (this.swiperParams && this.swiperParams.loop) {
+							if (this.originalDataList.length && (this.originalDataList
+									.toString() == this.value
+									.toString())) {
+								if (this.firstLoad) {
+									this.loadSwiper();
+								}
+							} else {
+								return
+							}
+						} else {
+							if (this.firstLoad) {
+								this.loadSwiper();
+							}
+						}
+						this.updateSwiper(this.value, this.options, this.children);
+					})
 				}
 			})
 		},
-		mounted() {
-			// setTimeout(() => {
-			// 	Promise.all(this.children.map((item) => {
-			// 		return item.promiseMethod();
-			// 	})).then(async (res) => {
-			// 		let rectInfo = await this.getRect();
-			// 		this.rectInfo = rectInfo;
-			// 		this.initSwiper(this.options);
-			// 	})
-			// }, 0)
-		},
 		beforeDestroy() {
-			if (this.swiper) {
-				this.swiper.destroy();
+			if (this.swiper && !this.swiper.destroyed) {
+				this.swiper.destroy(true, false);
 			}
 		},
 		methods: {
-			initSwiper(options) {
-				options.on = this.eventsListeners;
-				const swiper = new Swiper('.swiper', options, this);
-				this.swiper = swiper;
-				swiper.on("init update", () => {
-					this.children.forEach((item) => {
-						item.swiperInited = true;
-					})
-				})
+			loadSwiper() {
+				let swiperParams = this.swiperParams;
+				this.slidesRef = this.children;
+				this.oldSlidesRef = this.slidesRef;
+				let swiperRef = initSwiper(swiperParams, {
+					...this.$data,
+					...this.$props,
+					emit: this.emit.bind(this),
+					off: this.off.bind(this),
+					on: this.on.bind(this),
+					updateData: this.updateData.bind(this),
+					getRect: this.getRect.bind(this),
+					getRectScrollbar: this.getRectScrollbar.bind(this),
+					willChange: this.willChange.bind(this),
+					transform: this.transform.bind(this),
+					transition: this.transition.bind(this),
+					scrollbarTransform: this.scrollbarTransform.bind(this),
+					scrollbarTransition: this.scrollbarTransition.bind(this),
+					scrollbarItemTransform: this.scrollbarItemTransform.bind(this),
+					scrollbarItemTransition: this.scrollbarItemTransition.bind(this),
+					addClass: this.addClass.bind(this),
+					addPaginationClass: this.addPaginationClass.bind(this),
+					removePaginationClass: this.removePaginationClass.bind(this),
+					addScrollbarClass: this.addScrollbarClass.bind(this),
+					removeScrollbarClass: this.removeScrollbarClass.bind(this),
+					setCss: this.setCss.bind(this),
+					css: this.setCss.bind(this),
+					paginationCss: this.setPaginationCss.bind(this),
+					scrollbarCss: this.scrollbarCss.bind(this),
+					scrollbarItemCss: this.scrollbarItemCss.bind(this),
+					addNextElClass: this.addNextElClass.bind(this),
+					addPrevElClass: this.addPrevElClass.bind(this),
+					removeNextElClass: this.removeNextElClass.bind(this),
+					removePrevElClass: this.removePrevElClass.bind(this),
+					cubeShadowCss: this.cubeShadowCss.bind(this),
+					cubeShadowTransform: this.cubeShadowTransform.bind(this),
+					cubeShadowTransition: this.cubeShadowTransition.bind(this),
+				});
+				this.swiper = swiperRef;
+				swiperRef.loopCreate = () => {};
+				swiperRef.loopDestroy = () => {};
+				if (swiperParams.loop) {
+					swiperRef.loopedSlides = calcLoopedSlides(this.slidesRef, swiperParams);
+				}
+				if (!this.swiper) return;
+				mountSwiper({
+						el: this.swiperElRef,
+						nextEl: this.nextElRef,
+						prevEl: this.prevElRef,
+						paginationEl: this.paginationElRef,
+						scrollbarEl: this.scrollbarElRef,
+						swiper: this.swiper,
+					},
+					this.swiperParams,
+				);
+
+				this.$emit('swiper');
+				this.firstLoad = false;
+			},
+			updateSwiper(value, options, children) {
+				this.swiper.slides = children;
+				this.slidesRef = children;
+				let initializedRef = this.initializedRef;
+				let swiperRef = this.swiper;
+				let slidesRef = this.slidesRef;
+				let oldPassedParamsRef = this.oldPassedParamsRef;
+				let oldSlidesRef = this.oldSlidesRef;
+				let breakpointChanged = this.breakpointChanged;
+				let nextElRef = this.nextElRef;
+				let prevElRef = this.prevElRef;
+				let paginationElRef = this.paginationElRef;
+				let scrollbarElRef = this.scrollbarElRef;
+				// set initialized flag
+				if (!initializedRef && swiperRef) {
+					swiperRef.emitSlidesClasses();
+					initializedRef = true;
+				}
+				// watch for params change
+				const {
+					passedParams: newPassedParams
+				} = getParams(options);
+				const changedParams = getChangedParams(
+					newPassedParams,
+					oldPassedParamsRef,
+					slidesRef,
+					oldSlidesRef,
+				);
+				this.oldPassedParamsRef = newPassedParams;
+				this.oldSlidesRef = slidesRef;
+				if (
+					(changedParams.length || breakpointChanged) &&
+					swiperRef &&
+					!swiperRef.destroyed
+				) {
+					updateSwiper({
+						swiper: swiperRef,
+						slides: slidesRef,
+						passedParams: newPassedParams,
+						changedParams,
+						nextEl: nextElRef,
+						prevEl: prevElRef,
+						scrollbarEl: scrollbarElRef,
+						paginationEl: paginationElRef,
+					});
+				}
+				breakpointChanged = false;
+			},
+			emit(event, data) {
+				this.$emit(event, ...data)
+			},
+			off(event, data) {
+				this.$off(event)
+			},
+			on(event, handler) {
+				this.$on(event, handler)
 			},
 			async getRect() {
 				let rectInfo = await getRect(this, '.swiper');
+				this.rectInfo = rectInfo;
 				return rectInfo;
 			},
 			async getRectScrollbar() {
 				let rectInfo = await getRect(this, '.swiper-scrollbar');
 				return rectInfo;
+			},
+			updateData(value) {
+				Object.keys(value).forEach((item) => {
+					this.$set(this, item, value[item])
+				})
 			},
 			willChange(value) {
 				// #ifndef MP-WEIXIN || MP-QQ
@@ -232,23 +443,23 @@
 			},
 			transition(value) {
 				// #ifndef MP-WEIXIN || MP-QQ
-				this.$set(this.wrapperStyle, 'transitionDuration', value)
+				this.$set(this.wrapperStyle, 'transitionDuration', `${value}ms`)
 				// #endif
 				// #ifdef MP-WEIXIN || MP-QQ
-				this.$set(this.wxsProp.wrapperStyle, 'transition-duration', value)
+				this.$set(this.wxsProp.wrapperStyle, 'transition-duration', `${value}ms`)
 				// #endif
 			},
 			scrollbarTransform(value) {
 				this.$set(this.scrollbarStyle, 'transform', value)
 			},
 			scrollbarTransition(value) {
-				this.$set(this.scrollbarStyle, 'transitionDuration', value)
+				this.$set(this.scrollbarStyle, 'transitionDuration', `${value}ms`)
 			},
 			scrollbarItemTransform(value) {
 				this.$set(this.scrollbarItemStyle, 'transform', value)
 			},
 			scrollbarItemTransition(value) {
-				this.$set(this.scrollbarItemStyle, 'transitionDuration', value)
+				this.$set(this.scrollbarItemStyle, 'transitionDuration', `${value}ms`)
 			},
 			addClass(value) {
 				this.contentClass = value;
@@ -282,12 +493,12 @@
 					this.$set(this.paginationStyle, item, value[item])
 				})
 			},
-			setScrollbarCss(value) {
+			scrollbarCss(value) {
 				Object.keys(value).forEach((item) => {
 					this.$set(this.scrollbarStyle, item, value[item])
 				})
 			},
-			setScrollbarItemCss(value) {
+			scrollbarItemCss(value) {
 				Object.keys(value).forEach((item) => {
 					this.$set(this.scrollbarItemStyle, item, value[item])
 				})
@@ -349,6 +560,17 @@
 			},
 			onTouchEndScrollbar(event) {
 				this.swiper.emit('touchEndScrollbar', event);
+			},
+			cubeShadowCss(value) {
+				Object.keys(value).forEach((item) => {
+					this.$set(this.cubeShadowStyle, item, value[item])
+				})
+			},
+			cubeShadowTransform(value) {
+				this.$set(this.cubeShadowStyle, 'transform', value)
+			},
+			cubeShadowTransition(value) {
+				this.$set(this.cubeShadowStyle, 'transitionDuration', `${value}ms`)
 			},
 		}
 	}

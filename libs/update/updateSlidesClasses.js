@@ -7,7 +7,7 @@ export default function updateSlidesClasses() {
 		activeIndex,
 		realIndex
 	} = swiper;
-	if (!slides.length) return;
+	if (!slides.length || !$wrapperEl) return;
 	const isVirtual = swiper.virtual && params.virtual.enabled;
 	for (var i = 0; i < slides.length; i++) {
 		slides[i].removeClass(
@@ -18,20 +18,30 @@ export default function updateSlidesClasses() {
 	let activeSlide;
 
 	if (isVirtual) {
-		activeSlide = swiper.$wrapperEl.find(`.${params.slideClass}[data-swiper-slide-index="${activeIndex}"]`);
+		// activeSlide = swiper.$wrapperEl.find(`.${params.slideClass}[data-swiper-slide-index="${activeIndex}"]`);
+		activeSlide = slides[slides.findIndex((item) => {
+			return item.dataSwiperSlideIndex == activeIndex
+		})];
 	} else {
 		activeSlide = slides[activeIndex];
 	} // Active classes
 
-
+	if (!activeSlide) return
 	activeSlide.addClass(params.slideActiveClass);
 
 	if (params.loop) {
 		if (activeSlide.hasClass(params.slideDuplicateClass)) {
-			$wrapperEl.children(realIndex).addClass(params.slideDuplicateActiveClass);
+			// $wrapperEl.children[realIndex].addClass(params.slideDuplicateActiveClass);
+			let index = slides.findIndex((item) => {
+				return !item.hasClass(params.slideDuplicateClass) && item.dataSwiperSlideIndex == realIndex
+			})
+			slides[index] && slides[index].addClass(params.slideDuplicateActiveClass);
 		} else {
-			$wrapperEl.children(realIndex).addClass(params.slideDuplicateActiveClass);
-
+			// $wrapperEl.children[realIndex].addClass(params.slideDuplicateActiveClass);
+			let index = slides.findIndex((item) => {
+				return item.hasClass(params.slideDuplicateClass) && item.dataSwiperSlideIndex == realIndex
+			})
+			slides[index] && slides[index].addClass(params.slideDuplicateActiveClass);
 		}
 	} // Next Slide
 
@@ -62,22 +72,46 @@ export default function updateSlidesClasses() {
 	if (params.loop) {
 		// Duplicate to all looped slides
 		if (nextSlide.hasClass(params.slideDuplicateClass)) {
-			$wrapperEl.children(
-				nextSlide.dataSwiperSlideIndex
-			).addClass(params.slideDuplicateNextClass);
+			// $wrapperEl.children(
+			// 	nextSlide.dataSwiperSlideIndex
+			// ).addClass(params.slideDuplicateNextClass);
+
+			let index = slides.findIndex((item) => {
+				return !item.hasClass(params.slideDuplicateClass) && item.dataSwiperSlideIndex == nextSlide
+					.dataSwiperSlideIndex
+			})
+			slides[index] && slides[index].addClass(params.slideDuplicateNextClass);
+
+
 		} else {
-			$wrapperEl.children(
-				nextSlide.dataSwiperSlideIndex
-			).addClass(params.slideDuplicateNextClass);
+			// $wrapperEl.children(
+			// 	nextSlide.dataSwiperSlideIndex
+			// ).addClass(params.slideDuplicateNextClass);
+
+			let index = slides.findIndex((item) => {
+				return item.hasClass(params.slideDuplicateClass) && item.dataSwiperSlideIndex == nextSlide
+					.dataSwiperSlideIndex
+			})
+			slides[index] && slides[index].addClass(params.slideDuplicateNextClass);
 		}
 		if (prevSlide.hasClass(params.slideDuplicateClass)) {
-			$wrapperEl.children(
-				prevSlide.dataSwiperSlideIndex
-			).addClass(params.slideDuplicatePrevClass);
+			// $wrapperEl.children(
+			// 	prevSlide.dataSwiperSlideIndex
+			// ).addClass(params.slideDuplicatePrevClass);
+			let index = slides.findIndex((item) => {
+				return !item.hasClass(params.slideDuplicateClass) && item.dataSwiperSlideIndex == prevSlide
+					.dataSwiperSlideIndex
+			})
+			slides[index] && slides[index].addClass(params.slideDuplicatePrevClass);
 		} else {
-			$wrapperEl.children(
-				prevSlide.dataSwiperSlideIndex
-			).addClass(params.slideDuplicatePrevClass);
+			// $wrapperEl.children(
+			// 	prevSlide.dataSwiperSlideIndex
+			// ).addClass(params.slideDuplicatePrevClass);
+			let index = slides.findIndex((item) => {
+				return item.hasClass(params.slideDuplicateClass) && item.dataSwiperSlideIndex == prevSlide
+					.dataSwiperSlideIndex
+			})
+			slides[index] && slides[index].addClass(params.slideDuplicatePrevClass);
 		}
 	}
 

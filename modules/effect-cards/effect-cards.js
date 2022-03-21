@@ -98,13 +98,13 @@ export default function EffectCards({
 			// }
 
 			// $slideEl[0].style.zIndex = -Math.abs(Math.round(slideProgress)) + slides.length;
-			$slideEl.$itemEl.css({
+			$slideEl.css({
 				zIndex: -Math.abs(Math.round(slideProgress)) + slides.length
 			})
 			const $targetEl = effectTarget(params, $slideEl);
-			$targetEl.$itemEl.transform(transform);
+			$targetEl.transform(transform);
 			if (swiper.params.willChange) {
-				$targetEl.$itemEl.willChange("transform");
+				$targetEl.willChange("transform");
 			}
 			slides[i].addClass('swiper-slide-cards')
 		}
@@ -116,7 +116,7 @@ export default function EffectCards({
 		} = swiper.params.cardsEffect;
 		const $transitionElements = transformEl ? swiper.slides.find(transformEl) : swiper.slides;
 		for (let i = 0; i < $transitionElements.length; i += 1) {
-			$transitionElements[i].$itemEl.transition(duration);
+			$transitionElements[i].transition(duration);
 		}
 
 		effectVirtualTransitionEnd({

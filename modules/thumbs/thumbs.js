@@ -91,7 +91,7 @@ export default function Thumb({
 			swiper.thumbs.swiper = new SwiperClass(thumbsSwiperParams);
 			swiperCreated = true;
 		}
-		swiper.thumbs.swiper.$el.addClass(swiper.params.thumbs.thumbsContainerClass);
+		swiper.thumbs.swiper.$el && swiper.thumbs.swiper.$el.addClass(swiper.params.thumbs.thumbsContainerClass);
 		swiper.thumbs.swiper.on('slideClick', onThumbClick);
 		return true;
 	}
@@ -189,8 +189,8 @@ export default function Thumb({
 		thumbsToActivate = Math.floor(thumbsToActivate);
 		// thumbsSwiper.slides.removeClass(thumbActiveClass);
 		thumbsSwiper.slides.forEach((item) => {
-			item.$itemEl.addClass(swiper.params.slideThumbsClass);
-			item.$itemEl.removeClass(thumbActiveClass);
+			item.addClass(swiper.params.slideThumbsClass);
+			item.removeClass(thumbActiveClass);
 		})
 		if (
 			thumbsSwiper.params.loop ||
@@ -203,7 +203,7 @@ export default function Thumb({
 			}
 		} else {
 			for (let i = 0; i < thumbsToActivate; i += 1) {
-				thumbsSwiper.slides[swiper.realIndex + i].$itemEl.addClass(thumbActiveClass);
+				thumbsSwiper.slides[swiper.realIndex + i].addClass(thumbActiveClass);
 			}
 		}
 	}

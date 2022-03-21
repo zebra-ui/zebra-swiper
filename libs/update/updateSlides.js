@@ -1,7 +1,7 @@
 import {
 	setCSSProperty
 } from '../../shared/utils.js';
-export default async function updateSlides() {
+export default function updateSlides() {
 	const swiper = this;
 
 	function getDirectionLabel(property) {
@@ -18,7 +18,7 @@ export default async function updateSlides() {
 			'margin-right': 'margin-bottom',
 			'padding-left': 'padding-top',
 			'padding-right': 'padding-bottom',
-			'margin-right': 'margin-bottom'
+			'marginRight': 'marginBottom'
 		} [property];
 	}
 
@@ -29,7 +29,6 @@ export default async function updateSlides() {
 	function getComputedStyle(native) {
 		return native.itemStyle;
 	}
-
 	const params = swiper.params;
 	const {
 		$wrapperEl,
@@ -40,7 +39,7 @@ export default async function updateSlides() {
 	const isVirtual = swiper.virtual && params.virtual.enabled;
 	const previousSlidesLength = isVirtual ? swiper.virtual.slides.length : swiper.slides.length;
 	// const slides = $wrapperEl.children(`.${swiper.params.slideClass}`);
-	const slides = swiper.native.children;
+	const slides = swiper.slides;
 	const slidesLength = isVirtual ? swiper.virtual.slides.length : slides.length;
 	let snapGrid = [];
 	const slidesGrid = [];
@@ -91,8 +90,7 @@ export default async function updateSlides() {
 		.breakpoints).filter(key => {
 		return typeof params.breakpoints[key].slidesPerView !== 'undefined';
 	}).length > 0;
-
-	for (let i = 0; i < slidesLength; i += 1) {
+	Array(...Array(slidesLength)).forEach(async (item, i) => {
 		slideSize = 0;
 		const slide = slides[i];
 
@@ -119,7 +117,7 @@ export default async function updateSlides() {
 			if (params.roundLengths) {
 				slideSize = swiper.isHorizontal() ? slide.outerWidth(true) : slide.outerHeight(true);
 			} else {
-				const width = swiper.isHorizontal() ? await slide.getWidth() : await slide.getHeight();
+				const width = swiper.isHorizontal() ? slide.width : slide.height;
 				const paddingLeft = getDirectionPropertyValue(slideStyles, 'padding-left');
 				const paddingRight = getDirectionPropertyValue(slideStyles, 'padding-right');
 				const marginLeft = getDirectionPropertyValue(slideStyles, 'margin-left');
@@ -129,7 +127,8 @@ export default async function updateSlides() {
 				if (boxSizing && boxSizing === 'border-box') {
 					slideSize = width + marginLeft + marginRight;
 				} else {
-					slideSize = width + paddingLeft + paddingRight + marginLeft + marginRight;
+					// slideSize = width + paddingLeft + paddingRight + marginLeft + marginRight;
+					slideSize = width;
 				}
 			}
 
@@ -145,23 +144,21 @@ export default async function updateSlides() {
 		} else {
 			slideSize = (swiperSize - (params.slidesPerView - 1) * spaceBetween) / params.slidesPerView;
 			if (params.roundLengths) slideSize = Math.floor(slideSize);
-			if (slides[i] && slides[i].$itemEl) {
-				slides[i].$itemEl.css({
-					[getDirectionLabel('width')]: `${slideSize}px`
-				})
-			}
+			slides[i] && slides[i].css({
+				[getDirectionLabel('width')]: `${slideSize}px`
+			})
 		}
 
 		if (slides[i]) {
 			slides[i].swiperSlideSize = slideSize;
-			await slides[i].getRect();
 		}
 
 		slidesSizesGrid.push(slideSize);
 
 		if (params.centeredSlides) {
 			slidePosition = slidePosition + slideSize / 2 + prevSlideSize / 2 + spaceBetween;
-			if (prevSlideSize === 0 && i !== 0) slidePosition = slidePosition - swiperSize / 2 - spaceBetween;
+			if (prevSlideSize === 0 && i !== 0) slidePosition = slidePosition - swiperSize / 2 -
+				spaceBetween;
 			if (i === 0) slidePosition = slidePosition - swiperSize / 2 - spaceBetween;
 			if (Math.abs(slidePosition) < 1 / 1000) slidePosition = 0;
 			if (params.roundLengths) slidePosition = Math.floor(slidePosition);
@@ -169,17 +166,16 @@ export default async function updateSlides() {
 			slidesGrid.push(slidePosition);
 		} else {
 			if (params.roundLengths) slidePosition = Math.floor(slidePosition);
-			if ((index - Math.min(swiper.params.slidesPerGroupSkip, index)) % swiper.params.slidesPerGroup === 0)
+			if ((index - Math.min(swiper.params.slidesPerGroupSkip, index)) % swiper.params
+				.slidesPerGroup === 0)
 				snapGrid.push(slidePosition);
 			slidesGrid.push(slidePosition);
 			slidePosition = slidePosition + slideSize + spaceBetween;
 		}
-
 		swiper.virtualSize += slideSize + spaceBetween;
 		prevSlideSize = slideSize;
 		index += 1;
-	}
-
+	})
 	swiper.virtualSize = Math.max(swiper.virtualSize, swiperSize) + offsetAfter;
 
 	if (rtl && wrongRTL && (params.effect === 'slide' || params.effect === 'coverflow')) {
@@ -210,7 +206,6 @@ export default async function updateSlides() {
 				newSlidesGrid.push(slidesGridItem);
 			}
 		}
-
 		snapGrid = newSlidesGrid;
 
 		if (Math.floor(swiper.virtualSize - swiperSize) - Math.floor(snapGrid[snapGrid.length - 1]) > 1) {
@@ -221,7 +216,12 @@ export default async function updateSlides() {
 	if (snapGrid.length === 0) snapGrid = [0];
 
 	if (params.spaceBetween !== 0) {
+		// #ifdef MP-BAIDU
+		const key = swiper.isHorizontal() && rtl ? 'marginLeft' : getDirectionLabel('marginRight');
+		// #endif
+		// #ifndef MP-BAIDU
 		const key = swiper.isHorizontal() && rtl ? 'margin-left' : getDirectionLabel('margin-right');
+		// #endif
 		slides.filter((_, slideIndex) => {
 			if (!params.cssMode) return true;
 
@@ -231,12 +231,11 @@ export default async function updateSlides() {
 
 			return true;
 		}).forEach((item) => {
-			item.$itemEl.css({
+			item.css({
 				[key]: `${spaceBetween}px`
 			})
 		});
 	}
-
 	if (params.centeredSlides && params.centeredSlidesBounds) {
 		let allSlidesSize = 0;
 		slidesSizesGrid.forEach(slideSizeValue => {
@@ -268,7 +267,6 @@ export default async function updateSlides() {
 			});
 		}
 	}
-
 	Object.assign(swiper, {
 		slides,
 		snapGrid,
@@ -300,8 +298,8 @@ export default async function updateSlides() {
 	}
 
 	if (params.watchSlidesProgress) {
-		setTimeout(() => {
-			swiper.updateSlidesOffset();
-		}, 0)
+		swiper.updateSlidesOffset();
 	}
+
+	return slides;
 }

@@ -331,7 +331,9 @@ export default function Scrollbar({
 		} = swiper;
 		const params = swiper.params.scrollbar;
 		if (!params.el) return;
-		swiper.native.scrollbarShow = true;
+		// swiper.native.updateData({
+		// 	scrollbarShow: true
+		// })
 		let $el = params.el;
 
 		Object.assign(scrollbar, {

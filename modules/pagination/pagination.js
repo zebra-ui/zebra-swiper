@@ -205,6 +205,9 @@ export default function Pagination({
 			// 	.text(params.formatFractionCurrent(current + 1));
 			swiper.native.paginationContent.text = params.formatFractionCurrent(current + 1);
 			swiper.native.paginationContent.total = params.formatFractionTotal(total);
+			swiper.native.updateData({
+				paginationContent: swiper.native.paginationContent,
+			})
 			// $el.find(classesToSelector(params.totalClass)).text(params.formatFractionTotal(total));
 		}
 		if (params.type === 'progressbar') {
@@ -226,6 +229,9 @@ export default function Pagination({
 			// .find(classesToSelector(params.progressbarFillClass))
 			swiper.native.paginationContent.transform(`translate3d(0,0,0) scaleX(${scaleX}) scaleY(${scaleY})`);
 			swiper.native.paginationContent.transition(swiper.params.speed);
+			swiper.native.updateData({
+				paginationContent: swiper.native.paginationContent,
+			})
 		}
 		if (params.type === 'custom' && params.renderCustom) {
 			$el.html(params.renderCustom(swiper, current + 1, total));
@@ -300,6 +306,10 @@ export default function Pagination({
 							// this.$set(this.itemStyle, item, value[item])
 						}
 					});
+					swiper.native.updateData({
+						paginationType: swiper.native.paginationType,
+						paginationContent: swiper.native.paginationContent,
+					})
 				}
 
 			}
@@ -323,6 +333,10 @@ export default function Pagination({
 					currentClass: params.currentClass,
 					totalClass: params.totalClass
 				}
+				swiper.native.updateData({
+					paginationType: swiper.native.paginationType,
+					paginationContent: swiper.native.paginationContent,
+				})
 			}
 		}
 		if (params.type === 'progressbar') {
@@ -344,6 +358,10 @@ export default function Pagination({
 						this.styleContent.transform = value;
 					},
 				}
+				swiper.native.updateData({
+					paginationType: swiper.native.paginationType,
+					paginationContent: swiper.native.paginationContent,
+				})
 			}
 			// $el.html(paginationHTML);
 		}
@@ -355,7 +373,10 @@ export default function Pagination({
 	function init() {
 		const params = swiper.params.pagination;
 		if (!params.el) return;
-		swiper.native.showIndicators = true;
+		// swiper.native.showIndicators = true;
+		swiper.native.updateData({
+			showIndicators: true
+		})
 		let $el = params.el;
 
 		if (params.type === 'bullets' && params.clickable) {
@@ -404,7 +425,12 @@ export default function Pagination({
 	}
 
 	on('init update', () => {
-		if (swiper.native.paginationContent) swiper.native.paginationContent = [];
+		if (swiper.native.paginationContent) {
+			swiper.native.updateData({
+				paginationContent: []
+			})
+		}
+		// swiper.native.paginationContent = [];
 		init();
 		render();
 		update();

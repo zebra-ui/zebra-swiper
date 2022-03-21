@@ -71,8 +71,6 @@ export default function translateTo(translate = 0, speed = this.params.speed, ru
 				swiper.onTranslateToWrapperTransitionEnd = function transitionEnd(e) {
 					if (!swiper || swiper.destroyed) return;
 					if (e.target !== this) return;
-					// swiper.$wrapperEl[0].removeEventListener('transitionend', swiper.onTranslateToWrapperTransitionEnd);
-					// swiper.$wrapperEl[0].removeEventListener('webkitTransitionEnd', swiper.onTranslateToWrapperTransitionEnd);
 					clearTimeout(timer)
 					swiper.onTranslateToWrapperTransitionEnd = null;
 					delete swiper.onTranslateToWrapperTransitionEnd;
@@ -85,9 +83,6 @@ export default function translateTo(translate = 0, speed = this.params.speed, ru
 			timer = setTimeout(() => {
 				swiper.onTranslateToWrapperTransitionEnd();
 			}, speed)
-			// swiper.onTranslateToWrapperTransitionEnd();
-			// swiper.$wrapperEl[0].addEventListener('transitionend', swiper.onTranslateToWrapperTransitionEnd);
-			// swiper.$wrapperEl[0].addEventListener('webkitTransitionEnd', swiper.onTranslateToWrapperTransitionEnd);
 		}
 	}
 

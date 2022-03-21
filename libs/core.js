@@ -24,8 +24,6 @@ import slide from './slide/index.js';
 import loop from './loop/index.js';
 import grabCursor from './grab-cursor/index.js';
 import events from './events/index.js';
-import DomSimulation from './dom-simulation/parent.js';
-import ChildDomSimulation from './dom-simulation/child.js';
 import {
 	getRect
 } from './utils/utils.js';
@@ -51,6 +49,10 @@ class Swiper {
 		if (args.length === 1 && args[0].constructor && Object.prototype.toString.call(args[0]).slice(8, -1) ===
 			'Object') {
 			params = args[0];
+		} else if (args.length === 2 && args[0].constructor && Object.prototype.toString.call(args[0]).slice(8, -
+				1) ===
+			'Object') {
+			params = args[0];
 			native = args[1];
 		} else {
 			[el, params, native] = args;
@@ -58,13 +60,18 @@ class Swiper {
 		if (!params) params = {};
 		params = extend({}, params);
 		if (el && !params.el) params.el = el;
-		swiper.modules = [...swiper.__modules__];
+
+		// Swiper Instance
+		swiper.__swiper__ = true;
 		swiper.support = getSupport();
 		swiper.device = getDevice({
 			userAgent: params.userAgent
 		});
 		swiper.browser = getBrowser();
+
 		swiper.eventsListeners = {};
+		swiper.eventsAnyListeners = [];
+		swiper.modules = [...swiper.__modules__];
 		swiper.native = native;
 		if (params.modules && Array.isArray(params.modules)) {
 			swiper.modules.push(...params.modules);
@@ -81,7 +88,6 @@ class Swiper {
 			});
 		}); // Extend defaults with modules params
 		const swiperParams = extend({}, defaults, allModulesParams); // Extend defaults with passed params
-
 		swiper.params = extend({}, swiperParams, extendedDefaults, params);
 		swiper.originalParams = extend({}, swiper.params);
 		swiper.passedParams = extend({}, params); // add event listeners
@@ -146,9 +152,8 @@ class Swiper {
 					move: desktop[1],
 					end: desktop[2]
 				};
-				// return swiper.support.touch || !swiper.params.simulateTouch ? swiper.touchEventsTouch :
-				// 	swiper.touchEventsDesktop;
-				return swiper.touchEventsTouch;
+				return swiper.support.touch || !swiper.params.simulateTouch ? swiper.touchEventsTouch :
+					swiper.touchEventsDesktop;
 			}(),
 			touchEventsData: {
 				isTouched: undefined,
@@ -183,7 +188,9 @@ class Swiper {
 			},
 			// Images
 			imagesToLoad: [],
-			imagesLoaded: 0
+			imagesLoaded: 0,
+			virtualList: [],
+			virtualIndexList: [],
 		});
 		swiper.emit('_swiper'); // Init
 
@@ -194,27 +201,61 @@ class Swiper {
 
 
 	}
+
+	enable() {
+		const swiper = this;
+		if (swiper.enabled) return;
+		swiper.enabled = true;
+		if (swiper.params.grabCursor) {
+			swiper.setGrabCursor();
+		}
+		swiper.emit('enable');
+	}
+
+	disable() {
+		const swiper = this;
+		if (!swiper.enabled) return;
+		swiper.enabled = false;
+		if (swiper.params.grabCursor) {
+			swiper.unsetGrabCursor();
+		}
+		swiper.emit('disable');
+	}
+
+	setProgress(progress, speed) {
+		const swiper = this;
+		progress = Math.min(Math.max(progress, 0), 1);
+		const min = swiper.minTranslate();
+		const max = swiper.maxTranslate();
+		const current = (max - min) * progress + min;
+		swiper.translateTo(current, typeof speed === 'undefined' ? 0 : speed);
+		swiper.updateActiveIndex();
+		swiper.updateSlidesClasses();
+	}
+
 	emitContainerClasses() {
 		const swiper = this;
 		if (!swiper.params._emitClasses || !swiper.el) return;
-		const cls = swiper.el.className.split(' ').filter(className => {
+		const cls = swiper.native.contentClass.split(' ').filter(className => {
 			return className.indexOf('swiper') === 0 || className.indexOf(swiper.params
 				.containerModifierClass) === 0;
 		});
 		swiper.emit('_containerClasses', cls.join(' '));
 	}
+
 	getSlideClasses(slideEl) {
 		const swiper = this;
-		return slideEl.className.split(' ').filter(className => {
+		return slideEl.slideClass.split(' ').filter(className => {
 			return className.indexOf('swiper-slide') === 0 || className.indexOf(swiper.params
 				.slideClass) === 0;
 		}).join(' ');
 	}
+
 	emitSlidesClasses() {
 		const swiper = this;
 		if (!swiper.params._emitClasses || !swiper.el) return;
 		const updates = [];
-		swiper.slides.each(slideEl => {
+		swiper.slides.forEach(slideEl => {
 			const classNames = swiper.getSlideClasses(slideEl);
 			updates.push({
 				slideEl,
@@ -224,31 +265,59 @@ class Swiper {
 		});
 		swiper.emit('_slideClasses', updates);
 	}
-	updateItemEl() {
-		const swiper = this;
-		let $wrapperEl = new DomSimulation(swiper.native);
-		let $el = new DomSimulation(swiper.native);
-		if (swiper.native && swiper.native.children && swiper.native.children.length) {
-			swiper.native.children.forEach((item, index) => {
-				item.$itemEl = new ChildDomSimulation(item);
-				if (swiper.params.loop) {
-					if (index == 0) {
-						item.dataSwiperSlideIndex = swiper.native.children.length - 3;
-					} else if (index == swiper.native.children.length - 1) {
-						item.dataSwiperSlideIndex = 0;
-					} else {
-						item.dataSwiperSlideIndex = index - 1;
-					}
 
+	slidesPerViewDynamic(view = 'current', exact = false) {
+		const swiper = this;
+		const {
+			params,
+			slides,
+			slidesGrid,
+			slidesSizesGrid,
+			size: swiperSize,
+			activeIndex
+		} = swiper;
+		let spv = 1;
+		if (params.centeredSlides) {
+			let slideSize = slides[activeIndex].swiperSlideSize;
+			let breakLoop;
+			for (let i = activeIndex + 1; i < slides.length; i += 1) {
+				if (slides[i] && !breakLoop) {
+					slideSize += slides[i].swiperSlideSize;
+					spv += 1;
+					if (slideSize > swiperSize) breakLoop = true;
 				}
-			})
+			}
+			for (let i = activeIndex - 1; i >= 0; i -= 1) {
+				if (slides[i] && !breakLoop) {
+					slideSize += slides[i].swiperSlideSize;
+					spv += 1;
+					if (slideSize > swiperSize) breakLoop = true;
+				}
+			}
+		} else {
+			// eslint-disable-next-line
+			if (view === 'current') {
+				for (let i = activeIndex + 1; i < slides.length; i += 1) {
+					const slideInView = exact ?
+						slidesGrid[i] + slidesSizesGrid[i] - slidesGrid[activeIndex] < swiperSize :
+						slidesGrid[i] - slidesGrid[activeIndex] < swiperSize;
+					if (slideInView) {
+						spv += 1;
+					}
+				}
+			} else {
+				// previous
+				for (let i = activeIndex - 1; i >= 0; i -= 1) {
+					const slideInView = slidesGrid[activeIndex] - slidesGrid[i] < swiperSize;
+					if (slideInView) {
+						spv += 1;
+					}
+				}
+			}
 		}
-		Object.assign(swiper, {
-			$el,
-			$wrapperEl
-		});
-		return true;
+		return spv;
 	}
+
 	async update(el) {
 		const swiper = this;
 		if (!swiper || swiper.destroyed) return;
@@ -258,31 +327,20 @@ class Swiper {
 		} = swiper; // Breakpoints
 
 
-		el = swiper.native.rectInfo;
+		el = await swiper.native.getRect();
 		if (!el) {
 			return false;
 		}
-		let $wrapperEl = new DomSimulation(swiper.native);
-		let $el = new DomSimulation(swiper.native);
-		if (swiper.native && swiper.native.children && swiper.native.children.length) {
-			swiper.native.children.forEach((item) => {
-				item.$itemEl = new ChildDomSimulation(item);
-			})
-		}
 		Object.assign(swiper, {
-			$el,
 			el,
-			$wrapperEl,
-			wrapperEl: $wrapperEl.native,
-			mounted: true,
+			$el: swiper.native,
 		});
-
+		swiper.emit('beforeUpdate');
 		if (params.breakpoints) {
 			swiper.setBreakpoint();
 		}
-
-		await swiper.updateSize();
-		await swiper.updateSlides();
+		swiper.updateSize();
+		swiper.updateSlides();
 		swiper.updateProgress();
 		swiper.updateSlidesClasses();
 
@@ -323,23 +381,23 @@ class Swiper {
 	async mount(el) {
 		const swiper = this;
 		if (swiper.mounted) return true; // Find el
-		el = swiper.native.rectInfo;
+		el = await swiper.native.getRect();
 		if (!el) {
 			return false;
 		}
 		swiper.emit('beforeMount'); // Set breakpoint
-		let $wrapperEl = new DomSimulation(swiper.native);
-		let $el = new DomSimulation(swiper.native);
-		if (swiper.native && swiper.native.children && swiper.native.children.length) {
-			swiper.native.children.forEach((item) => {
-				item.$itemEl = new ChildDomSimulation(item);
-			})
-		}
+		// let $wrapperEl = new DomSimulation(swiper.native);
+		// let $el = new DomSimulation(swiper.native);
+		// if (swiper.native && swiper.native.children && swiper.native.children.length) {
+		// 	swiper.native.children.forEach((item) => {
+		// 		item.$itemEl = new ChildDomSimulation(item);
+		// 	})
+		// }
 		Object.assign(swiper, {
-			$el,
+			$el: swiper.native,
 			el,
-			$wrapperEl,
-			wrapperEl: $wrapperEl.native,
+			$wrapperEl: swiper.native,
+			wrapperEl: swiper.native,
 			mounted: true,
 		});
 
@@ -350,18 +408,17 @@ class Swiper {
 		if (swiper.initialized) return swiper;
 		const mounted = await swiper.mount(el);
 		if (mounted === false) return swiper;
-		swiper.emit('swiper'); // Init
 		swiper.emit('beforeInit'); // Set breakpoint
 
 		swiper.addClasses(); // Create loop
 
 		if (swiper.params.loop) {
-			await swiper.loopCreate();
+			swiper.loopCreate();
 		} // Update size
 
 		swiper.updateSize(); // Update slides
 
-		await swiper.updateSlides();
+		swiper.updateSlides();
 
 		if (swiper.params.watchOverflow) {
 			swiper.checkOverflow();
@@ -372,15 +429,27 @@ class Swiper {
 			swiper.setGrabCursor();
 		}
 
+		// if (swiper.params.loop) {
+		// 	swiper.on("update", () => {
+		// 		swiper.slideTo(swiper.params.initialSlide + swiper.loopedSlides, 0, swiper.params
+		// 			.runCallbacksOnInit,
+		// 			false, true);
+		// 	})
+		// } else {
+		// 	swiper.slideTo(swiper.params.initialSlide, 0, swiper.params.runCallbacksOnInit, false, true);
+		// } // Attach events
+		// Slide To Initial Slide
 		if (swiper.params.loop) {
-			swiper.on("update", () => {
-				swiper.slideTo(swiper.params.initialSlide + swiper.loopedSlides, 0, swiper.params
-					.runCallbacksOnInit,
-					false, true);
-			})
+			swiper.slideTo(
+				swiper.params.initialSlide + swiper.loopedSlides,
+				0,
+				swiper.params.runCallbacksOnInit,
+				false,
+				true,
+			);
 		} else {
 			swiper.slideTo(swiper.params.initialSlide, 0, swiper.params.runCallbacksOnInit, false, true);
-		} // Attach events
+		}
 		swiper.attachEvents(); // Init Flag
 		swiper.initialized = true; // Emit
 		swiper.emit('init');
@@ -422,6 +491,15 @@ class Swiper {
 
 		swiper.destroyed = true;
 		return null;
+	}
+	static extendDefaults(newDefaults) {
+		extend(extendedDefaults, newDefaults);
+	}
+	static get extendedDefaults() {
+		return extendedDefaults;
+	}
+	static get defaults() {
+		return defaults;
 	}
 	static installModule(mod) {
 		if (!Swiper.prototype.__modules__) Swiper.prototype.__modules__ = [];

@@ -59,12 +59,12 @@ export default function EffectCoverflow({
 			const slideTransform =
 				`translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
 			const $targetEl = effectTarget(params, $slideEl);
-			$targetEl.$itemEl.transform(slideTransform);
-			$slideEl.$itemEl.css({
+			$targetEl.transform(slideTransform);
+			$slideEl.css({
 				zIndex: -Math.abs(Math.round(offsetMultiplier)) + 1
 			})
 			if (swiper.params.willChange) {
-				$targetEl.$itemEl.willChange("transform");
+				$targetEl.willChange("transform");
 			}
 			$slideEl.addClass('swiper-slide-coverflow')
 			// if (params.slideShadows) {
@@ -92,7 +92,7 @@ export default function EffectCoverflow({
 		} = swiper.params.coverflowEffect;
 		const $transitionElements = transformEl ? swiper.slides.find(transformEl) : swiper.slides;
 		for (var i = 0; i < $transitionElements.length; i++) {
-			$transitionElements[i].$itemEl.transition(duration);
+			$transitionElements[i].transition(duration);
 		}
 	};
 

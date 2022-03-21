@@ -65,7 +65,6 @@ export default function slideTo(index = 0, speed = this.params.speed, runCallbac
 			const normalizedTranslate = -Math.floor(translate * 100);
 			const normalizedGrid = Math.floor(slidesGrid[i] * 100);
 			const normalizedGridNext = Math.floor(slidesGrid[i + 1] * 100);
-
 			if (typeof slidesGrid[i + 1] !== 'undefined') {
 				if (normalizedTranslate >= normalizedGrid && normalizedTranslate < normalizedGridNext - (
 						normalizedGridNext - normalizedGrid) / 2) {
@@ -76,6 +75,7 @@ export default function slideTo(index = 0, speed = this.params.speed, runCallbac
 			} else if (normalizedTranslate >= normalizedGrid) {
 				slideIndex = i;
 			}
+
 		}
 	} // Directions locks
 

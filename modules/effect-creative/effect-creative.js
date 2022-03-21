@@ -101,7 +101,7 @@ export default function EffectCreative({
 			});
 
 			// $slideEl[0].style.zIndex = -Math.abs(Math.round(slideProgress)) + slides.length;
-			$slideEl.$itemEl.css({
+			$slideEl.css({
 				zIndex: -Math.abs(Math.round(slideProgress)) + slides.length
 			})
 			const translateString = t.join(', ');
@@ -131,17 +131,17 @@ export default function EffectCreative({
 			// }
 
 			const $targetEl = effectTarget(params, $slideEl);
-			$targetEl.$itemEl.transform(transform);
-			$targetEl.$itemEl.css({
+			$targetEl.transform(transform);
+			$targetEl.css({
 				opacity: opacityString
 			});
 			if (data.origin) {
-				$targetEl.$itemEl.css({
+				$targetEl.css({
 					'transform-origin': data.origin
 				});
 			}
 			if (swiper.params.willChange) {
-				slides[i].$itemEl.willChange("transform,opacity");
+				slides[i].willChange("transform,opacity");
 			}
 			slides[i].addClass('swiper-slide-creative')
 		}
@@ -153,7 +153,7 @@ export default function EffectCreative({
 		} = swiper.params.creativeEffect;
 		const $transitionElements = transformEl ? swiper.slides.find(transformEl) : swiper.slides;
 		for (let i = 0; i < $transitionElements.length; i += 1) {
-			$transitionElements[i].$itemEl.transition(duration);
+			$transitionElements[i].transition(duration);
 		}
 		effectVirtualTransitionEnd({
 			swiper,

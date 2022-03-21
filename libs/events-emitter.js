@@ -59,7 +59,7 @@ export default {
 		const self = this;
 		if (!self.eventsListeners) return self;
 		events.split(' ').forEach(event => {
-			self.native.$off(event, handler);
+			self.native.off(event, handler);
 			if (typeof handler === 'undefined') {
 				self.eventsListeners[event] = [];
 			} else if (self.eventsListeners[event]) {
@@ -96,16 +96,6 @@ export default {
 		const eventsArray = Array.isArray(events) ? events : events.split(' ');
 
 		eventsArray.forEach(event => {
-
-			// 小程序$emit无法传递swiper实例,可通过ref调用
-			// #ifdef MP
-			context.native.$emit(event);
-			// #endif
-			// #ifndef MP
-			context.native.$emit(event, ...data);
-			// #endif
-
-
 			if (self.eventsAnyListeners && self.eventsAnyListeners.length) {
 				self.eventsAnyListeners.forEach(eventHandler => {
 					eventHandler.apply(context, [event, ...data]);

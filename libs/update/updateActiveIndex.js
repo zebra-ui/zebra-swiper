@@ -30,6 +30,7 @@ export default function updateActiveIndex(newActiveIndex) {
 		if (params.normalizeSlideIndex) {
 			if (activeIndex < 0 || typeof activeIndex === 'undefined') activeIndex = 0;
 		}
+
 	}
 
 	if (snapGrid.indexOf(translate) >= 0) {
@@ -71,12 +72,16 @@ export default function updateActiveIndex(newActiveIndex) {
 		return;
 	} // Get real index
 
-	let realIndex = parseInt(swiper.slides[activeIndex].dataSwiperSlideIndex || activeIndex, 10);
-	if (swiper.slides[activeIndex].dataSwiperSlideIndex == undefined || swiper.slides[activeIndex]
-		.dataSwiperSlideIndex == null) {
+	let realIndex;
+	if (swiper.virtual && params.virtual.enabled) {
 		realIndex = activeIndex;
 	} else {
-		realIndex = swiper.slides[activeIndex].dataSwiperSlideIndex;
+		if (swiper.slides[activeIndex].dataSwiperSlideIndex == undefined || swiper.slides[activeIndex]
+			.dataSwiperSlideIndex == null) {
+			realIndex = activeIndex;
+		} else {
+			realIndex = swiper.slides[activeIndex].dataSwiperSlideIndex;
+		}
 	}
 	Object.assign(swiper, {
 		snapIndex,

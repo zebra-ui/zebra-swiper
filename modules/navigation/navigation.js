@@ -24,6 +24,7 @@ export default function Navigation({
 	};
 
 	function toggleEl($el, disabled) {
+		if (!swiper.$wrapperEl) return
 		// debugger
 		const params = swiper.params.navigation;
 		if ($el) {
@@ -66,11 +67,15 @@ export default function Navigation({
 		}
 		if (!(params.nextEl || params.prevEl) && !params.slot && !params.custom) return;
 		if (params.slot) {
-			swiper.native.showPrevButtonSlot = true;
-			swiper.native.showNextButtonSlot = true;
+			swiper.native.updateData({
+				showPrevButtonSlot: true,
+				showNextButtonSlot: true
+			})
 		} else if (params.custom) {} else {
-			swiper.native.showPrevButton = true;
-			swiper.native.showNextButton = true;
+			swiper.native.updateData({
+				showPrevButton: true,
+				showNextButton: true
+			})
 		}
 
 		const $nextEl = params.nextEl;

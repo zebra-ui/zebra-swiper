@@ -15,6 +15,8 @@ export default function updateSlidesProgress(translate = this && this.translate 
 
 	swiper.visibleSlidesIndexes = [];
 	swiper.visibleSlides = [];
+	
+	// slides.forEach((item)=>)
 
 	for (let i = 0; i < slides.length; i += 1) {
 		const slide = slides[i];

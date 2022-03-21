@@ -28,6 +28,8 @@ export default {
 	setWrapperSize: false,
 	// Virtual Translate
 	virtualTranslate: false,
+	virtualList: [],
+	virtualIndexList: [],
 	// Effects
 	effect: 'slide',
 	// 'slide' or 'fade' or 'cube' or 'coverflow' or 'flip'

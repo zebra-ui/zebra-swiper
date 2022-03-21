@@ -34,14 +34,18 @@ export default function EffectCube({
 			if (isHorizontal) {
 				// $cubeShadowEl = $wrapperEl.find('.swiper-cube-shadow');
 				if (!swiper.native.cubeShadowShowWrapper) {
-					swiper.native.cubeShadowShowWrapper = true;
+					swiper.$wrapperEl.updateData({
+						cubeShadowShowWrapper: true
+					})
 				}
 				swiper.$wrapperEl.cubeShadowCss({
 					height: `${swiperWidth}px`
 				});
 			} else {
 				if (!swiper.native.cubeShadowShowRoot) {
-					swiper.native.cubeShadowShowRoot = true;
+					swiper.$wrapperEl.updateData({
+						cubeShadowShowRoot: true
+					})
 				}
 			}
 		}
@@ -58,7 +62,7 @@ export default function EffectCube({
 				round = Math.floor(-slideAngle / 360);
 			}
 			const progress = Math.max(Math.min($slideEl.progress, 1), -1);
-			
+
 			let tx = 0;
 			let ty = 0;
 			let tz = 0;
@@ -91,7 +95,7 @@ export default function EffectCube({
 				wrapperRotate = slideIndex * 90 + progress * 90;
 				if (rtl) wrapperRotate = -slideIndex * 90 - progress * 90;
 			}
-			$slideEl.$itemEl.transform(transform);
+			$slideEl.transform(transform);
 			// if (params.slideShadows) {
 			// 	// Set shadows
 			// 	let shadowBefore = isHorizontal ?
@@ -159,7 +163,7 @@ export default function EffectCube({
 		} = swiper;
 
 		for (var i = 0; i < slides.length; i++) {
-			slides[i].$itemEl.transition(duration)
+			slides[i].transition(duration)
 		}
 
 		if (swiper.params.cubeEffect.shadow && !swiper.isHorizontal()) {

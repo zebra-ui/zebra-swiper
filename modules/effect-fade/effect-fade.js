@@ -18,7 +18,6 @@ export default function EffectFade({
 			slides
 		} = swiper;
 		const params = swiper.params.fadeEffect;
-
 		for (let i = 0; i < slides.length; i += 1) {
 			const $slideEl = swiper.slides[i];
 			const offset = $slideEl.swiperSlideOffset;
@@ -34,12 +33,12 @@ export default function EffectFade({
 			const slideOpacity = swiper.params.fadeEffect.crossFade ? Math.max(1 - Math.abs($slideEl.progress), 0) :
 				1 + Math.min(Math.max($slideEl.progress, -1), 0);
 			const $targetEl = effectTarget(params, $slideEl);
-			$targetEl.$itemEl.css({
+			$targetEl.css({
 				opacity: slideOpacity
 			})
-			$targetEl.$itemEl.transform(`translate3d(${tx}px, ${ty}px, 0px)`);
+			$targetEl.transform(`translate3d(${tx}px, ${ty}px, 0px)`);
 			if (swiper.params.willChange) {
-				$targetEl.$itemEl.willChange("opacity");
+				$targetEl.willChange("opacity");
 			}
 			slides[i].addClass('swiper-slide-fade')
 		}
@@ -51,7 +50,7 @@ export default function EffectFade({
 		} = swiper.params.fadeEffect;
 		const $transitionElements = transformEl ? swiper.slides.find(transformEl) : swiper.slides;
 		for (let i = 0; i < $transitionElements.length; i += 1) {
-			$transitionElements[i].$itemEl.transition(duration);
+			$transitionElements[i].transition(duration);
 		}
 
 		effectVirtualTransitionEnd({

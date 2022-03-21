@@ -44,10 +44,10 @@ export default function Panorama({
 			const rotateY = modifiedProgress * rotate;
 			const radius = (slideSize * 0.5) / Math.sin(halfAngleRad);
 			const translateZ = `${radius * angleCos - depth}px`;
-			slideEl.$itemEl.transform(
+			slideEl.transform(
 				`translateX(${translateX}) translateZ(${translateZ}) rotateY(${rotateY}deg)`);
 			if (swiper.params.willChange) {
-				slideEl.$itemEl.willChange("transform");
+				slideEl.willChange("transform");
 			}
 			slideEl.addClass('swiper-slide-panorama')
 		}
@@ -56,7 +56,7 @@ export default function Panorama({
 	on('setTransition', (s, duration) => {
 		if (swiper.params.effect !== 'panorama') return;
 		swiper.slides.forEach((slideEl) => {
-			slideEl.$itemEl.transition(duration);
+			slideEl.transition(duration);
 		});
 	});
 }

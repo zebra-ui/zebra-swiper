@@ -10,6 +10,14 @@ export function ChildrenMixin(parent, options = {}) {
 			this.parent = this[parent];
 			this.bindRelation();
 		},
+		beforeDestroy() {
+			if (this.parent) {
+				this.parent.children = this.parent.children.filter(
+					(item) => item !== this
+				);
+				uni.$emit("childrenReady" + this.parent._uid, this);
+			}
+		},
 		methods: {
 			bindRelation() {
 				if (!this.parent || this.parent.children.indexOf(this) !== -1) {

@@ -18,11 +18,11 @@ const events = (swiper, method) => {
 	} = swiper;
 	let el = swiper.native;
 	const capture = !!params.nested;
-	const domMethod = method === 'on' ? '$on' : '$off';
+	const domMethod = method === 'on' ? 'on' : 'off';
 	const swiperMethod = method;
 	Object.keys(swiper.eventsListeners).forEach((item) => {
 		if (method == 'off') {
-			swiper.native.$off(item)
+			swiper.native.off(item)
 		}
 	})
 	if (!support.touch) {

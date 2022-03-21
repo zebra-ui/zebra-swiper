@@ -20,7 +20,7 @@ export default function effectVirtualTransitionEnd({
 			$transitionEndTarget = transformEl ? slides.eq(activeIndex).find(transformEl) : slides[activeIndex];
 		}
 		for (let i = 0; i < $transitionEndTarget.length; i += 1) {
-			$transitionEndTarget[i].$itemEl.transitionEnd(() => {
+			$transitionEndTarget[i].transitionEnd(() => {
 				if (eventTriggered) return;
 				if (!swiper || swiper.destroyed) return;
 				eventTriggered = true;

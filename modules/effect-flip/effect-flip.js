@@ -41,7 +41,7 @@ export default function EffectFlip({
 			} else if (rtl) {
 				rotateY = -rotateY;
 			}
-			$slideEl.$itemEl.css({
+			$slideEl.css({
 				zIndex: -Math.abs(Math.round(progress)) + slides.length
 			})
 			// if (params.slideShadows) {
@@ -63,9 +63,9 @@ export default function EffectFlip({
 			// }
 			const transform = `translate3d(${tx}px, ${ty}px, 0px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 			const $targetEl = effectTarget(params, $slideEl);
-			$targetEl.$itemEl.transform(transform);
+			$targetEl.transform(transform);
 			if (swiper.params.willChange) {
-				$targetEl.$itemEl.willChange("transform");
+				$targetEl.willChange("transform");
 			}
 			slides[i].addClass('swiper-slide-flip')
 		}
@@ -77,7 +77,7 @@ export default function EffectFlip({
 		} = swiper.params.flipEffect;
 		const $transitionElements = transformEl ? swiper.slides.find(transformEl) : swiper.slides;
 		for (let i = 0; i < $transitionElements.length; i += 1) {
-			$transitionElements[i].$itemEl.transition(duration);
+			$transitionElements[i].transition(duration);
 		}
 		effectVirtualTransitionEnd({
 			swiper,

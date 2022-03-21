@@ -136,7 +136,7 @@ export default function onTouchMove(event) {
 		swiper.setTransition(0);
 
 		if (swiper.animating) {
-			swiper.$wrapperEl.native.$emit('transitionend');
+			swiper.$wrapperEl.emit('transitionend', [swiper]);
 		}
 
 		data.allowMomentumBounce = false;
@@ -175,7 +175,7 @@ export default function onTouchMove(event) {
 
 	if (disableParentSwiper) {
 		e.preventedByNestedSwiper = true;
-	} 
+	}
 
 
 	if (!swiper.allowSlideNext && swiper.swipeDirection === 'next' && data.currentTranslate < data.startTranslate) {
