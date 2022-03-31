@@ -8,6 +8,7 @@ import EffectFlip from './modules/effect-flip/effect-flip.js';
 import EffectCards from './modules/effect-cards/effect-cards.js';
 import EffectCreative from './modules/effect-creative/effect-creative.js';
 import EffectPanorama from './modules/effect-panorama/effect-panorama.js';
+import EffectCarousel from './modules/effect-carousel/effect-carousel.js';
 import Navigation from './modules/navigation/navigation.js';
 import Pagination from './modules/pagination/pagination.js';
 import Thumbs from './modules/thumbs/thumbs.js';
@@ -20,6 +21,6 @@ export {
 }
 from './libs/core.js';
 const modules = [Autoplay, FreeMode, EffectFade, EffectCube, EffectCoverflow, EffectFlip, EffectCards, EffectCreative,
-	EffectPanorama, Navigation, Pagination, Thumbs, Scrollbar, WillChange, Virtual
+	EffectPanorama, EffectCarousel, Navigation, Pagination, Thumbs, Scrollbar, WillChange, Virtual
 ];
 Swiper.use(modules);

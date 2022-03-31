@@ -318,6 +318,44 @@ class Swiper {
 		return spv;
 	}
 
+	changeDirection(newDirection, needUpdate) {
+		if (needUpdate === void 0) {
+			needUpdate = true;
+		}
+
+		const swiper = this;
+		const currentDirection = swiper.params.direction;
+
+		if (!newDirection) {
+			// eslint-disable-next-line
+			newDirection = currentDirection === 'horizontal' ? 'vertical' : 'horizontal';
+		}
+
+		if (newDirection === currentDirection || newDirection !== 'horizontal' && newDirection !== 'vertical') {
+			return swiper;
+		}
+
+		swiper.$wrapperEl.removeClass(`${swiper.params.containerModifierClass}${currentDirection}`)
+		swiper.$wrapperEl.addClass(
+			`${swiper.params.containerModifierClass}${newDirection}`);
+		swiper.emitContainerClasses();
+		swiper.params.direction = newDirection;
+		swiper.slides.forEach(slideEl => {
+			if (newDirection === 'vertical') {
+				slideEl.css({
+					width: ''
+				})
+			} else {
+				slideEl.css({
+					height: ''
+				})
+			}
+		});
+		swiper.emit('changeDirection');
+		if (needUpdate) swiper.update();
+		return swiper;
+	}
+
 	async update(el) {
 		const swiper = this;
 		if (!swiper || swiper.destroyed) return;

@@ -36,6 +36,10 @@ function getChangedParams(swiperParams, oldParams, children, oldChildren) {
 			} else if (swiperParams[key] !== oldParams[key]) {
 				addKey(key);
 			}
+		} else if (key in swiperParams && !(key in oldParams)) {
+			addKey(key);
+		} else if (!(key in swiperParams) && key in oldParams) {
+			addKey(key);
 		}
 	});
 	return keys;

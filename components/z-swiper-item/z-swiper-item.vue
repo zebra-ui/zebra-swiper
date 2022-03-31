@@ -1,8 +1,13 @@
 <template>
-	<view :class="['swiper-slide',slideClass]" :style="[itemStyle,customStyle]" @click.stop="onClickSlide"
-		:prop="itemWxsProp" :change:prop="zSwiperWxs.itemPropObserver">
-		<slot></slot>
-	</view>
+	<!-- #ifndef MP-WEIXIN || MP-QQ -->
+	<view :class="['swiper-slide',slideClass]" :style="[itemStyle,customStyle]" @click.stop="onClickSlide">
+		<!-- #endif -->
+		<!-- #ifdef MP-WEIXIN || MP-QQ -->
+		<view :class="['swiper-slide',slideClass]" :style="[itemStyle,customStyle]" @click.stop="onClickSlide"
+			:swiperItemTransform="wxsItemTransform" :change:swiperItemTransform="zSwiperWxs.wxsItemTransformObserver">
+			<!-- #endif -->
+			<slot></slot>
+		</view>
 </template>
 <!-- #ifdef MP-WEIXIN || MP-QQ  -->
 <script src="../../wxs/z-swiper-wxs.wxs" module="zSwiperWxs" lang="wxs"></script>
@@ -23,13 +28,19 @@
 				default: () => {
 					return {};
 				}
-			}
+			},
+			swiperItemWidth: {
+				type: [String, Number],
+				default: 0
+			},
+			swiperItemHeight: {
+				type: [String, Number],
+				default: 0
+			},
 		},
 		data() {
 			return {
-				itemWxsProp: {
-					itemStyle: {}
-				},
+				wxsItemTransform: "",
 				itemStyle: {},
 				offsetLeft: 0,
 				offsetTop: 0,
@@ -46,7 +57,43 @@
 				return this.itemClass.join(" ");
 			}
 		},
+		watch: {
+			swiperItemWidth: {
+				handler(val) {
+					if (val) {
+						this.$set(this.itemStyle, 'width', this.unitFormat(val, "rpx"))
+					}
+				},
+				immediate: true
+			},
+			swiperItemHeight: {
+				handler(val) {
+					if (val) {
+						this.$set(this.itemStyle, 'height', this.unitFormat(val, "rpx"))
+					}
+				},
+				immediate: true
+			}
+		},
 		methods: {
+			unitFormat(val, type) {
+				if (type == "rpx") {
+					if (val.includes("rpx") || val.includes("px")) {
+						return val;
+					} else {
+						return val + 'px';
+					}
+				}
+				if (type == "number") {
+					if (val.includes("rpx")) {
+						return uni.upx2px(parseInt(val.replace("rpx", "")))
+					} else if (!val.includes("rpx") && val.includes("px")) {
+						return parseInt(val.replace("px", ""))
+					} else {
+						return val;
+					}
+				}
+			},
 			onClickSlide(event) {
 				this.$emit("click", {
 					event,
@@ -60,36 +107,19 @@
 				this.$set(this.itemStyle, 'transform', value)
 				// #endif
 				// #ifdef MP-WEIXIN || MP-QQ
-				this.$set(this.itemWxsProp.itemStyle, 'transform', value)
+				this.wxsItemTransform = value
 				// #endif
 			},
 			transition(value) {
-				// #ifndef MP-WEIXIN || MP-QQ
-				this.$set(this.itemStyle, 'transitionDuration', `${value}ms`)
-				// #endif
-				// #ifdef MP-WEIXIN || MP-QQ
-				this.$set(this.itemWxsProp.itemStyle, 'transition-duration', `${value}ms`)
-				// #endif
+				this.$set(this.itemStyle, 'transition-duration', `${value}ms`)
 			},
 			willChange(value) {
-				// #ifndef MP-WEIXIN || MP-QQ
 				this.$set(this.itemStyle, 'will-change', value)
-				// #endif
-				// #ifdef MP-WEIXIN || MP-QQ
-				this.$set(this.itemWxsProp.itemStyle, 'will-change', value)
-				// #endif
 			},
 			css(value) {
-				// #ifndef MP-WEIXIN || MP-QQ
 				Object.keys(value).forEach((item) => {
 					this.$set(this.itemStyle, item, value[item])
 				})
-				// #endif
-				// #ifdef MP-WEIXIN || MP-QQ
-				Object.keys(value).forEach((item) => {
-					this.$set(this.itemWxsProp.itemStyle, item, value[item])
-				})
-				// #endif
 			},
 			transitionEnd(callback, duration) {
 				setTimeout(callback, duration)
@@ -98,11 +128,21 @@
 				const query = uni.createSelectorQuery().in(this);
 				return new Promise((resolve, reject) => {
 					query.select('.swiper-slide').boundingClientRect(data => {
-						this.width = data.width;
-						this.height = data.height;
+						if (this.swiperItemWidth) {
+							this.width = this.unitFormat(this.swiperItemWidth, "number");
+							this.height = data.height;
+						}
+						if (this.swiperItemHeight) {
+							this.width = data.width;
+							this.height = this.unitFormat(this.swiperItemHeight, "number");
+						}
+						if (!this.swiperItemWidth && !this.swiperItemHeight) {
+							this.width = data.width;
+							this.height = data.height;
+						}
 						resolve({
-							width: data.width,
-							height: data.height
+							width: this.width,
+							height: this.height
 						})
 					}).exec();
 				})

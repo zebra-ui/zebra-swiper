@@ -26,19 +26,22 @@ function onTouchEndWxs(event, ins) {
 	})
 }
 
-function propObserver(newValue, oldValue, ownerInstance, instance) {
-	instance.setStyle(newValue.wrapperStyle)
+function wxsTransformObserver(newValue, oldValue, ownerInstance, instance) {
+	instance.setStyle({
+		transform: newValue
+	})
 }
 
-function itemPropObserver(newValue, oldValue, ownerInstance, instance) {
-	instance.setStyle(newValue.itemStyle);
+function wxsItemTransformObserver(newValue, oldValue, ownerInstance, instance) {
+	instance.setStyle({
+		transform: newValue
+	})
 }
-
 
 module.exports = {
 	onTouchStartWxs: onTouchStartWxs,
 	onTouchMoveWxs: onTouchMoveWxs,
 	onTouchEndWxs: onTouchEndWxs,
-	propObserver: propObserver,
-	itemPropObserver: itemPropObserver
+	wxsTransformObserver: wxsTransformObserver,
+	wxsItemTransformObserver: wxsItemTransformObserver
 }

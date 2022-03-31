@@ -8,7 +8,8 @@
 			<!-- #ifdef MP-WEIXIN || MP-QQ -->
 			<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClickWrapper"
 				@touchstart="zSwiperWxs.onTouchStartWxs" @touchmove="zSwiperWxs.onTouchMoveWxs"
-				@touchend="zSwiperWxs.onTouchEndWxs" :prop="wxsProp" :change:prop="zSwiperWxs.propObserver">
+				@touchend="zSwiperWxs.onTouchEndWxs" :swiperTransform="wxsTransform"
+				:change:swiperTransform="zSwiperWxs.wxsTransformObserver">
 				<!-- #endif -->
 				<slot></slot>
 				<!-- 在loop模式下，为group填充空白slide -->
@@ -134,9 +135,7 @@
 		},
 		data() {
 			return {
-				wxsProp: {
-					wrapperStyle: {}
-				},
+				wxsTransform: "",
 				wrapperStyle: {},
 				contentClass: '',
 				nextElClass: [],
@@ -316,6 +315,7 @@
 					scrollbarItemTransform: this.scrollbarItemTransform.bind(this),
 					scrollbarItemTransition: this.scrollbarItemTransition.bind(this),
 					addClass: this.addClass.bind(this),
+					removeClass: this.removeClass.bind(this),
 					addPaginationClass: this.addPaginationClass.bind(this),
 					removePaginationClass: this.removePaginationClass.bind(this),
 					addScrollbarClass: this.addScrollbarClass.bind(this),
@@ -350,7 +350,6 @@
 					},
 					this.swiperParams,
 				);
-
 				this.$emit('swiper');
 				this.firstLoad = false;
 			},
@@ -426,28 +425,23 @@
 				})
 			},
 			willChange(value) {
-				// #ifndef MP-WEIXIN || MP-QQ
 				this.$set(this.wrapperStyle, 'will-change', value)
-				// #endif
-				// #ifdef MP-WEIXIN || MP-QQ
-				this.$set(this.wxsProp.wrapperStyle, 'will-change', value)
-				// #endif
 			},
 			transform(value) {
 				// #ifndef MP-WEIXIN || MP-QQ
 				this.$set(this.wrapperStyle, 'transform', value)
 				// #endif
 				// #ifdef MP-WEIXIN || MP-QQ
-				this.$set(this.wxsProp.wrapperStyle, 'transform', value)
+				this.wxsTransform = value;
 				// #endif
 			},
 			transition(value) {
-				// #ifndef MP-WEIXIN || MP-QQ
-				this.$set(this.wrapperStyle, 'transitionDuration', `${value}ms`)
-				// #endif
-				// #ifdef MP-WEIXIN || MP-QQ
-				this.$set(this.wxsProp.wrapperStyle, 'transition-duration', `${value}ms`)
-				// #endif
+				this.$set(this.wrapperStyle, 'transition-duration', `${value}ms`)
+			},
+			setCss(value) {
+				Object.keys(value).forEach((item) => {
+					this.$set(this.wrapperStyle, item, value[item])
+				})
 			},
 			scrollbarTransform(value) {
 				this.$set(this.scrollbarStyle, 'transform', value)
@@ -462,7 +456,10 @@
 				this.$set(this.scrollbarItemStyle, 'transitionDuration', `${value}ms`)
 			},
 			addClass(value) {
-				this.contentClass = value;
+				this.contentClass = Array.from(new Set([...this.contentClass, ...value.split(" ")]));;
+			},
+			removeClass(value) {
+				this.contentClass = this.contentClass.filter(item => !value.split(" ").includes(item));
 			},
 			addPaginationClass(value) {
 				this.paginationElClass = Array.from(new Set([...this.paginationElClass, ...value.split(" ")]));
@@ -475,18 +472,6 @@
 			},
 			removeScrollbarClass(value) {
 				this.scrollbarElClass = this.scrollbarElClass.filter(item => !value.split(" ").includes(item));
-			},
-			setCss(value) {
-				// #ifndef MP-WEIXIN || MP-QQ
-				Object.keys(value).forEach((item) => {
-					this.$set(this.wrapperStyle, item, value[item])
-				})
-				// #endif
-				// #ifdef MP-WEIXIN || MP-QQ
-				Object.keys(value).forEach((item) => {
-					this.$set(this.wxsProp.wrapperStyle, item, value[item])
-				})
-				// #endif
 			},
 			setPaginationCss(value) {
 				Object.keys(value).forEach((item) => {

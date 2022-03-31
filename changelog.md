@@ -1,3 +1,14 @@
+## 2.2.1（2022-03-31）
+`2022-03-31`
+
+**Feat**
+
+- 新增`changeDirection`方法，该方法用于动态改变swiper方向。
+- `z-swiper-item`新增`swiperItemWidth` `swiperItemHeight` 属性，用于在swiper无法正确获取宽高的情况下设置swiper的宽高（如快手小程序）。
+
+**Fix**
+
+- 消除快手小程序itemPropWxs的警告。
 ## 2.2.0（2022-03-21）
 `2022-03-21`
 
