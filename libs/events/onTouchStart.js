@@ -63,16 +63,16 @@ export default function onTouchStart(event) {
 	swiper.updateSize();
 	swiper.swipeDirection = undefined;
 	if (params.threshold > 0) data.allowThresholdMove = false;
-	if (e.type !== 'touchstart' && e.type !== 'touchStart') {
-		let preventDefault = true;
-		if ($targetEl.is(data.focusableElements)) preventDefault = false;
+	// if (e.type !== 'touchstart' && e.type !== 'touchStart') {
+	// let preventDefault = true;
+	// if ($targetEl.is(data.focusableElements)) preventDefault = false;
 
-		const shouldPreventDefault = preventDefault && swiper.allowTouchMove && params.touchStartPreventDefault;
+	// const shouldPreventDefault = preventDefault && swiper.allowTouchMove && params.touchStartPreventDefault;
 
-		if ((params.touchStartForcePreventDefault || shouldPreventDefault) && !$targetEl[0].isContentEditable) {
-			e.preventDefault();
-		}
-	}
+	// if ((params.touchStartForcePreventDefault || shouldPreventDefault) && !$targetEl[0].isContentEditable) {
+	// e.preventDefault();
+	// }
+	// }
 
 	swiper.emit('touch-start', e);
 }

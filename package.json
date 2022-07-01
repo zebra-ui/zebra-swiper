@@ -1,9 +1,9 @@
 {
 	"name": "@zebra-ui/swiper",
 	"id": "zebra-swiper",
-	"displayName": "zebra-swiper 3D轮播，全面对标swiper并实现全端兼容。",
+	"displayName": "zebra-swiper 3D轮播，全面对标swiperjs并实现全端兼容。",
 	"version": "2.2.1",
-	"description": "适配多端的高自定义轮播组件，多种3D效果。全面对标swiper。",
+	"description": "适配多端的高自定义轮播组件，多种3D效果。全面对标swiperjs。",
 	"main": "index.js",
 	"keywords": [
 		"zebra",
@@ -59,7 +59,7 @@
 			"client": {
 				"Vue": {
 					"vue2": "y",
-					"vue3": "n"
+					"vue3": "y"
 				},
 				"App": {
 					"app-vue": "y",
@@ -83,7 +83,12 @@
 					"阿里": "y",
 					"百度": "y",
 					"字节跳动": "y",
-					"QQ": "y"
+					"QQ": "y",
+					"钉钉": "u",
+					"快手": "y",
+					"飞书": "y",
+					"京东": "u",
+					"小红书": "u"
 				},
 				"快应用": {
 					"华为": "y",

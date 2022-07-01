@@ -10,6 +10,7 @@ export function ChildrenMixin(parent, options = {}) {
 			this.parent = this[parent];
 			this.bindRelation();
 		},
+		// #ifdef VUE2
 		beforeDestroy() {
 			if (this.parent) {
 				this.parent.children = this.parent.children.filter(
@@ -18,6 +19,17 @@ export function ChildrenMixin(parent, options = {}) {
 				uni.$emit("childrenReady" + this.parent._uid, this);
 			}
 		},
+		// #endif
+		// #ifdef VUE3
+		beforeUnmount() {
+			if (this.parent) {
+				this.parent.children = this.parent.children.filter(
+					(item) => item !== this
+				);
+				uni.$emit("childrenReady" + this.parent._uid, this);
+			}
+		},
+		// #endif
 		methods: {
 			bindRelation() {
 				if (!this.parent || this.parent.children.indexOf(this) !== -1) {
@@ -42,8 +54,15 @@ export function ParentMixin(parent) {
 		created() {
 			this.children = [];
 		},
+		// #ifdef VUE2
 		beforeDestroy() {
 			uni.$off("childrenReady" + this._uid)
 		},
+		// #endif
+		// #ifdef VUE3
+		beforeUnmount() {
+			uni.$off("childrenReady" + this._uid)
+		},
+		// #endif
 	};
 }

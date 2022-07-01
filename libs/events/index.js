@@ -26,7 +26,15 @@ const events = (swiper, method) => {
 		}
 	})
 	if (!support.touch) {
-		el[domMethod](touchEvents.start, swiper.onTouchStart, false);
+		let desktopMethod = method === 'on' ? 'addEventListener' : 'removeEventListener';
+		// el[domMethod](touchEvents.start, swiper.onTouchStart, false);
+		if (document.querySelector(`#${swiper.$el.swiperElId}`)) {
+			document.querySelector(`#${swiper.$el.swiperElId}`)[desktopMethod](touchEvents.start, swiper
+				.onTouchStart,
+				false);
+		}
+		document[desktopMethod](touchEvents.move, swiper.onTouchMove, capture);
+		document[desktopMethod](touchEvents.end, swiper.onTouchEnd, false);
 	} else {
 		const passiveListener = touchEvents.start === 'touchstart' && support.passiveListener && params
 			.passiveListeners ? {

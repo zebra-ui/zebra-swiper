@@ -1,9 +1,10 @@
 <template>
-	<view :class="['swiper',contentClass,containerClasses,options.direction === 'vertical'?'swiper-vertical':'']"
+	<view :id="'swiper'+_uid"
+		:class="['swiper',contentClass,containerClasses,options.direction === 'vertical'?'swiper-vertical':'']"
 		:style="[customStyle]">
 		<!-- #ifndef MP-WEIXIN || MP-QQ -->
 		<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClickWrapper" @touchstart="onTouchStart"
-			@touchmove.stop.prevent="onTouchMove" @touchend.stop="onTouchEnd">
+			@touchmove="onTouchMove" @touchend="onTouchEnd">
 			<!-- #endif -->
 			<!-- #ifdef MP-WEIXIN || MP-QQ -->
 			<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClickWrapper"
@@ -113,6 +114,28 @@
 		mixins: [
 			ParentMixin('zSwipe')
 		],
+		// #ifdef VUE3
+		emits: ['update:modelValue', 'touch-start', 'touch-move', 'touch-end', 'transitionend', 'slideClick',
+			'_beforeBreakpoint',
+			'_containerClasses',
+			'_slideClass',
+			'_slideClasses', '_swiper',
+			'activeIndexChange', 'afterInit', 'autoplay', 'autoplayStart', 'autoplayStop', 'autoplayPause',
+			'autoplayResume', 'beforeDestroy', 'beforeInit', 'beforeLoopFix', 'beforeResize', 'beforeSlideChangeStart',
+			'beforeTransitionStart', 'breakpoint', 'changeDirection', 'click', 'disable', 'doubleTap', 'doubleClick',
+			'destroy', 'enable', 'fromEdge', 'hashChange', 'hashSet', 'imagesReady', 'init', 'keyPress',
+			'lazyImageLoad', 'lazyImageReady', 'lock', 'loopFix', 'momentumBounce', 'navigationHide', 'navigationShow',
+			'observerUpdate', 'orientationchange', 'paginationHide', 'paginationRender', 'paginationShow',
+			'paginationUpdate', 'progress', 'reachBeginning', 'reachEnd', 'realIndexChange', 'resize', 'scroll',
+			'scrollbarDragEnd', 'scrollbarDragMove', 'scrollbarDragStart', 'setTransition', 'setTranslate',
+			'slideChange', 'slideChangeTransitionEnd', 'slideChangeTransitionStart', 'slideNextTransitionEnd',
+			'slideNextTransitionStart', 'slidePrevTransitionEnd', 'slidePrevTransitionStart',
+			'slideResetTransitionStart', 'slideResetTransitionEnd', 'sliderMove', 'sliderFirstMove',
+			'slidesLengthChange', 'slidesGridLengthChange', 'snapGridLengthChange', 'snapIndexChange', 'swiper', 'tap',
+			'toEdge', 'touchEnd', 'touchMove', 'touchMoveOpposite', 'touchStart', 'transitionEnd', 'transitionStart',
+			'unlock', 'update', 'zoomChange'
+		],
+		// #endif
 		props: {
 			customStyle: {
 				type: Object,
@@ -126,12 +149,22 @@
 					return {}
 				}
 			},
+			// #ifdef VUE2
 			value: {
 				type: Array,
 				default: () => {
 					return []
 				}
+			},
+			// #endif
+			// #ifdef VUE3
+			modelValue: {
+				type: Array,
+				default: () => {
+					return []
+				}
 			}
+			// #endif
 		},
 		data() {
 			return {
@@ -170,6 +203,16 @@
 			};
 		},
 		computed: {
+			// #ifdef VUE3
+			value() {
+				return this.modelValue
+			},
+			// #endif
+			// #ifdef VUE3
+			_uid() {
+				return this._.uid
+			},
+			// #endif
 			nextClass() {
 				return this.nextElClass.join(" ");
 			},
@@ -239,7 +282,12 @@
 						if (this.swiperParams.loop && !this.loopUpdateData && slides.data.toString() !=
 							val.value.toString()) {
 							this.loopUpdateData = true;
+							// #ifdef VUE2
 							this.$emit("input", slides.data)
+							// #endif
+							// #ifdef VUE3
+							this.$emit("update:modelValue", slides.data)
+							// #endif
 							return
 						}
 					}
@@ -288,11 +336,20 @@
 				}
 			})
 		},
+		// #ifdef VUE2
 		beforeDestroy() {
 			if (this.swiper && !this.swiper.destroyed) {
 				this.swiper.destroy(true, false);
 			}
 		},
+		// #endif
+		// #ifdef VUE3
+		beforeUnmount() {
+			if (this.swiper && !this.swiper.destroyed) {
+				this.swiper.destroy(true, false);
+			}
+		},
+		// #endif
 		methods: {
 			loadSwiper() {
 				let swiperParams = this.swiperParams;
@@ -301,6 +358,7 @@
 				let swiperRef = initSwiper(swiperParams, {
 					...this.$data,
 					...this.$props,
+					swiperElId: 'swiper' + this._uid,
 					emit: this.emit.bind(this),
 					off: this.off.bind(this),
 					on: this.on.bind(this),
@@ -514,6 +572,7 @@
 				this.swiper.emit("nextClick");
 			},
 			onTouchStart(event) {
+				console.log("=========", this)
 				this.swiper.onTouchStart(event);
 			},
 			onTouchStartSwiperWxs(event) {

@@ -13,6 +13,7 @@ async function updateSwiper({
 	paginationEl,
 	scrollbarEl,
 }) {
+	console.log("swiper 发生了变化")
 	const updateParams = changedParams.filter((key) => key !== 'children' && key !== 'direction');
 	const {
 		params: currentParams,
