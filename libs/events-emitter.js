@@ -59,7 +59,7 @@ export default {
 		const self = this;
 		if (!self.eventsListeners) return self;
 		events.split(' ').forEach(event => {
-			self.native.off(event, handler);
+			// self.native.off(event, handler);
 			if (typeof handler === 'undefined') {
 				self.eventsListeners[event] = [];
 			} else if (self.eventsListeners[event]) {

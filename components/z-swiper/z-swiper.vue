@@ -196,7 +196,7 @@
 
 				// vue2
 				containerClasses: 'swiper',
-				virtualData: [],
+				virtualData: null,
 				firstLoad: true,
 				originalDataList: [],
 				loopUpdateData: false
@@ -266,6 +266,31 @@
 					options: this.options
 				}
 			}, (val) => {
+				// virtual模式处理
+				if (this.swiperParams && this.swiperParams.virtual) {
+					if (!this.virtualData && val.options.virtual.slides.length) {
+						this.swiperParams.virtual.slides = val.options.virtual.slides;
+						// this.swiperParams.virtual.slides = val.value;
+						const extendWith = {
+							cache: false,
+							slides: val.options.virtual.slides,
+							// slides: val.value,
+							renderExternal: data => {
+								this.virtualData = data;
+								this.$emit("input", data.slides);
+								// updateOnVirtualData(this.swiper);
+							},
+							renderExternalUpdate: false
+						};
+						extend(this.swiperParams.virtual, extendWith);
+						// this.$emit("input", [val.options.virtual.slides[0]]);
+						// this.virtualData = [val.options.virtual.slides[0]];
+						this.loadSwiper();
+						// console.log(this.swiper)
+					}
+					// extend(swiperRef.originalParams.virtual, extendWith);
+				}
+				// loop模式处理
 				if (this.swiperParams && this.swiperParams.loop) {
 					if (this.originalDataList.length && (this.originalDataList.toString() == val.value
 							.toString())) {
@@ -293,6 +318,30 @@
 					}
 				}
 				if (this.swiper && !this.firstLoad) {
+					if (this.virtualData) {
+						const style = this.swiper.isHorizontal() ? {
+							[this.swiper.rtlTranslate ? 'right' : 'left']: `${this.virtualData.offset}px`
+						} : {
+							top: `${this.virtualData.offset}px`
+						};
+						this.children
+							// .filter((slide, index) => index >= this.virtualData.from && index <= this
+							// 	.virtualData
+							// 	.to)
+							.map(slide => {
+								slide.css(style)
+								// if (!slide.props) slide.props = {};
+								// if (!slide.props.style) slide.props.style = {};
+								// slide.props.swiperRef = swiperRef;
+								// slide.props.style = style;
+								// return h(slide.type, {
+								// 	...slide.props
+								// }, slide.children);
+							});
+
+					}
+
+
 					this.updateSwiper(val.value, val.options, this.children);
 				}
 			}, {
@@ -306,6 +355,15 @@
 					Object.assign(this.swiper.native, {
 						val
 					});
+				}
+			}, {
+				deep: true
+			})
+			this.$watch(() => {
+				return this.virtualData
+			}, (val) => {
+				if (this.swiper && this.virtualData) {
+					updateOnVirtualData(this.swiper);
 				}
 			}, {
 				deep: true
@@ -360,8 +418,6 @@
 					...this.$props,
 					swiperElId: 'swiper' + this._uid,
 					emit: this.emit.bind(this),
-					off: this.off.bind(this),
-					on: this.on.bind(this),
 					updateData: this.updateData.bind(this),
 					getRect: this.getRect.bind(this),
 					getRectScrollbar: this.getRectScrollbar.bind(this),
@@ -397,6 +453,7 @@
 				if (swiperParams.loop) {
 					swiperRef.loopedSlides = calcLoopedSlides(this.slidesRef, swiperParams);
 				}
+
 				if (!this.swiper) return;
 				mountSwiper({
 						el: this.swiperElRef,
@@ -462,12 +519,6 @@
 			emit(event, data) {
 				this.$emit(event, ...data)
 			},
-			off(event, data) {
-				this.$off(event)
-			},
-			on(event, handler) {
-				this.$on(event, handler)
-			},
 			async getRect() {
 				let rectInfo = await getRect(this, '.swiper');
 				this.rectInfo = rectInfo;
@@ -494,7 +545,12 @@
 				// #endif
 			},
 			transition(value) {
+				// #ifdef MP-BAIDU
+				this.$set(this.wrapperStyle, 'transitionDuration', `${value}ms`)
+				// #endif
+				// #ifndef MP-BAIDU
 				this.$set(this.wrapperStyle, 'transition-duration', `${value}ms`)
+				// #endif
 			},
 			setCss(value) {
 				Object.keys(value).forEach((item) => {
@@ -572,7 +628,6 @@
 				this.swiper.emit("nextClick");
 			},
 			onTouchStart(event) {
-				console.log("=========", this)
 				this.swiper.onTouchStart(event);
 			},
 			onTouchStartSwiperWxs(event) {

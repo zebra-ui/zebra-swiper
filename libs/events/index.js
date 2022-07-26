@@ -20,11 +20,11 @@ const events = (swiper, method) => {
 	const capture = !!params.nested;
 	const domMethod = method === 'on' ? 'on' : 'off';
 	const swiperMethod = method;
-	Object.keys(swiper.eventsListeners).forEach((item) => {
-		if (method == 'off') {
-			swiper.native.off(item)
-		}
-	})
+	// Object.keys(swiper.eventsListeners).forEach((item) => {
+	// 	if (method == 'off') {
+	// 		swiper.native.off(item)
+	// 	}
+	// })
 	if (!support.touch) {
 		let desktopMethod = method === 'on' ? 'addEventListener' : 'removeEventListener';
 		// el[domMethod](touchEvents.start, swiper.onTouchStart, false);
@@ -43,38 +43,38 @@ const events = (swiper, method) => {
 			} : false;
 
 		// #ifdef VUE2
-		el[domMethod](touchEvents.start, swiper.onTouchStart, passiveListener);
-		el[domMethod](touchEvents.move, swiper.onTouchMove, support.passiveListener ? {
-			passive: false,
-			capture
-		} : capture);
-		el[domMethod](touchEvents.end, swiper.onTouchEnd, passiveListener);
+		// el[domMethod](touchEvents.start, swiper.onTouchStart, passiveListener);
+		// el[domMethod](touchEvents.move, swiper.onTouchMove, support.passiveListener ? {
+		// 	passive: false,
+		// 	capture
+		// } : capture);
+		// el[domMethod](touchEvents.end, swiper.onTouchEnd, passiveListener);
 		// #endif
 
 
 
 		if (touchEvents.cancel) {
 			// #ifdef VUE2
-			el[domMethod](touchEvents.cancel, swiper.onTouchEnd, passiveListener);
+			// el[domMethod](touchEvents.cancel, swiper.onTouchEnd, passiveListener);
 			// #endif
 		}
 	}
 
 	if (params.preventClicks || params.preventClicksPropagation) {
 		// #ifdef VUE2
-		el[domMethod]('click', swiper.onClick, true);
+		// el[domMethod]('click', swiper.onClick, true);
 		// #endif
 	}
 
 	if (params.cssMode) {
-		wrapperEl[domMethod]('scroll', swiper.onScroll);
+		// wrapperEl[domMethod]('scroll', swiper.onScroll);
 	}
 
 	if (params.updateOnWindowResize) {
-		swiper[swiperMethod](device.ios || device.android ? 'resize orientationchange observerUpdate' :
-			'resize observerUpdate', onResize, true);
+		// swiper[swiperMethod](device.ios || device.android ? 'resize orientationchange observerUpdate' :
+		// 	'resize observerUpdate', onResize, true);
 	} else {
-		swiper[swiperMethod]('observerUpdate', onResize, true);
+		// swiper[swiperMethod]('observerUpdate', onResize, true);
 	}
 };
 

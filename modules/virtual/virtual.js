@@ -105,7 +105,6 @@ export default function Virtual({
 				swiper.lazy.load();
 			}
 		}
-
 		if (previousFrom === from && previousTo === to && !force) {
 			if (swiper.slidesGrid !== previousSlidesGrid && offset !== previousOffset) {
 				swiper.slides.css(offsetProp, `${offset}px`);
@@ -276,19 +275,19 @@ export default function Virtual({
 			update();
 		}
 	});
-	on('beforeUpdate', () => {
-		if (!swiper.params.virtual.enabled) return;
-		let offsetProp;
-		if (swiper.rtlTranslate) offsetProp = 'right';
-		else offsetProp = swiper.isHorizontal() ? 'left' : 'top';
-		swiper.slides.forEach((item, index) => {
-			item.dataSwiperSlideIndex = swiper.virtualIndexList[index];
-			item.css({
-				[offsetProp]: `${swiper.virtual.offset}px`
-			})
-		})
-	})
-	on('setTranslate', async () => {
+	// on('beforeUpdate', () => {
+	// 	if (!swiper.params.virtual.enabled) return;
+	// 	let offsetProp;
+	// 	if (swiper.rtlTranslate) offsetProp = 'right';
+	// 	else offsetProp = swiper.isHorizontal() ? 'left' : 'top';
+	// 	swiper.slides.forEach((item, index) => {
+	// 		item.dataSwiperSlideIndex = swiper.virtualIndexList[index];
+	// 		item.css({
+	// 			[offsetProp]: `${swiper.virtual.offset}px`
+	// 		})
+	// 	})
+	// })
+	on('touch-end', async () => {
 		if (!swiper.params.virtual.enabled) return;
 		if (swiper.params.cssMode && !swiper._immediateVirtual) {
 			clearTimeout(cssModeTimeout);
@@ -296,7 +295,12 @@ export default function Virtual({
 				update();
 			}, 100);
 		} else {
-			update();
+			console.log("update==========")
+			clearTimeout(cssModeTimeout);
+			cssModeTimeout = setTimeout(() => {
+				update();
+			}, 300);
+			// update();
 		}
 	});
 

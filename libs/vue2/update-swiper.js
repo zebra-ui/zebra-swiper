@@ -13,7 +13,6 @@ async function updateSwiper({
 	paginationEl,
 	scrollbarEl,
 }) {
-	console.log("swiper 发生了变化")
 	const updateParams = changedParams.filter((key) => key !== 'children' && key !== 'direction');
 	const {
 		params: currentParams,
@@ -112,12 +111,12 @@ async function updateSwiper({
 			}
 		}
 	});
-	if (changedParams.includes('virtual') && virtual && currentParams.virtual.enabled) {
-		virtual.update();
-	}
+	// if (changedParams.includes('virtual') && virtual && currentParams.virtual.enabled) {
+	// 	virtual.update();
+	// }
 	if (changedParams.includes('children') && virtual && currentParams.virtual.enabled) {
 		// virtual.slides = slides;
-		// virtual.update();
+		virtual.update(true);
 	} else if (changedParams.includes('children') && swiper.lazy && swiper.params.lazy.enabled) {
 		swiper.lazy.load();
 	}

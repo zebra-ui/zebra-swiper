@@ -14,7 +14,6 @@ function onTouchMoveWxs(event, ins) {
 		touches: event.touches,
 		type: event.type
 	})
-	return false
 }
 
 function onTouchEndWxs(event, ins) {

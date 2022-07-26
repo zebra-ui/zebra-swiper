@@ -111,7 +111,12 @@
 				// #endif
 			},
 			transition(value) {
+				// #ifdef MP-BAIDU
+				this.$set(this.itemStyle, 'transitionDuration', `${value}ms`)
+				// #endif
+				// #ifndef MP-BAIDU
 				this.$set(this.itemStyle, 'transition-duration', `${value}ms`)
+				// #endif
 			},
 			willChange(value) {
 				this.$set(this.itemStyle, 'will-change', value)
