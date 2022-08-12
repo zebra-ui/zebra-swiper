@@ -133,7 +133,7 @@
 			'slideResetTransitionStart', 'slideResetTransitionEnd', 'sliderMove', 'sliderFirstMove',
 			'slidesLengthChange', 'slidesGridLengthChange', 'snapGridLengthChange', 'snapIndexChange', 'swiper', 'tap',
 			'toEdge', 'touchEnd', 'touchMove', 'touchMoveOpposite', 'touchStart', 'transitionEnd', 'transitionStart',
-			'unlock', 'update', 'zoomChange'
+			'unlock', 'update', 'zoomChange','beforeMount'
 		],
 		// #endif
 		props: {
