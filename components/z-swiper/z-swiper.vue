@@ -4,13 +4,13 @@
 		:style="[customStyle]">
 		<!-- #ifndef MP-WEIXIN || MP-QQ -->
 		<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClickWrapper" @touchstart="onTouchStart"
-			@touchmove="onTouchMove" @touchend="onTouchEnd">
+			@touchmove="onTouchMove" @touchend="onTouchEnd" @touchcancel="onTouchEnd">
 			<!-- #endif -->
 			<!-- #ifdef MP-WEIXIN || MP-QQ -->
 			<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClickWrapper"
 				@touchstart="zSwiperWxs.onTouchStartWxs" @touchmove="zSwiperWxs.onTouchMoveWxs"
-				@touchend="zSwiperWxs.onTouchEndWxs" :swiperTransform="wxsTransform"
-				:change:swiperTransform="zSwiperWxs.wxsTransformObserver">
+				@touchend="zSwiperWxs.onTouchEndWxs" @touchcancel="zSwiperWxs.onTouchEndWxs"
+				:swiperTransform="wxsTransform" :change:swiperTransform="zSwiperWxs.wxsTransformObserver">
 				<!-- #endif -->
 				<slot></slot>
 				<!-- 在loop模式下，为group填充空白slide -->
@@ -133,7 +133,7 @@
 			'slideResetTransitionStart', 'slideResetTransitionEnd', 'sliderMove', 'sliderFirstMove',
 			'slidesLengthChange', 'slidesGridLengthChange', 'snapGridLengthChange', 'snapIndexChange', 'swiper', 'tap',
 			'toEdge', 'touchEnd', 'touchMove', 'touchMoveOpposite', 'touchStart', 'transitionEnd', 'transitionStart',
-			'unlock', 'update', 'zoomChange'
+			'unlock', 'update', 'zoomChange', 'beforeMount'
 		],
 		// #endif
 		props: {
@@ -276,6 +276,7 @@
 							slides: val.options.virtual.slides,
 							// slides: val.value,
 							renderExternal: data => {
+								console.log("最终数据", data)
 								this.virtualData = data;
 								this.$emit("input", data.slides);
 								// updateOnVirtualData(this.swiper);
@@ -318,9 +319,11 @@
 					}
 				}
 				if (this.swiper && !this.firstLoad) {
-					if (this.virtualData) {
+					if (this.virtualData && val.options.virtual.type == "cut") {
 						const style = this.swiper.isHorizontal() ? {
-							[this.swiper.rtlTranslate ? 'right' : 'left']: `${this.virtualData.offset}px`
+							[this.swiper.rtlTranslate ? 'right' :
+								'left'
+							]: `${this.virtualData.offset}px`
 						} : {
 							top: `${this.virtualData.offset}px`
 						};

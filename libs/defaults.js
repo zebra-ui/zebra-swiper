@@ -98,7 +98,7 @@ export default {
 	allowSlideNext: true,
 	swipeHandler: null,
 	// '.swipe-handler',
-	noSwiping: true,
+	noSwiping: false,
 	noSwipingClass: 'swiper-no-swiping',
 	noSwipingSelector: null,
 	// Passive Listeners

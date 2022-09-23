@@ -23,7 +23,7 @@ export default function onTouchStart(event) {
 	let e = event;
 	if (e.originalEvent) e = e.originalEvent;
 
-	data.isTouchEvent = e.type === 'touchstart' || e.type === 'touchStart';
+	data.isTouchEvent = e.type === 'touchstart' || e.type === 'touchStart' || e.type === 'onTouchstart';
 	if (!data.isTouchEvent && 'which' in e && e.which === 3) return;
 	if (!data.isTouchEvent && 'button' in e && e.button > 0) return;
 	if (data.isTouched && data.isMoved) return; // change target el for shadow root component
@@ -36,12 +36,19 @@ export default function onTouchStart(event) {
 		.shadowRoot
 	);
 
+	if (params.noSwiping) {
+		swiper.allowClick = true;
+		return;
+	}
+
 	if (params.swipeHandler) {
 		if (!$targetEl.closest(params.swipeHandler)[0]) return;
 	}
 
-	touches.currentX = (e.type === 'touchstart' || e.type === 'touchStart') ? e.touches[0].pageX : e.pageX;
-	touches.currentY = (e.type === 'touchstart' || e.type === 'touchStart') ? e.touches[0].pageY : e.pageY;
+	touches.currentX = (e.type === 'touchstart' || e.type === 'touchStart' || e.type === 'onTouchstart') ? e.touches[0]
+		.pageX : e.pageX;
+	touches.currentY = (e.type === 'touchstart' || e.type === 'touchStart' || e.type === 'onTouchstart') ? e.touches[0]
+		.pageY : e.pageY;
 	const startX = touches.currentX;
 	const startY = touches
 		.currentY;

@@ -22,11 +22,14 @@ export default function onTouchMove(event) {
 		return;
 	}
 
-	if (data.isTouchEvent && e.type !== 'touchmove' && e.type !== 'touchMove') return;
-	const targetTouch = (e.type === 'touchmove' || e.type === 'touchMove') && e.touches && (e.touches[0] || e
+	if (data.isTouchEvent && e.type !== 'touchmove' && e.type !== 'touchMove' && e.type !== 'onTouchmove') return;
+	const targetTouch = (e.type === 'touchmove' || e.type === 'touchMove' || e.type === 'onTouchmove') && e.touches && (
+		e.touches[0] || e
 		.changedTouches[0]);
-	const pageX = (e.type === 'touchmove' || e.type === 'touchMove') ? targetTouch.pageX : e.pageX;
-	const pageY = (e.type === 'touchmove' || e.type === 'touchMove') ? targetTouch.pageY : e.pageY;
+	const pageX = (e.type === 'touchmove' || e.type === 'touchMove' || e.type === 'onTouchmove') ? targetTouch.pageX : e
+		.pageX;
+	const pageY = (e.type === 'touchmove' || e.type === 'touchMove' || e.type === 'onTouchmove') ? targetTouch.pageY : e
+		.pageY;
 
 	if (e.preventedByNestedSwiper) {
 		touches.startX = pageX;

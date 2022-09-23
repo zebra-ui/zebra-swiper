@@ -119,6 +119,11 @@ export default function Virtual({
 				to,
 				slides: (function getSlides() {
 					const slidesToRender = [];
+					if (swiper.params.virtual.type == 'keep') {
+						for (let i = 0; i < from; i += 1) {
+							slidesToRender.push("");
+						}
+					}
 					for (let i = from; i <= to; i += 1) {
 						slidesToRender.push(slides[i]);
 					}
@@ -287,7 +292,7 @@ export default function Virtual({
 	// 		})
 	// 	})
 	// })
-	on('touch-end', async () => {
+	on('setTranslate', async () => {
 		if (!swiper.params.virtual.enabled) return;
 		if (swiper.params.cssMode && !swiper._immediateVirtual) {
 			clearTimeout(cssModeTimeout);
@@ -299,7 +304,7 @@ export default function Virtual({
 			clearTimeout(cssModeTimeout);
 			cssModeTimeout = setTimeout(() => {
 				update();
-			}, 300);
+			}, 100);
 			// update();
 		}
 	});
