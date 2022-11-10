@@ -12,6 +12,8 @@ export default function EffectCards({
 			slideShadows: true,
 			transformEl: null,
 			rotate: true,
+			perSlideRotate: 2,
+			perSlideOffset: 8,
 		},
 	});
 
@@ -41,9 +43,9 @@ export default function EffectCards({
 			let tY = 0;
 			const tZ = -100 * Math.abs(progress);
 			let scale = 1;
-			let rotate = -2 * progress;
+			let rotate = -params.perSlideRotate * progress;
 
-			let tXAdd = 8 - Math.abs(progress) * 0.75;
+			let tXAdd = params.perSlideOffset - Math.abs(progress) * 0.75;
 
 			const isSwipeToNext =
 				(i === activeIndex || i === activeIndex - 1) &&
@@ -85,17 +87,6 @@ export default function EffectCards({
 			const transform =
 				`translate3d(${tX}, ${tY}, ${tZ}px) rotateZ(${params.rotate ? rotate : 0}deg) scale(${scaleString})`;
 
-			// if (params.slideShadows) {
-			//   // Set shadows
-			//   let $shadowEl = $slideEl.find('.swiper-slide-shadow');
-			//   if ($shadowEl.length === 0) {
-			//     $shadowEl = createShadow(params, $slideEl);
-			//   }
-			//   if ($shadowEl.length)
-			//     $shadowEl[0].style.opacity = Math.min(Math.max((Math.abs(progress) - 0.5) / 0.5, 0), 1);
-			// }
-
-			// $slideEl[0].style.zIndex = -Math.abs(Math.round(slideProgress)) + slides.length;
 			$slideEl.css({
 				zIndex: -Math.abs(Math.round(slideProgress)) + slides.length
 			})

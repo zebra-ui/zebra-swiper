@@ -111,6 +111,11 @@
 
 	export default {
 		name: "z-swipe",
+		// #ifdef MP-WEIXIN
+		options: {
+			virtualHost: true
+		},
+		// #endif
 		mixins: [
 			ParentMixin('zSwipe')
 		],
@@ -573,10 +578,21 @@
 				this.$set(this.scrollbarItemStyle, 'transitionDuration', `${value}ms`)
 			},
 			addClass(value) {
-				this.contentClass = Array.from(new Set([...this.contentClass, ...value.split(" ")]));;
+				// #ifdef MP-ALIPAY
+				this.contentClass = Array.from(new Set([...this.contentClass.split(" "), ...value.split(" ")])).join(" ");
+				// #endif
+				// #ifndef MP-ALIPAY
+				this.contentClass = Array.from(new Set([...this.contentClass, ...value.split(" ")]));
+				// #endif
 			},
 			removeClass(value) {
+				// #ifdef MP-ALIPAY
+				this.contentClass = this.contentClass.split(" ").filter(item => !value.split(" ").includes(item)).join(
+					" ");
+				// #endif
+				// #ifndef MP-ALIPAY
 				this.contentClass = this.contentClass.filter(item => !value.split(" ").includes(item));
+				// #endif
 			},
 			addPaginationClass(value) {
 				this.paginationElClass = Array.from(new Set([...this.paginationElClass, ...value.split(" ")]));

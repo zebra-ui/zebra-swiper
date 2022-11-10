@@ -467,7 +467,8 @@ export default function Pagination({
 			$el
 		} = swiper.pagination;
 		if ($el) {
-			$el[swiper.enabled ? 'removeClass' : 'addClass'](swiper.params.pagination.lockClass);
+			swiper.$wrapperEl[swiper.enabled ? 'removePaginationClass' : 'addPaginationClass'](swiper.params
+				.pagination.lockClass);
 		}
 	});
 	on('lock unlock', () => {

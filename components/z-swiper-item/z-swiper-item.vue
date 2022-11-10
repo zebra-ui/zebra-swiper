@@ -21,6 +21,11 @@
 	} from '../../libs/utils/utils.js';
 	export default {
 		name: "z-swipe-item",
+		// #ifdef MP-WEIXIN
+		options: {
+			virtualHost: true
+		},
+		// #endif
 		mixins: [ChildrenMixin('zSwipe')],
 		props: {
 			customStyle: {
