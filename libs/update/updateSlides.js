@@ -153,6 +153,12 @@ export default function updateSlides() {
 			slides[i].swiperSlideSize = slideSize;
 		}
 
+		if (params.autoHeight) {
+			slides[i] && slides[i].css({
+				height: 'auto'
+			})
+		}
+
 		slidesSizesGrid.push(slideSize);
 
 		if (params.centeredSlides) {

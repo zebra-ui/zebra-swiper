@@ -20,14 +20,8 @@ const events = (swiper, method) => {
 	const capture = !!params.nested;
 	const domMethod = method === 'on' ? 'on' : 'off';
 	const swiperMethod = method;
-	// Object.keys(swiper.eventsListeners).forEach((item) => {
-	// 	if (method == 'off') {
-	// 		swiper.native.off(item)
-	// 	}
-	// })
 	if (!support.touch) {
 		let desktopMethod = method === 'on' ? 'addEventListener' : 'removeEventListener';
-		// el[domMethod](touchEvents.start, swiper.onTouchStart, false);
 		if (document.querySelector(`#${swiper.$el.swiperElId}`)) {
 			document.querySelector(`#${swiper.$el.swiperElId}`)[desktopMethod](touchEvents.start, swiper
 				.onTouchStart,
@@ -41,40 +35,6 @@ const events = (swiper, method) => {
 				passive: true,
 				capture: false
 			} : false;
-
-		// #ifdef VUE2
-		// el[domMethod](touchEvents.start, swiper.onTouchStart, passiveListener);
-		// el[domMethod](touchEvents.move, swiper.onTouchMove, support.passiveListener ? {
-		// 	passive: false,
-		// 	capture
-		// } : capture);
-		// el[domMethod](touchEvents.end, swiper.onTouchEnd, passiveListener);
-		// #endif
-
-
-
-		if (touchEvents.cancel) {
-			// #ifdef VUE2
-			// el[domMethod](touchEvents.cancel, swiper.onTouchEnd, passiveListener);
-			// #endif
-		}
-	}
-
-	if (params.preventClicks || params.preventClicksPropagation) {
-		// #ifdef VUE2
-		// el[domMethod]('click', swiper.onClick, true);
-		// #endif
-	}
-
-	if (params.cssMode) {
-		// wrapperEl[domMethod]('scroll', swiper.onScroll);
-	}
-
-	if (params.updateOnWindowResize) {
-		// swiper[swiperMethod](device.ios || device.android ? 'resize orientationchange observerUpdate' :
-		// 	'resize observerUpdate', onResize, true);
-	} else {
-		// swiper[swiperMethod]('observerUpdate', onResize, true);
 	}
 };
 

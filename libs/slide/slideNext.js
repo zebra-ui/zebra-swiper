@@ -24,6 +24,6 @@ export default function slideNext(speed = this.params.speed, runCallbacks = true
 	}
 	setTimeout(() => {
 		swiper.slideTo(swiper.activeIndex + increment, speed, runCallbacks, internal)
-	}, 30)
+	}, 0)
 	return true;
 }

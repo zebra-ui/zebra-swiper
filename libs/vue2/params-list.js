@@ -104,6 +104,7 @@ const paramsList = [
 	'flipEffect',
 	'creativeEffect',
 	'cardsEffect',
+	'panorama',
 	'hashNavigation',
 	'history',
 	'keyboard',

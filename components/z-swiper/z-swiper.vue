@@ -578,19 +578,19 @@
 				this.$set(this.scrollbarItemStyle, 'transitionDuration', `${value}ms`)
 			},
 			addClass(value) {
-				// #ifdef MP-ALIPAY
+				// #ifdef MP-ALIPAY || MP-TOUTIAO
 				this.contentClass = Array.from(new Set([...this.contentClass.split(" "), ...value.split(" ")])).join(" ");
 				// #endif
-				// #ifndef MP-ALIPAY
+				// #ifndef MP-ALIPAY || MP-TOUTIAO
 				this.contentClass = Array.from(new Set([...this.contentClass, ...value.split(" ")]));
 				// #endif
 			},
 			removeClass(value) {
-				// #ifdef MP-ALIPAY
+				// #ifdef MP-ALIPAY || MP-TOUTIAO
 				this.contentClass = this.contentClass.split(" ").filter(item => !value.split(" ").includes(item)).join(
 					" ");
 				// #endif
-				// #ifndef MP-ALIPAY
+				// #ifndef MP-ALIPAY || MP-TOUTIAO
 				this.contentClass = this.contentClass.filter(item => !value.split(" ").includes(item));
 				// #endif
 			},

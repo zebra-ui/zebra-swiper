@@ -40,7 +40,8 @@ export default async function updateAutoHeight(speed) {
 
 	for (i = 0; i < activeSlides.length; i += 1) {
 		if (typeof activeSlides[i] !== 'undefined') {
-			const height = await activeSlides[i].getHeight();
+			const size = await activeSlides[i].getSize();
+			const height = size.height;
 			newHeight = height > newHeight ? height : newHeight;
 		}
 	} // Update Height

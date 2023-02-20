@@ -7,6 +7,7 @@ export default function Panorama({
 		panorama: {
 			depth: 200,
 			rotate: 30,
+			stretch: 1
 		},
 	});
 
@@ -25,7 +26,7 @@ export default function Panorama({
 		if (swiper.params.effect !== 'panorama') return;
 		const sizesGrid = swiper.slidesSizesGrid;
 		const {
-			depth = 200, rotate = 30
+			depth = 200, rotate = 30, stretch = 1
 		} = swiper.params.panorama;
 		const angleRad = (rotate * Math.PI) / 180;
 		const halfAngleRad = angleRad / 2;
@@ -40,7 +41,7 @@ export default function Panorama({
 				(swiper.params.slidesPerView - 1) * 0.5;
 			const modifiedProgress = slideProgress + progressModifier;
 			const angleCos = 1 - Math.cos(modifiedProgress * angleModifier * Math.PI);
-			const translateX = `${modifiedProgress * (slideSize / 3) * angleCos}px`;
+			const translateX = `${modifiedProgress * (stretch * slideSize / 3) * angleCos}px`;
 			const rotateY = modifiedProgress * rotate;
 			const radius = (slideSize * 0.5) / Math.sin(halfAngleRad);
 			const translateZ = `${radius * angleCos - depth}px`;
