@@ -1,0 +1,25 @@
+name: "\U0001F680 好的想法或功能"
+description: 对swiper有新需求或有好的想法
+labels: ["feature request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您对zebra-swiper的支持并且抽出宝贵的时间来填写此报告！
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: 清晰简洁的描述你的需求
+      description: 对此需求做出描述
+    validations:
+      required: true
+  - type: textarea
+    id: suggested-solution
+    attributes:
+      label: 此需求你建议怎样实现
+      description: "描述你的建议，如果你对实现此需求有好的想法或思路，也可以告诉我们~"
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 可提供的案例或参考对象
+      description: 如果有好的参考案例，可以通过截图或链接的方式提供给我们

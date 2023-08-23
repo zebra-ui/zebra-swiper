@@ -1,0 +1,37 @@
+name: "🐞 swiper问题-H5"
+description: 在编译到H5上出现了问题
+labels: ["bug", "H5"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您花时间填写此错误报告！
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 可复现问题的链接。或可复现问题的，在示例项目中可运行的代码片段
+      description: 如果您可以提供可链接，请在下方填入可访问的链接。如果可以提供可复现问题的代码片段，请保证代码片段可以完整的复现当前发生的问题，并且在示例项目中可运行。
+      placeholder: "请输入链接或代码片段"
+    validations:
+      required: false
+  - type: textarea
+    id: descr
+    attributes:
+      label: 对此问题或BUG的详细描述
+      description: 请仔细地描述该问题的触发时机或操作过程
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 你希望的效果是怎样的
+      description: 请描述该问题在实际使用场景中，正常情况下的形态
+    validations:
+      required: false
+  - type: input
+    id: swiper
+    attributes:
+      label: 发生问题的版本号
+      description: 请填写出现此问题的swiper版本号（如不填默认最新版）
+    validations:
+      required: false
