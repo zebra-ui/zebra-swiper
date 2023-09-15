@@ -29,27 +29,27 @@
 				list: [{
 					bgColor: "#6002EE",
 					fillStyle: {},
-					url: "https://cdn.zebraui.com/zebra-swiper/demos/paper/banks.svg",
+					url: require("../../../static/images/banks.svg"),
 					title: "Banks",
-					text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Asperiores sed tempora corrupti officia."
+					text: "Banks are financial institutions that provide a wide range of financial services, including savings accounts, loans, investment opportunities, and more."
 				}, {
 					bgColor: "#008386",
 					fillStyle: {},
-					url: "https://cdn.zebraui.com/zebra-swiper/demos/paper/hotels.svg",
+					url: require("../../../static/images/hotels.svg"),
 					title: "Hotels",
-					text: "Omnis ut voluptate eius. Explicabo, praesentium ea sit tenetur inventore delectus."
+					text: "Hotels are establishments that offer accommodation, amenities, and services to travelers and guests, providing a comfortable and convenient stay away from home."
 				}, {
 					bgColor: "#a41fa8",
 					fillStyle: {},
-					url: "https://cdn.zebraui.com/zebra-swiper/demos/paper/business.svg",
+					url: require("../../../static/images/business.svg"),
 					title: "Business",
-					text: "Odio minus cumque sint facere hic accusamus sed quas eius recusandae."
+					text: "Business involves activities aimed at creating products or services, generating profits, and contributing to the economy."
 				}, {
 					bgColor: "#007700",
 					fillStyle: {},
-					url: "https://cdn.zebraui.com/zebra-swiper/demos/paper/checkmark.svg",
+					url: require("../../../static/images/checkmark.svg"),
 					title: "Done",
-					text: "Eos, corporis quia sequi ipsam similique nemo nesciunt quibusdam."
+					text: "Now you can continue using it."
 				}],
 				options: {
 					effect: 'creative',

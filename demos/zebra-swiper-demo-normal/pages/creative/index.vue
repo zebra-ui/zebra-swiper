@@ -3,38 +3,32 @@
 		<demo-block title="切换效果-创意性">
 			<z-swiper v-model="list" :options="options1">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
-			<z-swiper v-model="list" :options="options2">
+			<z-swiper :custom-style="{'margin-top':'20rpx'}" v-model="list" :options="options2">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
-			<z-swiper v-model="list" :options="options3">
+			<z-swiper :custom-style="{'margin-top':'20rpx'}" v-model="list" :options="options3">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
-			<z-swiper v-model="list" :options="options4">
+			<z-swiper :custom-style="{'margin-top':'20rpx'}" v-model="list" :options="options4">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
-			<z-swiper v-model="list" :options="options5">
+			<z-swiper :custom-style="{'margin-top':'20rpx'}" v-model="list" :options="options5">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
-			<z-swiper v-model="list" :options="options6">
+			<z-swiper :custom-style="{'margin-top':'20rpx'}" v-model="list" :options="options6">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
 		</demo-block>
@@ -42,11 +36,8 @@
 </template>
 
 <script>
-	import DemoBlock from '../../components/DemoBlock/DemoBlock.vue';
+	import data from '../../common/js/data.js'
 	export default {
-		components: {
-			DemoBlock
-		},
 		data() {
 			return {
 				options1: {
@@ -132,23 +123,8 @@
 						}
 					}
 				},
-				list: [
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe1.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe2.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe3.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe4.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe5.jpg',
-				],
+				list: data,
 			}
 		},
 	}
 </script>
-
-<style scoped lang="scss">
-	.demo-swiper {
-		.image {
-			height: 300rpx;
-			width: 100%;
-		}
-	}
-</style>

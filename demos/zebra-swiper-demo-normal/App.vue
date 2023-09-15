@@ -17,9 +17,12 @@
 		width: 0;
 		background: transparent;
 	}
-	
+
 	page {
-	  background-color: #e4ebf5;
-	  padding-bottom: 30rpx;
+		background-color: #e4ebf5;
+	}
+	
+	.demo-swiper{
+		padding-bottom: 16rpx;
 	}
 </style>

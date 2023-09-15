@@ -3,16 +3,14 @@
 		<demo-block title="基础用法">
 			<z-swiper v-model="list" :options="options">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
 		</demo-block>
 		<demo-block title="插槽自定义">
 			<z-swiper v-model="list" :options="optionsSlot">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 				<template #pre-button>
 					<view class="custom-switcher">
@@ -29,8 +27,7 @@
 		<demo-block title="完全自定义">
 			<z-swiper v-model="loopList" ref="zSwiper" :options="optionsCustom">
 				<z-swiper-item v-for="(item,index) in loopList" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
 			<view class="custom-switcher-group">
@@ -42,11 +39,8 @@
 </template>
 
 <script>
-	import DemoBlock from '../../components/DemoBlock/DemoBlock.vue';
+	import data from '../../common/js/data.js'
 	export default {
-		components: {
-			DemoBlock
-		},
 		data() {
 			return {
 				options: {
@@ -66,20 +60,8 @@
 					},
 					loop: true
 				},
-				list: [
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe1.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe2.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe3.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe4.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe5.jpg',
-				],
-				loopList: [
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe1.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe2.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe3.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe4.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe5.jpg',
-				]
+				list: data,
+				loopList: data
 			}
 		},
 		methods: {
@@ -106,6 +88,7 @@
 		}
 
 		.custom-switcher-group {
+			margin-top: 20rpx;
 			display: flex;
 			align-items: center;
 			justify-content: space-around;

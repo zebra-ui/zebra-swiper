@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zebra-ui/zebra-uniapp-swiper-demo.git"
+    "url": "git+https://github.com/zebra-ui/zebra-swiper.git"
   },
   "author": "zebra-ui",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zebra-ui/zebra-uniapp-swiper-demo/issues"
+    "url": "https://github.com/zebra-ui/zebra-swiper/issues"
   },
-  "homepage": "https://github.com/zebra-ui/zebra-uniapp-swiper-demo#readme"
+  "homepage": "https://github.com/zebra-ui/zebra-swiper/blob/master/README.md"
 }

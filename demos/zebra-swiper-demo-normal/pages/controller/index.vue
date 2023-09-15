@@ -3,29 +3,25 @@
 		<demo-block title="基础用法">
 			<z-swiper ref="zSwiper" v-model="list1" :options="options">
 				<z-swiper-item v-for="(item,index) in list1" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
-			<z-swiper ref="zSwiperThumbs" v-model="list2" :options="optionsThumbs" @swiper="setThumbsSwiper">
+			<z-swiper :custom-style="{'margin-top':'20rpx'}" ref="zSwiperThumbs" v-model="list2" :options="optionsThumbs" @swiper="setThumbsSwiper">
 				<z-swiper-item v-for="(item,index) in list2" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
 		</demo-block>
 		<demo-block title="反向">
 			<z-swiper ref="zSwiperInverse" v-model="list1Inverse" :options="optionsInverse">
 				<z-swiper-item v-for="(item,index) in list1Inverse" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
-			<z-swiper ref="zSwiperThumbsInverse" v-model="list2Inverse" :options="optionsThumbsInverse"
+			<z-swiper :custom-style="{'margin-top':'20rpx'}" ref="zSwiperThumbsInverse" v-model="list2Inverse" :options="optionsThumbsInverse"
 				@swiper="setThumbsSwiperInverse">
 				<z-swiper-item v-for="(item,index) in list2Inverse" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
 		</demo-block>
@@ -33,11 +29,8 @@
 </template>
 
 <script>
-	import DemoBlock from '../../components/DemoBlock/DemoBlock.vue';
+	import data from '../../common/js/data.js'
 	export default {
-		components: {
-			DemoBlock
-		},
 		data() {
 			return {
 				optionsThumbs: {
@@ -64,30 +57,10 @@
 						inverse: true,
 					}
 				},
-				list1: [
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe1.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe2.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe3.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe4.jpg',
-				],
-				list2: [
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe1.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe2.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe3.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe4.jpg',
-				],
-				list1Inverse: [
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe1.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe2.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe3.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe4.jpg',
-				],
-				list2Inverse: [
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe1.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe2.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe3.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe4.jpg',
-				]
+				list1: data,
+				list2: data,
+				list1Inverse: data,
+				list2Inverse: data
 			}
 		},
 		methods: {
@@ -112,12 +85,3 @@
 		}
 	}
 </script>
-
-<style scoped lang="scss">
-	.demo-swiper {
-		.image {
-			height: 300rpx;
-			width: 100%;
-		}
-	}
-</style>

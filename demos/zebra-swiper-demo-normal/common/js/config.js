@@ -35,11 +35,11 @@ export default [{
 				title: "Scrollbar 滚动条",
 				image: "scrollbar",
 			},
-			// {
-			// 	path: '/virtual',
-			// 	title: 'Virtual 虚拟',
-			// 	image: 'virtual'
-			// },
+			{
+				path: '/virtual',
+				title: 'Virtual 虚拟',
+				image: 'virtual'
+			},
 		],
 	},
 	{

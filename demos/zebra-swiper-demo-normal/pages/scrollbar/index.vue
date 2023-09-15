@@ -3,40 +3,35 @@
 		<demo-block title="基础用法">
 			<z-swiper v-model="list" :options="options">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
 		</demo-block>
 		<demo-block title="自动播放">
 			<z-swiper v-model="list" :options="optionsAutoplay">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
 		</demo-block>
 		<demo-block title="纵向">
 			<z-swiper v-model="list" :custom-style="{height:'300rpx'}" :options="optionsVertical">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
 		</demo-block>
 		<demo-block title="自动隐藏">
 			<z-swiper v-model="list" :options="optionsHide">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
 		</demo-block>
 		<demo-block title="可拖动">
 			<z-swiper v-model="list" :options="optionsDraggable">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
-					<image class="image" :src="item" mode="aspectFill">
-					</image>
+					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
 		</demo-block>
@@ -44,11 +39,8 @@
 </template>
 
 <script>
-	import DemoBlock from '../../components/DemoBlock/DemoBlock.vue';
+	import data from '../../common/js/data.js'
 	export default {
-		components: {
-			DemoBlock
-		},
 		data() {
 			return {
 				options: {
@@ -80,24 +72,8 @@
 						draggable: true,
 					},
 				},
-				list: [
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe1.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe2.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe3.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe4.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe5.jpg',
-				],
+				list: data,
 			}
 		},
 	}
 </script>
-
-<style scoped lang="scss">
-	.demo-swiper {
-		.image {
-			display: block;
-			height: 300rpx;
-			width: 100%;
-		}
-	}
-</style>

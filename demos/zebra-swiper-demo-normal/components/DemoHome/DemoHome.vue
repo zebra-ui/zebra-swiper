@@ -1,7 +1,7 @@
 <template>
 	<view class="demo-home">
 		<view class="demo-home__title">
-			<image mode="aspectFit" class="demo-home__image" src="https://cdn.zebraui.com/zebra-swiper/logo.png" />
+			<image mode="aspectFit" class="demo-home__image" src="../../static/logo.png" />
 		</view>
 		<view class="demo-home__desc">
 			适配多端的高自定义轮播组件，全面对标swiperjs并兼容全端

@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3161382 */
-  src: url('//at.alicdn.com/t/c/font_3161382_xrectm5l2vp.woff2?t=1692761459064') format('woff2'),
-       url('//at.alicdn.com/t/c/font_3161382_xrectm5l2vp.woff?t=1692761459064') format('woff'),
-       url('//at.alicdn.com/t/c/font_3161382_xrectm5l2vp.ttf?t=1692761459064') format('truetype');
+  src: url('https://at.alicdn.com/t/c/font_3161382_ag4l7sp1cte.woff2?t=1693562772775') format('woff2'),
+       url('https://at.alicdn.com/t/c/font_3161382_ag4l7sp1cte.woff?t=1693562772775') format('woff'),
+       url('https://at.alicdn.com/t/c/font_3161382_ag4l7sp1cte.ttf?t=1693562772775') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.zebra-icon-virtual:before {
+  content: "\e60b";
 }
 
 .zebra-icon-controller:before {

@@ -4,30 +4,21 @@
 			<view class="travel-slider">
 				<!-- Rotating Planet -->
 				<view class="travel-slider-planet" :style="[planetStyle]">
-					<image class="planet-image" src="https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/earth.svg"
-						mode="heightFix" />
+					<image class="planet-image" src="../../../static/images/earth.svg" mode="heightFix" />
 					<view :class="['travel-slider-cities',`travel-slider-cities-${list.length > 4 ? '8' : '4'}`]">
-						<image class="cities-image"
-							src="https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/usa.svg" />
-						<image class="cities-image"
-							src="https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/england.svg" />
-						<image class="cities-image"
-							src="https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/france.svg" />
-						<image class="cities-image"
-							src="https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/italy.svg" />
-						<image class="cities-image"
-							src="https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/russia.svg" />
-						<image class="cities-image"
-							src="https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/egypt.svg" />
-						<image class="cities-image"
-							src="https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/india.svg" />
-						<image class="cities-image"
-							src="https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/japan.svg" />
+						<image class="cities-image" src="../../../static/images/usa.svg" />
+						<image class="cities-image" src="../../../static/images/england.svg" />
+						<image class="cities-image" src="../../../static/images/france.svg" />
+						<image class="cities-image" src="../../../static/images/italy.svg" />
+						<image class="cities-image" src="../../../static/images/russia.svg" />
+						<image class="cities-image" src="../../../static/images/egypt.svg" />
+						<image class="cities-image" src="../../../static/images/india.svg" />
+						<image class="cities-image" src="../../../static/images/japan.svg" />
 					</view>
 				</view>
 				<!-- Swiper -->
-				<z-swiper ref="zSwiper" v-model="list" :options="options" @init="init">
-					<z-swiper-item v-for="(item,index) in list" :key="index">
+				<z-swiper ref="zSwiper" v-model="list" :custom-style="swiperStyle" :options="options" @swiper="init">
+					<z-swiper-item v-for="(item,index) in list" :key="index" :custom-style="itemStyle">
 						<image :src="item.url" class="travel-slider-bg-image" />
 						<view class="travel-slider-content">
 							<view class="travel-slider-title">{{item.title}}</view>
@@ -45,35 +36,35 @@
 		data() {
 			return {
 				list: [{
-					url: "https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/usa.jpg",
+					url: require("../../../static/images/usa.jpg"),
 					title: "United States",
 					subTitle: "8,295 properties"
 				}, {
-					url: "https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/england.jpg",
+					url: require("../../../static/images/england.jpg"),
 					title: "England",
 					subTitle: "1,110 properties"
 				}, {
-					url: "https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/france.jpg",
+					url: require("../../../static/images/france.jpg"),
 					title: "France",
 					subTitle: "314 properties"
 				}, {
-					url: "https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/italy.jpg",
+					url: require("../../../static/images/italy.jpg"),
 					title: "Italy",
 					subTitle: "1,200 properties"
 				}, {
-					url: "https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/russia.jpg",
+					url: require("../../../static/images/russia.jpg"),
 					title: "Russia",
 					subTitle: "12,231 properties"
 				}, {
-					url: "https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/egypt.jpg",
+					url: require("../../../static/images/egypt.jpg"),
 					title: "Egypt",
 					subTitle: "505 properties"
 				}, {
-					url: "https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/india.jpg",
+					url: require("../../../static/images/india.jpg"),
 					title: "India",
 					subTitle: "2,300 properties"
 				}, {
-					url: "https://cdn.zebraui.com/zebra-swiper/demos/travel-slider/japan.jpg",
+					url: require("../../../static/images/japan.jpg"),
 					title: "Japan",
 					subTitle: "1,700 properties"
 				}],
@@ -85,7 +76,18 @@
 					spaceBetween: 24,
 					watchSlidesProgress: true
 				},
-				planetStyle: {}
+				planetStyle: {},
+				itemStyle: {
+					'width': 'calc(100vw * 0.8)',
+					'max-width': '640px',
+					'box-sizing': 'border-box',
+					'position': 'relative'
+				},
+				swiperStyle: {
+					'height': '300px',
+					'padding-top': '64px',
+					'padding-bottom': '64px'
+				}
 			}
 		},
 		methods: {
@@ -138,18 +140,15 @@
 		width: 100%;
 		margin: 0 auto;
 
-		::v-deep .swiper {
-			height: 300px;
-			padding-top: 64px;
-			padding-bottom: 64px;
-		}
+		// ::v-deep .swiper {
+		// 	height: 300px;
+		// 	padding-top: 64px;
+		// 	padding-bottom: 64px;
+		// }
 
-		::v-deep .swiper-slide {
-			width: calc(100vw * 0.8);
-			max-width: 640px;
-			box-sizing: border-box;
-			position: relative;
-		}
+		// ::v-deep .swiper-slide {
+
+		// }
 
 		&-bg-image {
 			position: absolute;
