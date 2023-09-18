@@ -1,6 +1,6 @@
 {
   "easycom": {
-    "autoscan": true,
+    "autoscan": false,
     "custom": {
       "^z-(.*)": "@zebra-ui/swiper/components/z-$1/z-$1.vue"
     }
@@ -156,6 +156,13 @@
       "path": "pages/demos/carousel/index",
       "style": {
         "navigationBarTitleText": "Carousel",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/controller/index",
+      "style": {
+        "navigationBarTitleText": "Controller",
         "enablePullDownRefresh": false
       }
     }

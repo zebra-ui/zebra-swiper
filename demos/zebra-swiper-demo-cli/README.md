@@ -15,18 +15,14 @@
 
 ## 介绍
 
-[zebra-swiper](https://github.com/zebra-ui/zebra-uniapp-swiper) 是基于 uniapp 开发的一款移动端轮播组件，已实现 swiper 组件 90%的功能。
-
-[uniapp](https://uniapp.dcloud.io/README)的[swiper](https://uniapp.dcloud.io/component/swiper)组件存在很大的局限性，无法完成一些复杂的轮播效果。
-
-而 zebra-swiper 不仅可以实现一些 3D 轮播效果，还可以通过参数来定义你想要的效果。
+[zebra-swiper](https://github.com/zebra-ui/zebra-uniapp-swiper) 是基于 uniapp 开发的一款移动端轮播组件，旨在实现一些复杂的轮播交互。
 
 ## 特性
 
 - 全面对标 swiper，并实现全端兼容
-- 兼容多端，小程序也可以实现 3D 轮播效果
+- 兼容多端，小程序也可实现 3D 轮播效果
 - 可自定义 3D 效果
-- 多种示例，总有一种适合你
+- 多种示例可供参考
 
 ## 安装
 
@@ -40,9 +36,12 @@ npm i @zebra-ui/swiper
 // pages.json
 
 {
-	"easycom": {
-		"^z-(.*)": "@zebra-ui/swiper/components/z-$1/z-$1.vue"
-	},
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^z-(.*)": "@zebra-ui/swiper/components/z-$1/z-$1.vue"
+    }
+  },
 	"pages": [...],
 	"globalStyle": {...}
 }
@@ -63,12 +62,9 @@ npm i @zebra-ui/swiper
 ## 预览
 
 <div style="display:flex;flex-wrap:wrap;margin-top:30px;">
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif1.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif2.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif3.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif4.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif5.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif6.gif" width="300" style="margin:20px;" />
+ <img alt="gif" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/show/total1.gif" width="300" style="margin:20px;" />
+ <img alt="gif" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/show/total2.gif" width="300" style="margin:20px;" />
+ <img alt="gif" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/show/total3.gif" width="300" style="margin:20px;" />
 </div>
 
 ## 群

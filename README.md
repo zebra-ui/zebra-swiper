@@ -15,22 +15,18 @@
 
 ## 介绍
 
-[zebra-swiper](https://github.com/zebra-ui/zebra-uniapp-swiper) 是基于uniapp开发的一款移动端轮播组件，已实现swiper组件90%的功能。
-
-[uniapp](https://uniapp.dcloud.io/README)的[swiper](https://uniapp.dcloud.io/component/swiper)组件存在很大的局限性，无法完成一些复杂的轮播效果。
-
-而zebra-swiper不仅可以实现一些3D轮播效果，还可以通过参数来定义你想要的效果。
+[zebra-swiper](https://github.com/zebra-ui/zebra-uniapp-swiper) 是基于 uniapp 开发的一款移动端轮播组件，旨在实现一些复杂的轮播交互。
 
 ## 特性
 
-- 全面对标swiper，并实现全端兼容
-- 兼容多端，小程序也可以实现3D轮播效果
-- 可自定义3D效果
-- 多种示例，总有一种适合你
+- 全面对标 swiper，并实现全端兼容
+- 兼容多端，小程序也可实现 3D 轮播效果
+- 可自定义 3D 效果
+- 多种示例可供参考
 
 ## 安装
 
-### npm方式
+### npm 方式
 
 ```bash
 npm i @zebra-ui/swiper
@@ -40,15 +36,18 @@ npm i @zebra-ui/swiper
 // pages.json
 
 {
-	"easycom": {
-		"^z-(.*)": "@zebra-ui/swiper/components/z-$1/z-$1.vue"
-	},
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^z-(.*)": "@zebra-ui/swiper/components/z-$1/z-$1.vue"
+    }
+  },
 	"pages": [...],
 	"globalStyle": {...}
 }
 ```
 
-### uni_modules方式
+### uni_modules 方式
 
 [插件市场](https://ext.dcloud.net.cn/plugin?id=7273)直接导入即可
 
@@ -61,17 +60,15 @@ npm i @zebra-ui/swiper
 </div>
 
 ## 预览
+
 <div style="display:flex;flex-wrap:wrap;margin-top:30px;">
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif1.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif2.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif3.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif4.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif5.gif" width="300" style="margin:20px;" />
- <img alt="gif" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/gif/gif6.gif" width="300" style="margin:20px;" />
+ <img alt="gif" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/show/total1.gif" width="300" style="margin:20px;" />
+ <img alt="gif" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/show/total2.gif" width="300" style="margin:20px;" />
+ <img alt="gif" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/show/total3.gif" width="300" style="margin:20px;" />
 </div>
 
 ## 群
 
-QQ群：947159437
+QQ 群：947159437
 
 ![image](https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/zebra-swiper-group-code.png)

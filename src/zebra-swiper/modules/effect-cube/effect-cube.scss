@@ -1,0 +1,49 @@
+.swiper-cube {
+  overflow: visible;
+  &.swiper-rtl .swiper-slide {
+    transform-origin: 100% 0;
+  }
+  .swiper-cube-shadow {
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    z-index: 0;
+
+    &:before {
+      content: '';
+      background: #000;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      -webkit-filter: blur(50px);
+      filter: blur(50px);
+    }
+  }
+}
+
+.swiper-slide-cube {
+    pointer-events: none;
+    backface-visibility: hidden;
+    z-index: 1;
+    visibility: hidden;
+    transform-origin: 0 0;
+    width: 100%;
+    height: 100%;
+	transform-style: preserve-3d;
+    .swiper-slide {
+      pointer-events: none;
+    }
+}
+  
+  .swiper-slide-cube.swiper-slide-active,
+  .swiper-slide-cube.swiper-slide-next,
+  .swiper-slide-cube.swiper-slide-prev,
+  .swiper-slide-cube.swiper-slide-next + .swiper-slide {
+    pointer-events: auto;
+    visibility: visible;
+  }
