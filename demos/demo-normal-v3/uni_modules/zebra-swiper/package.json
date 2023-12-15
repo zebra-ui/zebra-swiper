@@ -1,0 +1,96 @@
+{
+	"name": "@zebra-ui/swiper",
+	"id": "zebra-swiper",
+	"displayName": "zebra-swiper 3D轮播，全面对标swiperjs并实现全端兼容。",
+	"version": "2.2.7",
+	"description": "适配多端的高自定义轮播组件，多种3D效果。全面对标swiperjs。",
+	"main": "index.js",
+	"keywords": [
+        "zebra",
+        "swiper",
+        "轮播",
+        "3D",
+        "banner"
+    ],
+	"repository": "https://github.com/zebra-ui/zebra-swiper",
+	"bugs": {
+		"url": "https://github.com/zebra-ui/zebra-uniapp-swiper/issues"
+	},
+	"homepage": "https://github.com/zebra-ui/zebra-uniapp-swiper#readme",
+	"author": "zebra-ui",
+	"license": "ISC",
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"HBuilderX": "^3.1.0"
+	},
+	"dcloudext": {
+		"sale": {
+			"regular": {
+				"price": "0.00"
+			},
+			"sourcecode": {
+				"price": "0.00"
+			}
+		},
+		"contact": {
+			"qq": ""
+		},
+		"declaration": {
+			"ads": "无",
+			"data": "插件不采集任何数据",
+			"permissions": "无"
+		},
+		"npmurl": "https://www.npmjs.com/package/@zebra-ui/swiper",
+		"type": "component-vue"
+	},
+	"uni_modules": {
+		"dependencies": [],
+		"encrypt": [],
+		"platforms": {
+			"cloud": {
+				"tcb": "y",
+				"aliyun": "y"
+			},
+			"client": {
+				"Vue": {
+					"vue2": "y",
+					"vue3": "y"
+				},
+				"App": {
+					"app-vue": "y",
+					"app-nvue": "n"
+				},
+				"H5-mobile": {
+					"Safari": "y",
+					"Android Browser": "y",
+					"微信浏览器(Android)": "y",
+					"QQ浏览器(Android)": "y"
+				},
+				"H5-pc": {
+					"Chrome": "y",
+					"IE": "y",
+					"Edge": "y",
+					"Firefox": "y",
+					"Safari": "y"
+				},
+				"小程序": {
+					"微信": "y",
+					"阿里": "y",
+					"百度": "y",
+					"字节跳动": "y",
+					"QQ": "y",
+					"钉钉": "u",
+					"快手": "y",
+					"飞书": "y",
+					"京东": "u"
+				},
+				"快应用": {
+					"华为": "y",
+					"联盟": "y"
+				}
+			}
+		}
+	}
+}
