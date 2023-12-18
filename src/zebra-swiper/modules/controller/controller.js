@@ -1,6 +1,4 @@
-/* eslint no-bitwise: ["error", { "allow": [">>"] }] */
 import {
-	elementTransitionEnd,
 	nextTick
 } from '../../shared/utils.js';
 

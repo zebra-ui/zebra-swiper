@@ -52,13 +52,13 @@
   border-radius: 50%;
   background: var(--swiper-pagination-bullet-inactive-color, #000);
   opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.2);
-  @at-root button#{&} {
-    border: none;
-    margin: 0;
-    padding: 0;
-    box-shadow: none;
-    appearance: none;
-  }
+  // @at-root button#{&} {
+  //   border: none;
+  //   margin: 0;
+  //   padding: 0;
+  //   box-shadow: none;
+  //   appearance: none;
+  // }
   .swiper-pagination-clickable & {
     cursor: pointer;
   }
