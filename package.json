@@ -16,8 +16,8 @@
     "type": "git",
     "url": "git+https://github.com/zebra-ui/zebra-swiper.git"
   },
-  "npm": {
-    "publishConfig": {
+  "release-it": {
+    "npm": {
       "publishPath": "packages/zebra-swiper"
     }
   },
