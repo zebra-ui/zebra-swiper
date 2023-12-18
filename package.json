@@ -7,7 +7,7 @@
     "serve": "npm --prefix ./demos/zebra-swiper-demo-cli run serve",
     "docs": "npm --prefix ./docs/zebra-swiper-docs run docs:dev",
     "async": "node scripts/async",
-    "release": "release-it --pkgFiles=packages/zebra-swiper",
+    "release": "release-it",
     "lint": "eslint --ext .tsx,.ts,.vue ./demos",
     "lint-fix": "eslint --ext .tsx,.ts,.vue ./demos/zebra-swiper-demo-cli --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
