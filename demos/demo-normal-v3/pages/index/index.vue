@@ -2,19 +2,13 @@
 	<demo-home :list="list" />
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue';
 	import config from '../../common/js/config.js';
 	import DemoHome from '../../components/DemoHome/DemoHome.vue';
-	export default {
-		components: {
-			DemoHome
-		},
-		data() {
-			return {
-				list: config
-			}
-		},
-	}
+	const list = ref(config)
 </script>
 
 

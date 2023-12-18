@@ -1,12 +1,12 @@
 <template>
 	<view class="demo-swiper">
 		<demo-block title="基础用法">
-			<z-swiper ref="zSwiper" v-model="list" :options="options">
+			<z-swiper ref="zswiper" v-model="list" :options="options">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
 					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
-			<z-swiper ref="zSwiperThumbs" :custom-style="{'margin-top':'10rpx'}" v-model="list" :options="optionsThumbs"
+			<z-swiper ref="zswiperthumbs" :custom-style="{'margin-top':'10rpx'}" v-model="list" :options="optionsThumbs"
 				@swiper="setThumbsSwiper">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
 					<demo-item :item="item" height="150rpx"></demo-item>
@@ -14,12 +14,13 @@
 			</z-swiper>
 		</demo-block>
 		<demo-block title="自动播放">
-			<z-swiper ref="zSwiperAuto" v-model="list" :options="optionsAuto">
+			<z-swiper ref="zswiperauto" v-model="list" :options="optionsAuto">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
 					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
-			<z-swiper ref="zSwiperThumbsAuto" :custom-style="{'margin-top':'10rpx'}" v-model="list" :options="optionsThumbsAuto" @swiper="setThumbsAutoSwiper">
+			<z-swiper ref="zswiperthumbsauto" :custom-style="{'margin-top':'10rpx'}" v-model="list"
+				:options="optionsThumbsAuto" @swiper="setThumbsAutoSwiper">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
 					<demo-item :item="item" height="150rpx"></demo-item>
 				</z-swiper-item>
@@ -28,56 +29,59 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue';
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				optionsThumbs: {
-					spaceBetween: 10,
-					slidesPerView: 4,
-					freeMode: true,
-					watchSlidesProgress: true,
-					thumbs: {
-						use: true
-					}
-				},
-				options: {
-					spaceBetween: 10,
-					thumbs: {
-						swiper: true
-					}
-				},
-				optionsThumbsAuto: {
-					spaceBetween: 10,
-					slidesPerView: 4,
-					freeMode: true,
-					watchSlidesProgress: true,
-					thumbs: {
-						use: true
-					}
-				},
-				optionsAuto: {
-					spaceBetween: 10,
-					thumbs: {
-						swiper: true
-					},
-					autoplay: true
-				},
-				list: data
-			}
-		},
-		methods: {
-			setThumbsSwiper() {
-				this.$refs.zSwiper.swiper.on("beforeMount", (swiper) => {
-					this.$refs.zSwiper.swiper.params.thumbs.swiper = this.$refs.zSwiperThumbs.swiper;
-				})
-			},
-			setThumbsAutoSwiper() {
-				this.$refs.zSwiperAuto.swiper.on("beforeMount", (swiper) => {
-					this.$refs.zSwiperAuto.swiper.params.thumbs.swiper = this.$refs.zSwiperThumbsAuto.swiper;
-				})
-			},
+	const optionsThumbs = {
+		spaceBetween: 10,
+		slidesPerView: 4,
+		freeMode: true,
+		watchSlidesProgress: true,
+		thumbs: {
+			use: true
 		}
+	}
+	const options = {
+		spaceBetween: 10,
+		thumbs: {
+			swiper: true
+		}
+	}
+	const optionsThumbsAuto = {
+		spaceBetween: 10,
+		slidesPerView: 4,
+		freeMode: true,
+		watchSlidesProgress: true,
+		thumbs: {
+			use: true
+		}
+	}
+	const optionsAuto = {
+		spaceBetween: 10,
+		thumbs: {
+			swiper: true
+		},
+		autoplay: true
+	}
+
+	const list = ref(data)
+
+	const zswiper = ref()
+	const zswiperthumbs = ref()
+	const zswiperauto = ref()
+	const zswiperthumbsauto = ref()
+
+	const setThumbsSwiper = () => {
+		zswiper.value.swiper.on("beforeMount", (swiper) => {
+			zswiper.value.swiper.params.thumbs.swiper = zswiperthumbs.value.swiper;
+		})
+	}
+
+	const setThumbsAutoSwiper = () => {
+		zswiperauto.value.swiper.on("beforeMount", (swiper) => {
+			zswiperauto.value.swiper.params.thumbs.swiper = zswiperthumbsauto.value.swiper;
+		})
 	}
 </script>

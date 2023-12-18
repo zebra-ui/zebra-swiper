@@ -38,14 +38,11 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue'
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				list: data,
-				loopList: data,
-			}
-		}
-	}
+	const list = ref(data)
+	const loopList = ref(data)
 </script>

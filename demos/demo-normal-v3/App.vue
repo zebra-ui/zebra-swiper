@@ -13,5 +13,16 @@
 </script>
 
 <style>
-	/*每个页面公共css */
+	::-webkit-scrollbar {
+		width: 0;
+		background: transparent;
+	}
+
+	page {
+		background-color: #e4ebf5;
+	}
+
+	.demo-swiper {
+		padding-bottom: 16rpx;
+	}
 </style>

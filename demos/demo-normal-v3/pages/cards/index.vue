@@ -53,58 +53,56 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue';
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				slideCustomStyle: {
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center'
-				},
-				itemCustomStyle: {
-					"height": "640rpx",
-					"width": "480rpx",
-					"border-radius": "24rpx"
-				},
-				options: {
-					effect: 'cards'
-				},
-				optionsAutoplay: {
-					effect: 'cards',
-					autoplay: true
-				},
-				optionsVertical: {
-					effect: 'cards',
-					direction: 'vertical'
-				},
-				optionsRotate: {
-					effect: 'cards',
-					cardsEffect: {
-						rotate: false
-					}
-				},
-				optionsOffset: {
-					effect: 'cards',
-					cardsEffect: {
-						perSlideOffset: 14
-					}
-				},
-				optionsRotateNumber: {
-					effect: 'cards',
-					cardsEffect: {
-						perSlideRotate: 20
-					}
-				},
-				optionsLoop: {
-					effect: 'cards',
-					loop: true,
-					loopedSlides: 2,
-				},
-				list: data,
-				loopList: data,
-			}
-		},
+
+	const slideCustomStyle = {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center'
 	}
+	const itemCustomStyle = {
+		"height": "640rpx",
+		"width": "480rpx",
+		"border-radius": "24rpx"
+	}
+	const options = {
+		effect: 'cards'
+	}
+	const optionsAutoplay = {
+		effect: 'cards',
+		autoplay: true
+	}
+	const optionsVertical = {
+		effect: 'cards',
+		direction: 'vertical'
+	}
+	const optionsRotate = {
+		effect: 'cards',
+		cardsEffect: {
+			rotate: false
+		}
+	}
+	const optionsOffset = {
+		effect: 'cards',
+		cardsEffect: {
+			perSlideOffset: 14
+		}
+	}
+	const optionsRotateNumber = {
+		effect: 'cards',
+		cardsEffect: {
+			perSlideRotate: 20
+		}
+	}
+	const optionsLoop = {
+		effect: 'cards',
+		loop: true,
+		loopedSlides: 2,
+	}
+	const list = ref(data)
+	const loopList = ref(data)
 </script>

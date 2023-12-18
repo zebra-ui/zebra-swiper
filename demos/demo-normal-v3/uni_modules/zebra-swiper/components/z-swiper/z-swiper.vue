@@ -5,13 +5,13 @@
 		<!-- #ifndef MP-WEIXIN || MP-QQ -->
 		<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClickWrapper" @touchstart="onTouchStart"
 			@touchmove="onTouchMove" @touchend="onTouchEnd" @touchcancel="onTouchEnd">
-			<!-- #endif -->
+		<!-- #endif -->
 			<!-- #ifdef MP-WEIXIN || MP-QQ -->
 			<view :class="['swiper-wrapper']" :style="[wrapperStyle]" @click="onClickWrapper"
 				@touchstart="zSwiperWxs.onTouchStartWxs" @touchmove="zSwiperWxs.onTouchMoveWxs"
-				@touchend="zSwiperWxs.onTouchEndWxs" @touchcancel="zSwiperWxs.onTouchEndWxs" :swiperTransform="wxsTransform"
-				:change:swiperTransform="zSwiperWxs.wxsTransformObserver">
-				<!-- #endif -->
+				@touchend="zSwiperWxs.onTouchEndWxs" @touchcancel="zSwiperWxs.onTouchEndWxs"
+				:swiperTransform="wxsTransform" :change:swiperTransform="zSwiperWxs.wxsTransformObserver">
+			<!-- #endif -->
 				<slot></slot>
 				<!-- 在loop模式下，为group填充空白slide -->
 				<template v-if="loopBlankShow">
@@ -29,8 +29,9 @@
 			<template v-if="showIndicators">
 				<view :class="['swiper-pagination',paginationClass]" :style="[paginationStyle]">
 					<template v-if="paginationType == 'bullets'">
-						<view v-for="(item,index) in paginationContent" :key="index" :class="[item.classContent.join(' ')]"
-							:style="[item.styleContent]" @click="paginationItemClick(index)">
+						<view v-for="(item,index) in paginationContent" :key="index"
+							:class="[item.classContent.join(' ')]" :style="[item.styleContent]"
+							@click="paginationItemClick(index)">
 						</view>
 					</template>
 					<template v-if="paginationType == 'fraction'">
@@ -38,7 +39,8 @@
 							:class="paginationContent.totalClass">{{paginationContent.total}}</text>
 					</template>
 					<template v-if="paginationType == 'progressbar'">
-						<text :class="paginationContent.progressbarFillClass" :style="[paginationContent.styleContent]"></text>
+						<text :class="paginationContent.progressbarFillClass"
+							:style="[paginationContent.styleContent]"></text>
 					</template>
 				</view>
 			</template>
@@ -55,9 +57,9 @@
 				</view>
 			</template>
 			<template v-if="scrollbarShow">
-				<view :class="['swiper-scrollbar',scrollbarClass]" :style="[scrollbarStyle]" @click.stop="onClickScrollbar"
-					@touchstart.stop="onTouchStartScrollbar" @touchmove.stop.prevent="onTouchMoveScrollbar"
-					@touchend.stop="onTouchEndScrollbar">
+				<view :class="['swiper-scrollbar',scrollbarClass]" :style="[scrollbarStyle]"
+					@click.stop="onClickScrollbar" @touchstart.stop="onTouchStartScrollbar"
+					@touchmove.stop.prevent="onTouchMoveScrollbar" @touchend.stop="onTouchEndScrollbar">
 					<view class="swiper-scrollbar-drag" :style="[scrollbarItemStyle]">
 
 					</view>
@@ -136,7 +138,8 @@
 			'slideResetTransitionStart', 'slideResetTransitionEnd', 'sliderMove', 'sliderFirstMove',
 			'slidesLengthChange', 'slidesGridLengthChange', 'snapGridLengthChange', 'snapIndexChange', 'swiper', 'tap',
 			'toEdge', 'touchEnd', 'touchMove', 'touchMoveOpposite', 'touchStart', 'transitionEnd', 'transitionStart',
-			'unlock', 'update', 'zoomChange', 'beforeMount'
+			'unlock', 'update', 'zoomChange', 'beforeMount', 'nextClick', 'prevClick', 'touchStartScrollbar',
+			'touchMoveScrollbar', 'touchEndScrollbar', 'beforeUpdate', 'paginationItemClick'
 		],
 		// #endif
 		props: {
@@ -278,7 +281,12 @@
 							slides: val.options.virtual.slides,
 							renderExternal: data => {
 								this.virtualData = data;
+								// #ifdef VUE2
 								this.$emit("input", data.slides);
+								// #endif
+								// #ifdef VUE3
+								this.$emit("update:modelValue", data.slides);
+								// #endif
 							},
 							renderExternalUpdate: false
 						};

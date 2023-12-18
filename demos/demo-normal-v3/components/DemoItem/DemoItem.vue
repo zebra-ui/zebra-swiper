@@ -4,33 +4,29 @@
 	</view>
 </template>
 
-<script>
-	export default {
-		name: "demo-item",
-		props: {
-			item: {
-				type: [Object, String],
-				default: () => {}
-			},
-			height: {
-				type: String,
-				default: '300rpx'
-			},
-			customStyle: {
-				type: Object,
-				default: () => {}
-			}
+<script setup>
+	const props = defineProps({
+		item: {
+			type: [Object, String],
+			default: () => {}
 		},
-		methods: {
-			getStyle() {
-				return {
-					background: this.item.background,
-					height: this.height,
-					...this.customStyle
-				}
-			}
+		height: {
+			type: String,
+			default: '300rpx'
+		},
+		customStyle: {
+			type: Object,
+			default: () => {}
 		}
-	};
+	})
+
+	const getStyle = () => {
+		return {
+			background: props.item.background,
+			height: props.height,
+			...props.customStyle
+		}
+	}
 </script>
 
 <style lang="scss" scoped>

@@ -8,7 +8,7 @@
 			</z-swiper>
 		</demo-block>
 		<demo-block title="监听事件">
-			<z-swiper v-model="list" ref="zSwiper" @slideChange="onChange">
+			<z-swiper v-model="list" ref="zswiper" @slideChange="onChange">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
 					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
@@ -57,25 +57,21 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue'
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				list: data,
-				options: {
-					direction: 'vertical',
-					bubbling: false
-				}
-			}
-		},
-		methods: {
-			onChange(swiper, index) {
-				uni.showToast({
-					title: '当前 swiper 索引：' + this.$refs.zSwiper.swiper.activeIndex,
-					icon: 'none'
-				})
-			}
-		}
+	const list = ref(data)
+	const options = {
+		direction: 'vertical',
+		bubbling: false
+	}
+	const zswiper = ref()
+	const onChange = (swiper) => {
+		uni.showToast({
+			title: '当前 swiper 索引：' + zswiper.value.swiper.activeIndex,
+			icon: 'none'
+		})
 	}
 </script>

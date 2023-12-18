@@ -12,28 +12,16 @@
 	</view>
 </template>
 
-<script>
+<script setup>
 	import DemoHomeNav from "../DemoHomeNav/DemoHomeNav.vue";
-	export default {
-		props: {
-			list: {
-				type: Array,
-				default: function() {
-					return [];
-				},
+	const props = defineProps({
+		list: {
+			type: Array,
+			default: function() {
+				return [];
 			},
 		},
-		components: {
-			DemoHomeNav,
-		},
-		data() {
-			return {
-				title: "Hello",
-			};
-		},
-		onLoad() {},
-		methods: {},
-	};
+	})
 </script>
 
 <style scoped lang="scss">

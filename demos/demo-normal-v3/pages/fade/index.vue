@@ -31,41 +31,38 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue'
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				options: {
-					effect: 'fade',
-					fadeEffect: {
-						crossFade: true
-					}
-				},
-				optionsAutoplay: {
-					effect: 'fade',
-					fadeEffect: {
-						crossFade: true
-					},
-					autoplay: true
-				},
-				optionsVertical: {
-					effect: 'fade',
-					fadeEffect: {
-						crossFade: true
-					},
-					direction: 'vertical'
-				},
-				optionsLoop: {
-					effect: 'fade',
-					fadeEffect: {
-						crossFade: true
-					},
-					loop: true
-				},
-				list: data,
-				loopList: data,
-			}
-		},
+	const options = {
+		effect: 'fade',
+		fadeEffect: {
+			crossFade: true
+		}
 	}
+	const optionsAutoplay = {
+		effect: 'fade',
+		fadeEffect: {
+			crossFade: true
+		},
+		autoplay: true
+	}
+	const optionsVertical = {
+		effect: 'fade',
+		fadeEffect: {
+			crossFade: true
+		},
+		direction: 'vertical'
+	}
+	const optionsLoop = {
+		effect: 'fade',
+		fadeEffect: {
+			crossFade: true
+		},
+		loop: true
+	}
+	const list = ref(data)
+	const loopList = ref(data)
 </script>

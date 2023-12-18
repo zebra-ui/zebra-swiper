@@ -17,14 +17,11 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue'
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				list: data,
-				listAutoplay: data,
-			}
-		},
-	}
+	const list = ref(data)
+	const listAutoplay = ref(data)
 </script>

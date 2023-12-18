@@ -31,65 +31,62 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue';
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				options: {
-					effect: 'coverflow',
-					centeredSlides: true,
-					slidesPerView: 'auto',
-					coverflowEffect: {
-						rotate: 50,
-						stretch: 0,
-						depth: 100,
-						modifier: 1,
-						slideShadows: true,
-					},
-				},
-				optionsAutoplay: {
-					effect: 'coverflow',
-					centeredSlides: true,
-					slidesPerView: 'auto',
-					coverflowEffect: {
-						rotate: 50,
-						stretch: 0,
-						depth: 100,
-						modifier: 1,
-						slideShadows: true,
-					},
-					autoplay: true
-				},
-				optionsVertical: {
-					effect: 'coverflow',
-					centeredSlides: true,
-					slidesPerView: 'auto',
-					coverflowEffect: {
-						rotate: 50,
-						stretch: 0,
-						depth: 100,
-						modifier: 1,
-						slideShadows: true,
-					},
-					direction: 'vertical'
-				},
-				optionsLoop: {
-					effect: 'coverflow',
-					centeredSlides: true,
-					slidesPerView: 'auto',
-					coverflowEffect: {
-						rotate: 50,
-						stretch: 0,
-						depth: 100,
-						modifier: 1,
-						slideShadows: true,
-					},
-					loop: true
-				},
-				list: data,
-				loopList: data,
-			}
+	const options = {
+		effect: 'coverflow',
+		centeredSlides: true,
+		slidesPerView: 'auto',
+		coverflowEffect: {
+			rotate: 50,
+			stretch: 0,
+			depth: 100,
+			modifier: 1,
+			slideShadows: true,
 		},
 	}
+	const optionsAutoplay = {
+		effect: 'coverflow',
+		centeredSlides: true,
+		slidesPerView: 'auto',
+		coverflowEffect: {
+			rotate: 50,
+			stretch: 0,
+			depth: 100,
+			modifier: 1,
+			slideShadows: true,
+		},
+		autoplay: true
+	}
+	const optionsVertical = {
+		effect: 'coverflow',
+		centeredSlides: true,
+		slidesPerView: 'auto',
+		coverflowEffect: {
+			rotate: 50,
+			stretch: 0,
+			depth: 100,
+			modifier: 1,
+			slideShadows: true,
+		},
+		direction: 'vertical'
+	}
+	const optionsLoop = {
+		effect: 'coverflow',
+		centeredSlides: true,
+		slidesPerView: 'auto',
+		coverflowEffect: {
+			rotate: 50,
+			stretch: 0,
+			depth: 100,
+			modifier: 1,
+			slideShadows: true,
+		},
+		loop: true
+	}
+	const list = ref(data)
+	const loopList = ref(data)
 </script>

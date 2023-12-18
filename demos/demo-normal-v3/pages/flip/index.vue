@@ -32,29 +32,26 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue';
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				options: {
-					effect: 'flip'
-				},
-				optionsAutoplay: {
-					effect: 'flip',
-					autoplay: true
-				},
-				optionsVertical: {
-					effect: 'flip',
-					direction: 'vertical'
-				},
-				optionsLoop: {
-					effect: 'flip',
-					loop: true
-				},
-				list: data,
-				loopList: data,
-			}
-		},
+	const options = {
+		effect: 'flip'
 	}
+	const optionsAutoplay = {
+		effect: 'flip',
+		autoplay: true
+	}
+	const optionsVertical = {
+		effect: 'flip',
+		direction: 'vertical'
+	}
+	const optionsLoop = {
+		effect: 'flip',
+		loop: true
+	}
+	const list = ref(data)
+	const loopList = ref(data)
 </script>

@@ -8,7 +8,7 @@
 
 					</view>
 				</view>
-				<z-swiper ref="zSwiper" v-model="list" :options="options" @beforeInit="init">
+				<z-swiper ref="zswiper" v-model="list" :options="options" @beforeInit="init">
 					<z-swiper-item v-for="(item,index) in list" :key="index">
 						<view class="slide-inner">
 							<image class="slide-image" :src="item.url" />
@@ -22,122 +22,119 @@
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				list: [{
-					bgColor: "#6002EE",
-					fillStyle: {},
-					url: require("../../../static/images/banks.svg"),
-					title: "Banks",
-					text: "Banks are financial institutions that provide a wide range of financial services, including savings accounts, loans, investment opportunities, and more."
-				}, {
-					bgColor: "#008386",
-					fillStyle: {},
-					url: require("../../../static/images/hotels.svg"),
-					title: "Hotels",
-					text: "Hotels are establishments that offer accommodation, amenities, and services to travelers and guests, providing a comfortable and convenient stay away from home."
-				}, {
-					bgColor: "#a41fa8",
-					fillStyle: {},
-					url: require("../../../static/images/business.svg"),
-					title: "Business",
-					text: "Business involves activities aimed at creating products or services, generating profits, and contributing to the economy."
-				}, {
-					bgColor: "#007700",
-					fillStyle: {},
-					url: require("../../../static/images/checkmark.svg"),
-					title: "Done",
-					text: "Now you can continue using it."
-				}],
-				options: {
-					effect: 'creative',
-					direction: 'vertical',
-					speed: 500,
-					resistanceRatio: 0,
-					grabCursor: true,
-					pagination: {
-						el: true,
-						clickable: true,
-						dynamicBullets: true,
-					},
-					creativeEffect: {
-						progressMultiplier: 2,
-						prev: {
-							opacity: 0,
-							// translate: direction === 'vertical' ? [0, -128, 0] : [-128, 0, 0],
-							translate: [0, -128, 0],
-						},
-						next: {
-							opacity: 0,
-							// translate: direction === 'vertical' ? [0, 128, 0] : [128, 0, 0],
-							translate: [0, 128, 0],
-						},
-					},
-				},
-				fillsStyle: {},
-				fillStyleList: [{
-						fillStyle: {}
-					},
-					{
-						fillStyle: {}
-					},
-					{
-						fillStyle: {}
-					},
-					{
-						fillStyle: {}
-					},
-				],
-			}
+<script setup>
+	import {
+		ref,
+		onMounted
+	} from "vue";
+	const zswiper = ref()
+	const list = ref([{
+		bgColor: "#6002EE",
+		fillStyle: {},
+		url: "../../../static/images/banks.svg",
+		title: "Banks",
+		text: "Banks are financial institutions that provide a wide range of financial services, including savings accounts, loans, investment opportunities, and more."
+	}, {
+		bgColor: "#008386",
+		fillStyle: {},
+		url: "../../../static/images/hotels.svg",
+		title: "Hotels",
+		text: "Hotels are establishments that offer accommodation, amenities, and services to travelers and guests, providing a comfortable and convenient stay away from home."
+	}, {
+		bgColor: "#a41fa8",
+		fillStyle: {},
+		url: "../../../static/images/business.svg",
+		title: "Business",
+		text: "Business involves activities aimed at creating products or services, generating profits, and contributing to the economy."
+	}, {
+		bgColor: "#007700",
+		fillStyle: {},
+		url: "../../../static/images/checkmark.svg",
+		title: "Done",
+		text: "Now you can continue using it."
+	}])
+	const options = {
+		effect: 'creative',
+		direction: 'vertical',
+		speed: 500,
+		resistanceRatio: 0,
+		grabCursor: true,
+		pagination: {
+			el: true,
+			clickable: true,
+			dynamicBullets: true,
 		},
-		mounted() {
-			this.calcFillSize('vertical');
-		},
-		methods: {
-			init() {
-				this.$refs.zSwiper.swiper.on("setTranslate", (swiper) => {
-					this.onTranslate(swiper)
-				});
-				this.$refs.zSwiper.swiper.on("setTransition", (swiper, duration) => {
-					this.onTransition(swiper, duration)
-				});
+		creativeEffect: {
+			progressMultiplier: 2,
+			prev: {
+				opacity: 0,
+				// translate: direction === 'vertical' ? [0, -128, 0] : [-128, 0, 0],
+				translate: [0, -128, 0],
 			},
-			onTranslate(swiper) {
-				const {
-					slides
-				} = swiper;
+			next: {
+				opacity: 0,
+				// translate: direction === 'vertical' ? [0, 128, 0] : [128, 0, 0],
+				translate: [0, 128, 0],
+			},
+		},
+	}
+	const fillsStyle = ref({})
+	const fillStyleList = ref([{
+			fillStyle: {}
+		},
+		{
+			fillStyle: {}
+		},
+		{
+			fillStyle: {}
+		},
+		{
+			fillStyle: {}
+		},
+	])
+	onMounted(() => {
+		calcFillSize('vertical');
+	})
+	const init = () => {
+		zswiper.value.swiper.on("setTranslate", (swiper) => {
+			onTranslate(swiper)
+		});
+		zswiper.value.swiper.on("setTransition", (swiper, duration) => {
+			onTransition(swiper, duration)
+		});
+	}
+	const onTranslate = (swiper) => {
+		const {
+			slides
+		} = swiper;
 
-				for (let i = 0; i < slides.length; i += 1) {
-					const slideEl = slides[i];
-					const slideProgress = slideEl.progress;
-					const progress = 1 - Math.max(Math.min(Math.abs(slideProgress), 1), 0);
-					if (slideProgress < 0) {
-						this.$set(this.fillStyleList[i].fillStyle, 'transform', `scale(${progress})`);
-					} else {
-						this.$set(this.fillStyleList[i].fillStyle, 'transform', `scale(1)`);
-					}
-				}
-			},
-			onTransition(swiper, duration) {
-				this.fillStyleList.forEach((fillEl) => {
-					this.$set(fillEl.fillStyle, 'transitionDuration', `${duration}ms`);
-				});
-			},
-			calcFillSize(direction) {
-				const res = uni.getSystemInfoSync();
-				let offsetWidth = res.screenWidth;
-				let offsetHeight = res.screenHeight;
-				const radius = ((offsetWidth / 2) ** 2 + (offsetHeight / 2) ** 2) ** 0.5;
-				this.fillsStyle = {
-					width: `${radius * 4}px`,
-					height: `${radius * 4}px`,
-					marginLeft: direction === 'vertical' ? `-${radius * 2}px` : `-${radius}px`,
-					marginTop: direction === 'vertical' ? `-${radius}px` : `-${radius * 2}px`
-				};
+		for (let i = 0; i < slides.length; i += 1) {
+			const slideEl = slides[i];
+			const slideProgress = slideEl.progress;
+			const progress = 1 - Math.max(Math.min(Math.abs(slideProgress), 1), 0);
+			if (slideProgress < 0) {
+				fillStyleList.value[i].fillStyle.transform = `scale(${progress})`
+			} else {
+				fillStyleList.value[i].fillStyle.transform = `scale(1)`
 			}
 		}
+	}
+	const onTransition = (swiper, duration) => {
+		fillStyleList.value.forEach((fillEl) => {
+			fillEl.fillStyle.transitionDuration = `${duration}ms`
+		});
+	}
+	const calcFillSize = (direction) => {
+		const res = uni.getSystemInfoSync();
+		let offsetWidth = res.screenWidth;
+		let offsetHeight = res.screenHeight;
+		const radius = ((offsetWidth / 2) ** 2 + (offsetHeight / 2) ** 2) ** 0.5;
+		fillsStyle.value = {
+			width: `${radius * 4}px`,
+			height: `${radius * 4}px`,
+			marginLeft: direction === 'vertical' ? `-${radius * 2}px` : `-${radius}px`,
+			marginTop: direction === 'vertical' ? `-${radius}px` : `-${radius * 2}px`
+		};
 	}
 </script>
 

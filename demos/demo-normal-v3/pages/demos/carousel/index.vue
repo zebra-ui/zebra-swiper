@@ -13,16 +13,13 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue';
 	import data from '../../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				options: {
-					effect: "carousel"
-				},
-				list: data
-			}
-		}
+	const options = {
+		effect: "carousel"
 	}
+	const list = ref(data)
 </script>

@@ -1,7 +1,7 @@
 <template>
 	<view class="demo-swiper">
 		<demo-block title="自定义">
-			<z-swiper ref="zSwiper" v-model="list" @slideChange="onChange">
+			<z-swiper ref="zswiper" v-model="list" @slideChange="onChange">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
 					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
@@ -9,57 +9,54 @@
 					<view class="custom-indicator">{{ current + 1 }}/{{list.length}}</view>
 				</template>
 			</z-swiper>
-			<z-swiper :custom-style="{'margin-top':'20rpx'}" ref="zSwiper1" v-model="list" @slideChange="onChange1">
+			<z-swiper :custom-style="{'margin-top':'20rpx'}" ref="zswiper1" v-model="list" @slideChange="onChange1">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
 					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 				<template #indicator>
 					<view class="custom-indicator-list">
-						<view :class="['custom-indicator-list-item',index == current1?'custom-indicator-list-item-active':'']"
+						<view
+							:class="['custom-indicator-list-item',index == current1?'custom-indicator-list-item-active':'']"
 							v-for="(item,index) in list" :key="index" @click="changSwiper(index)">
 							{{index+1}}
 						</view>
 					</view>
 				</template>
 			</z-swiper>
-			<z-swiper :custom-style="{'margin-top':'20rpx'}" ref="zSwiper2" v-model="list" @slideChange="onChange2">
+			<z-swiper :custom-style="{'margin-top':'20rpx'}" ref="zswiper2" v-model="list" @slideChange="onChange2">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
 					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 				<template #indicator>
 					<view class="custom-indicator-list1">
-						<view :class="['custom-indicator-list-item1',index == current2?'custom-indicator-list-item1-active':'']"
+						<view
+							:class="['custom-indicator-list-item1',index == current2?'custom-indicator-list-item1-active':'']"
 							v-for="(item,index) in list" :key="index">
 						</view>
 					</view>
 				</template>
 			</z-swiper>
-			<z-swiper :custom-style="{'margin-top':'20rpx'}" ref="zSwiper3" v-model="list" @slideChange="onChange3">
+			<z-swiper :custom-style="{'margin-top':'20rpx'}" ref="zswiper3" v-model="list" @slideChange="onChange3">
 				<z-swiper-item v-for="(item,index) in list" :key="index">
 					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 				<template #indicator>
 					<view class="custom-indicator-list2">
-						<template v-for="(item,index) in list">
-							<view :key="index" v-if="index == current3 - 2"
+						<template v-for="(item,index) in list" :key="index">
+							<view v-if="index == current3 - 2"
 								class="custom-indicator-list2-bullet custom-indicator-list2-bullet-prev-prev">
-
 							</view>
-							<view :key="index" v-else-if="index == current3 - 1"
+							<view v-else-if="index == current3 - 1"
 								class="custom-indicator-list2-bullet custom-indicator-list2-bullet-prev">
-
 							</view>
-							<view :key="index" v-else-if="index == current3"
+							<view v-else-if="index == current3"
 								class="custom-indicator-list2-bullet custom-indicator-list2-bullet-active">
-
 							</view>
-							<view :key="index" v-else-if="index == current3 + 1"
+							<view v-else-if="index == current3 + 1"
 								class="custom-indicator-list2-bullet custom-indicator-list2-bullet-next">
-
 							</view>
-							<view :key="index" v-else-if="index == current3 + 2"
+							<view v-else-if="index == current3 + 2"
 								class="custom-indicator-list2-bullet custom-indicator-list2-bullet-next-next">
-
 							</view>
 						</template>
 					</view>
@@ -69,36 +66,35 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue';
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				current: 0,
-				current1: 0,
-				current2: 0,
-				current3: 0,
-				list: data,
-			}
-		},
-		methods: {
-			onChange() {
-				this.current = this.$refs.zSwiper.swiper.activeIndex;
-			},
-			onChange1() {
-				this.current1 = this.$refs.zSwiper1.swiper.activeIndex;
-			},
-			onChange2() {
-				this.current2 = this.$refs.zSwiper2.swiper.activeIndex;
-			},
-			onChange3() {
-				this.current3 = this.$refs.zSwiper3.swiper.activeIndex;
-			},
-			changSwiper(index) {
-				if (index != this.current1) {
-					this.$refs.zSwiper1.swiper.slideTo(index, 300, false);
-				}
-			},
+	const current = ref(0)
+	const current1 = ref(0)
+	const current2 = ref(0)
+	const current3 = ref(0)
+	const zswiper = ref()
+	const zswiper1 = ref()
+	const zswiper2 = ref()
+	const zswiper3 = ref()
+	const list = ref(data)
+	const onChange = () => {
+		current.value = zswiper.value.swiper.activeIndex;
+	}
+	const onChange1 = () => {
+		current1.value = zswiper1.value.swiper.activeIndex;
+	}
+	const onChange2 = () => {
+		current2.value = zswiper2.value.swiper.activeIndex;
+	}
+	const onChange3 = () => {
+		current3.value = zswiper3.value.swiper.activeIndex;
+	}
+	const changSwiper = (index) => {
+		if (index != current1.value) {
+			zswiper1.value.swiper.slideTo(index, 300, false);
 		}
 	}
 </script>

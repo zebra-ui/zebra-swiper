@@ -25,7 +25,7 @@
 			</z-swiper>
 		</demo-block>
 		<demo-block title="完全自定义">
-			<z-swiper v-model="loopList" ref="zSwiper" :options="optionsCustom">
+			<z-swiper v-model="loopList" ref="zswiper" :options="optionsCustom">
 				<z-swiper-item v-for="(item,index) in loopList" :key="index">
 					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
@@ -38,40 +38,36 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue'
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				options: {
-					navigation: {
-						nextEl: true,
-						prevEl: true
-					},
-				},
-				optionsSlot: {
-					navigation: {
-						slot: true
-					},
-				},
-				optionsCustom: {
-					navigation: {
-						custom: true
-					},
-					loop: true
-				},
-				list: data,
-				loopList: data
-			}
+	const options = {
+		navigation: {
+			nextEl: true,
+			prevEl: true
 		},
-		methods: {
-			prev() {
-				this.$refs.zSwiper.swiper.slidePrev();
-			},
-			next() {
-				this.$refs.zSwiper.swiper.slideNext();
-			}
-		}
+	}
+	const optionsSlot = {
+		navigation: {
+			slot: true
+		},
+	}
+	const optionsCustom = {
+		navigation: {
+			custom: true
+		},
+		loop: true
+	}
+	const list = ref(data)
+	const loopList = ref(data)
+	const zswiper = ref(null)
+	const prev = () => {
+		zswiper.value.swiper.slidePrev();
+	}
+	const next = () => {
+		zswiper.value.swiper.slideNext();
 	}
 </script>
 

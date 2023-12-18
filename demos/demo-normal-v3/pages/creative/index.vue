@@ -35,96 +35,93 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue';
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				options1: {
-					effect: 'creative',
-					creativeEffect: {
-						prev: {
-							shadow: true,
-							translate: [0, 0, -400],
-						},
-						next: {
-							translate: ['100%', 0, 0]
-						}
-					}
-				},
-				options2: {
-					effect: 'creative',
-					creativeEffect: {
-						prev: {
-							shadow: true,
-							translate: ['-120%', 0, -500],
-						},
-						next: {
-							shadow: true,
-							translate: ['120%', 0, -500]
-						}
-					}
-				},
-				options3: {
-					effect: 'creative',
-					creativeEffect: {
-						prev: {
-							shadow: true,
-							translate: ['-20%', 0, -1],
-						},
-						next: {
-							translate: ['100%', 0, 0]
-						}
-					}
-				},
-				options4: {
-					effect: 'creative',
-					creativeEffect: {
-						prev: {
-							shadow: true,
-							translate: [0, 0, -800],
-							rotate: [180, 0, 0],
-						},
-						next: {
-							shadow: true,
-							translate: [0, 0, -800],
-							rotate: [-180, 0, 0]
-						}
-					}
-				},
-				options5: {
-					effect: 'creative',
-					creativeEffect: {
-						prev: {
-							shadow: true,
-							translate: ['-125%', 0, -800],
-							rotate: [0, 0, -90],
-						},
-						next: {
-							shadow: true,
-							translate: ['125%', 0, -800],
-							rotate: [0, 0, 90]
-						}
-					}
-				},
-				options6: {
-					effect: 'creative',
-					creativeEffect: {
-						prev: {
-							shadow: true,
-							origin: 'left center',
-							translate: ['-5%', 0, -200],
-							rotate: [0, 100, 0],
-						},
-						next: {
-							origin: 'right center',
-							translate: ['5%', 0, -200],
-							rotate: [0, -100, 0],
-						}
-					}
-				},
-				list: data,
+	const options1 = {
+		effect: 'creative',
+		creativeEffect: {
+			prev: {
+				shadow: true,
+				translate: [0, 0, -400],
+			},
+			next: {
+				translate: ['100%', 0, 0]
 			}
-		},
+		}
 	}
+	const options2 = {
+		effect: 'creative',
+		creativeEffect: {
+			prev: {
+				shadow: true,
+				translate: ['-120%', 0, -500],
+			},
+			next: {
+				shadow: true,
+				translate: ['120%', 0, -500]
+			}
+		}
+	}
+	const options3 = {
+		effect: 'creative',
+		creativeEffect: {
+			prev: {
+				shadow: true,
+				translate: ['-20%', 0, -1],
+			},
+			next: {
+				translate: ['100%', 0, 0]
+			}
+		}
+	}
+	const options4 = {
+		effect: 'creative',
+		creativeEffect: {
+			prev: {
+				shadow: true,
+				translate: [0, 0, -800],
+				rotate: [180, 0, 0],
+			},
+			next: {
+				shadow: true,
+				translate: [0, 0, -800],
+				rotate: [-180, 0, 0]
+			}
+		}
+	}
+	const options5 = {
+		effect: 'creative',
+		creativeEffect: {
+			prev: {
+				shadow: true,
+				translate: ['-125%', 0, -800],
+				rotate: [0, 0, -90],
+			},
+			next: {
+				shadow: true,
+				translate: ['125%', 0, -800],
+				rotate: [0, 0, 90]
+			}
+		}
+	}
+	const options6 = {
+		effect: 'creative',
+		creativeEffect: {
+			prev: {
+				shadow: true,
+				origin: 'left center',
+				translate: ['-5%', 0, -200],
+				rotate: [0, 100, 0],
+			},
+			next: {
+				origin: 'right center',
+				translate: ['5%', 0, -200],
+				rotate: [0, -100, 0],
+			}
+		}
+	}
+	const list = ref(data)
 </script>

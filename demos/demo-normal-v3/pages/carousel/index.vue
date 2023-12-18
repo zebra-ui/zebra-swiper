@@ -45,16 +45,13 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue'
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				options: {
-					direction: 'vertical'
-				},
-				list: data
-			}
-		}
+	const list = ref(data)
+	const options = {
+		direction: 'vertical'
 	}
 </script>

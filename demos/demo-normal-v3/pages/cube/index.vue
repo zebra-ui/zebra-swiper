@@ -31,53 +31,50 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue';
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				options: {
-					effect: 'cube',
-					cubeEffect: {
-						shadow: true,
-						slideShadows: true,
-						shadowOffset: 20,
-						shadowScale: 0.94,
-					},
-				},
-				optionsAutoplay: {
-					effect: 'cube',
-					cubeEffect: {
-						shadow: true,
-						slideShadows: true,
-						shadowOffset: 20,
-						shadowScale: 0.94,
-					},
-					autoplay: true
-				},
-				optionsVertical: {
-					effect: 'cube',
-					cubeEffect: {
-						shadow: true,
-						slideShadows: true,
-						shadowOffset: 20,
-						shadowScale: 0.94,
-					},
-					direction: 'vertical'
-				},
-				optionsLoop: {
-					effect: 'cube',
-					cubeEffect: {
-						shadow: true,
-						slideShadows: true,
-						shadowOffset: 20,
-						shadowScale: 0.94,
-					},
-					loop: true
-				},
-				list: data,
-				loopList: data,
-			}
+	const options = {
+		effect: 'cube',
+		cubeEffect: {
+			shadow: true,
+			slideShadows: true,
+			shadowOffset: 20,
+			shadowScale: 0.94,
 		},
 	}
+	const optionsAutoplay = {
+		effect: 'cube',
+		cubeEffect: {
+			shadow: true,
+			slideShadows: true,
+			shadowOffset: 20,
+			shadowScale: 0.94,
+		},
+		autoplay: true
+	}
+	const optionsVertical = {
+		effect: 'cube',
+		cubeEffect: {
+			shadow: true,
+			slideShadows: true,
+			shadowOffset: 20,
+			shadowScale: 0.94,
+		},
+		direction: 'vertical'
+	}
+	const optionsLoop = {
+		effect: 'cube',
+		cubeEffect: {
+			shadow: true,
+			slideShadows: true,
+			shadowOffset: 20,
+			shadowScale: 0.94,
+		},
+		loop: true
+	}
+	const list = ref(data)
+	const loopList = ref(data)
 </script>

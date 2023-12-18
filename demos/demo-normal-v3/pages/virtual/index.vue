@@ -17,44 +17,42 @@
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				options: {
-					virtual: {
-						type: 'cut',
-						addSlidesBefore: 1,
-						addSlidesAfter: 1,
-						slides: []
-					},
-				},
-				optionsKeep: {
-					virtual: {
-						type: 'keep',
-						addSlidesBefore: 1,
-						addSlidesAfter: 1,
-						slides: []
-					},
-				},
-				list: [],
-				listKeep: [],
-				preList: [],
-				colorList: ['#7ED321', '#2183D3', '#2128D3', '#431058', '#1E835A', '#B1397B', '#B36021']
-			}
+<script setup>
+	import {
+		ref,
+		reactive,
+		onMounted
+	} from 'vue';
+	import data from '../../common/js/data';
+	const options = reactive({
+		virtual: {
+			type: 'cut',
+			addSlidesBefore: 1,
+			addSlidesAfter: 1,
+			slides: []
 		},
-		mounted() {
-			let list = [];
-			for (var i = 1; i < 1000; i += 1) {
-				const randomValue = Math.floor(Math.random() * 7);
-				list.push({
-					background: this.colorList[randomValue],
-					text: `slide${i}`
-				})
-			}
-			this.preList = [...list];
-			this.options.virtual.slides = [...list];
-			this.optionsKeep.virtual.slides = [...list];
+	})
+	const optionsKeep = reactive({
+		virtual: {
+			type: 'keep',
+			addSlidesBefore: 1,
+			addSlidesAfter: 1,
+			slides: []
+		},
+	})
+	const colorList = ['#7ED321', '#2183D3', '#2128D3', '#431058', '#1E835A', '#B1397B', '#B36021']
+	const list = ref([])
+	const listKeep = ref([])
+	onMounted(() => {
+		let list = [];
+		for (var i = 1; i < 1000; i += 1) {
+			const randomValue = Math.floor(Math.random() * 7);
+			list.push({
+				background: colorList[randomValue],
+				text: `slide${i}`
+			})
 		}
-	}
+		options.virtual.slides = [...list];
+		optionsKeep.virtual.slides = [...list];
+	})
 </script>

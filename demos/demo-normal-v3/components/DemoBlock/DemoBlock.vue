@@ -8,17 +8,14 @@
 	</view>
 </template>
 
-<script>
-	export default {
-		name: "demo-block",
-		props: {
-			card: {
-				type: Boolean,
-				default: true,
-			},
-			title: String,
+<script setup>
+	const props = defineProps({
+		card: {
+			type: Boolean,
+			default: true,
 		},
-	};
+		title: String,
+	})
 </script>
 
 <style lang="scss">

@@ -2,7 +2,8 @@
 	<view class="demo-home-nav">
 		<view class="demo-home-nav__title">{{ group.groupName }}</view>
 		<view class="demo-home-nav__group">
-			<view v-for="(item, index) in group.list" :key="index" class="demo-home-nav__block" @click="onClick(item.path)">
+			<view v-for="(item, index) in group.list" :key="index" class="demo-home-nav__block"
+				@click="onClick(item.path)">
 				<!-- <image class="image" :src="item.image"></image> -->
 				<view class="block-card">
 					<view class="block-card-icon">
@@ -24,31 +25,27 @@
 	</view>
 </template>
 
-<script>
-	export default {
-		props: {
-			group: {
-				type: Object,
-				default: function() {
-					return null;
-				},
+<script setup>
+	const props = defineProps({
+		group: {
+			type: Object,
+			default: function() {
+				return null;
 			},
 		},
-		methods: {
-			onClick(event) {
-				const url = `/pages${event}/index`;
-				if (getCurrentPages().length > 9) {
-					uni.redirectTo({
-						url,
-					});
-				} else {
-					uni.navigateTo({
-						url,
-					});
-				}
-			},
-		},
-	};
+	})
+	const onClick = (event) => {
+		const url = `/pages${event}/index`;
+		if (getCurrentPages().length > 9) {
+			uni.redirectTo({
+				url,
+			});
+		} else {
+			uni.navigateTo({
+				url,
+			});
+		}
+	}
 </script>
 
 <style scoped lang="scss">

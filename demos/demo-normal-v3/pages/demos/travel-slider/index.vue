@@ -17,7 +17,7 @@
 					</view>
 				</view>
 				<!-- Swiper -->
-				<z-swiper ref="zSwiper" v-model="list" :custom-style="swiperStyle" :options="options" @swiper="init">
+				<z-swiper ref="zswiper" v-model="list" :custom-style="swiperStyle" :options="options" @swiper="init">
 					<z-swiper-item v-for="(item,index) in list" :key="index" :custom-style="itemStyle">
 						<image :src="item.url" class="travel-slider-bg-image" />
 						<view class="travel-slider-content">
@@ -31,82 +31,77 @@
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				list: [{
-					url: require("../../../static/images/usa.jpg"),
-					title: "United States",
-					subTitle: "8,295 properties"
-				}, {
-					url: require("../../../static/images/england.jpg"),
-					title: "England",
-					subTitle: "1,110 properties"
-				}, {
-					url: require("../../../static/images/france.jpg"),
-					title: "France",
-					subTitle: "314 properties"
-				}, {
-					url: require("../../../static/images/italy.jpg"),
-					title: "Italy",
-					subTitle: "1,200 properties"
-				}, {
-					url: require("../../../static/images/russia.jpg"),
-					title: "Russia",
-					subTitle: "12,231 properties"
-				}, {
-					url: require("../../../static/images/egypt.jpg"),
-					title: "Egypt",
-					subTitle: "505 properties"
-				}, {
-					url: require("../../../static/images/india.jpg"),
-					title: "India",
-					subTitle: "2,300 properties"
-				}, {
-					url: require("../../../static/images/japan.jpg"),
-					title: "Japan",
-					subTitle: "1,700 properties"
-				}],
-				options: {
-					speed: 600,
-					grabCursor: true,
-					slidesPerView: 'auto',
-					centeredSlides: true,
-					spaceBetween: 24,
-					watchSlidesProgress: true
-				},
-				planetStyle: {},
-				itemStyle: {
-					'width': 'calc(100vw * 0.8)',
-					'max-width': '640px',
-					'box-sizing': 'border-box',
-					'position': 'relative'
-				},
-				swiperStyle: {
-					'height': '300px',
-					'padding-top': '64px',
-					'padding-bottom': '64px'
-				}
-			}
-		},
-		methods: {
-			init() {
-				this.$refs.zSwiper.swiper.on("progress", (s, progress) => {
-					const max =
-						s.slides.length > 4 ? 360 - (8 - s.slides.length + 1) * 45 : 270;
-					this.$set(this.planetStyle, 'transform', `translate(-50%, -50%) rotate(${
-					          max * -progress
-					        }deg)`);
-				})
-				this.$refs.zSwiper.swiper.on("setTransition", (s, duration) => {
-					const max =
-						s.slides.length > 4 ? 360 - (8 - s.slides.length + 1) * 45 : 270;
-					this.$set(this.planetStyle, 'transitionDuration', `${duration}ms`);
-
-				})
-			}
-		},
+<script setup>
+	import {
+		ref
+	} from "vue";
+	const zswiper = ref()
+	const list = ref([{
+		url: "../../../static/images/usa.jpg",
+		title: "United States",
+		subTitle: "8,295 properties"
+	}, {
+		url: "../../../static/images/england.jpg",
+		title: "England",
+		subTitle: "1,110 properties"
+	}, {
+		url: "../../../static/images/france.jpg",
+		title: "France",
+		subTitle: "314 properties"
+	}, {
+		url: "../../../static/images/italy.jpg",
+		title: "Italy",
+		subTitle: "1,200 properties"
+	}, {
+		url: "../../../static/images/russia.jpg",
+		title: "Russia",
+		subTitle: "12,231 properties"
+	}, {
+		url: "../../../static/images/egypt.jpg",
+		title: "Egypt",
+		subTitle: "505 properties"
+	}, {
+		url: "../../../static/images/india.jpg",
+		title: "India",
+		subTitle: "2,300 properties"
+	}, {
+		url: "../../../static/images/japan.jpg",
+		title: "Japan",
+		subTitle: "1,700 properties"
+	}])
+	const options = {
+		speed: 600,
+		grabCursor: true,
+		slidesPerView: 'auto',
+		centeredSlides: true,
+		spaceBetween: 24,
+		watchSlidesProgress: true
+	}
+	const planetStyle = ref({})
+	const itemStyle = {
+		'width': 'calc(100vw * 0.8)',
+		'max-width': '640px',
+		'box-sizing': 'border-box',
+		'position': 'relative'
+	}
+	const swiperStyle = {
+		'height': '300px',
+		'padding-top': '64px',
+		'padding-bottom': '64px'
+	}
+	const init = () => {
+		zswiper.value.swiper.on("progress", (s, progress) => {
+			const max =
+				s.slides.length > 4 ? 360 - (8 - s.slides.length + 1) * 45 : 270;
+			planetStyle.value.transform = `translate(-50%, -50%) rotate(${
+			          max * -progress
+			        }deg)`
+		})
+		zswiper.value.swiper.on("setTransition", (s, duration) => {
+			const max =
+				s.slides.length > 4 ? 360 - (8 - s.slides.length + 1) * 45 : 270;
+			planetStyle.value.transitionDuration = `${duration}ms`
+		})
 	}
 </script>
 

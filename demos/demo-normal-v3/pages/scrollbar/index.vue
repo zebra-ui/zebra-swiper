@@ -38,42 +38,41 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue';
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				options: {
-					scrollbar: {
-						el: true
-					},
-				},
-				optionsAutoplay: {
-					scrollbar: {
-						el: true
-					},
-					autoplay: true
-				},
-				optionsVertical: {
-					scrollbar: {
-						el: true
-					},
-					direction: 'vertical'
-				},
-				optionsHide: {
-					scrollbar: {
-						el: true,
-						hide: true,
-					},
-				},
-				optionsDraggable: {
-					scrollbar: {
-						el: true,
-						draggable: true,
-					},
-				},
-				list: data,
-			}
+	const options = {
+		scrollbar: {
+			el: true
 		},
 	}
+
+	const optionsAutoplay = {
+		scrollbar: {
+			el: true
+		},
+		autoplay: true
+	}
+
+	const optionsVertical = {
+		scrollbar: {
+			el: true
+		},
+		direction: 'vertical'
+	}
+	const optionsHide = {
+		scrollbar: {
+			el: true,
+			hide: true,
+		},
+	}
+	const optionsDraggable = {
+		scrollbar: {
+			el: true,
+			draggable: true,
+		},
+	}
+	const list = ref(data)
 </script>

@@ -45,49 +45,46 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue';
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				options: {
-					pagination: {
-						el: true,
-					},
-				},
-				optionsLoop: {
-					pagination: {
-						el: true,
-					},
-					loop: true
-				},
-				optionsFraction: {
-					pagination: {
-						el: true,
-						type: 'fraction'
-					},
-				},
-				optionsProgressbar: {
-					pagination: {
-						el: true,
-						type: 'progressbar'
-					},
-				},
-				optionsDynamicBullets: {
-					pagination: {
-						el: true,
-						dynamicBullets: true,
-					},
-				},
-				optionsClickable: {
-					pagination: {
-						el: true,
-						clickable: true,
-					},
-				},
-				list: data,
-				listLoop: data
-			}
+	const options = {
+		pagination: {
+			el: true,
 		},
 	}
+	const optionsLoop = {
+		pagination: {
+			el: true,
+		},
+		loop: true
+	}
+	const optionsFraction = {
+		pagination: {
+			el: true,
+			type: 'fraction'
+		},
+	}
+	const optionsProgressbar = {
+		pagination: {
+			el: true,
+			type: 'progressbar'
+		},
+	}
+	const optionsDynamicBullets = {
+		pagination: {
+			el: true,
+			dynamicBullets: true,
+		},
+	}
+	const optionsClickable = {
+		pagination: {
+			el: true,
+			clickable: true,
+		},
+	}
+	const list = ref(data)
+	const listLoop = ref(data)
 </script>

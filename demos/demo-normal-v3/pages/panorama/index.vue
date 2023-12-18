@@ -25,44 +25,41 @@
 	</view>
 </template>
 
-<script>
+<script setup>
+	import {
+		ref
+	} from 'vue';
 	import data from '../../common/js/data.js'
-	export default {
-		data() {
-			return {
-				options: {
-					effect: 'panorama',
-					slidesPerView: 1.5,
-					centeredSlides: true,
-					panorama: {
-						depth: 150,
-						rotate: 45,
-					},
-				},
-				optionsAutoplay: {
-					effect: 'panorama',
-					slidesPerView: 1.5,
-					centeredSlides: true,
-					panorama: {
-						depth: 150,
-						rotate: 45,
-					},
-					autoplay: true
-				},
-				optionsLoop: {
-					effect: 'panorama',
-					slidesPerView: 1.5,
-					centeredSlides: true,
-					loopedSlides: 2,
-					panorama: {
-						depth: 150,
-						rotate: 45,
-					},
-					loop: true
-				},
-				list: data,
-				loopList: data
-			}
+	const options = {
+		effect: 'panorama',
+		slidesPerView: 1.5,
+		centeredSlides: true,
+		panorama: {
+			depth: 150,
+			rotate: 45,
 		},
 	}
+	const optionsAutoplay = {
+		effect: 'panorama',
+		slidesPerView: 1.5,
+		centeredSlides: true,
+		panorama: {
+			depth: 150,
+			rotate: 45,
+		},
+		autoplay: true
+	}
+	const optionsLoop = {
+		effect: 'panorama',
+		slidesPerView: 1.5,
+		centeredSlides: true,
+		loopedSlides: 2,
+		panorama: {
+			depth: 150,
+			rotate: 45,
+		},
+		loop: true
+	}
+	const list = ref(data)
+	const loopList = ref(data)
 </script>
