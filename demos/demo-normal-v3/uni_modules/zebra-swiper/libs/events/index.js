@@ -36,6 +36,19 @@ const events = (swiper, method) => {
 				capture: false
 			} : false;
 	}
+
+	// Resize handler
+	if (params.updateOnWindowResize) {
+		swiper[swiperMethod](
+			device.ios || device.android ?
+			'resize orientationchange observerUpdate' :
+			'resize observerUpdate',
+			onResize,
+			true,
+		);
+	} else {
+		swiper[swiperMethod]('observerUpdate', onResize, true);
+	}
 };
 
 function attachEvents() {
