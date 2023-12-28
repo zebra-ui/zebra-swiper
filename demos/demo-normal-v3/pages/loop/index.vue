@@ -7,13 +7,13 @@
 				</z-swiper-item>
 			</z-swiper>
 		</demo-block>
-		<demo-block title="自动播放">
+		<!-- 		<demo-block title="自动播放">
 			<z-swiper v-model="listAutoplay" :options="{loop : true,autoplay:true}">
 				<z-swiper-item v-for="(item,index) in listAutoplay" :key="index">
 					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
 			</z-swiper>
-		</demo-block>
+		</demo-block> -->
 	</view>
 </template>
 

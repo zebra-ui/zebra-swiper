@@ -1,51 +1,70 @@
-export default function loopCreate() {
+// import {
+// 	createElement,
+// 	elementChildren
+// } from '../../shared/utils.js';
+
+export default function loopCreate(slideRealIndex) {
 	const swiper = this;
 	const {
 		params,
-		$wrapperEl,
-		native
-	} = swiper; // Remove duplicated slides
-	const $selector = $wrapperEl;
-	let slides = native.children;
+		slides
+	} = swiper;
+	if (!params.loop || (swiper.virtual && swiper.params.virtual.enabled)) return;
 
-	if (params.loopFillGroupWithBlank) {
-		const blankSlidesNum = params.slidesPerGroup - slides.length % params.slidesPerGroup;
+	const initSlides = () => {
+		slides.forEach((el, index) => {
+			el.dataSwiperSlideIndex = index
+			// el.setAttribute('data-swiper-slide-index', index);
+		});
+	};
 
-		if (blankSlidesNum !== params.slidesPerGroup) {
-			native.loopBlankShow = true;
-			native.loopBlankNumber = blankSlidesNum;
+	const gridEnabled = swiper.grid && params.grid && params.grid.rows > 1;
+
+	const slidesPerGroup = params.slidesPerGroup * (gridEnabled ? params.grid.rows : 1);
+
+	const shouldFillGroup = swiper.slides.length % slidesPerGroup !== 0;
+	const shouldFillGrid = gridEnabled && swiper.slides.length % params.grid.rows !== 0;
+
+	const addBlankSlides = (amountOfSlides) => {
+		for (let i = 0; i < amountOfSlides; i += 1) {
+			const slideEl = swiper.isElement ?
+				createElement('swiper-slide', [params.slideBlankClass]) :
+				createElement('div', [params.slideClass, params.slideBlankClass]);
+			swiper.slidesEl.append(slideEl);
 		}
+	};
+
+	if (shouldFillGroup) {
+		if (params.loopAddBlankSlides) {
+			const slidesToAdd = slidesPerGroup - (swiper.slides.length % slidesPerGroup);
+			addBlankSlides(slidesToAdd);
+			swiper.recalcSlides();
+			swiper.updateSlides();
+		} else {
+			console.warn(
+				'Swiper Loop Warning: The number of slides is not even to slidesPerGroup, loop mode may not function properly. You need to add more slides (or make duplicates, or empty slides)',
+			);
+		}
+
+		initSlides();
+	} else if (shouldFillGrid) {
+		if (params.loopAddBlankSlides) {
+			const slidesToAdd = params.grid.rows - (swiper.slides.length % params.grid.rows);
+			addBlankSlides(slidesToAdd);
+			swiper.recalcSlides();
+			swiper.updateSlides();
+		} else {
+			console.warn(
+				'Swiper Loop Warning: The number of slides is not even to grid.rows, loop mode may not function properly. You need to add more slides (or make duplicates, or empty slides)',
+			);
+		}
+		initSlides();
+	} else {
+		initSlides();
 	}
 
-	if (params.slidesPerView === 'auto' && !params.loopedSlides) params.loopedSlides = slides.length;
-	swiper.loopedSlides = Math.ceil(parseFloat(params.loopedSlides || params.slidesPerView, 10));
-	swiper.loopedSlides += params.loopAdditionalSlides;
-
-	if (swiper.loopedSlides > slides.length) {
-		swiper.loopedSlides = slides.length;
-	}
-	const prependSlides = [];
-	const appendSlides = [];
-	slides.forEach((el, index) => {
-		const slide = el;
-		if (index < slides.length && index >= slides.length - swiper.loopedSlides) {
-			prependSlides.push(el);
-		}
-
-		if (index < swiper.loopedSlides) {
-			appendSlides.push(el);
-		}
+	swiper.loopFix({
+		slideRealIndex,
+		direction: params.centeredSlides ? undefined : 'next'
 	});
-	let list = [...swiper.native.value];
-	let newList = [...list];
-	swiper.originalDataList = [...swiper.native.value];
-	for (let i = 0; i < appendSlides.length; i += 1) {
-		newList.push(list[appendSlides[i].index]);
-	}
-
-	for (let i = prependSlides.length - 1; i >= 0; i -= 1) {
-		newList.unshift(list[prependSlides[i].index]);
-	}
-	swiper.native.$emit("input", newList)
-	return true;
 }

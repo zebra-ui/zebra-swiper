@@ -479,7 +479,7 @@ class Swiper {
 		// Slide To Initial Slide
 		if (swiper.params.loop) {
 			swiper.slideTo(
-				swiper.params.initialSlide + swiper.loopedSlides,
+				swiper.params.initialSlide,
 				0,
 				swiper.params.runCallbacksOnInit,
 				false,

@@ -295,32 +295,32 @@
 					}
 				}
 				// loop模式处理
-				if (this.swiperParams && this.swiperParams.loop) {
-					if (this.originalDataList.length && (this.originalDataList.toString() == val.value
-							.toString())) {
-						this.loopUpdateData = true;
-						// 百度小程序watch晚于子组件加载
-						// #ifdef MP-BAIDU
-						if (this.firstLoad) {
-							this.loadSwiper();
-						}
-						// #endif
-					} else {
-						this.loopUpdateData = false;
-						let slides = renderLoop(this, this.swiperParams, this.value);
-						if (this.swiperParams.loop && !this.loopUpdateData && slides.data.toString() !=
-							val.value.toString()) {
-							this.loopUpdateData = true;
-							// #ifdef VUE2
-							this.$emit("input", slides.data)
-							// #endif
-							// #ifdef VUE3
-							this.$emit("update:modelValue", slides.data)
-							// #endif
-							return
-						}
-					}
-				}
+				// if (this.swiperParams && this.swiperParams.loop) {
+				// 	if (this.originalDataList.length && (this.originalDataList.toString() == val.value
+				// 			.toString())) {
+				// 		this.loopUpdateData = true;
+				// 		// 百度小程序watch晚于子组件加载
+				// 		// #ifdef MP-BAIDU
+				// 		if (this.firstLoad) {
+				// 			this.loadSwiper();
+				// 		}
+				// 		// #endif
+				// 	} else {
+				// 		this.loopUpdateData = false;
+				// 		let slides = renderLoop(this, this.swiperParams, this.value);
+				// 		if (this.swiperParams.loop && !this.loopUpdateData && slides.data.toString() !=
+				// 			val.value.toString()) {
+				// 			this.loopUpdateData = true;
+				// 			// #ifdef VUE2
+				// 			this.$emit("input", slides.data)
+				// 			// #endif
+				// 			// #ifdef VUE3
+				// 			this.$emit("update:modelValue", slides.data)
+				// 			// #endif
+				// 			return
+				// 		}
+				// 	}
+				// }
 				if (this.swiper && !this.firstLoad) {
 					if (this.virtualData && val.options.virtual.type == "cut") {
 						const style = this.swiper.isHorizontal() ? {
@@ -370,21 +370,21 @@
 					Promise.all(this.children.map((item) => {
 						return item.getSize();
 					})).then((res) => {
-						if (this.swiperParams && this.swiperParams.loop) {
-							if (this.originalDataList.length && (this.originalDataList
-									.toString() == this.value
-									.toString())) {
-								if (this.firstLoad) {
-									this.loadSwiper();
-								}
-							} else {
-								return
-							}
-						} else {
-							if (this.firstLoad) {
-								this.loadSwiper();
-							}
+						// if (this.swiperParams && this.swiperParams.loop) {
+						// 	if (this.originalDataList.length && (this.originalDataList
+						// 			.toString() == this.value
+						// 			.toString())) {
+						// 		if (this.firstLoad) {
+						// 			this.loadSwiper();
+						// 		}
+						// 	} else {
+						// 		return
+						// 	}
+						// } else {
+						if (this.firstLoad) {
+							this.loadSwiper();
 						}
+						// }
 						this.updateSwiper(this.value, this.options, this.children);
 					})
 				}
@@ -412,6 +412,8 @@
 				let swiperRef = initSwiper(swiperParams, {
 					...this.$data,
 					...this.$props,
+					children: this.children,
+					value: this.value,
 					swiperElId: 'swiper' + this._uid,
 					emit: this.emit.bind(this),
 					updateData: this.updateData.bind(this),
@@ -444,11 +446,11 @@
 					cubeShadowTransition: this.cubeShadowTransition.bind(this),
 				});
 				this.swiper = swiperRef;
-				swiperRef.loopCreate = () => {};
-				swiperRef.loopDestroy = () => {};
-				if (swiperParams.loop) {
-					swiperRef.loopedSlides = calcLoopedSlides(this.slidesRef, swiperParams);
-				}
+				// swiperRef.loopCreate = () => {};
+				// swiperRef.loopDestroy = () => {};
+				// if (swiperParams.loop) {
+				// 	swiperRef.loopedSlides = calcLoopedSlides(this.slidesRef, swiperParams);
+				// }
 
 				if (!this.swiper) return;
 				mountSwiper({

@@ -76,8 +76,7 @@ export default function updateActiveIndex(newActiveIndex) {
 	if (swiper.virtual && params.virtual.enabled) {
 		realIndex = activeIndex;
 	} else {
-		if (swiper.slides[activeIndex].dataSwiperSlideIndex == undefined || swiper.slides[activeIndex]
-			.dataSwiperSlideIndex == null) {
+		if (!swiper.slides[activeIndex].dataSwiperSlideIndex && swiper.slides[activeIndex].dataSwiperSlideIndex != 0) {
 			realIndex = activeIndex;
 		} else {
 			realIndex = swiper.slides[activeIndex].dataSwiperSlideIndex;
