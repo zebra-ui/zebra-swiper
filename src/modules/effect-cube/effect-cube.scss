@@ -1,0 +1,68 @@
+.swiper.swiper-cube {
+  overflow: visible;
+}
+
+.swiper-cube {
+  .swiper-slide {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    visibility: hidden;
+    transform-origin: 0 0;
+    backface-visibility: hidden;
+
+    .swiper-slide {
+      pointer-events: none;
+    }
+  }
+
+  &.swiper-rtl .swiper-slide {
+    transform-origin: 100% 0;
+  }
+
+  .swiper-slide-active {
+    &,
+    & .swiper-slide-active {
+      pointer-events: auto;
+    }
+  }
+
+  .swiper-slide-active,
+  .swiper-slide-next,
+  .swiper-slide-prev {
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .swiper-cube-shadow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+
+    &::before {
+      position: absolute;
+      inset: 0;
+      content: '';
+      background: #000;
+      filter: blur(50px);
+    }
+  }
+
+  .swiper-slide-next + .swiper-slide {
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .swiper-slide-shadow-cube.swiper-slide-shadow-top,
+  .swiper-slide-shadow-cube.swiper-slide-shadow-bottom,
+  .swiper-slide-shadow-cube.swiper-slide-shadow-left,
+  .swiper-slide-shadow-cube.swiper-slide-shadow-right {
+    z-index: 0;
+    backface-visibility: hidden;
+  }
+}

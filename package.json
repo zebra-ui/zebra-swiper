@@ -1,15 +1,26 @@
 {
-  "name": "zebra-swiper",
-  "version": "1.0.0",
+  "name": "@zebra-ui/swiper",
+  "version": "2.2.8",
   "description": "zebra-swiper",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "serve": "npm --prefix ./demos/zebra-swiper-demo-cli run serve",
-    "docs": "npm --prefix ./docs/zebra-swiper-docs run docs:dev",
-    "async": "node scripts/async",
-    "lint": "eslint --ext .tsx,.ts,.vue ./demos",
-    "lint-fix": "eslint --ext .tsx,.ts,.vue ./demos/zebra-swiper-demo-cli --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "husky",
+    "async-module": "node scripts/async src",
+    "async-readme": "node scripts/async-readme",
+    "lint:eslint": "eslint --cache --max-warnings 0  \"**/*.{vue,js,ts,tsx}\" --fix",
+    "lint:prettier": "prettier --write  \"**/*.{js,ts,json,tsx,css,scss,vue,html,md}\"",
+    "lint:styles": "stylelint --cache --fix \"**/*.{html,vue,css,scss}\" --cache-location node_modules/.cache/stylelint/",
+    "lint:lint-staged": "lint-staged",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier && pnpm lint:styles",
+    "commit": "git status && git add . && git-cz",
+    "release": "node scripts/release",
+    "auto-changelog": "auto-changelog",
+    "docs": "pnpm --dir ./docs/zebra-swiper-docs docs:dev"
   },
   "repository": {
     "type": "git",
@@ -21,12 +32,42 @@
     "url": "https://github.com/zebra-ui/zebra-swiper/issues"
   },
   "homepage": "https://github.com/zebra-ui/zebra-swiper#readme",
-  "dependencies": {
-    "@zebra-ui/eslint-config": "^1.0.5",
-    "fs-extra": "^11.2.0"
-  },
+  "packageManager": "pnpm@9.12.2",
   "devDependencies": {
-    "eslint": "^8.43.0",
-    "typescript": "^5.1.6"
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
+    "@dcloudio/types": "^3.4.8",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "auto-changelog": "^2.4.0",
+    "commitizen": "^4.3.0",
+    "cz-git": "^1.9.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-vue": "^9.23.0",
+    "fs-extra": "^11.2.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "signale": "^1.4.0",
+    "stylelint": "^16.2.1",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-recess-order": "^5.0.0",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "stylelint-prettier": "^5.0.0",
+    "stylelint-scss": "^6.2.1",
+    "tslib": "^2.6.2",
+    "vue": "^3.4.21",
+    "vue-tsc": "^2.0.7"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
   }
 }

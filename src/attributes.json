@@ -1,0 +1,109 @@
+{
+  "z-swiper/direction": {
+    "type": "string",
+    "options": ["horizontal", "vertical"],
+    "description": "轮播方向"
+  },
+  "z-swiper/speed": {
+    "type": "number",
+    "description": "切换速度，单位ms"
+  },
+  "z-swiper/enabled": {
+    "type": "boolean",
+    "description": "是否启用轮播"
+  },
+  "z-swiper/initial-slide": {
+    "type": "number",
+    "description": "初始显示的幻灯片索引"
+  },
+  "z-swiper/auto-height": {
+    "type": "boolean",
+    "description": "自动高度"
+  },
+  "z-swiper/space-between": {
+    "type": "number",
+    "description": "幻灯片之间的间距(px)"
+  },
+  "z-swiper/slides-per-view": {
+    "type": ["number", "string"],
+    "options": ["auto"],
+    "description": "同时显示的幻灯片数量"
+  },
+  "z-swiper/centered-slides": {
+    "type": "boolean",
+    "description": "居中模式"
+  },
+  "z-swiper/loop": {
+    "type": "boolean",
+    "description": "循环模式"
+  },
+  "z-swiper/custom-style": {
+    "type": "object",
+    "description": "自定义样式对象"
+  },
+  "z-swiper/virtual-list": {
+    "type": "array",
+    "description": "虚拟列表数据"
+  },
+  "z-swiper/list": {
+    "type": "array",
+    "description": "轮播数据列表"
+  },
+  "z-swiper/effect": {
+    "type": "string",
+    "options": [
+      "slide",
+      "fade",
+      "cube",
+      "coverflow",
+      "flip",
+      "creative",
+      "cards"
+    ],
+    "description": "切换效果"
+  },
+  "z-swiper/navigation": {
+    "type": ["boolean", "object"],
+    "description": "前进后退按钮配置"
+  },
+  "z-swiper/pagination": {
+    "type": ["boolean", "object"],
+    "description": "分页器配置"
+  },
+  "z-swiper/scrollbar": {
+    "type": ["boolean", "object"],
+    "description": "滚动条配置"
+  },
+  "z-swiper/autoplay": {
+    "type": ["boolean", "object"],
+    "description": "自动播放配置"
+  },
+  "z-swiper/zoom": {
+    "type": ["boolean", "object"],
+    "description": "缩放功能配置"
+  },
+  "z-swiper-item/tag": {
+    "type": "string",
+    "description": "渲染的标签名"
+  },
+  "z-swiper-item/swiper-slide-index": {
+    "type": "number",
+    "description": "幻灯片索引"
+  },
+  "z-swiper-item/zoom": {
+    "type": "boolean",
+    "description": "是否启用缩放功能"
+  },
+  "z-swiper-item/lazy": {
+    "type": "boolean",
+    "description": "是否开启懒加载"
+  },
+  "z-swiper-item/virtual-index": {
+    "type": ["string", "number"],
+    "description": "虚拟列表中的索引"
+  },
+  "z-swiper-item/custom-style": {
+    "type": "object",
+    "description": "自定义样式对象"
+  }
+}

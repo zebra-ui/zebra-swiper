@@ -1,0 +1,53 @@
+{{#each releases}}
+
+`{{isoDate}}`
+
+#### 新功能 🎉
+{{#commit-list commits message='feat: '}}
+- {{subject}} by [@{{author}}]({{email}}) in [#{{shorthash}}]({{href}})
+{{/commit-list}}
+{{#commit-list merges message='feat: '}}
+- {{message}} by [@{{commit.author}}]({{commit.subject}}) in [#{{id}}]({{href}})
+{{/commit-list}}
+{{#commit-list fixes message='feat: '}}
+- {{{commit.subject}}}{{#each fixes}}{{#if href}} [`#{{id}}`]({{href}}){{/if}}{{/each}}
+by [@{{commit.author}}]({{commit.subject}}) in [#{{id}}]({{href}})
+{{/commit-list}}
+
+#### Bug 修复 🐞
+{{#commit-list commits message='fix: '}}
+- {{subject}} by [@{{author}}]({{email}}) in [#{{shorthash}}]({{href}})
+{{/commit-list}}
+{{#commit-list merges message='fix: '}}
+- {{message}} by [@{{commit.author}}]({{commit.subject}}) in [#{{id}}]({{href}})
+{{/commit-list}}
+{{#commit-list fixes message='fix: '}}
+- {{{commit.subject}}}{{#each fixes}}{{#if href}} [`#{{id}}`]({{href}}){{/if}}{{/each}}
+by [@{{commit.author}}]({{commit.subject}}) in [#{{id}}]({{href}})
+{{/commit-list}}
+
+#### 文档更新 📖
+{{#commit-list commits message='docs: '}}
+- {{subject}} by [@{{author}}]({{email}}) in [#{{shorthash}}]({{href}})
+{{/commit-list}}
+{{#commit-list merges message='docs: '}}
+- {{message}} by [@{{commit.author}}]({{commit.subject}}) in [#{{id}}]({{href}})
+{{/commit-list}}
+{{#commit-list fixes message='docs: '}}
+- {{{commit.subject}}}{{#each fixes}}{{#if href}} [`#{{id}}`]({{href}}){{/if}}{{/each}}
+by [@{{commit.author}}]({{commit.subject}}) in [#{{id}}]({{href}})
+{{/commit-list}}
+
+#### 其他更改
+{{#commit-list commits exclude='feat:|fix:|docs:'}}
+- {{subject}} by [@{{author}}]({{email}}) in [#{{shorthash}}]({{href}})
+{{/commit-list}}
+{{#commit-list merges exclude='feat:|fix:|docs:'}}
+- {{message}} by [@{{commit.author}}]({{commit.subject}}) in [#{{id}}]({{href}})
+{{/commit-list}}
+{{#commit-list fixes exclude='feat:|fix:|docs:'}}
+- {{{commit.subject}}}{{#each fixes}}{{#if href}} [`#{{id}}`]({{href}}){{/if}}{{/each}}
+by [@{{commit.author}}]({{commit.subject}}) in [#{{id}}]({{href}})
+{{/commit-list}}
+
+{{/each}}

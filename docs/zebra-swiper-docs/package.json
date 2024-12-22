@@ -1,16 +1,17 @@
 {
-    "name": "zebra-swiper-docs",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "docs:dev": "vuepress dev docs",
-        "docs:build": "vuepress build docs",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "@zebra-ui/eslint-config": "^1.0.1"
-    }
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "documentation of zebra-swiper",
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "dependencies": {
+    "@zebra-ui/swiper": "workspace:^"
+  },
+  "devDependencies": {
+    "sass": "^1.83.0",
+    "vitepress": "^1.5.0"
+  }
 }

@@ -1,5 +1,5 @@
 <p align="center">
-	<img alt="logo" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/logo.png" width="220" style="margin-bottom: 10px;">
+ <img alt="logo" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/logo.png" width="220" style="margin-bottom: 10px;">
 </p>
 
 <h1 align="center">ZebraSwiper</h1>
@@ -7,10 +7,10 @@
 <p align="center">基于uniapp，全面对标swiper，并实现全端兼容。</p>
 
 <p align="center">
-	🔥 <a href="https://swiper.zebraui.com/">文档网站</a>
-	&nbsp;
-	&nbsp;
-	🚀 <a href="https://zebraui.com/" target="_blank">zebraUI组件库</a>
+ 🔥 <a href="https://swiper.zebraui.com/">文档网站</a>
+ &nbsp;
+ &nbsp;
+ 🚀 <a href="https://zebraui.com/" target="_blank">zebraUI组件库</a>
 </p>
 
 ## 介绍
@@ -42,8 +42,8 @@ npm i @zebra-ui/swiper
       "^z-(.*)": "@zebra-ui/swiper/components/z-$1/z-$1.vue"
     }
   },
-	"pages": [...],
-	"globalStyle": {...}
+ "pages": [...],
+ "globalStyle": {...}
 }
 ```
 
@@ -54,9 +54,9 @@ npm i @zebra-ui/swiper
 ## 手机预览
 
 <div>
-	<img alt="wx" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/wx.jpg" width="200" />
-	<img alt="ali" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/ali.jpg" width="200" />
-	<img alt="h5" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/h5.png" width="200" />
+ <img alt="wx" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/wx.jpg" width="200" />
+ <img alt="ali" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/ali.jpg" width="200" />
+ <img alt="h5" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/h5.png" width="200" />
 </div>
 
 ## 预览
