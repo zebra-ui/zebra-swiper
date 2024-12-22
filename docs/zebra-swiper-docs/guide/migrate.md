@@ -30,8 +30,7 @@ outline: deep
 在 v3 中，这种配置方式被废弃，参数直接通过组件的属性传递，使其更加直观和符合 Vue 3 的设计理念。例如：
 
 ```html
-<z-swiper :slidesPerView="2">
-  // [!code ++]
+<z-swiper :slidesPerView="2"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <image class="image" :src="item.url" mode="aspectFill"></image>
   </z-swiper-item>

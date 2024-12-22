@@ -31,8 +31,7 @@
 <template #code>
 
 ```html
-<z-swiper grabCursor :slidesPerView="2">
-  // [!code ++]
+<z-swiper grabCursor :slidesPerView="2"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -59,14 +58,12 @@
 <template #code>
 
 ```html
-<z-swiper grabCursor slidesPerView="auto">
-  // [!code ++]
+<z-swiper grabCursor slidesPerView="auto"> // [!code ++]
   <z-swiper-item
     v-for="(item, index) in list"
     :key="item.id"
     :custom-style="{width:'40%'}"
   >
-    // [!code ++]
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -92,8 +89,7 @@
 <template #code>
 
 ```html
-<z-swiper grabCursor :slidesPerView="3" centeredSlides>
-  // [!code ++]
+<z-swiper grabCursor :slidesPerView="3" centeredSlides> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -124,8 +120,7 @@
 <template #code>
 
 ```html
-<z-swiper grabCursor :slidesPerView="3" centeredSlides centeredSlidesBounds>
-  // [!code ++]
+<z-swiper grabCursor :slidesPerView="3" centeredSlides centeredSlidesBounds> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -152,8 +147,7 @@
 <template #code>
 
 ```html
-<z-swiper grabCursor :slidesPerView="2" :slidesPerGroup="2">
-  // [!code ++]
+<z-swiper grabCursor :slidesPerView="2" :slidesPerGroup="2"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -181,14 +175,13 @@
 
 <template #code>
 
-```html
+```html{3-5}
 <z-swiper
   grabCursor
   :slidesPerView="2"
   :slidesPerGroup="2"
   :slidesPerGroupSkip="1"
 >
-  // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -215,14 +208,12 @@
 <template #code>
 
 ```html
-<z-swiper grabCursor slidesPerView="auto" slidesPerGroupAuto>
-  // [!code ++]
+<z-swiper grabCursor slidesPerView="auto" slidesPerGroupAuto> // [!code ++]
   <z-swiper-item
     v-for="(item, index) in list"
     :key="item.id"
     :custom-style="{width:'40%'}"
   >
-    // [!code ++]
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -248,8 +239,7 @@
 <template #code>
 
 ```html
-<z-swiper grabCursor :slidesPerView="2" :spaceBetween="10">
-  // [!code ++]
+<z-swiper grabCursor :slidesPerView="2" :spaceBetween="10"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -276,8 +266,7 @@
 <template #code>
 
 ```html
-<z-swiper grabCursor :slidesPerView="2" :slidesOffsetBefore="30">
-  // [!code ++]
+<z-swiper grabCursor :slidesPerView="2" :slidesOffsetBefore="30"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -304,8 +293,7 @@
 <template #code>
 
 ```html
-<z-swiper grabCursor :slidesPerView="2" :slidesOffsetAfter="30">
-  // [!code ++]
+<z-swiper grabCursor :slidesPerView="2" :slidesOffsetAfter="30"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -325,8 +313,7 @@
 在关闭centeredSlides后，当前下标将变为实际滑动的下标。
 
 ```html
-<z-swiper grabCursor :normalizeSlideIndex="false">
-  // [!code ++]
+<z-swiper grabCursor :normalizeSlideIndex="false"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -349,8 +336,7 @@
 <template #code>
 
 ```html
-<z-swiper grabCursor :slidesPerView="8" centerInsufficientSlides>
-  // [!code ++]
+<z-swiper grabCursor :slidesPerView="8" centerInsufficientSlides> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -377,8 +363,7 @@
 <template #code>
 
 ```html
-<z-swiper grabCursor :slidesPerView="auto" centeredSlides :spaceBetween="10">
-  // [!code ++]
+<z-swiper grabCursor :slidesPerView="auto" centeredSlides :spaceBetween="10"> // [!code ++]
   <z-swiper-item
     v-for="(item, index) in list"
     :key="item.id"

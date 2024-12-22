@@ -39,15 +39,11 @@ swiper的子容器，通常每个item代表一个轮播块。与`z-swiper`搭配
 <template #code>
 
 ```html
-<z-swiper grabCursor>
-  // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
-    // [!code ++]
+<z-swiper grabCursor> // [!code ++]
+  <z-swiper-item v-for="(item, index) in list" :key="item.id"> // [!code ++]
     <view class="swiper-item"> {{item.text}} </view>
-  </z-swiper-item>
-  // [!code ++]
-</z-swiper>
-// [!code ++]
+  </z-swiper-item>  // [!code ++]
+</z-swiper> // [!code ++]
 ```
 
   </template>
@@ -81,15 +77,11 @@ swiper的子容器，通常每个item代表一个轮播块。与`z-swiper`搭配
 <template #code>
 
 ```html
-<z-swiper-native grabCursor>
-  // [!code ++]
-  <z-swiper-item-native v-for="(item, index) in list" :key="item.id">
-    // [!code ++]
+<z-swiper-native grabCursor> // [!code ++]
+  <z-swiper-item-native v-for="(item, index) in list" :key="item.id"> // [!code ++]
     <DemoItem :text="item.text"></DemoItem>
-  </z-swiper-item-native>
-  // [!code ++]
-</z-swiper-native>
-// [!code ++]
+  </z-swiper-item-native> // [!code ++]
+</z-swiper-native> // [!code ++]
 ```
 
 </template>
@@ -113,8 +105,7 @@ swiper内置的切换器组件，开发者无需关注。
 <template #code>
 
 ```html
-<z-swiper grabCursor navigation :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor navigation :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -170,8 +161,7 @@ swiper内置的分页器组件，开发者无需关注。
 <template #code>
 
 ```html
-<z-swiper grabCursor pagination :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor pagination :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -227,8 +217,7 @@ swiper内置的滚动条组件，开发者无需关注。
 <template #code>
 
 ```html
-<z-swiper grabCursor scrollbar :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor scrollbar :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>

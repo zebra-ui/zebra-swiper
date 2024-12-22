@@ -1,0 +1,11 @@
+.swiper.swiper-cards {
+  overflow: visible;
+}
+
+.swiper-cards {
+  .swiper-slide {
+    overflow: hidden;
+    transform-origin: center bottom;
+    backface-visibility: hidden;
+  }
+}

@@ -76,8 +76,7 @@ const modules = ref([Scrollbar])
 <template #code>
 
 ```html
-<z-swiper grabCursor scrollbar :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor scrollbar :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -95,8 +94,7 @@ const modules = ref([Scrollbar])
 <ComponentInfo type="boolean" value="false"></ComponentInfo>
 
 ```html
-<z-swiper grabCursor :scrollbar="{enabled:true}" :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor :scrollbar="{enabled:true}" :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -119,8 +117,7 @@ const modules = ref([Scrollbar])
 <template #code>
 
 ```html
-<z-swiper grabCursor :scrollbar="{draggable:true}" :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor :scrollbar="{draggable:true}" :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -147,8 +144,7 @@ const modules = ref([Scrollbar])
 <template #code>
 
 ```html
-<z-swiper grabCursor :scrollbar="{dragSize:200}" :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor :scrollbar="{dragSize:200}" :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -175,8 +171,7 @@ const modules = ref([Scrollbar])
 <template #code>
 
 ```html
-<z-swiper grabCursor :scrollbar="{hide:true}" :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor :scrollbar="{hide:true}" :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -202,13 +197,12 @@ const modules = ref([Scrollbar])
 
 <template #code>
 
-```html
+```html{3}
 <z-swiper
   grabCursor
   :scrollbar="{draggable:true,snapOnRelease:false}"
   :modules="modules"
 >
-  // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -272,8 +266,7 @@ const modules = ref([Scrollbar])
 拖动滚动条开始时触发
 
 ```html
-<z-swiper @scrollbarDragStart="onSwiperScrollbarDragStart">
-  // [!code ++]
+<z-swiper @scrollbarDragStart="onSwiperScrollbarDragStart"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -293,8 +286,7 @@ const onSwiperScrollbarDragStart = (swiper) => {
 拖动滚动条过程中触发
 
 ```html
-<z-swiper @scrollbarDragMove="onSwiperScrollbarDragMove">
-  // [!code ++]
+<z-swiper @scrollbarDragMove="onSwiperScrollbarDragMove"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -314,8 +306,7 @@ const onSwiperScrollbarDragMove = (swiper) => {
 拖动滚动条释放时触发
 
 ```html
-<z-swiper @scrollbarDragEnd="onSwiperScrollbarDragEnd">
-  // [!code ++]
+<z-swiper @scrollbarDragEnd="onSwiperScrollbarDragEnd"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -362,8 +353,7 @@ const onSwiperScrollbarDragEnd = (swiper) => {
 <template #code>
 
 ```html
-<div style="--swiper-scrollbar-size:14px;">
-  // [!code ++]
+<div style="--swiper-scrollbar-size:14px;"> // [!code ++]
   <z-swiper grabCursor scrollbar :modules="modules">
     <z-swiper-item v-for="(item, index) in list" :key="item.id">
       <DemoItem :text="item.text"></DemoItem>

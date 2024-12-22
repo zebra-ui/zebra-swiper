@@ -13,5 +13,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/uni_modules/zebra-swiper/index';
+@use '@/uni_modules/zebra-swiper/index';
 </style>

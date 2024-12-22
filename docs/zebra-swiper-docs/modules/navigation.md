@@ -74,8 +74,7 @@ const modules = ref([Navigation])
 <template #code>
 
 ```html
-<z-swiper grabCursor navigation :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor navigation :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -91,8 +90,7 @@ const modules = ref([Navigation])
 是否启用切换器。
 
 ```html
-<z-swiper grabCursor :navigation="{enabled:true}" :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor :navigation="{enabled:true}" :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -115,8 +113,7 @@ const modules = ref([Navigation])
 <template #code>
 
 ```html
-<z-swiper grabCursor :navigation="{hideOnClick:true}" :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor :navigation="{hideOnClick:true}" :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -169,8 +166,7 @@ const modules = ref([Navigation])
 切换器显示时触发
 
 ```html
-<z-swiper @navigationShow="onSwiperNavigationShow">
-  // [!code ++]
+<z-swiper @navigationShow="onSwiperNavigationShow"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -190,8 +186,7 @@ const onSwiperNavigationShow = (swiper) => {
 切换器隐藏时触发
 
 ```html
-<z-swiper @navigationHide="onSwiperNavigationHide">
-  // [!code ++]
+<z-swiper @navigationHide="onSwiperNavigationHide"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -211,8 +206,7 @@ const onSwiperNavigationHide = (swiper) => {
 点击切换器的向后切换时触发
 
 ```html
-<z-swiper @navigationNext="onSwiperNavigationNext">
-  // [!code ++]
+<z-swiper @navigationNext="onSwiperNavigationNext"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -232,8 +226,7 @@ const onSwiperNavigationNext = (swiper) => {
 点击切换器的向前切换时触发
 
 ```html
-<z-swiper @navigationPrev="onSwiperNavigationPrev">
-  // [!code ++]
+<z-swiper @navigationPrev="onSwiperNavigationPrev"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>

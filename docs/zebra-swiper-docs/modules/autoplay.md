@@ -66,8 +66,7 @@ const modules = ref([Autoplay])
 <template #code>
 
 ```html
-<z-swiper grabCursor autoplay :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor autoplay :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -94,8 +93,7 @@ const modules = ref([Autoplay])
 <template #code>
 
 ```html
-<z-swiper grabCursor :autoplay="{ delay:500 }" :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor :autoplay="{ delay:500 }" :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -125,13 +123,12 @@ const modules = ref([Autoplay])
 
 <template #code>
 
-```html
+```html{3}
 <z-swiper
   grabCursor
   :autoplay="{ disableOnInteraction: true }"
   :modules="modules"
 >
-  // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -157,8 +154,7 @@ const modules = ref([Autoplay])
 <template #code>
 
 ```html
-<z-swiper grabCursor :autoplay="{ pauseOnMouseEnter: true }" :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor :autoplay="{ pauseOnMouseEnter: true }" :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -184,8 +180,7 @@ const modules = ref([Autoplay])
 <template #code>
 
 ```html
-<z-swiper grabCursor :autoplay="{ reverseDirection: true }" :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor :autoplay="{ reverseDirection: true }" :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -211,8 +206,7 @@ const modules = ref([Autoplay])
 <template #code>
 
 ```html
-<z-swiper grabCursor :autoplay="{ stopOnLastSlide: true }" :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor :autoplay="{ stopOnLastSlide: true }" :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -237,13 +231,12 @@ const modules = ref([Autoplay])
 
 <template #code>
 
-```html
+```html{3}
 <z-swiper
   grabCursor
   :autoplay="{ waitForTransition: false }"
   :modules="modules"
 >
-  // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -367,8 +360,7 @@ autoplay：{{swiperInstance['paused'] && swiperInstance['paused'].autoplay}}
 自动播放发生变化时触发
 
 ```html
-<z-swiper @autoplay="onSwiperAutoplay">
-  // [!code ++]
+<z-swiper @autoplay="onSwiperAutoplay"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -388,8 +380,7 @@ const onSwiperAutoplay = (swiper) => {
 暂停时触发
 
 ```html
-<z-swiper @autoplayPause="onSwiperAutoplayPause">
-  // [!code ++]
+<z-swiper @autoplayPause="onSwiperAutoplayPause"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -409,8 +400,7 @@ const onSwiperAutoplayPause = (swiper) => {
 恢复时触发
 
 ```html
-<z-swiper @autoplayResume="onSwiperAutoplayResume">
-  // [!code ++]
+<z-swiper @autoplayResume="onSwiperAutoplayResume"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -430,8 +420,7 @@ const onSwiperAutoplayResume = (swiper) => {
 开始时触发
 
 ```html
-<z-swiper @autoplayStart="onSwiperAutoplayStart">
-  // [!code ++]
+<z-swiper @autoplayStart="onSwiperAutoplayStart"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -451,8 +440,7 @@ const onSwiperAutoplayStart = (swiper) => {
 停止时触发
 
 ```html
-<z-swiper @autoplayStop="onSwiperAutoplayStop">
-  // [!code ++]
+<z-swiper @autoplayStop="onSwiperAutoplayStop"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -472,8 +460,7 @@ const onSwiperAutoplayStop = (swiper) => {
 启用自动播放后，事件会持续触发。它包含转换到下一张幻灯片之前的剩余时间（以毫秒为单位）以及与自动播放延迟相关的时间百分比
 
 ```html
-<z-swiper @autoplayTimeLeft="onSwiperAutoplayTimeLeft">
-  // [!code ++]
+<z-swiper @autoplayTimeLeft="onSwiperAutoplayTimeLeft"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>

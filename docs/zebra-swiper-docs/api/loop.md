@@ -64,8 +64,7 @@ web-h5，web-pc 不需要将数据传递给swiper，swiper会直接操作dom节�
 <template #code>
 
 ```html
-<z-swiper v-model:list="list" grabCursor loop>
-  // H5不需要传递v-model // [!code ++]
+<z-swiper v-model:list="list" grabCursor loop> // H5不需要传递v-model // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -83,8 +82,7 @@ web-h5，web-pc 不需要将数据传递给swiper，swiper会直接操作dom节�
 <ComponentInfo type="Boolean" value="true"></ComponentInfo>
 
 ```html
-<z-swiper v-model:list="list" grabCursor loop :loopPreventsSliding="false">
-  // [!code ++]
+<z-swiper v-model:list="list" grabCursor loop :loopPreventsSliding="false"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>

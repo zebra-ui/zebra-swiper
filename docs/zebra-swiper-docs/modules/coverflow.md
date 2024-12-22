@@ -34,10 +34,6 @@ outline: deep
   }
 </script>
 
-<style lang="scss">
-    @use "@zebra-ui/swiper/modules/effect-coverflow/effect-coverflow.scss";
-</style>
-
 ## 引入
 
 <!--@include: ./../.vitepress/mixins/modulesTip.md-->
@@ -48,12 +44,6 @@ import { EffectCoverflow } from '@zebra-ui/swiper/modules'
 
 const modules = ref([EffectCoverflow])
 </script>
-```
-
-```css
-<style lang="scss">
-    @use "@zebra-ui/swiper/modules/effect-coverflow/effect-coverflow.scss";
-</style>
 ```
 
 ## 使用
@@ -83,12 +73,12 @@ const modules = ref([EffectCoverflow])
   effect="coverflow"
   centeredSlides
   :slidesPerView="3"
-  :coverflowEffect="{   // [!code ++]
-      rotate: 50,
-      stretch: 0,
-      depth: 100,
-      modifier: 1,
-      slideShadows: true,
+  :coverflowEffect="{
+      rotate: 50, // [!code ++]
+      stretch: 0, // [!code ++]
+      depth: 100, // [!code ++]
+      modifier: 1, // [!code ++]
+      slideShadows: true, // [!code ++]
     }"
   :modules="modules"
 >

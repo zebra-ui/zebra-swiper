@@ -68,8 +68,7 @@ const modules = ref([EffectFade])
 <template #code>
 
 ```html
-<z-swiper grabCursor effect="fade" :modules="modules">
-  // [!code ++]
+<z-swiper grabCursor effect="fade" :modules="modules"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -99,14 +98,13 @@ const modules = ref([EffectFade])
 
 <template #code>
 
-```html
+```html{4}
 <z-swiper
   grabCursor
   effect="fade"
   :fadeEffect="{crossFade:true}"
   :modules="modules"
 >
-  // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>

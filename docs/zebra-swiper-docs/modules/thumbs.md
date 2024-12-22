@@ -79,13 +79,12 @@ const modules = ref([Thumb])
 </div>
 <template #code>
 
-```html
+```html{4}
 <z-swiper
   grabCursor
   :modules="modules"
   :thumbs="{ swiper: swiperInstance['thumbs'] }"
 >
-  // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -101,7 +100,6 @@ const modules = ref([Thumb])
     :custom-style="{height:'100px'}"
     @swiper="onSwiper($event,'thumbs')"
   >
-    // [!code ++]
     <z-swiper-item v-for="(item, index) in list" :key="item.id">
       <DemoItem :text="item.text" height="100px"></DemoItem>
     </z-swiper-item>
@@ -182,13 +180,12 @@ const onSwiper = (swiper, name) => {
 
 <ComponentInfo type="number" value="0"></ComponentInfo>
 
-```html
+```html{4}
 <z-swiper
   grabCursor
   :modules="modules"
   :thumbs="{ swiper: swiperInstance['thumbs'],autoScrollOffset:1 }"
 >
-  // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -204,7 +201,6 @@ const onSwiper = (swiper, name) => {
     :custom-style="{height:'100px'}"
     @swiper="onSwiper($event,'thumbs')"
   >
-    // [!code ++]
     <z-swiper-item v-for="(item, index) in list" :key="item.id">
       <DemoItem :text="item.text" height="100px"></DemoItem>
     </z-swiper-item>

@@ -9,8 +9,7 @@ v3版本所有平台都可通过`v-on`绑定事件并获取`swiper`实例。
 swiper组件挂载完成时触发。
 
 ```html
-<z-swiper @swiper="onSwiper">
-  // [!code ++]
+<z-swiper @swiper="onSwiper"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -30,8 +29,7 @@ const onSwiper = (swiper) => {
 swiper中的activeIndex变化时触发。
 
 ```html
-<z-swiper @slideChange="onSlideChange">
-  // [!code ++]
+<z-swiper @slideChange="onSlideChange"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -55,8 +53,7 @@ swiper中的realIndex变化时触发。
 :::
 
 ```html
-<z-swiper loop @realIndexChange="onRealIndexChange">
-  // [!code ++]
+<z-swiper loop @realIndexChange="onRealIndexChange"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -76,8 +73,7 @@ const onRealIndexChange = (swiper) => {
 当用户点击/触摸 Swiper 时触发。
 
 ```html
-<z-swiper @click="onClick">
-  // [!code ++]
+<z-swiper @click="onClick"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -98,8 +94,7 @@ const onClick = (swiper, event) => {
 swiper初始化前触发。
 
 ```html
-<z-swiper @beforeInit="onSwiperBeforeInit">
-  // [!code ++]
+<z-swiper @beforeInit="onSwiperBeforeInit"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -119,8 +114,7 @@ const onSwiperBeforeInit = (swiper) => {
 swiper初始化时触发。
 
 ```html
-<z-swiper @init="onSwiperInit">
-  // [!code ++]
+<z-swiper @init="onSwiperInit"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -140,8 +134,7 @@ const onSwiperInit = (swiper) => {
 swiper初始化后触发。
 
 ```html
-<z-swiper @afterInit="onSwiperAfterInit">
-  // [!code ++]
+<z-swiper @afterInit="onSwiperAfterInit"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -161,8 +154,7 @@ const onSwiperAfterInit = (swiper) => {
 当用户触摸 Swiper 时触发。
 
 ```html
-<z-swiper @touchStart="onTouchStart">
-  // [!code ++]
+<z-swiper @touchStart="onTouchStart"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -183,8 +175,7 @@ const onTouchStart = (swiper, event) => {
 当用户触摸并移动手指时触发。
 
 ```html
-<z-swiper @touchMove="onTouchMove">
-  // [!code ++]
+<z-swiper @touchMove="onTouchMove"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -205,8 +196,7 @@ const onTouchMove = (swiper, event) => {
 当用户释放 Swiper 时触发。
 
 ```html
-<z-swiper @touchEnd="onTouchEnd">
-  // [!code ++]
+<z-swiper @touchEnd="onTouchEnd"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -227,8 +217,7 @@ const onTouchEnd = (swiper, event) => {
 当用户触摸并移动手指时，且移动方向与设定方向相反时触发。
 
 ```html
-<z-swiper @touchMoveOpposite="onTouchMoveOpposite">
-  // [!code ++]
+<z-swiper @touchMoveOpposite="onTouchMoveOpposite"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -249,8 +238,7 @@ const onTouchMoveOpposite = (swiper, event) => {
 snapIndex变化时触发。
 
 ```html
-<z-swiper @snapIndexChange="onSnapIndexChange">
-  // [!code ++]
+<z-swiper @snapIndexChange="onSnapIndexChange"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -270,8 +258,7 @@ const onSnapIndexChange = (swiper) => {
 在切换到其他幻灯片（下一个或上一个）的动画开始时触发。
 
 ```html
-<z-swiper @slideChangeTransitionStart="onSlideChangeTransitionStart">
-  // [!code ++]
+<z-swiper @slideChangeTransitionStart="onSlideChangeTransitionStart"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -291,8 +278,7 @@ const onSlideChangeTransitionStart = (swiper) => {
 在切换其他幻灯片（下一个或上一个）的动画结束后触发。
 
 ```html
-<z-swiper @slideChangeTransitionEnd="onSlideChangeTransitionEnd">
-  // [!code ++]
+<z-swiper @slideChangeTransitionEnd="onSlideChangeTransitionEnd"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -312,8 +298,7 @@ const onSlideChangeTransitionEnd = (swiper) => {
 与 "slideChangeTransitionStart" 相同，但仅在 "向前" 方向触发。
 
 ```html
-<z-swiper @slideNextTransitionStart="onSlideNextTransitionStart">
-  // [!code ++]
+<z-swiper @slideNextTransitionStart="onSlideNextTransitionStart"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -333,8 +318,7 @@ const onSlideNextTransitionStart = (swiper) => {
 与 "slideChangeTransitionEnd" 相同，但仅在 "向前" 方向触发。
 
 ```html
-<z-swiper @slideNextTransitionEnd="onSlideNextTransitionEnd">
-  // [!code ++]
+<z-swiper @slideNextTransitionEnd="onSlideNextTransitionEnd"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -354,8 +338,7 @@ const onSlideNextTransitionEnd = (swiper) => {
 当活动索引发生变化时触发。
 
 ```html
-<z-swiper @activeIndexChange="onActiveIndexChange">
-  // [!code ++]
+<z-swiper @activeIndexChange="onActiveIndexChange"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -375,8 +358,7 @@ const onActiveIndexChange = (swiper) => {
 在 Swiper 销毁之前触发。
 
 ```html
-<z-swiper @beforeDestroy="onBeforeDestroy">
-  // [!code ++]
+<z-swiper @beforeDestroy="onBeforeDestroy"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -396,8 +378,7 @@ const onBeforeDestroy = (swiper) => {
 在 "loop fix" 之前触发。
 
 ```html
-<z-swiper @beforeLoopFix="onBeforeLoopFix">
-  // [!code ++]
+<z-swiper @beforeLoopFix="onBeforeLoopFix"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -417,8 +398,7 @@ const onBeforeLoopFix = (swiper) => {
 在 resize 处理之前触发。
 
 ```html
-<z-swiper @beforeResize="onBeforeResize">
-  // [!code ++]
+<z-swiper @beforeResize="onBeforeResize"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -438,8 +418,7 @@ const onBeforeResize = (swiper) => {
 在幻灯片切换过渡开始之前触发。
 
 ```html
-<z-swiper @beforeSlideChangeStart="onBeforeSlideChangeStart">
-  // [!code ++]
+<z-swiper @beforeSlideChangeStart="onBeforeSlideChangeStart"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -459,8 +438,7 @@ const onBeforeSlideChangeStart = (swiper) => {
 在过渡开始之前触发。
 
 ```html
-<z-swiper @beforeTransitionStart="onBeforeTransitionStart">
-  // [!code ++]
+<z-swiper @beforeTransitionStart="onBeforeTransitionStart"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -482,8 +460,7 @@ const onBeforeTransitionStart = (swiper, speed, internal) => {
 在断点切换时触发。
 
 ```html
-<z-swiper @breakpoint="onBreakpoint">
-  // [!code ++]
+<z-swiper @breakpoint="onBreakpoint"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -504,8 +481,7 @@ const onBreakpoint = (swiper, breakpointParams) => {
 在方向改变时触发。
 
 ```html
-<z-swiper @changeDirection="onChangeDirection">
-  // [!code ++]
+<z-swiper @changeDirection="onChangeDirection"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -525,8 +501,7 @@ const onChangeDirection = (swiper) => {
 在 Swiper 销毁时触发。
 
 ```html
-<z-swiper @destroy="onDestroy">
-  // [!code ++]
+<z-swiper @destroy="onDestroy"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -546,8 +521,7 @@ const onDestroy = (swiper) => {
 当用户双击/双触 Swiper 时触发。
 
 ```html
-<z-swiper @doubleClick="onDoubleClick">
-  // [!code ++]
+<z-swiper @doubleClick="onDoubleClick"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -568,8 +542,7 @@ const onDoubleClick = (swiper, event) => {
 当用户双击 Swiper 容器时触发。
 
 ```html
-<z-swiper @doubleTap="onDoubleTap">
-  // [!code ++]
+<z-swiper @doubleTap="onDoubleTap"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -590,8 +563,7 @@ const onDoubleTap = (swiper, event) => {
 当 Swiper 从开始或结束位置移开时触发。
 
 ```html
-<z-swiper @fromEdge="onFromEdge">
-  // [!code ++]
+<z-swiper @fromEdge="onFromEdge"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -611,8 +583,7 @@ const onFromEdge = (swiper) => {
 当 Swiper 被锁定时触发（当 watchOverflow 启用时）。
 
 ```html
-<z-swiper @lock="onLock">
-  // [!code ++]
+<z-swiper @lock="onLock"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -632,8 +603,7 @@ const onLock = (swiper) => {
 在 "loop fix" 之后触发。
 
 ```html
-<z-swiper @loopFix="onLoopFix">
-  // [!code ++]
+<z-swiper @loopFix="onLoopFix"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -653,8 +623,7 @@ const onLoopFix = (swiper) => {
 在动量反弹时触发。
 
 ```html
-<z-swiper @momentumBounce="onMomentumBounce">
-  // [!code ++]
+<z-swiper @momentumBounce="onMomentumBounce"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -674,8 +643,7 @@ const onMomentumBounce = (swiper) => {
 当启用 observer 并检测到 DOM 变化时触发。
 
 ```html
-<z-swiper @observerUpdate="onObserverUpdate">
-  // [!code ++]
+<z-swiper @observerUpdate="onObserverUpdate"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -695,8 +663,7 @@ const onObserverUpdate = (swiper) => {
 当方向改变时触发（例如从横屏切换到竖屏）。
 
 ```html
-<z-swiper @orientationchange="onOrientationchange">
-  // [!code ++]
+<z-swiper @orientationchange="onOrientationchange"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -716,8 +683,7 @@ const onOrientationchange = (swiper) => {
 当 Swiper 进度改变时触发，参数 progress 始终在 0 到 1 之间。
 
 ```html
-<z-swiper @progress="onProgress">
-  // [!code ++]
+<z-swiper @progress="onProgress"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -738,8 +704,7 @@ const onProgress = (swiper, progress) => {
 当 Swiper 到达其起始位置时触发。
 
 ```html
-<z-swiper @reachBeginning="onReachBeginning">
-  // [!code ++]
+<z-swiper @reachBeginning="onReachBeginning"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -759,8 +724,7 @@ const onReachBeginning = (swiper) => {
 当 Swiper 到达最后一张幻灯片时触发。
 
 ```html
-<z-swiper @reachEnd="onReachEnd">
-  // [!code ++]
+<z-swiper @reachEnd="onReachEnd"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -780,8 +744,7 @@ const onReachEnd = (swiper) => {
 在窗口大小调整之前触发。
 
 ```html
-<z-swiper @resize="onResize">
-  // [!code ++]
+<z-swiper @resize="onResize"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -801,8 +764,7 @@ const onResize = (swiper) => {
 每次 Swiper 开始动画时触发。
 
 ```html
-<z-swiper @setTransition="onSetTransition">
-  // [!code ++]
+<z-swiper @setTransition="onSetTransition"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -823,8 +785,7 @@ const onSetTransition = (swiper, transition) => {
 当 Swiper 的包装器改变其位置时触发。
 
 ```html
-<z-swiper @setTranslate="onSetTranslate">
-  // [!code ++]
+<z-swiper @setTranslate="onSetTranslate"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -845,8 +806,7 @@ const onSetTranslate = (swiper, translate) => {
 与 "slideChangeTransitionEnd" 相同，但仅在 "向后" 方向触发。
 
 ```html
-<z-swiper @slidePrevTransitionEnd="onSlidePrevTransitionEnd">
-  // [!code ++]
+<z-swiper @slidePrevTransitionEnd="onSlidePrevTransitionEnd"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -866,8 +826,7 @@ const onSlidePrevTransitionEnd = (swiper) => {
 与 "slideChangeTransitionStart" 相同，但仅在 "向后" 方向触发。
 
 ```html
-<z-swiper @slidePrevTransitionStart="onSlidePrevTransitionStart">
-  // [!code ++]
+<z-swiper @slidePrevTransitionStart="onSlidePrevTransitionStart"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -887,8 +846,7 @@ const onSlidePrevTransitionStart = (swiper) => {
 在重置幻灯片到当前位置的动画结束时触发。
 
 ```html
-<z-swiper @slideResetTransitionEnd="onSlideResetTransitionEnd">
-  // [!code ++]
+<z-swiper @slideResetTransitionEnd="onSlideResetTransitionEnd"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -908,8 +866,7 @@ const onSlideResetTransitionEnd = (swiper) => {
 在重置幻灯片到当前位置的动画开始时触发。
 
 ```html
-<z-swiper @slideResetTransitionStart="onSlideResetTransitionStart">
-  // [!code ++]
+<z-swiper @slideResetTransitionStart="onSlideResetTransitionStart"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -929,8 +886,7 @@ const onSlideResetTransitionStart = (swiper) => {
 在第一次触摸/拖动移动时触发。
 
 ```html
-<z-swiper @sliderFirstMove="onSliderFirstMove">
-  // [!code ++]
+<z-swiper @sliderFirstMove="onSliderFirstMove"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -951,8 +907,7 @@ const onSliderFirstMove = (swiper, event) => {
 当用户触摸并移动手指时触发。
 
 ```html
-<z-swiper @sliderMove="onSliderMove">
-  // [!code ++]
+<z-swiper @sliderMove="onSliderMove"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -973,8 +928,7 @@ const onSliderMove = (swiper, event) => {
 当幻灯片网格长度发生变化时触发。
 
 ```html
-<z-swiper @slidesGridLengthChange="onSlidesGridLengthChange">
-  // [!code ++]
+<z-swiper @slidesGridLengthChange="onSlidesGridLengthChange"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -994,8 +948,7 @@ const onSlidesGridLengthChange = (swiper) => {
 当幻灯片数量发生变化时触发。
 
 ```html
-<z-swiper @slidesLengthChange="onSlidesLengthChange">
-  // [!code ++]
+<z-swiper @slidesLengthChange="onSlidesLengthChange"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -1015,8 +968,7 @@ const onSlidesLengthChange = (swiper) => {
 当幻灯片及其大小计算和更新后触发。
 
 ```html
-<z-swiper @slidesUpdated="onSlidesUpdated">
-  // [!code ++]
+<z-swiper @slidesUpdated="onSlidesUpdated"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -1036,8 +988,7 @@ const onSlidesUpdated = (swiper) => {
 当捕捉网格长度发生变化时触发。
 
 ```html
-<z-swiper @snapGridLengthChange="onSnapGridLengthChange">
-  // [!code ++]
+<z-swiper @snapGridLengthChange="onSnapGridLengthChange"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -1057,8 +1008,7 @@ const onSnapGridLengthChange = (swiper) => {
 当用户点击/触摸 Swiper 时触发。
 
 ```html
-<z-swiper @tap="onTap">
-  // [!code ++]
+<z-swiper @tap="onTap"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -1079,8 +1029,7 @@ const onTap = (swiper, event) => {
 当 Swiper 到达开始或结束位置时触发。
 
 ```html
-<z-swiper @toEdge="onToEdge">
-  // [!code ++]
+<z-swiper @toEdge="onToEdge"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -1100,8 +1049,7 @@ const onToEdge = (swiper) => {
 在过渡结束后触发。
 
 ```html
-<z-swiper @transitionEnd="onTransitionEnd">
-  // [!code ++]
+<z-swiper @transitionEnd="onTransitionEnd"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -1121,8 +1069,7 @@ const onTransitionEnd = (swiper) => {
 在过渡开始时触发。
 
 ```html
-<z-swiper @transitionStart="onTransitionStart">
-  // [!code ++]
+<z-swiper @transitionStart="onTransitionStart"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -1142,8 +1089,7 @@ const onTransitionStart = (swiper) => {
 当 Swiper 解锁时触发（当 watchOverflow 启用时）。
 
 ```html
-<z-swiper @unlock="onUnlock">
-  // [!code ++]
+<z-swiper @unlock="onUnlock"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -1163,8 +1109,7 @@ const onUnlock = (swiper) => {
 在 swiper.update() 调用后触发。
 
 ```html
-<z-swiper @update="onUpdate">
-  // [!code ++]
+<z-swiper @update="onUpdate"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>

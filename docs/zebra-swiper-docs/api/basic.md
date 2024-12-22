@@ -35,8 +35,7 @@
 <template #code>
 
 ```html
-<z-swiper grabCursor :initialSlide="2">
-  // [!code ++]
+<z-swiper grabCursor :initialSlide="2"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -67,8 +66,7 @@ Swiper 的滑动方向可根据需求进行设置，支持水平方向切换（h
 <template #code>
 
 ```html
-<z-swiper grabCursor direction="vertical" :custom-style="{height:'200px'}">
-  // [!code ++]
+<z-swiper grabCursor direction="vertical" :custom-style="{height:'200px'}"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -99,8 +97,7 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 <template #code>
 
 ```html
-<z-swiper grabCursor :enabled="false">
-  // [!code ++]
+<z-swiper grabCursor :enabled="false"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -127,8 +124,7 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 <template #code>
 
 ```html
-<z-swiper grabCursor>
-  // [!code ++]
+<z-swiper grabCursor> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -155,8 +151,7 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 <template #code>
 
 ```html
-<z-swiper grabCursor autoHeight>
-  // [!code ++]
+<z-swiper grabCursor autoHeight> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text" :height="`${(index+1) * 50}px`"></DemoItem>
   </z-swiper-item>
@@ -187,8 +182,7 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 <template #code>
 
 ```html
-<z-swiper grabCursor cssMode>
-  // [!code ++]
+<z-swiper grabCursor cssMode> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -210,8 +204,7 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 <ComponentInfo type="Number" value="-"></ComponentInfo>
 
 ```html
-<z-swiper grabCursor :height="100">
-  // [!code ++]
+<z-swiper grabCursor :height="100"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -241,8 +234,7 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 <template #code>
 
 ```html
-<z-swiper grabCursor rewind>
-  // [!code ++]
+<z-swiper grabCursor rewind> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -269,8 +261,7 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 <template #code>
 
 ```html
-<z-swiper grabCursor :speed="3000">
-  // [!code ++]
+<z-swiper grabCursor :speed="3000"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -292,8 +283,7 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 <ComponentInfo type="Number" value="-"></ComponentInfo>
 
 ```html
-<z-swiper grabCursor :width="100">
-  // [!code ++]
+<z-swiper grabCursor :width="100"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
@@ -311,8 +301,7 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 <ComponentInfo type="Array" value="-"></ComponentInfo>
 
 ```html
-<z-swiper grabCursor autoplay :modules="[AutoPlay]">
-  // [!code ++]
+<z-swiper grabCursor autoplay :modules="[AutoPlay]"> // [!code ++]
   <z-swiper-item v-for="(item, index) in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
