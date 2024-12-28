@@ -1,4 +1,6 @@
 dist
 node_modules
 unpackage
-example
+example/normal/*
+# 暂时忽略
+example 

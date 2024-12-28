@@ -1,4 +1,4 @@
-import { elementTransitionEnd } from './utils'
+import { elementTransitionEnd, isWeb } from './utils'
 import type { EffectVirtualTransitionEnd } from '../../types/components/shared/effect-virtual-transition-end'
 
 const effectVirtualTransitionEnd: EffectVirtualTransitionEnd = ({
@@ -43,10 +43,19 @@ const effectVirtualTransitionEnd: EffectVirtualTransitionEnd = ({
         if (!swiper || swiper.destroyed) return
         eventTriggered = true
         swiper.animating = false
-        const evt = new window.CustomEvent('transitionend', {
-          bubbles: true,
-          cancelable: true
-        })
+        const evt = isWeb()
+          ? new window.CustomEvent('transitionend', {
+              bubbles: true,
+              cancelable: true
+            })
+          : ({
+              bubbles: true,
+              cancelable: true,
+              target: {
+                // @ts-ignore
+                id: el?.uid
+              }
+            } as unknown as Event)
         swiper.wrapperEl.dispatchEvent(evt)
       })
     })

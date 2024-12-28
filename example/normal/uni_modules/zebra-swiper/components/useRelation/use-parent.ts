@@ -2,7 +2,7 @@ import {
   ref,
   inject,
   computed,
-  onUnmounted,
+  onBeforeUnmount,
   getCurrentInstance,
   type ComponentInternalInstance
 } from 'vue'
@@ -19,7 +19,7 @@ export const useParent: UseParent = (key) => {
     const { link, unlink, internalChildren } = parent
 
     link(instance)
-    onUnmounted(() => unlink(instance))
+    onBeforeUnmount(() => unlink(instance))
 
     const index = computed(() => internalChildren.indexOf(instance))
 

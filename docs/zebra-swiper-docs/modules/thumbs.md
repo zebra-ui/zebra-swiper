@@ -44,13 +44,25 @@ outline: deep
 
 <!--@include: ./../.vitepress/mixins/modulesTip.md-->
 
-```vue
+::: code-group
+
+```vue [npm]
 <script lang="ts" setup>
 import { Thumb } from '@zebra-ui/swiper/modules'
 
 const modules = ref([Thumb])
 </script>
 ```
+
+```vue [uni_modules]
+<script lang="ts" setup>
+import { Thumb } from '@/uni_modules/zebra-swiper/modules'
+
+const modules = ref([Thumb])
+</script>
+```
+
+:::
 
 ## 配置
 
@@ -66,13 +78,13 @@ const modules = ref([Thumb])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :modules="modules" :thumbs="{ swiper: swiperInstance['thumbs'] }">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
 <div class="thumb-swiper">
    <z-swiper grabCursor :modules="modules" watch-slides-progress :spaceBetween="10" :slidesPerView="4" freeMode :custom-style="{height:'100px'}" @swiper="onSwiper($event, 'thumbs')">
-     <z-swiper-item v-for="(item, index) in list" :key="item.id">
+     <z-swiper-item v-for="item in list" :key="item.id">
        <DemoItem :text="item.text" height="100px"></DemoItem>
      </z-swiper-item>
    </z-swiper>
@@ -85,7 +97,7 @@ const modules = ref([Thumb])
   :modules="modules"
   :thumbs="{ swiper: swiperInstance['thumbs'] }"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -100,7 +112,7 @@ const modules = ref([Thumb])
     :custom-style="{height:'100px'}"
     @swiper="onSwiper($event,'thumbs')"
   >
-    <z-swiper-item v-for="(item, index) in list" :key="item.id">
+    <z-swiper-item v-for="item in list" :key="item.id">
       <DemoItem :text="item.text" height="100px"></DemoItem>
     </z-swiper-item>
   </z-swiper>
@@ -186,7 +198,7 @@ const onSwiper = (swiper, name) => {
   :modules="modules"
   :thumbs="{ swiper: swiperInstance['thumbs'],autoScrollOffset:1 }"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -201,7 +213,7 @@ const onSwiper = (swiper, name) => {
     :custom-style="{height:'100px'}"
     @swiper="onSwiper($event,'thumbs')"
   >
-    <z-swiper-item v-for="(item, index) in list" :key="item.id">
+    <z-swiper-item v-for="item in list" :key="item.id">
       <DemoItem :text="item.text" height="100px"></DemoItem>
     </z-swiper-item>
   </z-swiper>

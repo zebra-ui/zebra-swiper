@@ -26,6 +26,7 @@ export interface WrapperEl {
   prepend: (slide: any, index: number) => void
   append: (slide: any, index: number) => void
   swiperShadowRef: Ref<any>
+  resetLoopList: () => void
 }
 
 // 组件暴露的接口

@@ -42,7 +42,9 @@ outline: deep
 
 <!--@include: ./../.vitepress/mixins/modulesTip.md-->
 
-```vue
+::: code-group
+
+```vue [npm]
 <script lang="ts" setup>
 import { EffectFade } from '@zebra-ui/swiper/modules'
 
@@ -50,17 +52,37 @@ const modules = ref([EffectFade])
 </script>
 ```
 
-```css
+```vue [uni_modules]
+<script lang="ts" setup>
+import { EffectFade } from '@/uni_modules/zebra-swiper/modules'
+
+const modules = ref([EffectFade])
+</script>
+```
+
+:::
+
+::: code-group
+
+```css [npm]
 <style lang="scss">
     @use "@zebra-ui/swiper/modules/effect-fade/effect-fade.scss";
 </style>
 ```
 
+```css [uni_modules]
+<style lang="scss">
+    @use "@/uni_modules/zebra-swiper/modules/effect-fade/effect-fade.scss";
+</style>
+```
+
+:::
+
 ## 使用
 
 <DemoBlock expanded>
 <z-swiper grabCursor effect="fade" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -69,7 +91,7 @@ const modules = ref([EffectFade])
 
 ```html
 <z-swiper grabCursor effect="fade" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -91,7 +113,7 @@ const modules = ref([EffectFade])
 
 <DemoBlock expanded>
 <z-swiper grabCursor effect="fade" :fadeEffect="{crossFade:true}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -105,7 +127,7 @@ const modules = ref([EffectFade])
   :fadeEffect="{crossFade:true}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>

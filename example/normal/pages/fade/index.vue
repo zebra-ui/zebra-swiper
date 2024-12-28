@@ -1,70 +1,43 @@
 <template>
-  <view class="demo-swiper">
-    <demo-block title="切换效果-淡入">
-      <z-swiper v-model="list" :options="options">
-        <z-swiper-item v-for="(item, index) in list" :key="index">
-          <demo-item :item="item"></demo-item>
-        </z-swiper-item>
-      </z-swiper>
-    </demo-block>
-    <demo-block title="自动播放">
-      <z-swiper v-model="list" :options="optionsAutoplay">
-        <z-swiper-item v-for="(item, index) in list" :key="index">
-          <demo-item :item="item"></demo-item>
-        </z-swiper-item>
-      </z-swiper>
-    </demo-block>
-    <demo-block title="纵向">
-      <z-swiper
-        v-model="list"
-        :custom-style="{ height: '300rpx' }"
-        :options="optionsVertical"
-      >
-        <z-swiper-item v-for="(item, index) in list" :key="index">
-          <demo-item :item="item"></demo-item>
-        </z-swiper-item>
-      </z-swiper>
-    </demo-block>
-    <demo-block title="无限循环">
-      <z-swiper v-model="loopList" :options="optionsLoop">
-        <z-swiper-item v-for="(item, index) in loopList" :key="index">
-          <demo-item :item="item"></demo-item>
-        </z-swiper-item>
-      </z-swiper>
-    </demo-block>
-  </view>
+	<view class="demo-swiper">
+		<demo-block title="切换效果-淡入">
+			<z-swiper effect="fade" :modules="modules">
+				<z-swiper-item v-for="item in list" :key="item.id">
+					<demo-item :item="item"></demo-item>
+				</z-swiper-item>
+			</z-swiper>
+		</demo-block>
+		<demo-block title="交叉淡入淡出">
+			<z-swiper effect="fade" :fadeEffect="{crossFade:true}" :modules="modules">
+				<z-swiper-item v-for="item in list" :key="item.id">
+					<demo-item :item="item"></demo-item>
+				</z-swiper-item>
+			</z-swiper>
+		</demo-block>
+		<demo-block title="无限循环">
+			<z-swiper v-model:list="loopList" loop effect="fade" :modules="modules">
+				<z-swiper-item v-for="item in loopList" :key="item.id">
+					<demo-item :item="item"></demo-item>
+				</z-swiper-item>
+			</z-swiper>
+		</demo-block>
+	</view>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import data from '../../common/js/data.js'
-const options = {
-  effect: 'fade',
-  fadeEffect: {
-    crossFade: true
-  }
-}
-const optionsAutoplay = {
-  effect: 'fade',
-  fadeEffect: {
-    crossFade: true
-  },
-  autoplay: true
-}
-const optionsVertical = {
-  effect: 'fade',
-  fadeEffect: {
-    crossFade: true
-  },
-  direction: 'vertical'
-}
-const optionsLoop = {
-  effect: 'fade',
-  fadeEffect: {
-    crossFade: true
-  },
-  loop: true
-}
-const list = ref(data)
-const loopList = ref(data)
+	import {
+		ref
+	} from 'vue'
+	import data from '../../common/js/data.js'
+	import {
+		EffectFade
+	} from '@/uni_modules/zebra-swiper/modules'
+
+	const modules = ref([EffectFade])
+	const list = ref([...data])
+	const loopList = ref([...data])
 </script>
+
+<style lang="scss">
+	@use "@/uni_modules/zebra-swiper/modules/effect-fade/effect-fade.scss";
+</style>

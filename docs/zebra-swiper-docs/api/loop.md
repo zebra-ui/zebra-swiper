@@ -18,7 +18,7 @@ v3版本对loop的逻辑进行了深度重构。
 :::
 
 :::danger
-使用`loop`无限循环必须设置`v-for`的`key`值为唯一标识。且强烈推荐数组中的item使用对象，如果是字符串，必须确保字符串是唯一的。不可使用循环中的`index`，因为无法正确匹配到需要移动的节点。
+使用`loop`无限循环必须设置`v-for`的`key`值为唯一标识。且强烈推荐数组中的item使用对象，并且对象数组更符合轮播的数据结构。如果是字符串，必须确保字符串是唯一的。不可使用循环中的`index`，因为无法正确匹配到需要移动的节点，从而造成图片间歇性闪烁。
 
 设置循环的`key`不仅对for循环的性能有好处，并且会影响节点更新时的处理方式。
 
@@ -45,18 +45,18 @@ v3版本对loop的逻辑进行了深度重构。
 ### loop
 
 ::: tip
-web-h5，web-pc 不需要将数据传递给swiper，swiper会直接操作dom节点。
+`z-swiper-native` 组件不需要将数据传递给swiper，swiper会直接操作dom节点。
 :::
 
 通过将`loop`设置为`true`即可开启无限循环。
 
-通过 `v-model:list` 将数据传递给swiper。（H5不需要传递）
+通过 `v-model:list` 将数据传递给swiper。（`z-swiper-native`不需要传递）
 
 <ComponentInfo type="Boolean" value="false"></ComponentInfo>
 
 <DemoBlock expanded>
 <z-swiper v-model:list="list" grabCursor loop>
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -64,8 +64,8 @@ web-h5，web-pc 不需要将数据传递给swiper，swiper会直接操作dom节�
 <template #code>
 
 ```html
-<z-swiper v-model:list="list" grabCursor loop> // H5不需要传递v-model // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+<z-swiper v-model:list="list" grabCursor loop> // z-swiper-native不需要传递v-model // [!code ++]
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -83,7 +83,7 @@ web-h5，web-pc 不需要将数据传递给swiper，swiper会直接操作dom节�
 
 ```html
 <z-swiper v-model:list="list" grabCursor loop :loopPreventsSliding="false"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>

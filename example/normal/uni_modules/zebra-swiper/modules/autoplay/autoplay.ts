@@ -124,7 +124,7 @@ export default function Autoplay({
 
   const run = (delayForce?: number) => {
     if (swiper.destroyed || !swiper.autoplay.running) return
-    cancelAnimationFrame(Number(raf))
+    if (isWeb()) cancelAnimationFrame(Number(raf))
     calcTimeLeft()
 
     let delay =
@@ -209,7 +209,7 @@ export default function Autoplay({
   const stop = (): boolean => {
     swiper.autoplay.running = false
     clearTimeout(timeout)
-    cancelAnimationFrame(Number(raf))
+    if (isWeb()) cancelAnimationFrame(Number(raf))
     emit('autoplayStop')
     return true
   }

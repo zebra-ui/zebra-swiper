@@ -123,27 +123,19 @@ const calculateCurrentPosition: CalculateCurrentPosition = (
   duration,
   elapsedTime
 ) => {
-  // 方案1：对于快速滑动，直接跳到目标位置
   if (Math.abs(targetX - startX) > 100 && elapsedTime < 50) {
     return Math.round(targetX)
   }
-
-  // 如果已经过的���超过动画总时间，直接返回目标位置
   if (elapsedTime >= duration) {
     return Math.round(targetX)
   }
-
-  // 计算总位移
   const totalDistance = targetX - startX
 
-  // 计算动画完成的比例，使用 ease-out 效果
   const progress = Math.max(0, Math.min(1, elapsedTime / duration))
-  const easedProgress = progress * (2 - progress) // 添加简单的 ease-out 效果
+  const easedProgress = progress * (2 - progress)
 
-  // 计算当前位���并取整
   const position = Math.round(startX + totalDistance * easedProgress)
 
-  // 确保位置不会超过目标位置
   if (totalDistance > 0) {
     return Math.min(position, targetX)
   } else {
@@ -456,7 +448,7 @@ const elementOffset: ElementOffset = (el) => {
   }
 }
 
-const elementPrevAll: ElementPrevAll = (el, selector) => {
+const elementPrevAll: ElementPrevAll = (el, selector, wrapperEl) => {
   debugConsole('elementPrevAll', el, selector)
   if (isWeb()) {
     const prevEls = []
@@ -469,13 +461,21 @@ const elementPrevAll: ElementPrevAll = (el, selector) => {
     }
     return prevEls
   } else {
-    return el.childrenList
-      .filter((res: any, index: number) => index < el.childrenList.indexOf(el))
-      .reverse()
+    return wrapperEl
+      ? wrapperEl.children
+          .filter(
+            (res: any, index: number) => index < wrapperEl.children.indexOf(el)
+          )
+          .reverse()
+      : el.childrenList
+          .filter(
+            (res: any, index: number) => index < el.childrenList.indexOf(el)
+          )
+          .reverse()
   }
 }
 
-const elementNextAll: ElementNextAll = (el, selector) => {
+const elementNextAll: ElementNextAll = (el, selector, wrapperEl) => {
   debugConsole('elementNextAll', el, selector)
   if (isWeb()) {
     const nextEls = []
@@ -488,9 +488,13 @@ const elementNextAll: ElementNextAll = (el, selector) => {
     }
     return nextEls
   } else {
-    return el.childrenList.filter(
-      (res: any, index: number) => index > el.childrenList.indexOf(el)
-    )
+    return wrapperEl
+      ? wrapperEl.children.filter(
+          (res: any, index: number) => index > wrapperEl.children.indexOf(el)
+        )
+      : el.childrenList.filter(
+          (res: any, index: number) => index > el.childrenList.indexOf(el)
+        )
   }
 }
 
@@ -503,7 +507,7 @@ const elementStyle: ElementStyle = (el, prop) => {
   }
 }
 
-const elementIndex: ElementIndex = (el) => {
+const elementIndex: ElementIndex = (el, wrapperEl) => {
   debugConsole('elementIndex', el)
   if (isWeb()) {
     let child = el
@@ -518,7 +522,9 @@ const elementIndex: ElementIndex = (el) => {
     }
   } else {
     if (el) {
-      return el.childrenList.indexOf(el)
+      return wrapperEl
+        ? wrapperEl.children.indexOf(el)
+        : el.childrenList.indexOf(el)
     }
   }
 
@@ -556,8 +562,12 @@ const elementTransitionEnd: ElementTransitionEnd = (el, callback) => {
       el.addEventListener('transitionend', fireCallBack)
     }
   } else {
+    const regex = new RegExp(
+      `[${['swiperWrapper', 'swiperItem'].join('')}]`,
+      'g'
+    )
     function fireCallBack(e: any) {
-      if (e.target.id !== `swiperWrapper${el.uid}`) return
+      if (e.target.id.toString().replace(regex, '') !== `${el.uid}`) return
       callback.call(el, e)
       el.removeEventListener(
         'transitionend',
@@ -661,7 +671,7 @@ const getRect: GetRect = (instance, selector) => {
           if (data && data.width) {
             resolve(data)
           } else {
-            reject('获取swiper节点信息失败')
+            console.warn(`[ZebraSwiper] ${selector}:获取swiper节点信息失败`)
           }
         })
         .exec()

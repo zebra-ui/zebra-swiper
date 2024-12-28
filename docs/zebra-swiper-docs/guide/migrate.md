@@ -6,6 +6,8 @@ outline: deep
 
 ::: warning
 `zebra-swiper` v3 版本已全面基于 Vue 3 重构，因此不再兼容 Vue 2。
+
+同时，2.x版本非重大问题，将不再继续维护，且不在提供新功能。
 :::
 
 如果您的项目仍在使用 Vue 2，可以选择继续使用 `zebra-swiper` 2.x 版本或考虑升级项目以支持 Vue 3。
@@ -19,7 +21,7 @@ outline: deep
 ```html
 <z-swiper v-model="list" :options="{slidesPerView: 2}">
   // [!code --]
-  <z-swiper-item v-for="(item, index) in list" :key="index">
+  <z-swiper-item v-for="item in list" :key="index">
     <image class="image" :src="item" mode="aspectFill"></image>
   </z-swiper-item>
 </z-swiper>
@@ -31,7 +33,7 @@ outline: deep
 
 ```html
 <z-swiper :slidesPerView="2"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <image class="image" :src="item.url" mode="aspectFill"></image>
   </z-swiper-item>
 </z-swiper>
@@ -46,9 +48,9 @@ outline: deep
 在 2.x 版本中，事件监听提供了两种方法：
 
 - **传统的 `v-on` 监听**。
-- **`swiper` 内置的事件监听**（推荐）。
+- **`swiper` 内置的事件监听**。
 
-推荐第二种方法的原因是，某些小程序环境中，`swiper` 实例在传递过程中会产生兼容性问题。例如：
+2.x推荐第二种方法的原因是，某些小程序环境中，`swiper` 实例在传递过程中会产生兼容性问题。例如：
 
 ```vue
 <script>
@@ -64,8 +66,7 @@ slideChange(swiper) {
 在 v3 中，这一问题已被解决。通过 Vue 3 的 Proxy 机制，小程序环境下的实例兼容性得到了显著改进，同时推荐统一使用 `v-on` 方式监听事件。例如：
 
 ```html
-<z-swiper @swiper="..." @slideChange="..." @reachEnd="..."></z-swiper> // [!code
-++]
+<z-swiper @swiper="..." @slideChange="..." @init="..."></z-swiper>  // [!code ++]
 ```
 
 ```vue
@@ -86,7 +87,7 @@ const slideChange = (swiper) => {
 
 ```html
 <z-swiper v-model="list">
-  <z-swiper-item v-for="(item, index) in list" :key="index">
+  <z-swiper-item v-for="item in list" :key="index">
     <image class="image" :src="item" mode="aspectFill"></image>
   </z-swiper-item>
 </z-swiper>
@@ -100,7 +101,7 @@ const slideChange = (swiper) => {
 
 ```html
 <z-swiper>
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <view class="swiper-item">{{ item.text }}</view>
   </z-swiper-item>
 </z-swiper>
@@ -112,7 +113,7 @@ const slideChange = (swiper) => {
 
 ```html
 <z-swiper v-model:list="list" loop>
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <view class="swiper-item">{{ item.text }}</view>
   </z-swiper-item>
 </z-swiper>

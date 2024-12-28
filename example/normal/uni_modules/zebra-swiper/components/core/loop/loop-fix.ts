@@ -22,7 +22,6 @@ const loopFix: LoopFix = function (
   }: LoopFixOptions = {}
 ) {
   const swiper = this as SwiperInterface & { __preventObserver__?: boolean }
-
   if (!swiper.params.loop) return
   swiper.emit('beforeLoopFix')
 
@@ -175,28 +174,28 @@ const loopFix: LoopFix = function (
   }
 
   if (isPrev) {
-    prependSlidesIndexes.forEach((index) => {
-      ;(slides[index] as any).swiperLoopMoveDOM = true
-      if (isWeb()) {
+    if (isWeb()) {
+      prependSlidesIndexes.forEach((index) => {
+        ;(slides[index] as any).swiperLoopMoveDOM = true
         slidesEl.prepend(slides[index] as HTMLElement)
-      } else {
-        // @ts-ignore
-        slidesEl.prepend(slides[index], index)
-      }
-      ;(slides[index] as any).swiperLoopMoveDOM = false
-    })
+        ;(slides[index] as any).swiperLoopMoveDOM = false
+      })
+    } else {
+      // @ts-ignore
+      prependSlidesIndexes.length && slidesEl.prepend(prependSlidesIndexes)
+    }
   }
   if (isNext) {
-    appendSlidesIndexes.forEach((index) => {
-      ;(slides[index] as any).swiperLoopMoveDOM = true
-      if (isWeb()) {
+    if (isWeb()) {
+      appendSlidesIndexes.forEach((index) => {
+        ;(slides[index] as any).swiperLoopMoveDOM = true
         slidesEl.append(slides[index] as HTMLElement)
-      } else {
-        // @ts-ignore
-        slidesEl.append(slides[index], index)
-      }
-      ;(slides[index] as any).swiperLoopMoveDOM = false
-    })
+        ;(slides[index] as any).swiperLoopMoveDOM = false
+      })
+    } else {
+      // @ts-ignore
+      appendSlidesIndexes.length && slidesEl.append(appendSlidesIndexes)
+    }
   }
 
   swiper.recalcSlides()

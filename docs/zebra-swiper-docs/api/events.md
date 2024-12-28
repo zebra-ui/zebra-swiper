@@ -10,7 +10,7 @@ swiper组件挂载完成时触发。
 
 ```html
 <z-swiper @swiper="onSwiper"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -30,7 +30,7 @@ swiper中的activeIndex变化时触发。
 
 ```html
 <z-swiper @slideChange="onSlideChange"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -54,7 +54,7 @@ swiper中的realIndex变化时触发。
 
 ```html
 <z-swiper loop @realIndexChange="onRealIndexChange"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -74,7 +74,7 @@ const onRealIndexChange = (swiper) => {
 
 ```html
 <z-swiper @click="onClick"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -95,7 +95,7 @@ swiper初始化前触发。
 
 ```html
 <z-swiper @beforeInit="onSwiperBeforeInit"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -115,7 +115,7 @@ swiper初始化时触发。
 
 ```html
 <z-swiper @init="onSwiperInit"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -135,7 +135,7 @@ swiper初始化后触发。
 
 ```html
 <z-swiper @afterInit="onSwiperAfterInit"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -155,7 +155,7 @@ const onSwiperAfterInit = (swiper) => {
 
 ```html
 <z-swiper @touchStart="onTouchStart"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -176,7 +176,7 @@ const onTouchStart = (swiper, event) => {
 
 ```html
 <z-swiper @touchMove="onTouchMove"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -197,7 +197,7 @@ const onTouchMove = (swiper, event) => {
 
 ```html
 <z-swiper @touchEnd="onTouchEnd"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -218,7 +218,7 @@ const onTouchEnd = (swiper, event) => {
 
 ```html
 <z-swiper @touchMoveOpposite="onTouchMoveOpposite"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -239,7 +239,7 @@ snapIndex变化时触发。
 
 ```html
 <z-swiper @snapIndexChange="onSnapIndexChange"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -259,7 +259,7 @@ const onSnapIndexChange = (swiper) => {
 
 ```html
 <z-swiper @slideChangeTransitionStart="onSlideChangeTransitionStart"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -279,7 +279,7 @@ const onSlideChangeTransitionStart = (swiper) => {
 
 ```html
 <z-swiper @slideChangeTransitionEnd="onSlideChangeTransitionEnd"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -299,7 +299,7 @@ const onSlideChangeTransitionEnd = (swiper) => {
 
 ```html
 <z-swiper @slideNextTransitionStart="onSlideNextTransitionStart"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -319,7 +319,7 @@ const onSlideNextTransitionStart = (swiper) => {
 
 ```html
 <z-swiper @slideNextTransitionEnd="onSlideNextTransitionEnd"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -339,7 +339,7 @@ const onSlideNextTransitionEnd = (swiper) => {
 
 ```html
 <z-swiper @activeIndexChange="onActiveIndexChange"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -359,7 +359,7 @@ const onActiveIndexChange = (swiper) => {
 
 ```html
 <z-swiper @beforeDestroy="onBeforeDestroy"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -379,7 +379,7 @@ const onBeforeDestroy = (swiper) => {
 
 ```html
 <z-swiper @beforeLoopFix="onBeforeLoopFix"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -399,7 +399,7 @@ const onBeforeLoopFix = (swiper) => {
 
 ```html
 <z-swiper @beforeResize="onBeforeResize"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -419,7 +419,7 @@ const onBeforeResize = (swiper) => {
 
 ```html
 <z-swiper @beforeSlideChangeStart="onBeforeSlideChangeStart"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -439,7 +439,7 @@ const onBeforeSlideChangeStart = (swiper) => {
 
 ```html
 <z-swiper @beforeTransitionStart="onBeforeTransitionStart"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -461,7 +461,7 @@ const onBeforeTransitionStart = (swiper, speed, internal) => {
 
 ```html
 <z-swiper @breakpoint="onBreakpoint"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -482,7 +482,7 @@ const onBreakpoint = (swiper, breakpointParams) => {
 
 ```html
 <z-swiper @changeDirection="onChangeDirection"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -502,7 +502,7 @@ const onChangeDirection = (swiper) => {
 
 ```html
 <z-swiper @destroy="onDestroy"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -522,7 +522,7 @@ const onDestroy = (swiper) => {
 
 ```html
 <z-swiper @doubleClick="onDoubleClick"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -543,7 +543,7 @@ const onDoubleClick = (swiper, event) => {
 
 ```html
 <z-swiper @doubleTap="onDoubleTap"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -564,7 +564,7 @@ const onDoubleTap = (swiper, event) => {
 
 ```html
 <z-swiper @fromEdge="onFromEdge"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -584,7 +584,7 @@ const onFromEdge = (swiper) => {
 
 ```html
 <z-swiper @lock="onLock"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -604,7 +604,7 @@ const onLock = (swiper) => {
 
 ```html
 <z-swiper @loopFix="onLoopFix"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -624,7 +624,7 @@ const onLoopFix = (swiper) => {
 
 ```html
 <z-swiper @momentumBounce="onMomentumBounce"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -644,7 +644,7 @@ const onMomentumBounce = (swiper) => {
 
 ```html
 <z-swiper @observerUpdate="onObserverUpdate"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -664,7 +664,7 @@ const onObserverUpdate = (swiper) => {
 
 ```html
 <z-swiper @orientationchange="onOrientationchange"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -684,7 +684,7 @@ const onOrientationchange = (swiper) => {
 
 ```html
 <z-swiper @progress="onProgress"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -705,7 +705,7 @@ const onProgress = (swiper, progress) => {
 
 ```html
 <z-swiper @reachBeginning="onReachBeginning"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -725,7 +725,7 @@ const onReachBeginning = (swiper) => {
 
 ```html
 <z-swiper @reachEnd="onReachEnd"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -745,7 +745,7 @@ const onReachEnd = (swiper) => {
 
 ```html
 <z-swiper @resize="onResize"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -765,7 +765,7 @@ const onResize = (swiper) => {
 
 ```html
 <z-swiper @setTransition="onSetTransition"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -786,7 +786,7 @@ const onSetTransition = (swiper, transition) => {
 
 ```html
 <z-swiper @setTranslate="onSetTranslate"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -807,7 +807,7 @@ const onSetTranslate = (swiper, translate) => {
 
 ```html
 <z-swiper @slidePrevTransitionEnd="onSlidePrevTransitionEnd"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -827,7 +827,7 @@ const onSlidePrevTransitionEnd = (swiper) => {
 
 ```html
 <z-swiper @slidePrevTransitionStart="onSlidePrevTransitionStart"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -847,7 +847,7 @@ const onSlidePrevTransitionStart = (swiper) => {
 
 ```html
 <z-swiper @slideResetTransitionEnd="onSlideResetTransitionEnd"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -867,7 +867,7 @@ const onSlideResetTransitionEnd = (swiper) => {
 
 ```html
 <z-swiper @slideResetTransitionStart="onSlideResetTransitionStart"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -887,7 +887,7 @@ const onSlideResetTransitionStart = (swiper) => {
 
 ```html
 <z-swiper @sliderFirstMove="onSliderFirstMove"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -908,7 +908,7 @@ const onSliderFirstMove = (swiper, event) => {
 
 ```html
 <z-swiper @sliderMove="onSliderMove"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -929,7 +929,7 @@ const onSliderMove = (swiper, event) => {
 
 ```html
 <z-swiper @slidesGridLengthChange="onSlidesGridLengthChange"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -949,7 +949,7 @@ const onSlidesGridLengthChange = (swiper) => {
 
 ```html
 <z-swiper @slidesLengthChange="onSlidesLengthChange"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -969,7 +969,7 @@ const onSlidesLengthChange = (swiper) => {
 
 ```html
 <z-swiper @slidesUpdated="onSlidesUpdated"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -989,7 +989,7 @@ const onSlidesUpdated = (swiper) => {
 
 ```html
 <z-swiper @snapGridLengthChange="onSnapGridLengthChange"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -1009,7 +1009,7 @@ const onSnapGridLengthChange = (swiper) => {
 
 ```html
 <z-swiper @tap="onTap"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -1030,7 +1030,7 @@ const onTap = (swiper, event) => {
 
 ```html
 <z-swiper @toEdge="onToEdge"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -1050,7 +1050,7 @@ const onToEdge = (swiper) => {
 
 ```html
 <z-swiper @transitionEnd="onTransitionEnd"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -1070,7 +1070,7 @@ const onTransitionEnd = (swiper) => {
 
 ```html
 <z-swiper @transitionStart="onTransitionStart"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -1090,7 +1090,7 @@ const onTransitionStart = (swiper) => {
 
 ```html
 <z-swiper @unlock="onUnlock"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -1110,7 +1110,7 @@ const onUnlock = (swiper) => {
 
 ```html
 <z-swiper @update="onUpdate"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>

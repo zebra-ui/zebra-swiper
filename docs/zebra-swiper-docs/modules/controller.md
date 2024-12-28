@@ -42,13 +42,25 @@ outline: deep
 
 <!--@include: ./../.vitepress/mixins/modulesTip.md-->
 
-```vue
+::: code-group
+
+```vue [npm]
 <script lang="ts" setup>
 import { Controller } from '@zebra-ui/swiper/modules'
 
 const modules = ref([Controller])
 </script>
 ```
+
+```vue [uni_modules]
+<script lang="ts" setup>
+import { Controller } from '@/uni_modules/zebra-swiper/modules'
+
+const modules = ref([Controller])
+</script>
+```
+
+:::
 
 ## 配置
 
@@ -60,12 +72,12 @@ const modules = ref([Controller])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :modules="modules" :controller="{ control: swiperInstance['control'] }">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
 <z-swiper grabCursor :modules="modules" @swiper="onSwiper($event, 'control')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -77,12 +89,12 @@ const modules = ref([Controller])
   :modules="modules"
   :controller="{ control: swiperInstance['control'] }"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
 <z-swiper grabCursor :modules="modules" @swiper="onSwiper($event, 'control')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -100,12 +112,12 @@ const modules = ref([Controller])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :modules="modules" :controller="{ control: swiperInstance['inverse'],inverse:true }">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
 <z-swiper grabCursor :modules="modules" @swiper="onSwiper($event, 'inverse')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -117,12 +129,12 @@ const modules = ref([Controller])
   :modules="modules"
   :controller="{ control: swiperInstance['inverse'],inverse:true }"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
 <z-swiper grabCursor :modules="modules" @swiper="onSwiper($event, 'inverse')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -138,17 +150,17 @@ const modules = ref([Controller])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :modules="modules" :controller="{ control: [swiperInstance['example2'],swiperInstance['example3']] }" @swiper="onSwiper($event, 'example1')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
 <z-swiper grabCursor :modules="modules" :controller="{ control: swiperInstance['example1'] }" @swiper="onSwiper($event, 'example2')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
 <z-swiper grabCursor :modules="modules" :controller="{ control: swiperInstance['example1'] }" @swiper="onSwiper($event, 'example3')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -161,7 +173,7 @@ const modules = ref([Controller])
   :controller="{ control: [swiperInstance['example2'],swiperInstance['example3']] }"
   @swiper="onSwiper($event, 'example1')"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -171,7 +183,7 @@ const modules = ref([Controller])
   :controller="{ control: swiperInstance['example1'] }"
   @swiper="onSwiper($event, 'example2')"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -181,7 +193,7 @@ const modules = ref([Controller])
   :controller="{ control: swiperInstance['example1'] }"
   @swiper="onSwiper($event, 'example3')"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>

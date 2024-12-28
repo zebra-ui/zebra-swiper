@@ -118,14 +118,14 @@ export function createApp() {
 ```vue [npm]
 <!-- APP.vue -->
 <style lang="scss">
-@import '@zebra-ui/swiper/index';
+@use '@zebra-ui/swiper/index';
 </style>
 ```
 
 ```vue [uni_modules]
 <!-- APP.vue -->
 <style lang="scss">
-@import '@/uni_modules/zebra-swiper/index';
+@use '@/uni_modules/zebra-swiper/index';
 </style>
 ```
 
@@ -157,7 +157,7 @@ export function createApp() {
 </script>
 
 <z-swiper grabCursor>
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <view class="swiper-item">
     {{item.text}}
     </view>
@@ -193,7 +193,7 @@ export function createApp() {
 </script>
 
 <z-swiper grabCursor>
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <view class="swiper-item"> {{item.text}} </view>
   </z-swiper-item>
 </z-swiper>

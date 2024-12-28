@@ -252,9 +252,9 @@ class Swiper {
       slidesEl,
       `.${params.slideClass}, swiper-slide`
     )
-    const firstSlideIndex = elementIndex(slides[0])
+    const firstSlideIndex = elementIndex(slides[0], slidesEl)
     // @ts-ignore
-    return elementIndex(slideEl) - Number(firstSlideIndex)
+    return elementIndex(slideEl, slidesEl) - Number(firstSlideIndex)
   }
 
   getSlideIndexByData(index: number): number {

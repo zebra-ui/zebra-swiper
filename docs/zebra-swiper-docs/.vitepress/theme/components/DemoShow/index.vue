@@ -72,6 +72,7 @@ const creativeEffectOptions2 = reactive({
         grabCursor
         loop
         autoplay
+        :speed="1000"
         effect="cube"
         :modules="modules"
         :custom-style="{ height: '200px', width: '80%' }"

@@ -10,7 +10,8 @@ import type {
   ConvertStyleValue,
   ConvertSingleValue,
   MoveToFirst,
-  MoveToLast
+  MoveToLast,
+  CompareArrays
 } from '../../types/components/components-shared/utils'
 
 const isObject: IsObject = (o) => {
@@ -143,7 +144,6 @@ const convertSingleValue: ConvertSingleValue = (
 
   if (percentReg.test(value)) {
     if (!parentWidth) {
-      console.warn('处理百分比值时需要提供父元素宽度')
       return value
     }
     const finalValue = (numValue / 100) * parentWidth
@@ -153,25 +153,67 @@ const convertSingleValue: ConvertSingleValue = (
   return value
 }
 
-const moveToFirst: MoveToFirst = (arr, index) => {
-  if (index < 0 || index >= arr.length) {
-    console.error('Index out of bounds')
-    return arr
-  }
-  const [item] = arr.splice(index, 1)
-  arr.unshift(item)
+const moveToFirst: MoveToFirst = (arr, indices) => {
+  const elementsToMove = indices.map((index) => arr[index])
+  const remainingElements = arr.filter((_, index) => !indices.includes(index))
+  return [...elementsToMove.reverse(), ...remainingElements]
+}
+
+const moveToFirstOperate: MoveToFirst = (arr, indices) => {
+  const elementsToMove = indices.map((index) => arr[index])
+  elementsToMove.forEach((element) => {
+    const index = arr.indexOf(element)
+    if (index > -1) {
+      arr.splice(index, 1)
+      arr.unshift(element)
+    }
+  })
   return arr
 }
 
-const moveToLast: MoveToLast = (arr, index) => {
-  if (index < 0 || index >= arr.length) {
-    console.error('Index out of bounds')
-    return arr
+const moveToLast: MoveToLast = (arr, indices) => {
+  const elementsToMove = indices.map((index) => arr[index])
+  const remainingElements = arr.filter((_, index) => !indices.includes(index))
+  return [...remainingElements, ...elementsToMove]
+}
+
+const moveToLastOperate: MoveToLast = (arr, indices) => {
+  const elementsToMove = indices.map((index) => arr[index])
+  elementsToMove.forEach((element) => {
+    const index = arr.indexOf(element)
+    if (index > -1) {
+      arr.splice(index, 1)
+    }
+  })
+  arr.push(...elementsToMove)
+  return arr
+}
+
+const compareArrays: CompareArrays = (arr1, arr2, keys = []) => {
+  if (
+    !Array.isArray(arr1) ||
+    !Array.isArray(arr2) ||
+    arr1.length !== arr2.length
+  ) {
+    return false
   }
 
-  const [item] = arr.splice(index, 1)
-  arr.push(item)
-  return arr
+  return arr1.every((item1, index) => {
+    const item2 = arr2[index]
+
+    if (keys.length > 0) {
+      return keys.every((key) => item1[key] === item2[key])
+    }
+
+    const keys1 = Object.keys(item1)
+    const keys2 = Object.keys(item2)
+
+    if (keys1.length !== keys2.length) {
+      return false
+    }
+
+    return keys1.every((key) => item1[key] === item2[key])
+  })
 }
 
 export {
@@ -186,5 +228,8 @@ export {
   convertStyleValue,
   convertSingleValue,
   moveToFirst,
-  moveToLast
+  moveToLast,
+  moveToFirstOperate,
+  moveToLastOperate,
+  compareArrays
 }

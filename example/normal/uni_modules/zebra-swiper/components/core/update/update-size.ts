@@ -17,10 +17,16 @@ const updateSize: UpdateSize = function (this: SwiperInterface) {
   ) {
     // eslint-disable-next-line prefer-destructuring
     width = swiper.params.width
-  } else if ((el as SwiperInstance)?.rectWidth) {
-    width = (el as SwiperInstance).rectWidth
   } else {
-    width = isWeb() ? (el as HTMLElement).clientWidth : windowWidth
+    if (isWeb()) {
+      width = (el as HTMLElement).clientWidth
+    } else {
+      if ((el as SwiperInstance)?.rectWidth) {
+        width = (el as SwiperInstance).rectWidth
+      } else {
+        width = windowWidth
+      }
+    }
   }
 
   if (
@@ -29,10 +35,16 @@ const updateSize: UpdateSize = function (this: SwiperInterface) {
   ) {
     // eslint-disable-next-line prefer-destructuring
     height = swiper.params.height
-  } else if ((el as SwiperInstance)?.rectHeight) {
-    height = (el as SwiperInstance).rectHeight
   } else {
-    height = isWeb() ? (el as HTMLElement).clientHeight : windowHeight
+    if (isWeb()) {
+      height = (el as HTMLElement).clientHeight
+    } else {
+      if ((el as SwiperInstance)?.rectHeight) {
+        height = (el as SwiperInstance).rectHeight
+      } else {
+        height = windowHeight
+      }
+    }
   }
 
   if (

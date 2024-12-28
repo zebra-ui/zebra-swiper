@@ -30,6 +30,7 @@
       >
       </view>
     </template>
+    <slot></slot>
   </view>
 </template>
 

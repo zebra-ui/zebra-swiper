@@ -23,7 +23,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :slidesPerView="2">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -32,7 +32,7 @@
 
 ```html
 <z-swiper grabCursor :slidesPerView="2"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -50,7 +50,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor slidesPerView="auto">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id" :custom-style="{width:'40%'}">
+  <z-swiper-item v-for="item in list" :key="item.id" :custom-style="{width:'40%'}">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -60,7 +60,7 @@
 ```html
 <z-swiper grabCursor slidesPerView="auto"> // [!code ++]
   <z-swiper-item
-    v-for="(item, index) in list"
+    v-for="item in list"
     :key="item.id"
     :custom-style="{width:'40%'}"
   >
@@ -81,7 +81,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :slidesPerView="3" centeredSlides>
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -90,7 +90,7 @@
 
 ```html
 <z-swiper grabCursor :slidesPerView="3" centeredSlides> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -112,7 +112,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :slidesPerView="3" centeredSlides centeredSlidesBounds>
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -121,7 +121,7 @@
 
 ```html
 <z-swiper grabCursor :slidesPerView="3" centeredSlides centeredSlidesBounds> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -139,7 +139,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :slidesPerView="2" :slidesPerGroup="2">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -148,7 +148,7 @@
 
 ```html
 <z-swiper grabCursor :slidesPerView="2" :slidesPerGroup="2"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -168,7 +168,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :slidesPerView="2" :slidesPerGroup="2" :slidesPerGroupSkip="1">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -182,7 +182,7 @@
   :slidesPerGroup="2"
   :slidesPerGroupSkip="1"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -200,7 +200,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor slidesPerView="auto" slidesPerGroupAuto>
-  <z-swiper-item v-for="(item, index) in list" :key="item.id" :custom-style="{width:'40%'}">
+  <z-swiper-item v-for="item in list" :key="item.id" :custom-style="{width:'40%'}">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -210,7 +210,7 @@
 ```html
 <z-swiper grabCursor slidesPerView="auto" slidesPerGroupAuto> // [!code ++]
   <z-swiper-item
-    v-for="(item, index) in list"
+    v-for="item in list"
     :key="item.id"
     :custom-style="{width:'40%'}"
   >
@@ -231,7 +231,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :slidesPerView="2" :spaceBetween="10">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -240,7 +240,7 @@
 
 ```html
 <z-swiper grabCursor :slidesPerView="2" :spaceBetween="10"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -258,7 +258,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :slidesPerView="2" :slidesOffsetBefore="30">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -267,7 +267,7 @@
 
 ```html
 <z-swiper grabCursor :slidesPerView="2" :slidesOffsetBefore="30"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -285,7 +285,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :slidesPerView="2" :slidesOffsetAfter="30">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -294,7 +294,7 @@
 
 ```html
 <z-swiper grabCursor :slidesPerView="2" :slidesOffsetAfter="30"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -314,7 +314,7 @@
 
 ```html
 <z-swiper grabCursor :normalizeSlideIndex="false"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -328,7 +328,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :slidesPerView="8" centerInsufficientSlides>
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -337,7 +337,7 @@
 
 ```html
 <z-swiper grabCursor :slidesPerView="8" centerInsufficientSlides> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -355,7 +355,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor slidesPerView="auto" centeredSlides :spaceBetween="10">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id" :custom-style="{width:'80%'}">
+  <z-swiper-item v-for="item in list" :key="item.id" :custom-style="{width:'80%'}">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -365,7 +365,7 @@
 ```html
 <z-swiper grabCursor :slidesPerView="auto" centeredSlides :spaceBetween="10"> // [!code ++]
   <z-swiper-item
-    v-for="(item, index) in list"
+    v-for="item in list"
     :key="item.id"
     :custom-style="{width:'80%'}"
   >

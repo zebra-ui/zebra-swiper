@@ -31,7 +31,7 @@ swiper的子容器，通常每个item代表一个轮播块。与`z-swiper`搭配
 
 <DemoBlock expanded>
 <z-swiper grabCursor>
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -40,7 +40,7 @@ swiper的子容器，通常每个item代表一个轮播块。与`z-swiper`搭配
 
 ```html
 <z-swiper grabCursor> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id"> // [!code ++]
+  <z-swiper-item v-for="item in list" :key="item.id"> // [!code ++]
     <view class="swiper-item"> {{item.text}} </view>
   </z-swiper-item>  // [!code ++]
 </z-swiper> // [!code ++]
@@ -69,7 +69,7 @@ swiper的子容器，通常每个item代表一个轮播块。与`z-swiper`搭配
 <DemoBlock expanded>
 
 <z-swiper-native grabCursor>
-  <z-swiper-item-native v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item-native v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item-native>
 </z-swiper-native>
@@ -78,7 +78,7 @@ swiper的子容器，通常每个item代表一个轮播块。与`z-swiper`搭配
 
 ```html
 <z-swiper-native grabCursor> // [!code ++]
-  <z-swiper-item-native v-for="(item, index) in list" :key="item.id"> // [!code ++]
+  <z-swiper-item-native v-for="item in list" :key="item.id"> // [!code ++]
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item-native> // [!code ++]
 </z-swiper-native> // [!code ++]
@@ -97,7 +97,7 @@ swiper内置的切换器组件，开发者无需关注。
 <DemoBlock expanded>
 
 <z-swiper grabCursor navigation :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -106,7 +106,7 @@ swiper内置的切换器组件，开发者无需关注。
 
 ```html
 <z-swiper grabCursor navigation :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -153,7 +153,7 @@ swiper内置的分页器组件，开发者无需关注。
 <DemoBlock expanded>
 
 <z-swiper grabCursor pagination :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -162,7 +162,7 @@ swiper内置的分页器组件，开发者无需关注。
 
 ```html
 <z-swiper grabCursor pagination :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -209,7 +209,7 @@ swiper内置的滚动条组件，开发者无需关注。
 <DemoBlock expanded>
 
 <z-swiper grabCursor scrollbar :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -218,7 +218,7 @@ swiper内置的滚动条组件，开发者无需关注。
 
 ```html
 <z-swiper grabCursor scrollbar :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>

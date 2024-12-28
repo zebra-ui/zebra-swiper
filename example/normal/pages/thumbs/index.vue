@@ -1,96 +1,73 @@
 <template>
-  <view class="demo-swiper">
-    <demo-block title="基础用法">
-      <z-swiper ref="zswiper" v-model="list" :options="options">
-        <z-swiper-item v-for="(item, index) in list" :key="index">
-          <demo-item :item="item"></demo-item>
-        </z-swiper-item>
-      </z-swiper>
-      <z-swiper
-        ref="zswiperthumbs"
-        :custom-style="{ 'margin-top': '10rpx' }"
-        v-model="list"
-        :options="optionsThumbs"
-        @swiper="setThumbsSwiper"
-      >
-        <z-swiper-item v-for="(item, index) in list" :key="index">
-          <demo-item :item="item" height="150rpx"></demo-item>
-        </z-swiper-item>
-      </z-swiper>
-    </demo-block>
-    <demo-block title="自动播放">
-      <z-swiper ref="zswiperauto" v-model="list" :options="optionsAuto">
-        <z-swiper-item v-for="(item, index) in list" :key="index">
-          <demo-item :item="item"></demo-item>
-        </z-swiper-item>
-      </z-swiper>
-      <z-swiper
-        ref="zswiperthumbsauto"
-        :custom-style="{ 'margin-top': '10rpx' }"
-        v-model="list"
-        :options="optionsThumbsAuto"
-        @swiper="setThumbsAutoSwiper"
-      >
-        <z-swiper-item v-for="(item, index) in list" :key="index">
-          <demo-item :item="item" height="150rpx"></demo-item>
-        </z-swiper-item>
-      </z-swiper>
-    </demo-block>
-  </view>
+	<view class="demo-swiper">
+		<demo-block title="基础用法">
+			<z-swiper v-if="!!swiperInstance['thumbs']" :modules="modules"
+				:thumbs="{ swiper: swiperInstance['thumbs'] }">
+				<z-swiper-item v-for="item in list" :key="item.id">
+					<demo-item :item="item"></demo-item>
+				</z-swiper-item>
+			</z-swiper>
+			<view class="thumb-swiper">
+				<z-swiper :custom-style="{height:'100rpx'}" :modules="modules" watch-slides-progress :spaceBetween="10"
+					:slidesPerView="4" freeMode @swiper="onSwiper($event,'thumbs')">
+					<z-swiper-item v-for="item in list" :key="item.id">
+						<demo-item :item="item" height="100rpx"></demo-item>
+					</z-swiper-item>
+				</z-swiper>
+			</view>
+		</demo-block>
+		<demo-block title="无限循环">
+			<z-swiper v-if="!!swiperInstance['thumbsLoop']" v-model:list="loopList" loop :modules="modules"
+				:thumbs="{ swiper: swiperInstance['thumbsLoop'] }">
+				<z-swiper-item v-for="item in loopList" :key="item.id">
+					<demo-item :item="item"></demo-item>
+				</z-swiper-item>
+			</z-swiper>
+			<view class="thumb-swiper">
+				<z-swiper v-model:list="loopListThumbs" loop :custom-style="{height:'100rpx'}" :modules="modules"
+					watch-slides-progress :spaceBetween="10" :slidesPerView="4" freeMode
+					@swiper="onSwiper($event,'thumbsLoop')">
+					<z-swiper-item v-for="item in loopListThumbs" :key="item.id">
+						<demo-item :item="item" height="100rpx"></demo-item>
+					</z-swiper-item>
+				</z-swiper>
+			</view>
+		</demo-block>
+	</view>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-import data from '../../common/js/data.js'
-const optionsThumbs = {
-  spaceBetween: 10,
-  slidesPerView: 4,
-  freeMode: true,
-  watchSlidesProgress: true,
-  thumbs: {
-    use: true
-  }
-}
-const options = {
-  spaceBetween: 10,
-  thumbs: {
-    swiper: true
-  }
-}
-const optionsThumbsAuto = {
-  spaceBetween: 10,
-  slidesPerView: 4,
-  freeMode: true,
-  watchSlidesProgress: true,
-  thumbs: {
-    use: true
-  }
-}
-const optionsAuto = {
-  spaceBetween: 10,
-  thumbs: {
-    swiper: true
-  },
-  autoplay: true
-}
+<script setup lang="ts">
+	import {
+		ref
+	} from 'vue'
+	import data from '../../common/js/data.js'
+	import {
+		Thumb
+	} from '@/uni_modules/zebra-swiper/modules'
+	import type { SwiperInterface } from '@/uni_modules/zebra-swiper/types'
 
-const list = ref(data)
+	const modules = ref([Thumb])
+	const list = ref([...data])
+	const loopList = ref([...data])
+	const loopListThumbs = ref([...data])
 
-const zswiper = ref()
-const zswiperthumbs = ref()
-const zswiperauto = ref()
-const zswiperthumbsauto = ref()
+	const swiperInstance = ref({})
 
-const setThumbsSwiper = () => {
-  zswiper.value.swiper.on('beforeMount', (swiper) => {
-    zswiper.value.swiper.params.thumbs.swiper = zswiperthumbs.value.swiper
-  })
-}
-
-const setThumbsAutoSwiper = () => {
-  zswiperauto.value.swiper.on('beforeMount', (swiper) => {
-    zswiperauto.value.swiper.params.thumbs.swiper =
-      zswiperthumbsauto.value.swiper
-  })
-}
+	const onSwiper = (swiper : SwiperInterface, name : string) => {
+		swiperInstance.value[name] = swiper
+	}
 </script>
+
+<style lang="scss">
+	.thumb-swiper {
+		margin-top: 10px;
+
+		.swiper-slide {
+			opacity: 0.4;
+		}
+
+		.swiper-slide-thumb-active {
+			opacity: 1;
+		}
+	}
+</style>

@@ -221,8 +221,9 @@ export default function Thumb({
     if (!thumbs || !thumbs.swiper) return
 
     if (
-      typeof thumbs.swiper === 'string' ||
-      thumbs.swiper instanceof HTMLElement
+      isWeb() &&
+      (typeof thumbs.swiper === 'string' ||
+        thumbs.swiper instanceof HTMLElement)
     ) {
       const getThumbsElementAndInit = () => {
         const thumbsElement =

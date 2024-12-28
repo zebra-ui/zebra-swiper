@@ -88,11 +88,19 @@ export interface ElementOffset {
 }
 
 export interface ElementPrevAll {
-  (el: HTMLElement | any, selector?: string): HTMLElement[] | any[]
+  (
+    el: HTMLElement | any,
+    selector?: string,
+    wrapperEl?: HTMLElement | any
+  ): HTMLElement[] | any[]
 }
 
 export interface ElementNextAll {
-  (el: HTMLElement | any, selector?: string): HTMLElement[] | any[]
+  (
+    el: HTMLElement | any,
+    selector?: string,
+    wrapperEl?: HTMLElement | any
+  ): HTMLElement[] | any[]
 }
 
 export interface ElementStyle {
@@ -100,7 +108,7 @@ export interface ElementStyle {
 }
 
 export interface ElementIndex {
-  (el: HTMLElement | any): number | undefined
+  (el: HTMLElement | any, wrapperEl?: HTMLElement | any): number | undefined
 }
 
 export interface ElementParents {

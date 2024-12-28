@@ -54,7 +54,7 @@ const modules = ref([FreeMode])
 
 <DemoBlock expanded>
 <z-swiper grabCursor freeMode :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -63,7 +63,7 @@ const modules = ref([FreeMode])
 
 ```html
 <z-swiper grabCursor freeMode :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -79,7 +79,7 @@ const modules = ref([FreeMode])
 
 ```html
 <z-swiper grabCursor :freeMode="{enabled:true}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -93,7 +93,7 @@ const modules = ref([FreeMode])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :freeMode="{momentum:false}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -102,7 +102,7 @@ const modules = ref([FreeMode])
 
 ```html
 <z-swiper grabCursor :freeMode="{momentum:false}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -120,7 +120,7 @@ const modules = ref([FreeMode])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :freeMode="{momentumBounce:false}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -129,7 +129,7 @@ const modules = ref([FreeMode])
 
 ```html
 <z-swiper grabCursor :freeMode="{momentumBounce:false}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -147,7 +147,7 @@ const modules = ref([FreeMode])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :freeMode="{momentumBounceRatio:5}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -156,7 +156,7 @@ const modules = ref([FreeMode])
 
 ```html
 <z-swiper grabCursor :freeMode="{momentumBounceRatio:5}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -174,7 +174,7 @@ swiper滑动释放后，滑动的距离。
 
 <DemoBlock expanded>
 <z-swiper grabCursor :freeMode="{momentumRatio:5}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -183,7 +183,7 @@ swiper滑动释放后，滑动的距离。
 
 ```html
 <z-swiper grabCursor :freeMode="{momentumRatio:5}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -201,7 +201,7 @@ swiper滑动释放后，滑动的速度。
 
 <DemoBlock expanded>
 <z-swiper grabCursor :freeMode="{momentumVelocityRatio:5}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -210,7 +210,7 @@ swiper滑动释放后，滑动的速度。
 
 ```html
 <z-swiper grabCursor :freeMode="{momentumVelocityRatio:5}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -228,7 +228,7 @@ swiper滑动释放后，滑动的速度。
 
 <DemoBlock expanded>
 <z-swiper grabCursor :freeMode="{minimumVelocity:1}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -237,7 +237,7 @@ swiper滑动释放后，滑动的速度。
 
 ```html
 <z-swiper grabCursor :freeMode="{minimumVelocity:1}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -255,7 +255,7 @@ swiper滑动释放后，滑动的速度。
 
 <DemoBlock expanded>
 <z-swiper grabCursor :freeMode="{sticky:true}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -264,7 +264,7 @@ swiper滑动释放后，滑动的速度。
 
 ```html
 <z-swiper grabCursor :freeMode="{sticky:true}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>

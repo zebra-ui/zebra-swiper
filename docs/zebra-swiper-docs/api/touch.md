@@ -23,7 +23,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :initialSlide="2" :allowSlideNext="false">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -32,7 +32,7 @@
 
 ```html
 <z-swiper grabCursor :initialSlide="2" :allowSlideNext="false"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -50,7 +50,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :initialSlide="2" :allowSlidePrev="false">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -59,7 +59,7 @@
 
 ```html
 <z-swiper grabCursor :initialSlide="2" :allowSlidePrev="false"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -77,7 +77,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :allowTouchMove="false">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -86,7 +86,7 @@
 
 ```html
 <z-swiper grabCursor :allowTouchMove="false"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -104,7 +104,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :followFinger="false">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -113,7 +113,7 @@
 
 ```html
 <z-swiper grabCursor :followFinger="false"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -131,7 +131,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :longSwipesMs="100">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -140,7 +140,7 @@
 
 ```html
 <z-swiper grabCursor :longSwipesMs="100"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -158,7 +158,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :longSwipesRatio="0.1">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -167,7 +167,7 @@
 
 ```html
 <z-swiper grabCursor :longSwipesRatio="0.1"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -185,7 +185,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :longSwipes="false">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -194,7 +194,7 @@
 
 ```html
 <z-swiper grabCursor :longSwipes="false"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -213,7 +213,7 @@
 设置为 `2` 时：
 <DemoBlock expanded>
 <z-swiper grabCursor :touchRatio="2">
-<z-swiper-item v-for="(item, index) in list" :key="item.id">
+<z-swiper-item v-for="item in list" :key="item.id">
 <DemoItem :text="item.text"></DemoItem>
 </z-swiper-item>
 </z-swiper>
@@ -222,7 +222,7 @@
 
 ```html
 <z-swiper grabCursor :touchRatio="2"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -235,7 +235,7 @@
 设置为 `-1` 时：
 <DemoBlock expanded>
 <z-swiper grabCursor :touchRatio="-1">
-<z-swiper-item v-for="(item, index) in list" :key="item.id">
+<z-swiper-item v-for="item in list" :key="item.id">
 <DemoItem :text="item.text"></DemoItem>
 </z-swiper-item>
 </z-swiper>
@@ -244,7 +244,7 @@
 
 ```html
 <z-swiper grabCursor :touchRatio="-1"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -262,7 +262,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :shortSwipes="false">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -271,7 +271,7 @@
 
 ```html
 <z-swiper grabCursor :shortSwipes="false"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -289,7 +289,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :threshold="100">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -298,7 +298,7 @@
 
 ```html
 <z-swiper grabCursor :threshold="100"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -320,7 +320,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :touchAngle="5">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -329,7 +329,7 @@
 
 ```html
 <z-swiper grabCursor :touchAngle="5"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -349,7 +349,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :resistance="false">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -358,7 +358,7 @@
 
 ```html
 <z-swiper grabCursor :resistance="false"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -380,7 +380,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :resistanceRatio="0">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -389,7 +389,7 @@
 
 ```html
 <z-swiper grabCursor :resistanceRatio="0"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -407,7 +407,7 @@
 
 <DemoBlock expanded>
 <z-swiper grabCursor :speed="5000" preventInteractionOnTransition>
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -416,7 +416,7 @@
 
 ```html
 <z-swiper grabCursor :speed="5000" preventInteractionOnTransition> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>

@@ -39,7 +39,7 @@
 <DemoOprate type="primary" @click="()=>swiperInstance['slideTo'].slideTo(3)">切换至下标3的item</DemoOprate>
 </template>
 <z-swiper grabCursor @swiper="onSwiper($event,'slideTo')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -72,7 +72,7 @@
 <DemoOprate type="primary" @click="()=>swiperInstance['slideToLoop'].slideToLoop(3)">切换至下标3的item</DemoOprate>
 </template>
 <z-swiper grabCursor loop @swiper="onSwiper($event,'slideToLoop')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -104,7 +104,7 @@
 <DemoOprate type="primary" @click="()=>swiperInstance['slideNext'].slideNext()">切换至下一个item</DemoOprate>
 </template>
 <z-swiper grabCursor @swiper="onSwiper($event,'slideNext')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -136,7 +136,7 @@
 <DemoOprate type="primary" @click="()=>swiperInstance['slidePrev'].slidePrev()">切换至上一个item</DemoOprate>
 </template>
 <z-swiper grabCursor :initialSlide="3" @swiper="onSwiper($event,'slidePrev')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -164,7 +164,7 @@
 <DemoOprate type="primary" @click="()=>swiperInstance['enableAndDisable'].enable()">启用swiper</DemoOprate>
 </template>
 <z-swiper grabCursor @swiper="onSwiper($event,'enableAndDisable')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -200,7 +200,7 @@
 <DemoOprate type="primary" @click="()=>swiperInstance['destroy'].destroy()">销毁swiper</DemoOprate>
 </template>
 <z-swiper grabCursor @swiper="onSwiper($event,'destroy')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -231,7 +231,7 @@
 <DemoOprate type="primary" @click="()=>swiperInstance['changeDirection'].changeDirection()">切换swiper方向</DemoOprate>
 </template>
 <z-swiper grabCursor :custom-style="{height:'200px'}" @swiper="onSwiper($event,'changeDirection')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -273,7 +273,7 @@
 <DemoOprate type="primary" @click="()=>swiperInstance['setTranslate'].setTranslate(-100)">设置swiper的translate</DemoOprate>
 </template>
 <z-swiper grabCursor @swiper="onSwiper($event,'setTranslate')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -307,7 +307,7 @@
 <DemoOprate type="primary" @click="()=>swiperInstance['translateTo'].translateTo(-200,1000)">translateTo</DemoOprate>
 </template>
 <z-swiper grabCursor @swiper="onSwiper($event,'translateTo')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -339,7 +339,7 @@
 <DemoOprate type="primary" @click="()=>swiperInstance['setProgress'].setProgress(0.5,1000)">setProgress</DemoOprate>
 </template>
 <z-swiper grabCursor @swiper="onSwiper($event,'setProgress')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -367,7 +367,7 @@
 <DemoOprate type="primary" @click="()=>swiperInstance['attachEvents'].attachEvents()">重新绑定事件</DemoOprate>
 </template>
 <z-swiper grabCursor @swiper="onSwiper($event,'attachEvents')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -399,7 +399,7 @@
 <DemoOprate  @click="()=>swiperInstance['on'].off('click')">移除监听</DemoOprate>
 </template>
 <z-swiper grabCursor @swiper="onSwiper($event,'on')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -470,7 +470,7 @@
 <DemoOprate @click="()=>swiperInstance['setGrabCursor'].unsetGrabCursor()">关闭鼠标抓手</DemoOprate>
 </template>
 <z-swiper @swiper="onSwiper($event,'setGrabCursor')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -533,7 +533,7 @@ swiper的高度：{{swiperInstance['updateSize'] && swiperInstance['updateSize']
 <DemoOprate type="primary" @click="()=>swiperInstance['updateSize'].updateSize()">更新swiper高度</DemoOprate>
 </template>
 <z-swiper grabCursor @swiper="onSwiper($event,'updateSize')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>

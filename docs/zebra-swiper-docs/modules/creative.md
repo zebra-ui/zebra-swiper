@@ -42,7 +42,9 @@ outline: deep
 
 <!--@include: ./../.vitepress/mixins/modulesTip.md-->
 
-```vue
+::: code-group
+
+```vue [npm]
 <script lang="ts" setup>
 import { EffectCreative } from '@zebra-ui/swiper/modules'
 
@@ -50,11 +52,31 @@ const modules = ref([EffectCreative])
 </script>
 ```
 
-```css
+```vue [uni_modules]
+<script lang="ts" setup>
+import { EffectCreative } from '@/uni_modules/zebra-swiper/modules'
+
+const modules = ref([EffectCreative])
+</script>
+```
+
+:::
+
+::: code-group
+
+```css [npm]
 <style lang="scss">
     @use "@zebra-ui/swiper/modules/effect-creative/effect-creative.scss";
 </style>
 ```
+
+```css [uni_modules]
+<style lang="scss">
+    @use "@/uni_modules/zebra-swiper/modules/effect-creative/effect-creative.scss";
+</style>
+```
+
+:::
 
 ## 配置
 
@@ -81,7 +103,7 @@ const modules = ref([EffectCreative])
         translate:['100%',150,100]
     }
   }" :custom-style="{width:'200px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -103,7 +125,7 @@ const modules = ref([EffectCreative])
   }"
   :custom-style="{width:'200px'}"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -132,7 +154,7 @@ const modules = ref([EffectCreative])
         rotate:[0,0,100]
     }
   }" :custom-style="{width:'200px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -156,7 +178,7 @@ const modules = ref([EffectCreative])
   }"
   :custom-style="{width:'200px'}"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -185,7 +207,7 @@ const modules = ref([EffectCreative])
         scale:10
     }
   }" :custom-style="{width:'200px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -209,7 +231,7 @@ const modules = ref([EffectCreative])
   }"
   :custom-style="{width:'200px'}"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -238,7 +260,7 @@ const modules = ref([EffectCreative])
         opacity:0.1
     }
   }" :custom-style="{width:'200px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -262,7 +284,7 @@ const modules = ref([EffectCreative])
   }"
   :custom-style="{width:'200px'}"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -293,7 +315,7 @@ const modules = ref([EffectCreative])
         origin:'right bottom'
     }
   }" :custom-style="{width:'200px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -319,7 +341,7 @@ const modules = ref([EffectCreative])
   }"
   :custom-style="{width:'200px'}"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -353,7 +375,7 @@ const modules = ref([EffectCreative])
   }"
   :custom-style="{width:'200px'}"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -380,7 +402,7 @@ const modules = ref([EffectCreative])
     },
     limitProgress:2
   }" :custom-style="{width:'300px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -404,7 +426,7 @@ const modules = ref([EffectCreative])
   }"
   :custom-style="{width:'300px'}"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>

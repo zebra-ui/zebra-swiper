@@ -30,11 +30,11 @@ export default function Resize({
         entries.forEach(({ contentBoxSize, contentRect, target }) => {
           if (target && target !== swiper.el) return
           newWidth = contentRect
-            ? contentRect.width
-            : (contentBoxSize[0] || contentBoxSize).inlineSize
+            ? Math.round(contentRect.width)
+            : Math.round((contentBoxSize[0] || contentBoxSize).inlineSize)
           newHeight = contentRect
-            ? contentRect.height
-            : (contentBoxSize[0] || contentBoxSize).blockSize
+            ? Math.round(contentRect.height)
+            : Math.round((contentBoxSize[0] || contentBoxSize).blockSize)
         })
         if (newWidth !== width || newHeight !== height) {
           resizeHandler()

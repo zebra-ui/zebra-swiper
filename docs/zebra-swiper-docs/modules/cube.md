@@ -42,7 +42,9 @@ outline: deep
 
 <!--@include: ./../.vitepress/mixins/modulesTip.md-->
 
-```vue
+::: code-group
+
+```vue [npm]
 <script lang="ts" setup>
 import { EffectCube } from '@zebra-ui/swiper/modules'
 
@@ -50,18 +52,38 @@ const modules = ref([EffectCube])
 </script>
 ```
 
-```css
+```vue [uni_modules]
+<script lang="ts" setup>
+import { EffectCube } from '@/uni_modules/zebra-swiper/modules'
+
+const modules = ref([EffectCube])
+</script>
+```
+
+:::
+
+::: code-group
+
+```css [npm]
 <style lang="scss">
     @use "@zebra-ui/swiper/modules/effect-cube/effect-cube.scss";
 </style>
 ```
+
+```css [uni_modules]
+<style lang="scss">
+    @use "@/uni_modules/zebra-swiper/modules/effect-cube/effect-cube.scss";
+</style>
+```
+
+:::
 
 ## 使用
 
 <DemoBlock expanded>
 <div style="padding:40px;">
 <z-swiper grabCursor effect="cube" :modules="modules" :custom-style="{width:'200px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -70,7 +92,7 @@ const modules = ref([EffectCube])
 
 ```html
 <z-swiper grabCursor effect="cube" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -91,7 +113,7 @@ const modules = ref([EffectCube])
 <DemoBlock expanded>
 <div style="padding:40px;">
 <z-swiper grabCursor effect="cube" :modules="modules" :cubeEffect="{shadow:false}" :custom-style="{width:'200px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -105,7 +127,7 @@ const modules = ref([EffectCube])
   :cubeEffect="{shadow:false}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -124,7 +146,7 @@ const modules = ref([EffectCube])
 <DemoBlock expanded>
 <div style="padding:40px;">
 <z-swiper grabCursor effect="cube" :modules="modules" :cubeEffect="{slideShadows:false}" :custom-style="{width:'200px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -138,7 +160,7 @@ const modules = ref([EffectCube])
   :cubeEffect="{slideShadows:false}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -157,7 +179,7 @@ const modules = ref([EffectCube])
 <DemoBlock expanded>
 <div style="padding:40px;">
 <z-swiper grabCursor effect="cube" :modules="modules" :cubeEffect="{shadowOffset:0}" :custom-style="{width:'200px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -171,7 +193,7 @@ const modules = ref([EffectCube])
   :cubeEffect="{shadowOffset:0}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -190,7 +212,7 @@ const modules = ref([EffectCube])
 <DemoBlock expanded>
 <div style="padding:40px;">
 <z-swiper grabCursor effect="cube" :modules="modules" :cubeEffect="{shadowScale:0.3}" :custom-style="{width:'200px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -204,7 +226,7 @@ const modules = ref([EffectCube])
   :cubeEffect="{shadowScale:0.3}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>

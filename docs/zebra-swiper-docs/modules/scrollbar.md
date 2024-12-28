@@ -44,7 +44,9 @@ outline: deep
 
 <!--@include: ./../.vitepress/mixins/modulesTip.md-->
 
-```vue
+::: code-group
+
+```vue [npm]
 <script lang="ts" setup>
 import { Scrollbar } from '@zebra-ui/swiper/modules'
 
@@ -52,11 +54,31 @@ const modules = ref([Scrollbar])
 </script>
 ```
 
-```css
+```vue [uni_modules]
+<script lang="ts" setup>
+import { Scrollbar } from '@/uni_modules/zebra-swiper/modules'
+
+const modules = ref([Scrollbar])
+</script>
+```
+
+:::
+
+::: code-group
+
+```css [npm]
 <style lang="scss">
     @use "@zebra-ui/swiper/modules/scrollbar/scrollbar.scss";
 </style>
 ```
+
+```css [uni_modules]
+<style lang="scss">
+    @use "@/uni_modules/zebra-swiper/modules/scrollbar/scrollbar.scss";
+</style>
+```
+
+:::
 
 ## 配置
 
@@ -68,7 +90,7 @@ const modules = ref([Scrollbar])
 
 <DemoBlock expanded>
 <z-swiper grabCursor scrollbar :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -77,7 +99,7 @@ const modules = ref([Scrollbar])
 
 ```html
 <z-swiper grabCursor scrollbar :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -95,7 +117,7 @@ const modules = ref([Scrollbar])
 
 ```html
 <z-swiper grabCursor :scrollbar="{enabled:true}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -109,7 +131,7 @@ const modules = ref([Scrollbar])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :scrollbar="{draggable:true}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -118,7 +140,7 @@ const modules = ref([Scrollbar])
 
 ```html
 <z-swiper grabCursor :scrollbar="{draggable:true}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -136,7 +158,7 @@ const modules = ref([Scrollbar])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :scrollbar="{dragSize:200}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -145,7 +167,7 @@ const modules = ref([Scrollbar])
 
 ```html
 <z-swiper grabCursor :scrollbar="{dragSize:200}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -163,7 +185,7 @@ const modules = ref([Scrollbar])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :scrollbar="{hide:true}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -172,7 +194,7 @@ const modules = ref([Scrollbar])
 
 ```html
 <z-swiper grabCursor :scrollbar="{hide:true}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -190,7 +212,7 @@ const modules = ref([Scrollbar])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :scrollbar="{draggable:true,snapOnRelease:false}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -203,7 +225,7 @@ const modules = ref([Scrollbar])
   :scrollbar="{draggable:true,snapOnRelease:false}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -267,7 +289,7 @@ const modules = ref([Scrollbar])
 
 ```html
 <z-swiper @scrollbarDragStart="onSwiperScrollbarDragStart"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -287,7 +309,7 @@ const onSwiperScrollbarDragStart = (swiper) => {
 
 ```html
 <z-swiper @scrollbarDragMove="onSwiperScrollbarDragMove"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -307,7 +329,7 @@ const onSwiperScrollbarDragMove = (swiper) => {
 
 ```html
 <z-swiper @scrollbarDragEnd="onSwiperScrollbarDragEnd"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -345,7 +367,7 @@ const onSwiperScrollbarDragEnd = (swiper) => {
 
 <DemoBlock expanded style="--swiper-scrollbar-size:14px;">
 <z-swiper grabCursor scrollbar :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -355,7 +377,7 @@ const onSwiperScrollbarDragEnd = (swiper) => {
 ```html
 <div style="--swiper-scrollbar-size:14px;"> // [!code ++]
   <z-swiper grabCursor scrollbar :modules="modules">
-    <z-swiper-item v-for="(item, index) in list" :key="item.id">
+    <z-swiper-item v-for="item in list" :key="item.id">
       <DemoItem :text="item.text"></DemoItem>
     </z-swiper-item>
   </z-swiper>

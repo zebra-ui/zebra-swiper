@@ -39,14 +39,25 @@ outline: deep
 ## 引入
 
 <!--@include: ./../.vitepress/mixins/modulesTip.md-->
+::: code-group
 
-```vue
+```vue [npm]
 <script lang="ts" setup>
 import { Autoplay } from '@zebra-ui/swiper/modules'
 
 const modules = ref([Autoplay])
 </script>
 ```
+
+```vue [uni_modules]
+<script lang="ts" setup>
+import { Autoplay } from '@/uni_modules/zebra-swiper/modules'
+
+const modules = ref([Autoplay])
+</script>
+```
+
+:::
 
 ## 配置
 
@@ -58,7 +69,7 @@ const modules = ref([Autoplay])
 
 <DemoBlock expanded>
 <z-swiper grabCursor autoplay :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -67,7 +78,7 @@ const modules = ref([Autoplay])
 
 ```html
 <z-swiper grabCursor autoplay :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -85,7 +96,7 @@ const modules = ref([Autoplay])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :autoplay="{ delay:500 }" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -94,7 +105,7 @@ const modules = ref([Autoplay])
 
 ```html
 <z-swiper grabCursor :autoplay="{ delay:500 }" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -116,7 +127,7 @@ const modules = ref([Autoplay])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :autoplay="{ disableOnInteraction: true }" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -129,7 +140,7 @@ const modules = ref([Autoplay])
   :autoplay="{ disableOnInteraction: true }"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -146,7 +157,7 @@ const modules = ref([Autoplay])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :autoplay="{ pauseOnMouseEnter: true }" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -155,7 +166,7 @@ const modules = ref([Autoplay])
 
 ```html
 <z-swiper grabCursor :autoplay="{ pauseOnMouseEnter: true }" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -172,7 +183,7 @@ const modules = ref([Autoplay])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :autoplay="{ reverseDirection: true }" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -181,7 +192,7 @@ const modules = ref([Autoplay])
 
 ```html
 <z-swiper grabCursor :autoplay="{ reverseDirection: true }" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -198,7 +209,7 @@ const modules = ref([Autoplay])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :autoplay="{ stopOnLastSlide: true }" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -207,7 +218,7 @@ const modules = ref([Autoplay])
 
 ```html
 <z-swiper grabCursor :autoplay="{ stopOnLastSlide: true }" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -224,7 +235,7 @@ const modules = ref([Autoplay])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :autoplay="{ waitForTransition: false }" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -237,7 +248,7 @@ const modules = ref([Autoplay])
   :autoplay="{ waitForTransition: false }"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -259,7 +270,7 @@ const modules = ref([Autoplay])
 autoplay：{{swiperInstance['paused'] && swiperInstance['paused'].autoplay}}
 </div>
 <z-swiper grabCursor autoplay :modules="modules" @swiper="onSwiper($event,'paused')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -285,7 +296,7 @@ autoplay：{{swiperInstance['paused'] && swiperInstance['paused'].autoplay}}
 <DemoOprate type="primary" @click="()=>swiperInstance['pause'].autoplay.pause()">暂停自动播放</DemoOprate>
 </template>
 <z-swiper grabCursor autoplay :modules="modules" @swiper="onSwiper($event,'pause')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -313,7 +324,7 @@ autoplay：{{swiperInstance['paused'] && swiperInstance['paused'].autoplay}}
 <DemoOprate type="primary" @click="()=>swiperInstance['resume'].autoplay.resume()">恢复自动播放</DemoOprate>
 </template>
 <z-swiper grabCursor autoplay :modules="modules" @swiper="onSwiper($event,'resume')">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -361,7 +372,7 @@ autoplay：{{swiperInstance['paused'] && swiperInstance['paused'].autoplay}}
 
 ```html
 <z-swiper @autoplay="onSwiperAutoplay"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -381,7 +392,7 @@ const onSwiperAutoplay = (swiper) => {
 
 ```html
 <z-swiper @autoplayPause="onSwiperAutoplayPause"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -401,7 +412,7 @@ const onSwiperAutoplayPause = (swiper) => {
 
 ```html
 <z-swiper @autoplayResume="onSwiperAutoplayResume"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -421,7 +432,7 @@ const onSwiperAutoplayResume = (swiper) => {
 
 ```html
 <z-swiper @autoplayStart="onSwiperAutoplayStart"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -441,7 +452,7 @@ const onSwiperAutoplayStart = (swiper) => {
 
 ```html
 <z-swiper @autoplayStop="onSwiperAutoplayStop"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -461,7 +472,7 @@ const onSwiperAutoplayStop = (swiper) => {
 
 ```html
 <z-swiper @autoplayTimeLeft="onSwiperAutoplayTimeLeft"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>

@@ -41,8 +41,9 @@ outline: deep
 ## 引入
 
 <!--@include: ./../.vitepress/mixins/modulesTip.md-->
+::: code-group
 
-```vue
+```vue [npm]
 <script lang="ts" setup>
 import { Navigation } from '@zebra-ui/swiper/modules'
 
@@ -50,11 +51,31 @@ const modules = ref([Navigation])
 </script>
 ```
 
-```css
+```vue [uni_modules]
+<script lang="ts" setup>
+import { Navigation } from '@/uni_modules/zebra-swiper/modules'
+
+const modules = ref([Navigation])
+</script>
+```
+
+:::
+
+::: code-group
+
+```css [npm]
 <style lang="scss">
     @use "@zebra-ui/swiper/modules/navigation/navigation.scss";
 </style>
 ```
+
+```css [uni_modules]
+<style lang="scss">
+    @use "@/uni_modules/zebra-swiper/modules/navigation/navigation.scss";
+</style>
+```
+
+:::
 
 ## 配置
 
@@ -66,7 +87,7 @@ const modules = ref([Navigation])
 
 <DemoBlock expanded>
 <z-swiper grabCursor navigation :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -75,7 +96,7 @@ const modules = ref([Navigation])
 
 ```html
 <z-swiper grabCursor navigation :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -91,7 +112,7 @@ const modules = ref([Navigation])
 
 ```html
 <z-swiper grabCursor :navigation="{enabled:true}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -105,7 +126,7 @@ const modules = ref([Navigation])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :navigation="{hideOnClick:true}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -114,7 +135,7 @@ const modules = ref([Navigation])
 
 ```html
 <z-swiper grabCursor :navigation="{hideOnClick:true}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -167,7 +188,7 @@ const modules = ref([Navigation])
 
 ```html
 <z-swiper @navigationShow="onSwiperNavigationShow"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -187,7 +208,7 @@ const onSwiperNavigationShow = (swiper) => {
 
 ```html
 <z-swiper @navigationHide="onSwiperNavigationHide"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -207,7 +228,7 @@ const onSwiperNavigationHide = (swiper) => {
 
 ```html
 <z-swiper @navigationNext="onSwiperNavigationNext"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -227,7 +248,7 @@ const onSwiperNavigationNext = (swiper) => {
 
 ```html
 <z-swiper @navigationPrev="onSwiperNavigationPrev"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -240,6 +261,38 @@ const onSwiperNavigationPrev = (swiper) => {
 }
 </script>
 ```
+
+## 插槽 {#navigation-slot}
+
+| 名称                   | 描述         |
+|------------------------|--------------|
+| navigation-prev        | 自定义切换Prev   |
+| navigation-next        | 自定义切换Next   |
+
+<DemoBlock expanded>
+<z-swiper grabCursor navigation :modules="modules">
+  <z-swiper-item v-for="item in list" :key="item.id">
+    <DemoItem :text="item.text"></DemoItem>
+  </z-swiper-item>
+  <template #navigation-prev>prev</template>
+  <template #navigation-next>next</template>
+</z-swiper>
+
+<template #code>
+
+```html
+<z-swiper grabCursor navigation :modules="modules">
+  <z-swiper-item v-for="item in list" :key="item.id">
+    <DemoItem :text="item.text"></DemoItem>
+  </z-swiper-item>
+  <template #navigation-prev>prev</template> // [!code ++]
+  <template #navigation-next>next</template> // [!code ++]
+</z-swiper>
+```
+
+  </template>
+
+</DemoBlock>
 
 ## 样式变量
 

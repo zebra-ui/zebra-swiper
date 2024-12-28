@@ -123,9 +123,14 @@ export default function Scrollbar({
 
     ;(dragEl as HTMLElement).style.width = ''
     ;(dragEl as HTMLElement).style.height = ''
-    trackSize = swiper.isHorizontal()
-      ? (el as HTMLElement).offsetWidth
-      : (el as HTMLElement).offsetHeight
+    if (isWeb()) {
+      trackSize = swiper.isHorizontal()
+        ? (el as HTMLElement).offsetWidth
+        : (el as HTMLElement).offsetHeight
+    } else {
+      trackSize = swiper.isHorizontal() ? swiper.width : swiper.height
+    }
+
     divider =
       swiper.size /
       (swiper.virtualSize +
@@ -194,13 +199,8 @@ export default function Scrollbar({
           (dragStartPos !== null ? dragStartPos : dragSize / 2)) /
         (trackSize - dragSize)
     } else {
-      const currentTransform =
-        (
-          elementOffset(el as HTMLElement) as {
-            left: number
-            top: number
-          }
-        ).left || 0
+      // @ts-ignore
+      const currentTransform = el.scrollbarRect.left || 0
       positionRatio =
         (getPointerPosition(e) -
           currentTransform -

@@ -87,6 +87,18 @@
   }
 }
 
+.swiper-button-prev.navigation-slot-show {
+  &::after {
+    content: '';
+  }
+}
+
+.swiper-button-next.navigation-slot-show {
+  &::after {
+    content: '';
+  }
+}
+
 .swiper-button-lock {
   display: none;
 }

@@ -43,9 +43,13 @@ export interface ConvertSingleValue {
 }
 
 export interface MoveToFirst {
-  <T>(arr: T[], index: number): T[]
+  <T>(arr: T[], indices: number[]): T[]
 }
 
 export interface MoveToLast {
-  <T>(arr: T[], index: number): T[]
+  <T>(arr: T[], indices: number[]): T[]
+}
+
+export interface CompareArrays {
+  (arr1: any[], arr2: any[], keys?: string[]): boolean
 }

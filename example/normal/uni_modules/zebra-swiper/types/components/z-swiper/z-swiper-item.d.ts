@@ -40,3 +40,9 @@ export interface SwiperItemExpose {
   getShadowByClass: (className: string) => ShadowItem | undefined
   clearShadow: () => void
 }
+
+export interface ItemTransitionEndMethod {
+  name: string
+  funcName: string
+  callback: (e: Event) => void
+}

@@ -34,6 +34,13 @@ import type {
 } from '../../types/components/z-swiper/z-scrollbar'
 import type { ScrollbarOptions } from '../../types/modules/scrollbar'
 
+defineOptions({
+  name: 'ZScrollbar',
+  options: {
+    virtualHost: true
+  }
+})
+
 const instance = getCurrentInstance() as ComponentInternalInstance
 const props = withDefaults(defineProps<ScrollbarProps>(), {
   swiperRef: null

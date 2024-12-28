@@ -29,13 +29,19 @@
       <Navigation
         ref="prevElRef"
         position="left"
+        :use-slot="!!instance.slots['navigation-prev']"
         @init="initNavigationLeft"
-      ></Navigation>
+      >
+        <slot name="navigation-prev"></slot>
+      </Navigation>
       <Navigation
         ref="nextElRef"
         position="right"
+        :use-slot="!!instance.slots['navigation-next']"
         @init="initNavigationRight"
-      ></Navigation>
+      >
+        <slot name="navigation-next"></slot>
+      </Navigation>
     </template>
     <template v-if="needsScrollbar(props)">
       <Scrollbar
@@ -49,9 +55,12 @@
         ref="paginationElRef"
         :swiper-ref="swiperRef"
         @init="initPagination"
-      ></Pagination>
+      >
+        <slot name="pagination"></slot>
+      </Pagination>
     </template>
     <slot name="container-end"></slot>
+    <view style="display: none">{{ children.length }}</view>
   </view>
 </template>
 
@@ -65,8 +74,8 @@ import {
   onBeforeUnmount,
   reactive,
   watch,
-  nextTick,
   markRaw,
+  provide,
   type ComponentInternalInstance
 } from 'vue'
 import {
@@ -77,7 +86,10 @@ import {
   extend,
   wrapperClass,
   moveToFirst,
-  moveToLast
+  moveToLast,
+  moveToFirstOperate,
+  moveToLastOperate,
+  compareArrays
 } from '../components-shared/utils'
 import { isWeb, getRect } from '../shared/utils'
 import { useChildren } from '../useRelation/use-children'
@@ -118,7 +130,7 @@ const componentName = 'z-swiper'
 const emit = defineEmits([...emitData])
 const props = withDefaults(defineProps<SwiperProps>(), { ...defaults })
 
-const { children, linkChildren } = useChildren(componentName)
+let { children, linkChildren } = useChildren(componentName)
 const containerClasses = ref('swiper')
 const virtualData = ref<VirtualData | null>(null)
 const breakpointChanged = ref(false)
@@ -291,9 +303,9 @@ watch(virtualData, () => {
 
   emit('update:list', virtualOverList)
 
-  nextTick(() => {
+  setTimeout(() => {
     updateOnVirtualData(swiperRef.value as unknown as SwiperInterface)
-  })
+  }, 0)
 })
 
 watch(
@@ -312,6 +324,69 @@ watch(
     deep: true
   }
 )
+
+const originalList = ref<any>([])
+const operatedList = ref<any>([])
+
+watch(
+  () => props.list,
+  () => {
+    if (!isWeb() && props.loop && !props.virtual) {
+      // swiperRef.value.update()
+      const isSwiperChange = compareArrays(
+        props.list as any[],
+        operatedList.value
+      )
+      if (!operatedList.value.length)
+        operatedList.value = [...(props.list as any[])]
+      if (!isSwiperChange) {
+        originalList.value = [...(props.list as any[])]
+        swiperRef.value?.loopDestroy()
+        setTimeout(() => {
+          swiperRef.value?.loopCreate()
+          swiperRef.value?.update()
+        }, 0)
+      } else {
+        operatedList.value = [...(props.list as any[])]
+      }
+    }
+  },
+  { deep: true, immediate: true }
+)
+
+const originalChildren = ref<any>([])
+const operatedChildren = ref<any>([])
+
+watch(
+  () => children,
+  () => {
+    if (!isWeb() && props.loop && !props.virtual) {
+      const isSwiperChange = compareArrays(children, operatedChildren.value, [
+        'uid'
+      ])
+      if (!operatedChildren.value.length) operatedChildren.value = [...children]
+      if (!isSwiperChange) {
+        originalChildren.value = [...children]
+      } else {
+        operatedChildren.value = [...children]
+      }
+    }
+    if (isWeb()) {
+      instance?.proxy?.$forceUpdate()
+    }
+  },
+  { deep: true }
+)
+
+const resetLoopList = () => {
+  operatedList.value = [...originalList.value]
+  operatedChildren.value = [...originalChildren.value]
+  const sortIndexes = originalChildren.value.map((item: any) => item.uid)
+  wrapperEl.children.sort(
+    (a, b) => sortIndexes.indexOf(a.uid) - sortIndexes.indexOf(b.uid)
+  )
+  // emit('update:list', originalList.value)
+}
 
 onMounted(() => {
   if (!swiperElRef.value) return
@@ -441,15 +516,19 @@ const wrapperDispatchEvent = (e: Event) => {
   wrapperTransitionEnd(e)
 }
 
-const prependSlides = (slide: any, index: number) => {
-  wrapperEl.children = moveToFirst(wrapperEl.children, index)
-  const loopList = moveToFirst(props.list || [], index)
+const prependSlides = (indexes: number[]) => {
+  const loopList = moveToFirst(operatedList.value || [], [...new Set(indexes)])
+  moveToFirstOperate(wrapperEl.children, indexes)
+  operatedList.value = [...loopList]
+  operatedChildren.value = [...wrapperEl.children]
   emit('update:list', loopList)
 }
 
-const appendSlides = (slide: any, index: number) => {
-  wrapperEl.children = moveToLast(wrapperEl.children, index)
-  const loopList = moveToLast(props.list || [], index)
+const appendSlides = (indexes: number[]) => {
+  const loopList = moveToLast(operatedList.value || [], [...new Set(indexes)])
+  moveToLastOperate(wrapperEl.children, indexes)
+  operatedList.value = [...loopList]
+  operatedChildren.value = [...wrapperEl.children]
   emit('update:list', loopList)
 }
 
@@ -462,8 +541,11 @@ const wrapperEl = reactive<WrapperEl>({
   dispatchEvent: wrapperDispatchEvent,
   prepend: prependSlides,
   append: appendSlides,
-  swiperShadowRef
+  swiperShadowRef,
+  resetLoopList
 })
+
+provide('swiper', swiperRef)
 
 linkChildren({
   swiperRef,
@@ -476,5 +558,9 @@ useExpose({
   classList,
   wrapperEl,
   className
+})
+
+defineExpose({
+  swiper: swiperRef
 })
 </script>

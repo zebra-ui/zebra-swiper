@@ -44,7 +44,9 @@ outline: deep
 
 <!--@include: ./../.vitepress/mixins/modulesTip.md-->
 
-```vue
+::: code-group
+
+```vue [npm]
 <script lang="ts" setup>
 import { Pagination } from '@zebra-ui/swiper/modules'
 
@@ -52,11 +54,31 @@ const modules = ref([Pagination])
 </script>
 ```
 
-```css
+```vue [uni_modules]
+<script lang="ts" setup>
+import { Pagination } from '@/uni_modules/zebra-swiper/modules'
+
+const modules = ref([Pagination])
+</script>
+```
+
+:::
+
+::: code-group
+
+```css [npm]
 <style lang="scss">
     @use "@zebra-ui/swiper/modules/pagination/pagination.scss";
 </style>
 ```
+
+```css [uni_modules]
+<style lang="scss">
+    @use "@/uni_modules/zebra-swiper/modules/pagination/pagination.scss";
+</style>
+```
+
+:::
 
 ## 配置
 
@@ -68,7 +90,7 @@ const modules = ref([Pagination])
 
 <DemoBlock expanded>
 <z-swiper grabCursor pagination :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -77,7 +99,7 @@ const modules = ref([Pagination])
 
 ```html
 <z-swiper grabCursor pagination :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -95,7 +117,7 @@ const modules = ref([Pagination])
 
 ```html
 <z-swiper grabCursor :pagination="{enabled:true}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -111,7 +133,7 @@ const modules = ref([Pagination])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :pagination="{type:'bullets'}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -120,7 +142,7 @@ const modules = ref([Pagination])
 
 ```html
 <z-swiper grabCursor :pagination="{type:'bullets'}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -134,7 +156,7 @@ const modules = ref([Pagination])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :pagination="{type:'fraction'}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -143,7 +165,7 @@ const modules = ref([Pagination])
 
 ```html
 <z-swiper grabCursor :pagination="{type:'fraction'}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -157,7 +179,7 @@ const modules = ref([Pagination])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :pagination="{type:'progressbar'}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -166,7 +188,7 @@ const modules = ref([Pagination])
 
 ```html
 <z-swiper grabCursor :pagination="{type:'progressbar'}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -184,7 +206,7 @@ const modules = ref([Pagination])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :pagination="{dynamicBullets:true}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -193,7 +215,7 @@ const modules = ref([Pagination])
 
 ```html
 <z-swiper grabCursor :pagination="{dynamicBullets:true}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -215,7 +237,7 @@ const modules = ref([Pagination])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :pagination="{dynamicBullets:true,dynamicMainBullets:2}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -228,7 +250,7 @@ const modules = ref([Pagination])
   :pagination="{dynamicBullets:true,dynamicMainBullets:2}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -248,7 +270,7 @@ const modules = ref([Pagination])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :pagination="{type:'progressbar',progressbarOpposite:true}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -261,7 +283,7 @@ const modules = ref([Pagination])
   :pagination="{type:'progressbar',progressbarOpposite:true}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -279,7 +301,7 @@ const modules = ref([Pagination])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :pagination="{hideOnClick:true}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -288,7 +310,7 @@ const modules = ref([Pagination])
 
 ```html
 <z-swiper grabCursor :pagination="{hideOnClick:true}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -306,7 +328,7 @@ const modules = ref([Pagination])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :pagination="{clickable:true}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -315,7 +337,7 @@ const modules = ref([Pagination])
 
 ```html
 <z-swiper grabCursor :pagination="{clickable:true}" :modules="modules"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -333,7 +355,7 @@ const modules = ref([Pagination])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :pagination="{type:'fraction',formatFractionCurrent:(number)=>`第${number}张`}" :modules="modules">
-    <z-swiper-item v-for="(item, index) in list" :key="item.id">
+    <z-swiper-item v-for="item in list" :key="item.id">
         <DemoItem :text="item.text"></DemoItem>
     </z-swiper-item>
 </z-swiper>
@@ -346,7 +368,7 @@ const modules = ref([Pagination])
   :pagination="{type:'fraction',formatFractionCurrent:(number)=>`第${number}张`}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -364,7 +386,7 @@ const modules = ref([Pagination])
 
 <DemoBlock expanded>
 <z-swiper grabCursor :pagination="{type:'fraction',formatFractionTotal:(number)=>`共${number}张`}" :modules="modules">
-    <z-swiper-item v-for="(item, index) in list" :key="item.id">
+    <z-swiper-item v-for="item in list" :key="item.id">
         <DemoItem :text="item.text"></DemoItem>
     </z-swiper-item>
 </z-swiper>
@@ -377,7 +399,7 @@ const modules = ref([Pagination])
   :pagination="{type:'fraction',formatFractionTotal:(number)=>`共${number}张`}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -430,7 +452,7 @@ const modules = ref([Pagination])
 
 ```html
 <z-swiper @paginationShow="onSwiperPaginationShow"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -450,7 +472,7 @@ const onSwiperPaginationShow = (swiper) => {
 
 ```html
 <z-swiper @paginationHide="onSwiperPaginationHide"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -470,7 +492,7 @@ const onSwiperPaginationHide = (swiper) => {
 
 ```html
 <z-swiper @paginationUpdate="onSwiperPaginationUpdate"> // [!code ++]
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -483,6 +505,66 @@ const onSwiperPaginationUpdate = (swiper) => {
 }
 </script>
 ```
+
+## 插槽 {#pagination-slot}
+
+| 名称                   | 描述         |
+|------------------------|--------------|
+| pagination             | 自定义分页器   |
+
+::: tip
+使用插槽时，请将类型设置为`custom`。
+:::
+
+<DemoBlock expanded>
+<z-swiper grabCursor :pagination="{type:'custom'}" :modules="modules" @swiper="onSwiper($event,'customSlot')">
+  <z-swiper-item v-for="item in list" :key="item.id">
+    <DemoItem :text="item.text"></DemoItem>
+  </z-swiper-item>
+  <template #pagination>
+     <view class="custom-indicator">
+      <view class="custom-indicator-text">
+       {{ swiperInstance['customSlot'] && swiperInstance['customSlot'].activeIndex + 1 }}/{{ list.length }}
+      </view>
+     </view>
+  </template>
+</z-swiper>
+
+<template #code>
+
+```html
+<z-swiper grabCursor :pagination="{type:'custom'}" :modules="modules" @swiper="onSwiper($event,'customSlot')">
+  <z-swiper-item v-for="item in list" :key="item.id">
+    <DemoItem :text="item.text"></DemoItem>
+  </z-swiper-item>
+  <template #pagination>
+     <view class="custom-indicator">
+      <view class="custom-indicator-text">
+       {{ swiperInstance['customSlot'] && swiperInstance['customSlot'].activeIndex + 1 }}/{{ list.length }}
+      </view>
+     </view>
+  </template>
+</z-swiper>
+```
+
+  </template>
+
+</DemoBlock>
+
+<style lang="scss">
+.custom-indicator {
+   display: flex;
+   justify-content: flex-end;
+   margin-right: 30px;
+
+   .custom-indicator-text {
+    background: rgb(0 0 0 / 10%);
+    padding: 4px 10px;
+    font-size: 24px;
+    color: #fff;
+   }
+  }
+</style>
 
 ## 样式变量
 

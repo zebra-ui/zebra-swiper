@@ -1,7 +1,9 @@
 import {
   elementChildren,
   elementNextAll,
-  elementPrevAll
+  elementPrevAll,
+  elementChildrenByTagIndex,
+  isWeb
 } from '../../shared/utils'
 import type {
   ToggleSlideClasses,
@@ -46,6 +48,10 @@ const updateSlidesClasses: UpdateSlidesClasses = function (
     )[0]
   }
 
+  const getFilteredSlideByTag = (index: number): HTMLElement => {
+    return elementChildrenByTagIndex(slidesEl, index)[0]
+  }
+
   let activeSlide: HTMLElement | SwiperItemInstance | undefined
   let prevSlide: HTMLElement | SwiperItemInstance | undefined
   let nextSlide: HTMLElement | SwiperItemInstance | undefined
@@ -56,13 +62,21 @@ const updateSlidesClasses: UpdateSlidesClasses = function (
       if (slideIndex < 0) slideIndex = swiper.virtual.slides.length + slideIndex
       if (slideIndex >= swiper.virtual.slides.length)
         slideIndex -= swiper.virtual.slides.length
-      activeSlide = getFilteredSlide(
-        `[data-swiper-slide-index="${slideIndex}"]`
-      )
+      if (isWeb()) {
+        activeSlide = getFilteredSlide(
+          `[data-swiper-slide-index="${slideIndex}"]`
+        )
+      } else {
+        activeSlide = getFilteredSlideByTag(slideIndex)
+      }
     } else {
-      activeSlide = getFilteredSlide(
-        `[data-swiper-slide-index="${activeIndex}"]`
-      )
+      if (isWeb()) {
+        activeSlide = getFilteredSlide(
+          `[data-swiper-slide-index="${activeIndex}"]`
+        )
+      } else {
+        activeSlide = getFilteredSlideByTag(activeIndex)
+      }
     }
   } else {
     if (gridEnabled) {
@@ -88,7 +102,8 @@ const updateSlidesClasses: UpdateSlidesClasses = function (
       // Next Slide
       nextSlide = elementNextAll(
         activeSlide,
-        `.${params.slideClass}, swiper-slide`
+        `.${params.slideClass}, swiper-slide`,
+        slidesEl
       )[0]
       if (params.loop && !nextSlide) {
         nextSlide = slides[0]
@@ -97,9 +112,11 @@ const updateSlidesClasses: UpdateSlidesClasses = function (
       // Prev Slide
       prevSlide = elementPrevAll(
         activeSlide,
-        `.${params.slideClass}, swiper-slide`
+        `.${params.slideClass}, swiper-slide`,
+        slidesEl
       )[0]
-      if (params.loop && !prevSlide) {
+      // @ts-ignore
+      if (params.loop && !prevSlide === 0) {
         prevSlide = slides[slides.length - 1]
       }
     }

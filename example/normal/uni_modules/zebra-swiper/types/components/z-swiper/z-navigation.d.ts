@@ -5,6 +5,7 @@ export interface NavigationListenerMethod {
 
 export interface NavigationProps {
   position: string
+  useSlot: boolean
 }
 
 export interface NavigationExpose {

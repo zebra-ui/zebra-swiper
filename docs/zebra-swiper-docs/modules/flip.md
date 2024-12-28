@@ -42,7 +42,9 @@ outline: deep
 
 <!--@include: ./../.vitepress/mixins/modulesTip.md-->
 
-```vue
+::: code-group
+
+```vue [npm]
 <script lang="ts" setup>
 import { EffectFlip } from '@zebra-ui/swiper/modules'
 
@@ -50,18 +52,38 @@ const modules = ref([EffectFlip])
 </script>
 ```
 
-```css
+```vue [uni_modules]
+<script lang="ts" setup>
+import { EffectFlip } from '@/uni_modules/zebra-swiper/modules'
+
+const modules = ref([EffectFlip])
+</script>
+```
+
+:::
+
+::: code-group
+
+```css [npm]
 <style lang="scss">
     @use "@zebra-ui/swiper/modules/effect-flip/effect-flip.scss";
 </style>
 ```
+
+```css [uni_modules]
+<style lang="scss">
+    @use "@/uni_modules/zebra-swiper/modules/effect-flip/effect-flip.scss";
+</style>
+```
+
+:::
 
 ## 使用
 
 <DemoBlock expanded>
 <div style="padding:40px;">
 <z-swiper grabCursor effect="flip" :modules="modules" :custom-style="{width:'200px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -70,7 +92,7 @@ const modules = ref([EffectFlip])
 
 ```html
 <z-swiper grabCursor effect="flip" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -91,7 +113,7 @@ const modules = ref([EffectFlip])
 <DemoBlock expanded>
 <div style="padding:40px;">
 <z-swiper grabCursor effect="flip" :modules="modules" :flipEffect="{slideShadows:false}" :custom-style="{width:'200px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -105,7 +127,7 @@ const modules = ref([EffectFlip])
   :flipEffect="{slideShadows:false}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -124,7 +146,7 @@ const modules = ref([EffectFlip])
 <DemoBlock expanded>
 <div style="padding:40px;">
 <z-swiper grabCursor effect="flip" :modules="modules" :flipEffect="{limitRotation:false}" :custom-style="{width:'200px'}">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -138,7 +160,7 @@ const modules = ref([EffectFlip])
   :flipEffect="{limitRotation:false}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>

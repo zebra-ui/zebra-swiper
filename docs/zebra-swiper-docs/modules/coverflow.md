@@ -38,13 +38,25 @@ outline: deep
 
 <!--@include: ./../.vitepress/mixins/modulesTip.md-->
 
-```vue
+::: code-group
+
+```vue [npm]
 <script lang="ts" setup>
 import { EffectCoverflow } from '@zebra-ui/swiper/modules'
 
 const modules = ref([EffectCoverflow])
 </script>
 ```
+
+```vue [uni_modules]
+<script lang="ts" setup>
+import { EffectCoverflow } from '@/uni_modules/zebra-swiper/modules'
+
+const modules = ref([EffectCoverflow])
+</script>
+```
+
+:::
 
 ## 使用
 
@@ -60,7 +72,7 @@ const modules = ref([EffectCoverflow])
       modifier: 1,
       slideShadows: true,
     }" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -82,7 +94,7 @@ const modules = ref([EffectCoverflow])
     }"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -104,7 +116,7 @@ const modules = ref([EffectCoverflow])
 
 <DemoBlock expanded>
 <z-swiper grabCursor effect="coverflow" centeredSlides :slidesPerView="3" :coverflowEffect="{depth: 200}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -120,7 +132,7 @@ const modules = ref([EffectCoverflow])
   :coverflowEffect="{depth: 200}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -138,7 +150,7 @@ const modules = ref([EffectCoverflow])
 
 <DemoBlock expanded>
 <z-swiper grabCursor effect="coverflow" centeredSlides :slidesPerView="3" :coverflowEffect="{rotate: 10}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -154,7 +166,7 @@ const modules = ref([EffectCoverflow])
   :coverflowEffect="{rotate: 10}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -172,7 +184,7 @@ const modules = ref([EffectCoverflow])
 
 <DemoBlock expanded>
 <z-swiper grabCursor effect="coverflow" centeredSlides :slidesPerView="3" :coverflowEffect="{scale: 0.5}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -188,7 +200,7 @@ const modules = ref([EffectCoverflow])
   :coverflowEffect="{scale: 0.5}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -206,7 +218,7 @@ const modules = ref([EffectCoverflow])
 
 <DemoBlock expanded>
 <z-swiper grabCursor effect="coverflow" centeredSlides :slidesPerView="3" :coverflowEffect="{stretch: 20}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -222,7 +234,7 @@ const modules = ref([EffectCoverflow])
   :coverflowEffect="{stretch: 20}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -240,7 +252,7 @@ const modules = ref([EffectCoverflow])
 
 <DemoBlock expanded>
 <z-swiper grabCursor effect="coverflow" centeredSlides :slidesPerView="3" :coverflowEffect="{modifier: 1.2}" :modules="modules">
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -256,7 +268,7 @@ const modules = ref([EffectCoverflow])
   :coverflowEffect="{modifier: 1.2}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>
@@ -281,7 +293,7 @@ const modules = ref([EffectCoverflow])
   :coverflowEffect="{slideShadows: false}"
   :modules="modules"
 >
-  <z-swiper-item v-for="(item, index) in list" :key="item.id">
+  <z-swiper-item v-for="item in list" :key="item.id">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item>
 </z-swiper>

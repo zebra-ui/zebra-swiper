@@ -35,6 +35,8 @@ export const renderVirtual: RenderVirtual = (
 
   for (let i = loopFrom; i < loopTo; i += 1) {
     if (i >= from && i <= to && slidesToRender.length < slides.length) {
+      // @ts-ignore
+      slides[getSlideIndex(i)].virtualIndex = getSlideIndex(i)
       slidesToRender.push(slides[getSlideIndex(i)])
     }
   }

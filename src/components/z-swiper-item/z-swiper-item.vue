@@ -5,6 +5,7 @@
     :style="[styles]"
     :data-swiper-slide-index="swiperItemIndex"
     @click="clickItem"
+    @transitionend="itemTransitionEnd"
   >
     <slot></slot>
     <view
@@ -27,6 +28,7 @@ import {
   onUpdated,
   onBeforeUnmount,
   watch,
+  provide,
   type ComponentInternalInstance,
   type Ref
 } from 'vue'
@@ -37,7 +39,8 @@ import { useParent } from '../useRelation/use-parent'
 import { useStyle, useClass } from '../adapter'
 import type {
   SwiperItemProps,
-  ShadowItem
+  ShadowItem,
+  ItemTransitionEndMethod
 } from '../../types/components/z-swiper/z-swiper-item'
 import type { SwiperInterface } from '../../types/swiper-class'
 import type { ParentProvide } from '../../types/components/use-relation/use-parent'
@@ -70,6 +73,7 @@ const props = withDefaults(defineProps<SwiperItemProps>(), {
 })
 
 const dataSwiperSlideIndex = ref(index.value)
+const virtualSlideIndex = ref(props.virtualIndex)
 const slideClasses = ref('swiper-slide')
 const swiperElRef = ref(parent)
 const swiperRef = computed(
@@ -96,7 +100,7 @@ const swiperItemIndex = computed(() => {
   return typeof props.virtualIndex === 'undefined' &&
     swiperRef.value?.params?.loop
     ? props.swiperSlideIndex || dataSwiperSlideIndex.value
-    : props.virtualIndex
+    : props.virtualIndex || virtualSlideIndex.value
 })
 
 let eventAttached = false
@@ -188,9 +192,9 @@ watch(
 
 const { classList, classNames, className } = useClass(swiperItemClass.value)
 
-const getAttribute = (name: string): string | number | null => {
+const getAttribute = (name: string): string | number | null | undefined => {
   if (name === 'data-swiper-slide-index') {
-    return dataSwiperSlideIndex.value
+    return swiperItemIndex.value
   }
   return props[name as keyof typeof props] as string | number | null
 }
@@ -206,6 +210,50 @@ const removeAttribute = (name: string) => {
     dataSwiperSlideIndex.value = null
   }
 }
+
+const itemTransitionEndMethod = ref<ItemTransitionEndMethod[]>([])
+
+const itemAddEventListener = (
+  name: string,
+  callback: (e: Event) => void,
+  funcName: string
+) => {
+  itemTransitionEndMethod.value.push({
+    name,
+    funcName,
+    callback
+  })
+}
+
+const itemRemoveEventListener = (
+  name: string,
+  callback: (e: Event) => void,
+  funcName: string
+) => {
+  itemTransitionEndMethod.value = itemTransitionEndMethod.value.filter(
+    (func) => func.funcName !== funcName
+  )
+}
+
+const itemTransitionEnd = (e: Event) => {
+  if (!isWeb()) {
+    itemTransitionEndMethod.value.forEach(
+      (func) => func.name == 'transtionend' && func.callback(e)
+    )
+  }
+}
+
+const itemDispatchEvent = (e: Event) => {
+  itemTransitionEnd(e)
+}
+
+const slideData = computed(() => ({
+  isActive: classNames.value.indexOf('swiper-slide-active') >= 0,
+  isVisible: classNames.value.indexOf('swiper-slide-visible') >= 0,
+  isPrev: classNames.value.indexOf('swiper-slide-prev') >= 0,
+  isNext: classNames.value.indexOf('swiper-slide-next') >= 0
+}))
+provide('swiperSlide', slideData)
 useExpose({
   style,
   classList,
@@ -222,6 +270,9 @@ useExpose({
   addShadowItem,
   getShadowList,
   getShadowByClass,
-  clearShadow
+  clearShadow,
+  addEventListener: itemAddEventListener,
+  removeEventListener: itemRemoveEventListener,
+  dispatchEvent: itemDispatchEvent
 })
 </script>
