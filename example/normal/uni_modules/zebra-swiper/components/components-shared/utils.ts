@@ -144,7 +144,6 @@ const convertSingleValue: ConvertSingleValue = (
 
   if (percentReg.test(value)) {
     if (!parentWidth) {
-      console.warn('处理百分比值时需要提供父元素宽度')
       return value
     }
     const finalValue = (numValue / 100) * parentWidth

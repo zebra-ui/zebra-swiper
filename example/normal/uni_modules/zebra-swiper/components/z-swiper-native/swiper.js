@@ -424,6 +424,10 @@ const ZSwiperNative = {
       type: Object,
       default: undefined
     },
+    customEffect: {
+      type: Object,
+      default: undefined
+    },
     hashNavigation: {
       type: [Boolean, Object],
       default: undefined

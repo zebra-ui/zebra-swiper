@@ -101,9 +101,9 @@ export function createApp() {
 
 ### 通过 uni_modules 安装
 
-[zebra-swiper](https://ext.dcloud.net.cn/plugin?id=17407)已经在uniapp的[插件市场](https://ext.dcloud.net.cn/plugin?id=17407)发布。
+[zebra-swiper](https://ext.dcloud.net.cn/plugin?id=7273)已经在uniapp的[插件市场](https://ext.dcloud.net.cn/plugin?id=7273)发布。
 
-如果使用的`IDE`为`HbuilderX`，则可以通过uniapp的[插件市场](https://ext.dcloud.net.cn/plugin?id=17407)进行项目导入。
+如果使用的`IDE`为`HbuilderX`，则可以通过uniapp的[插件市场](https://ext.dcloud.net.cn/plugin?id=7273)进行项目导入。
 
 `uniapp`提供了`uni_modules`自动引入，使用此方法不需要再单独对组件进行引入。
 
