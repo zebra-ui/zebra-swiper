@@ -158,14 +158,14 @@ export function createApp() {
 
 <z-swiper grabCursor>
   <z-swiper-item v-for="item in list" :key="item.id">
-    <view class="swiper-item">
+    <view class="swiper-item-text">
     {{item.text}}
     </view>
   </z-swiper-item>
 </z-swiper>
 
 <style lang="scss">
-  .swiper-item{
+  .swiper-item-text{
     width:100%;
     height:200px;
     display:flex;

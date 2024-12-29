@@ -95,6 +95,9 @@ importers:
       '@zebra-ui/swiper':
         specifier: workspace:^
         version: link:../../src
+      animate.css:
+        specifier: ^4.1.1
+        version: 4.1.1
     devDependencies:
       sass:
         specifier: ^1.83.0
@@ -2302,6 +2305,9 @@ packages:
 
   alien-signals@0.2.2:
     resolution: {integrity: sha512-cZIRkbERILsBOXTQmMrxc9hgpxglstn69zm+F1ARf4aPAzdAFYd6sBq87ErO0Fj3DV94tglcyHG5kQz9nDC/8A==}
+
+  animate.css@4.1.1:
+    resolution: {integrity: sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==}
 
   ansi-escapes@4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
@@ -8529,6 +8535,8 @@ snapshots:
       '@algolia/requester-node-http': 5.17.1
 
   alien-signals@0.2.2: {}
+
+  animate.css@4.1.1: {}
 
   ansi-escapes@4.3.2:
     dependencies:

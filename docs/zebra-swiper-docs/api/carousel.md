@@ -363,7 +363,7 @@
 <template #code>
 
 ```html
-<z-swiper grabCursor :slidesPerView="auto" centeredSlides :spaceBetween="10"> // [!code ++]
+<z-swiper grabCursor slidesPerView="auto" centeredSlides :spaceBetween="10"> // [!code ++]
   <z-swiper-item
     v-for="item in list"
     :key="item.id"

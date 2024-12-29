@@ -49,7 +49,7 @@ Zebra 官方还维护了多个相关项目，为开发者提供了多样化的�
 - 🐛 提交 [Issues](https://github.com/zebra-ui/zebra-swiper/issues)：报告使用中的问题或提出改进建议。
 - 🤝 加入 Zebra 团队：与我们一同探索和推进开源项目的发展。
 
-## 交流群
+## 交流群 {#communication-group}
 
 为了更好地服务开发者社区，我们开设了官方 QQ 交流群，欢迎加入：
 

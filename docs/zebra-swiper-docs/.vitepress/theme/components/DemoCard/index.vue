@@ -25,6 +25,7 @@
   border-color: var(--vp-c-gutter);
   border-radius: 8px;
   overflow: hidden;
+  z-index: 10;
 
   &__footer {
     border-radius: 0 0 8px 8px;

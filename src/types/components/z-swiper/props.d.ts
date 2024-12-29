@@ -114,6 +114,7 @@ export type SwiperProps = Partial<{
   flipEffect: SwiperEffect
   creativeEffect: SwiperEffect
   cardsEffect: SwiperEffect
+  customEffect: SwiperEffect
   hashNavigation: boolean | Record<string, any>
   history: boolean | Record<string, any>
   keyboard: boolean | Record<string, any>

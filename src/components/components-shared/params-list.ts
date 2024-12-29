@@ -106,6 +106,7 @@ const paramsList: string[] = [
   'flipEffect',
   'creativeEffect',
   'cardsEffect',
+  'customEffect',
   'hashNavigation',
   'history',
   'keyboard',

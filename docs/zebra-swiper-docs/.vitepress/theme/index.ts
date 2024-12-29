@@ -14,6 +14,7 @@ import DemoShow from './components/DemoShow/index.vue'
 import DemoHome from './components/DemoHome/index.vue'
 import '@zebra-ui/swiper/index.scss'
 import './main.css'
+import 'animate.css'
 
 export default {
   extends: DefaultTheme,
