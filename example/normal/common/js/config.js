@@ -95,7 +95,7 @@ export default [{
 		]
 	},
 	{
-		groupName: '实验室',
+		groupName: '进阶',
 		list: [{
 			path: '/experiment/carousel',
 			title: 'Carousel 层叠',
