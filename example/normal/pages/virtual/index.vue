@@ -73,7 +73,3 @@
 		})
 	}
 </script>
-
-<style lang="scss">
-	@use "@/uni_modules/zebra-swiper/modules/virtual/virtual.scss";
-</style>

@@ -3,7 +3,7 @@ import type {
   IsGridEnabled,
   SetBreakpoint
 } from '../../../types/components/core/breakpoints/set-breakpoint'
-import { SwiperInterface } from '../../../types/swiper-class'
+import type { SwiperInterface } from '../../../types/swiper-class'
 
 const isGridEnabled: IsGridEnabled = (swiper, params) => {
   return !!(

@@ -42,7 +42,3 @@
 	const modules = ref([Scrollbar])
 	const list = ref([...data])
 </script>
-
-<style lang="scss">
-	@use "@/uni_modules/zebra-swiper/modules/scrollbar/scrollbar.scss";
-</style>

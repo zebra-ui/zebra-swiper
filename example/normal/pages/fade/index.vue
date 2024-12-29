@@ -37,7 +37,3 @@
 	const list = ref([...data])
 	const loopList = ref([...data])
 </script>
-
-<style lang="scss">
-	@use "@/uni_modules/zebra-swiper/modules/effect-fade/effect-fade.scss";
-</style>

@@ -89,7 +89,3 @@
 		}
 	}
 </style>
-
-<style lang="scss">
-	@use "@/uni_modules/zebra-swiper/modules/navigation/navigation.scss";
-</style>

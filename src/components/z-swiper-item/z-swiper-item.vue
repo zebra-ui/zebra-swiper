@@ -44,7 +44,7 @@ import type {
 } from '../../types/components/z-swiper/z-swiper-item'
 import type { SwiperInterface } from '../../types/swiper-class'
 import type { ParentProvide } from '../../types/components/use-relation/use-parent'
-import Swiper from '../../types/swiper-class'
+import type Swiper from '../../types/swiper-class'
 
 const { parent, index } = useParent('z-swiper') as {
   parent: ParentProvide

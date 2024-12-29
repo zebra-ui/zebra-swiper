@@ -2,7 +2,7 @@ import type {
   CheckOverflow,
   CheckOverflowModule
 } from '../../../types/components/core/check-overflow/index'
-import { SwiperInterface } from '../../../types/swiper-class'
+import type { SwiperInterface } from '../../../types/swiper-class'
 
 const checkOverflow: CheckOverflow = function (this: SwiperInterface) {
   const swiper = this

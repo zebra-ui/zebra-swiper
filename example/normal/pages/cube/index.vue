@@ -40,7 +40,3 @@
 	const list = ref([...data])
 	const loopList = ref([...data])
 </script>
-
-<style lang="scss">
-	@use "@/uni_modules/zebra-swiper/modules/effect-cube/effect-cube.scss";
-</style>

@@ -1,7 +1,7 @@
 import { elementStyle, getWindowSize, isWeb } from '../../shared/utils'
 import type { UpdateSize } from '../../../types/components/core/update/update-size'
 import type { SwiperInterface } from '../../../types/swiper-class'
-import { SwiperInstance } from '../../../types/swiper-instance'
+import type { SwiperInstance } from '../../../types/swiper-instance'
 
 const updateSize: UpdateSize = function (this: SwiperInterface) {
   const swiper = this

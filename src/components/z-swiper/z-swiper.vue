@@ -115,7 +115,7 @@ import type {
   VirtualData
 } from '../../types/components/z-swiper/z-swiper'
 import type { SwiperInterface } from '../../types/swiper-class'
-import { VirtualOptions } from '../../types/modules/virtual'
+import type { VirtualOptions } from '../../types/modules/virtual'
 import defaults from '../core/defaults'
 
 defineOptions({
