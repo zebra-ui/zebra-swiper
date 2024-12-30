@@ -1,6 +1,7 @@
 name: DOCS to Docker
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
