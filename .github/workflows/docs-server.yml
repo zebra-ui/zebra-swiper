@@ -1,4 +1,4 @@
-name: DOCS to Docker
+name: DOCS to Server
 
 on:
   workflow_dispatch:
@@ -45,20 +45,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          source: 'docs/zebra-swiper-docs/.vitepress,docs/zebra-swiper-docs/Dockerfile'
-          target: '/www/wwwroot/zebraui-swiper-docs'
-          strip_components: 2
+          source: 'docs/zebra-swiper-docs/.vitepress/dist/*'
+          target: '/www/wwwroot/swiper.zebraui.com'
+          strip_components: 4
           rm: true
-
-      - name: ssh pipelines
-        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
-        with:
-          host: ${{ secrets.HOST }}
-          user: ${{ secrets.USERNAME }}
-          pass: ${{ secrets.PASSWORD }}
-          last_ssh: |
-            cd /www/wwwroot/zebraui-swiper-docs
-            docker stop zebra-swiper-docs-docker
-            docker rm -f zebra-swiper-docs-docker
-            docker build -t zebra-swiper-docs-docker .
-            docker run --name zebra-swiper-docs-docker -d -p 3002:3002 zebra-swiper-docs-docker

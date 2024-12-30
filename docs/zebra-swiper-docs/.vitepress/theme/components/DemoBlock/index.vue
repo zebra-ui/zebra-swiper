@@ -25,7 +25,9 @@ const showCode = ref(props.expanded)
 
     <template #content>
       <div class="content">
-        <slot />
+        <ClientOnly>
+          <slot />
+        </ClientOnly>
       </div>
     </template>
 
