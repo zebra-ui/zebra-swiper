@@ -170,6 +170,10 @@ function checkAvailability<T>(
 
 <style scoped lang="scss">
 .z-animated-text {
+  .zebra-invisible {
+    visibility: hidden;
+  }
+
   &__root {
     display: inline-flex;
     flex-wrap: wrap;
