@@ -124,7 +124,9 @@ getStarCount().then((count) => {
         </div>
       </AnimatedElement>
       <AnimatedElement :delay="1500">
-        <DemoShow></DemoShow>
+        <ClientOnly>
+          <DemoShow></DemoShow>
+        </ClientOnly>
       </AnimatedElement>
     </section>
   </div>
