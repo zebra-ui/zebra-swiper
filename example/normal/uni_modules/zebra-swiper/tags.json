@@ -1,0 +1,41 @@
+{
+  "z-swiper": {
+    "attributes": [
+      "direction",
+      "speed",
+      "enabled",
+      "initial-slide",
+      "auto-height",
+      "space-between",
+      "slides-per-view",
+      "centered-slides",
+      "loop",
+      "custom-style",
+      "virtual-list",
+      "list",
+      "effect",
+      "cube-effect",
+      "fade-effect",
+      "flip-effect",
+      "creative-effect",
+      "cards-effect",
+      "navigation",
+      "pagination",
+      "scrollbar",
+      "autoplay",
+      "zoom"
+    ],
+    "description": "Swiper 轮播组件，支持3D效果、自动播放、分页等功能"
+  },
+  "z-swiper-item": {
+    "attributes": [
+      "tag",
+      "swiper-slide-index",
+      "zoom",
+      "lazy",
+      "virtual-index",
+      "custom-style"
+    ],
+    "description": "Swiper 轮播项组件"
+  }
+}

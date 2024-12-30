@@ -1,0 +1,110 @@
+@font-face {
+  font-family: 'iconfont'; /* Project id 3161382 */
+  src:
+    url('https://at.alicdn.com/t/c/font_3161382_94tkq32riov.woff2?t=1734952667745')
+      format('woff2'),
+    url('https://at.alicdn.com/t/c/font_3161382_94tkq32riov.woff?t=1734952667745')
+      format('woff'),
+    url('https://at.alicdn.com/t/c/font_3161382_94tkq32riov.ttf?t=1734952667745')
+      format('truetype');
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.zebra-icon-freemode:before {
+  content: '\e6bb';
+}
+
+.zebra-icon-virtual:before {
+  content: '\e60b';
+}
+
+.zebra-icon-controller:before {
+  content: '\e780';
+}
+
+.zebra-icon-stack:before {
+  content: '\e698';
+}
+
+.zebra-icon-fade:before {
+  content: '\e71d';
+}
+
+.zebra-icon-loop:before {
+  content: '\e637';
+}
+
+.zebra-icon-cube:before {
+  content: '\e7fb';
+}
+
+.zebra-icon-creative:before {
+  content: '\e652';
+}
+
+.zebra-icon-indicator:before {
+  content: '\e64c';
+}
+
+.zebra-icon-coverflow:before {
+  content: '\e672';
+}
+
+.zebra-icon-scrollbar:before {
+  content: '\e7bd';
+}
+
+.zebra-icon-switcher:before {
+  content: '\e61f';
+}
+
+.zebra-icon-autoplay:before {
+  content: '\ea82';
+}
+
+.zebra-icon-carousel:before {
+  content: '\e668';
+}
+
+.zebra-icon-basic:before {
+  content: '\e60e';
+}
+
+.zebra-icon-thumbs:before {
+  content: '\e635';
+}
+
+.zebra-icon-cards:before {
+  content: '\e600';
+}
+
+.zebra-icon-flip:before {
+  content: '\e65f';
+}
+
+.zebra-icon-travel:before {
+  content: '\e746';
+}
+
+.zebra-icon-panorama:before {
+  content: '\e62c';
+}
+
+.zebra-icon-paper:before {
+  content: '\e60d';
+}
+
+.zebra-icon-circle_chevron_left:before {
+  content: '\e611';
+}
+
+.zebra-icon-circle_chevron_right:before {
+  content: '\e615';
+}

@@ -1,0 +1,13 @@
+{
+    "version" : "1.0",
+    "configurations" : [
+        {
+            "openVueDevtools" : false,
+            "type" : "uni-app:app-ios"
+        },
+        {
+            "openVueDevtools" : false,
+            "type" : "uni-app:app-android"
+        }
+    ]
+}

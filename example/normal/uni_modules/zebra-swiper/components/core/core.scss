@@ -1,0 +1,281 @@
+@at-root {
+  :root {
+    --swiper-theme-color: #2549e8;
+
+    /*
+    --swiper-preloader-color: var(--swiper-theme-color);
+    --swiper-wrapper-transition-timing-function: initial;
+    */
+  }
+}
+
+:host {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.swiper {
+  position: relative;
+
+  /* Fix of Webkit flickering */
+  z-index: 1;
+  display: block;
+  padding: 0;
+  margin-right: auto;
+  margin-left: auto;
+  overflow: hidden;
+  list-style: none;
+}
+
+.swiper-vertical > .swiper-wrapper {
+  flex-direction: column;
+}
+
+.swiper-wrapper {
+  position: relative;
+  z-index: 1;
+  box-sizing: content-box;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition-timing-function: var(
+    --swiper-wrapper-transition-timing-function,
+    initial
+  );
+  transition-property: transform;
+}
+
+.swiper-android .swiper-slide,
+.swiper-ios .swiper-slide,
+.swiper-wrapper {
+  transform: translate3d(0, 0, 0);
+}
+
+.swiper-horizontal {
+  touch-action: pan-y;
+}
+
+.swiper-vertical {
+  touch-action: pan-x;
+}
+
+.swiper-slide {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  transition-property: transform;
+}
+
+.swiper-slide-invisible-blank {
+  visibility: hidden;
+}
+
+/* Auto Height */
+.swiper-autoheight,
+.swiper-autoheight .swiper-slide {
+  height: auto;
+}
+
+.swiper-autoheight .swiper-wrapper {
+  align-items: flex-start;
+  transition-property: transform, height;
+}
+
+.swiper-backface-hidden .swiper-slide {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* 3D Effects */
+.swiper-3d.swiper-css-mode .swiper-wrapper {
+  perspective: 1200px;
+}
+
+.swiper-3d .swiper-wrapper {
+  transform-style: preserve-3d;
+}
+
+/* CSS Mode */
+.swiper-css-mode {
+  > .swiper-wrapper {
+    overflow: auto;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  > .swiper-wrapper > .swiper-slide {
+    scroll-snap-align: start start;
+  }
+
+  &.swiper-horizontal {
+    > .swiper-wrapper {
+      scroll-snap-type: x mandatory;
+    }
+  }
+
+  &.swiper-vertical {
+    > .swiper-wrapper {
+      scroll-snap-type: y mandatory;
+    }
+  }
+
+  &.swiper-free-mode {
+    > .swiper-wrapper {
+      scroll-snap-type: none;
+    }
+
+    > .swiper-wrapper > .swiper-slide {
+      scroll-snap-align: none;
+    }
+  }
+
+  &.swiper-centered {
+    > .swiper-wrapper::before {
+      flex-shrink: 0;
+      order: 9999;
+      content: '';
+    }
+
+    > .swiper-wrapper > .swiper-slide {
+      scroll-snap-align: center center;
+      scroll-snap-stop: always;
+    }
+  }
+
+  &.swiper-centered.swiper-horizontal {
+    > .swiper-wrapper > .swiper-slide:first-child {
+      margin-inline-start: var(--swiper-centered-offset-before);
+    }
+
+    > .swiper-wrapper::before {
+      width: var(--swiper-centered-offset-after);
+      height: 100%;
+      min-height: 1px;
+    }
+  }
+
+  &.swiper-centered.swiper-vertical {
+    > .swiper-wrapper > .swiper-slide:first-child {
+      margin-block-start: var(--swiper-centered-offset-before);
+    }
+
+    > .swiper-wrapper::before {
+      width: 100%;
+      min-width: 1px;
+      height: var(--swiper-centered-offset-after);
+    }
+  }
+}
+
+/* Slide styles start */
+
+/* 3D Shadows */
+.swiper-3d {
+  perspective: 1200px;
+
+  .swiper-slide,
+  .swiper-cube-shadow {
+    transform-style: preserve-3d;
+  }
+
+  .swiper-slide-shadow,
+  .swiper-slide-shadow-left,
+  .swiper-slide-shadow-right,
+  .swiper-slide-shadow-top,
+  .swiper-slide-shadow-bottom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .swiper-slide-shadow {
+    background: rgb(0 0 0 / 15%);
+  }
+
+  .swiper-slide-shadow-left {
+    background-image: linear-gradient(
+      to left,
+      rgb(0 0 0 / 50%),
+      rgb(0 0 0 / 0%)
+    );
+  }
+
+  .swiper-slide-shadow-right {
+    background-image: linear-gradient(
+      to right,
+      rgb(0 0 0 / 50%),
+      rgb(0 0 0 / 0%)
+    );
+  }
+
+  .swiper-slide-shadow-top {
+    background-image: linear-gradient(
+      to top,
+      rgb(0 0 0 / 50%),
+      rgb(0 0 0 / 0%)
+    );
+  }
+
+  .swiper-slide-shadow-bottom {
+    background-image: linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 50%),
+      rgb(0 0 0 / 0%)
+    );
+  }
+}
+
+.swiper-lazy-preloader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  box-sizing: border-box;
+  width: 42px;
+  height: 42px;
+  margin-top: -21px;
+  margin-left: -21px;
+  border: 4px solid var(--swiper-preloader-color, var(--swiper-theme-color));
+  border-top-color: transparent;
+  border-radius: 50%;
+  transform-origin: 50%;
+}
+
+.swiper:not(.swiper-watch-progress),
+.swiper-watch-progress .swiper-slide-visible {
+  .swiper-lazy-preloader {
+    animation: swiper-preloader-spin 1s infinite linear;
+  }
+}
+
+.swiper-lazy-preloader-white {
+  --swiper-preloader-color: #fff;
+}
+
+.swiper-lazy-preloader-black {
+  --swiper-preloader-color: #000;
+}
+
+@keyframes swiper-preloader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Slide styles end */

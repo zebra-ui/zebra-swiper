@@ -1,0 +1,66 @@
+@at-root {
+  :root,
+  page {
+    --swiper-scrollbar-border-radius: 10px;
+    --swiper-scrollbar-top: auto;
+    --swiper-scrollbar-bottom: 4px;
+    --swiper-scrollbar-left: auto;
+    --swiper-scrollbar-right: 4px;
+    --swiper-scrollbar-sides-offset: 1%;
+    --swiper-scrollbar-bg-color: rgb(0 0 0 / 10%);
+    --swiper-scrollbar-drag-bg-color: rgb(0 0 0 / 50%);
+    --swiper-scrollbar-size: 4px;
+  }
+}
+
+.swiper-scrollbar {
+  position: relative;
+  touch-action: none;
+  background: var(--swiper-scrollbar-bg-color, rgb(0 0 0 / 10%));
+  border-radius: var(--swiper-scrollbar-border-radius, 10px);
+
+  .swiper-scrollbar-disabled > &,
+  &.swiper-scrollbar-disabled {
+    display: none !important;
+  }
+
+  .swiper-horizontal > &,
+  &.swiper-scrollbar-horizontal {
+    position: absolute;
+    top: var(--swiper-scrollbar-top, auto);
+    bottom: var(--swiper-scrollbar-bottom, 4px);
+    left: var(--swiper-scrollbar-sides-offset, 1%);
+    z-index: 50;
+    width: calc(100% - 2 * var(--swiper-scrollbar-sides-offset, 1%));
+    height: var(--swiper-scrollbar-size, 4px);
+  }
+
+  .swiper-vertical > &,
+  &.swiper-scrollbar-vertical {
+    position: absolute;
+    top: var(--swiper-scrollbar-sides-offset, 1%);
+    right: var(--swiper-scrollbar-right, 4px);
+    left: var(--swiper-scrollbar-left, auto);
+    z-index: 50;
+    width: var(--swiper-scrollbar-size, 4px);
+    height: calc(100% - 2 * var(--swiper-scrollbar-sides-offset, 1%));
+  }
+}
+
+.swiper-scrollbar-drag {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--swiper-scrollbar-drag-bg-color, rgb(0 0 0 / 50%));
+  border-radius: var(--swiper-scrollbar-border-radius, 10px);
+}
+
+.swiper-scrollbar-cursor-drag {
+  cursor: move;
+}
+
+.swiper-scrollbar-lock {
+  display: none;
+}

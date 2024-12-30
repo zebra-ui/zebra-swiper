@@ -1,0 +1,170 @@
+{
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "zebra-swiper"
+      }
+    },
+    {
+      "path": "pages/base/index",
+      "style": {
+        "navigationBarTitleText": "基础轮播",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/fade/index",
+      "style": {
+        "navigationBarTitleText": "淡入",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/cube/index",
+      "style": {
+        "navigationBarTitleText": "方块",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/coverflow/index",
+      "style": {
+        "navigationBarTitleText": "3D流",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/flip/index",
+      "style": {
+        "navigationBarTitleText": "3D翻转",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/cards/index",
+      "style": {
+        "navigationBarTitleText": "卡片式",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/creative/index",
+      "style": {
+        "navigationBarTitleText": "创意性",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/indicator/index",
+      "style": {
+        "navigationBarTitleText": "指示器",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/switcher/index",
+      "style": {
+        "navigationBarTitleText": "Switcher",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/carousel/index",
+      "style": {
+        "navigationBarTitleText": "Carousel",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/loop/index",
+      "style": {
+        "navigationBarTitleText": "Loop",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/autoplay/index",
+      "style": {
+        "navigationBarTitleText": "Autoplay",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/thumbs/index",
+      "style": {
+        "navigationBarTitleText": "Thumbs",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/scrollbar/index",
+      "style": {
+        "navigationBarTitleText": "Scrollbar",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/demos/travel-slider/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/demos/paper/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/virtual/index",
+      "style": {
+        "navigationBarTitleText": "Virtual",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/debug/index",
+      "style": {
+        "navigationBarTitleText": "Debug",
+        "navigationStyle": "custom",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/controller/index",
+      "style": {
+        "navigationBarTitleText": "Controller",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/freemode/index",
+      "style": {
+        "navigationBarTitleText": "FreeMode",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/experiment/carousel/index",
+      "style": {
+        "navigationBarTitleText": "Carousel",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/experiment/panorama/index",
+      "style": {
+        "navigationBarTitleText": "Panorama",
+        "enablePullDownRefresh": false
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "zebra-swiper",
+    "navigationBarBackgroundColor": "#e4ebf5",
+    "backgroundColor": "#e4ebf5"
+  }
+}

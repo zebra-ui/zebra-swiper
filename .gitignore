@@ -1,7 +1,10 @@
 .DS_Store
-node_modules/
-unpackage/
-dist/
+node_modules
+unpackage
+dist
+package-lock.json
+.eslintcache
+HISTORY.md
 
 # local env files
 .env.local

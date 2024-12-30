@@ -1,0 +1,6 @@
+.swiper-panorama {
+  overflow: visible;
+  .swiper-slide {
+    backface-visibility: hidden;
+  }
+}

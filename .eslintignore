@@ -1,1 +1,6 @@
-packages/zebra-swiper-demo-normal/*
+dist
+node_modules
+unpackage
+example/normal/*
+# 暂时忽略
+example 
