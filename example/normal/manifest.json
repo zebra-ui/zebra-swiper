@@ -74,6 +74,10 @@
     "h5" : {
         "devServer" : {
             "port" : 5180
+        },
+        "title" : "ZebraSwiper",
+        "router" : {
+            "base" : "/h5/"
         }
     }
 }

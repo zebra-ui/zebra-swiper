@@ -1,0 +1,42 @@
+name: DOCS to GitHub Pages
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - docs/zebra-swiper-docs/**
+      - example/cli/**
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enable Corepack
+        run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build H5 for example-cli
+        run: pnpm run build:h5
+        working-directory: example/cli
+
+      - name: Copy H5 build output
+        run: cp -r example/cli/dist/build/h5 docs/zebra-swiper-docs/public
+
+      - name: Build with VitePress
+        run: pnpm run docs:build
+        working-directory: docs/zebra-swiper-docs
+
+      - name: Deploy for Github 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.6.8
+        with:
+          branch: gh-pages
+          folder: docs/zebra-swiper-docs/.vitepress/dist
+          # enable single-commit to reduce the repo size
+          single-commit: true
+          clean: true
