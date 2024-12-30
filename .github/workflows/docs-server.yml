@@ -47,5 +47,5 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           source: 'docs/zebra-swiper-docs/.vitepress/dist/*'
           target: '/www/wwwroot/swiper.zebraui.com'
-          strip_components: 4
+          strip_components: 3
           rm: true
