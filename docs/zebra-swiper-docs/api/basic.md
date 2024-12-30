@@ -162,10 +162,10 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 
 </DemoBlock>
 
-## cssMode
+## cssMode <Badge type="tip" text="Web-H5" />
 
 :::warning
-开启后，web-pc不支持拖动。移动端可滑动。
+开启后，web-pc不支持拖动。web-h5可滑动。小程序和App暂不支持该配置。
 :::
 
 开启此配置后，将由`CSS Scroll Snap API`接管轮播。swiper中大多功能都不再支持，但在简单的轮播中，可以带来更好的性能。
@@ -196,7 +196,7 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 ## height
 
 :::warning
-不推荐使用。设置swiper高度请使用`custom-style`。
+设置swiper高度请使用`custom-style`。
 :::
 
 强制设置swiper容器的高度。仅在隐藏时初始化swiper时才有用。
@@ -275,7 +275,7 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 ## width
 
 :::warning
-不推荐使用。设置swiper宽度请使用`custom-style`。
+设置swiper宽度请使用`custom-style`。
 :::
 
 强制设置swiper容器的宽度。仅在隐藏时初始化swiper时才有用。

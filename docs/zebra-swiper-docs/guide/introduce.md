@@ -23,15 +23,15 @@
 
 以下是 `zebra-swiper` 官方提供的一些示例项目，开发者可以根据需求快速上手：
 
-- [📂 normal](https://github.com/zebra-ui/zebra-ui/tree/master/demos/demo-normal)：使用 `HbuilderX` 创建的示例项目，通过 `uni_modules` 引入 `zebra-ui`。
-- [📂 cli](https://github.com/zebra-ui/zebra-ui/tree/master/demos/demo-cli)：基于 `VSCode` 创建，通过 `pnpm` 引入 `zebra-ui` 的示例项目。
+- [📂 normal](https://github.com/zebra-ui/zebra-swiper/tree/master/example/normal)：使用 `HbuilderX` 创建的示例项目，通过 `uni_modules` 引入 `zebra-ui`。
+- [📂 cli](https://github.com/zebra-ui/zebra-swiper/tree/master/example/cli)：基于 `VSCode` 创建，通过 `pnpm` 引入 `zebra-ui` 的示例项目。
 
 ## 文档网站
 
 访问以下链接以获取完整的组件库文档和使用指南：
 
-- [📘 zebra-swiper 官方文档](https://zebraui.com/)
-- [📘 zebra-swiper GitHub Pages](https://github.zebraui.com/)（备用地址）
+- [📘 zebra-swiper 官方文档](https://swiper.zebraui.com/)
+- [📘 zebra-swiper GitHub Pages](https://github.swiper.zebraui.com/)（备用地址）
 
 ## Zebra 生态
 

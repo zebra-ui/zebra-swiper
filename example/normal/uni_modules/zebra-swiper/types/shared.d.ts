@@ -1,10 +1,10 @@
-import type { Swiper } from './index.d.ts'
+import type { Swiper, SwiperInterface } from './index.d.ts'
 
 export interface CSSSelector extends string {}
 
 export type SwiperModule = (options: {
   params: Swiper['params']
-  swiper: Swiper
+  swiper: SwiperInterface
   extendParams: (obj: { [name: string]: any }) => void
   on: Swiper['on']
   once: Swiper['once']

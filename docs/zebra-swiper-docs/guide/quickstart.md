@@ -136,7 +136,7 @@ export function createApp() {
 通过以下代码快速实现一个简单的`swiper`：
 
 ::: tip
-建议给每个`swiper-item`绑定一个唯一`id`，并且这在`loop` `virtual` 中是必须的。
+建议给每个`swiper-item`的`key`绑定一个唯一`id`，并且这在`loop` `virtual` 中是必须的。
 :::
 
 <DemoBlock expanded>
