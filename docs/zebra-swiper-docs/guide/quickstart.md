@@ -139,8 +139,6 @@ export function createApp() {
 建议给每个`swiper-item`的`key`绑定一个唯一`id`，并且这在`loop` `virtual` 中是必须的。
 :::
 
-<DemoBlock expanded>
-
 <script setup>
   import {
   ref
@@ -155,6 +153,8 @@ export function createApp() {
    }
   ))
 </script>
+
+<DemoBlock expanded>
 
 <z-swiper grabCursor>
   <z-swiper-item v-for="item in list" :key="item.id">
