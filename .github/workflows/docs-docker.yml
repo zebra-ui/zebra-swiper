@@ -46,8 +46,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           source: 'docs/zebra-swiper-docs/.vitepress/dist,docs/zebra-swiper-docs/Dockerfile'
-          target: '/www/wwwroot/zebraui-swiper-docs',
-          strip_components: 3,
+          target: '/www/wwwroot/zebraui-swiper-docs'
+          strip_components: 3
           rm: true
 
       - name: ssh pipelines
