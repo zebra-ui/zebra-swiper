@@ -47,5 +47,17 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           source: 'docs/zebra-swiper-docs/.vitepress/dist/*'
           target: '/www/wwwroot/swiper.zebraui.com/dist'
-          strip_components: 3
+          strip_components: 4
           rm: true
+
+      - name: Move files to root
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /www/wwwroot/swiper.zebraui.com
+            mv dist/* .
+            rm -rf dist/
