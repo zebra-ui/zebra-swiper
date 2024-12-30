@@ -1,35 +1,42 @@
 <template>
   <view class="demo-swiper">
     <demo-block title="基础用法">
-      <z-swiper autoplay :modules="modules">
+      <z-swiper freeMode :modules="modules">
         <z-swiper-item v-for="item in list" :key="item.id">
           <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
     </demo-block>
-    <demo-block title="时间间隔">
-      <z-swiper :autoplay="{ delay: 1000 }" :modules="modules">
+    <demo-block title="关闭惯性">
+      <z-swiper :freeMode="{ momentum: false }" :modules="modules">
         <z-swiper-item v-for="item in list" :key="item.id">
           <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
     </demo-block>
-    <demo-block title="自动停止">
-      <z-swiper :autoplay="{ stopOnLastSlide: true }" :modules="modules">
+    <demo-block title="反弹强度">
+      <z-swiper :freeMode="{ momentumBounceRatio: 5 }" :modules="modules">
         <z-swiper-item v-for="item in list" :key="item.id">
           <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
     </demo-block>
-    <demo-block title="无限循环">
-      <z-swiper v-model:list="loopList" autoplay loop :modules="modules">
-        <z-swiper-item v-for="item in loopList" :key="item.id">
+    <demo-block title="释放后滑动距离">
+      <z-swiper :freeMode="{ momentumRatio: 5 }" :modules="modules">
+        <z-swiper-item v-for="item in list" :key="item.id">
           <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
     </demo-block>
-    <demo-block title="反向">
-      <z-swiper :autoplay="{ reverseDirection: true }" :modules="modules">
+    <demo-block title="释放后滑动速度">
+      <z-swiper :freeMode="{ momentumVelocityRatio: 5 }" :modules="modules">
+        <z-swiper-item v-for="item in list" :key="item.id">
+          <demo-item :item="item"></demo-item>
+        </z-swiper-item>
+      </z-swiper>
+    </demo-block>
+    <demo-block title="贴合边缘">
+      <z-swiper :freeMode="{ sticky: true }" :modules="modules">
         <z-swiper-item v-for="item in list" :key="item.id">
           <demo-item :item="item"></demo-item>
         </z-swiper-item>
@@ -40,10 +47,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Autoplay } from '@zebra-ui/swiper/modules'
-import type { SwiperModule } from '@zebra-ui/swiper/types/shared'
+import { FreeMode } from '@zebra-ui/swiper/modules'
 import data from '../../common/js/data.js'
 const list = ref([...data])
-const loopList = ref([...data])
-const modules = ref<SwiperModule[]>([Autoplay])
+const modules = ref([FreeMode])
 </script>

@@ -2,7 +2,6 @@ import { createSSRApp } from 'vue'
 import App from './App.vue'
 import DemoBlock from '@/components/DemoBlock/DemoBlock.vue'
 import DemoItem from '@/components/DemoItem/DemoItem.vue'
-// import { ZSwiper, ZSwiperItem } from '@zebra-ui/swiper'
 import ZSwiper from '@zebra-ui/swiper/components/z-swiper/z-swiper.vue'
 import ZSwiperItem from '@zebra-ui/swiper/components/z-swiper-item/z-swiper-item.vue'
 export function createApp() {

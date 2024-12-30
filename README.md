@@ -72,7 +72,7 @@ pnpm add @zebra-ui/swiper
 访问以下链接以获取完整的组件库文档和使用指南：
 
 - [📘 zebra-swiper 官方文档](https://swiper.zebraui.com/)
-- [📘 zebra-swiper GitHub Pages](https://github-swiper.zebraui.com/)（备用地址）
+- [📘 zebra-swiper GitHub Pages](https://github.swiper.zebraui.com/)（备用地址）
 
 ## 示例项目
 
@@ -102,7 +102,7 @@ Zebra 官方还维护了多个相关项目，为开发者提供了多样化的�
 <div style="display:flex;align-items:center;">
  <img alt="wx" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/v3/preview-wx.jpg" width="200" />
  <img alt="ali" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/v3/preview-ali.jpg" width="230" />
- <img alt="h5" src="https://assets-1256020106.cos.ap-beijing.myqcloud.com/zebra-swiper/h5.png" width="200" />
+ <img alt="h5" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/v3/preview-h5.png" width="200" />
 </div>
 
 ## 预览

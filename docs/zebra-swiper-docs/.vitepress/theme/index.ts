@@ -1,5 +1,5 @@
 import type { Theme } from 'vitepress'
-import * as components from '@zebra-ui/swiper'
+// import * as components from '@zebra-ui/swiper'
 import DefaultTheme from 'vitepress/theme-without-fonts'
 import DemoBlock from './components/DemoBlock/index.vue'
 import DemoCard from './components/DemoCard/index.vue'
@@ -18,7 +18,7 @@ import 'animate.css'
 
 export default {
   extends: DefaultTheme,
-  enhanceApp(ctx) {
+  async enhanceApp(ctx) {
     const { app } = ctx
     app.component('DemoBlock', DemoBlock)
     app.component('DemoCard', DemoCard)
@@ -32,8 +32,10 @@ export default {
     app.component('DemoShow', DemoShow)
     app.component('DemoHome', DemoHome)
 
-    Object.entries(components).forEach(([componentName, component]) => {
-      app.component(componentName, component)
-    })
+    // @ts-ignore
+    if (!import.meta.env.SSR) {
+      const ZebraSwiper = await import('@zebra-ui/swiper')
+      app.use(ZebraSwiper.default)
+    }
   }
 } satisfies Theme

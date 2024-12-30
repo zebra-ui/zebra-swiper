@@ -1,6 +1,6 @@
 export default [
   {
-    groupName: '基础轮播',
+    groupName: '基础',
     list: [
       {
         path: '/base',
@@ -16,16 +16,36 @@ export default [
         path: '/loop',
         title: 'Loop 循环',
         image: 'loop'
-      },
+      }
+    ]
+  },
+  {
+    groupName: '模块',
+    list: [
       {
         path: '/autoplay',
         title: 'Autoplay 播放',
         image: 'autoplay'
       },
       {
+        path: '/freemode',
+        title: 'FreeMode 自由滑动',
+        image: 'freemode'
+      },
+      {
         path: '/switcher',
-        title: 'Switcher 切换器',
+        title: 'Navigation 切换器',
         image: 'switcher'
+      },
+      {
+        path: '/indicator',
+        title: 'Pagination 分页器',
+        image: 'indicator'
+      },
+      {
+        path: '/scrollbar',
+        title: 'Scrollbar 滚动条',
+        image: 'scrollbar'
       },
       {
         path: '/thumbs',
@@ -33,9 +53,9 @@ export default [
         image: 'thumbs'
       },
       {
-        path: '/scrollbar',
-        title: 'Scrollbar 滚动条',
-        image: 'scrollbar'
+        path: '/controller',
+        title: 'Controller 控制器',
+        image: 'controller'
       },
       {
         path: '/virtual',
@@ -73,11 +93,6 @@ export default [
         image: 'cards'
       },
       {
-        path: '/panorama',
-        title: 'Panorama 全景',
-        image: 'panorama'
-      },
-      {
         path: '/creative',
         title: 'Creative 创意性',
         image: 'creative'
@@ -85,27 +100,17 @@ export default [
     ]
   },
   {
-    groupName: '指示器',
+    groupName: '进阶',
     list: [
       {
-        path: '/indicator',
-        title: 'Indicator 指示器',
-        image: 'indicator'
+        path: '/experiment/carousel',
+        title: 'Carousel 层叠',
+        image: 'stack'
       },
       {
-        path: '/indicator-custom',
-        title: 'IndicatorCustom 自定义',
-        image: 'indicator'
-      }
-    ]
-  },
-  {
-    groupName: '控制器',
-    list: [
-      {
-        path: '/controller',
-        title: 'Controller 控制器',
-        image: 'controller'
+        path: '/experiment/panorama',
+        title: 'Panorama 全景',
+        image: 'panorama'
       }
     ]
   },
@@ -121,11 +126,6 @@ export default [
         path: '/demos/paper',
         title: 'Paper 开屏页',
         image: 'paper'
-      },
-      {
-        path: '/demos/carousel',
-        title: 'Carousel 层叠',
-        image: 'stack'
       }
     ]
   }

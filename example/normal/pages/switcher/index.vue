@@ -57,7 +57,6 @@
 	const loopList = ref([...data])
 	const swiperInstance = ref(null)
 	const onSwiper = (swiper) => {
-		console.log(swiper)
 		swiperInstance.value = swiper
 	}
 	const prev = () => {

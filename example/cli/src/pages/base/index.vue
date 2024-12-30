@@ -54,6 +54,29 @@
         </z-swiper-item>
       </z-swiper>
     </demo-block>
+    <demo-block title="嵌套轮播">
+      <z-swiper>
+        <z-swiper-item>
+          <demo-item
+            :item="{ text: 'Parent1' }"
+            :custom-style="{ background: '#1b2b33' }"
+          ></demo-item>
+        </z-swiper-item>
+        <z-swiper-item>
+          <z-swiper nested :resistanceRatio="0">
+            <z-swiper-item v-for="item in list" :key="item.id">
+              <demo-item :item="item"></demo-item>
+            </z-swiper-item>
+          </z-swiper>
+        </z-swiper-item>
+        <z-swiper-item>
+          <demo-item
+            :item="{ text: 'Parent2' }"
+            :custom-style="{ background: '#0b2b33' }"
+          ></demo-item>
+        </z-swiper-item>
+      </z-swiper>
+    </demo-block>
   </view>
 </template>
 

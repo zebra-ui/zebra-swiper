@@ -48,15 +48,17 @@
         </view>
         <!-- Swiper -->
         <z-swiper
-          ref="zswiper"
-          v-model="list"
+          :speed="500"
+          slidesPerView="auto"
+          centeredSlides
+          :spaceBetween="24"
+          watchSlidesProgress
+          @init="init"
           :custom-style="swiperStyle"
-          :options="options"
-          @swiper="init"
         >
           <z-swiper-item
-            v-for="(item, index) in list"
-            :key="index"
+            v-for="item in list"
+            :key="item.id"
             :custom-style="itemStyle"
           >
             <image :src="item.url" class="travel-slider-bg-image" />
@@ -73,60 +75,59 @@
 
 <script setup>
 import { ref } from 'vue'
-const zswiper = ref()
 const list = ref([
   {
+    id: 'travel1',
     url: '../../../static/images/usa.jpg',
     title: 'United States',
     subTitle: '8,295 properties'
   },
   {
+    id: 'travel2',
     url: '../../../static/images/england.jpg',
     title: 'England',
     subTitle: '1,110 properties'
   },
   {
+    id: 'travel3',
     url: '../../../static/images/france.jpg',
     title: 'France',
     subTitle: '314 properties'
   },
   {
+    id: 'travel4',
     url: '../../../static/images/italy.jpg',
     title: 'Italy',
     subTitle: '1,200 properties'
   },
   {
+    id: 'travel5',
     url: '../../../static/images/russia.jpg',
     title: 'Russia',
     subTitle: '12,231 properties'
   },
   {
+    id: 'travel6',
     url: '../../../static/images/egypt.jpg',
     title: 'Egypt',
     subTitle: '505 properties'
   },
   {
+    id: 'travel7',
     url: '../../../static/images/india.jpg',
     title: 'India',
     subTitle: '2,300 properties'
   },
   {
+    id: 'travel8',
     url: '../../../static/images/japan.jpg',
     title: 'Japan',
     subTitle: '1,700 properties'
   }
 ])
-const options = {
-  speed: 600,
-  grabCursor: true,
-  slidesPerView: 'auto',
-  centeredSlides: true,
-  spaceBetween: 24,
-  watchSlidesProgress: true
-}
 const planetStyle = ref({})
 const itemStyle = {
-  width: 'calc(100vw * 0.8)',
+  width: '560rpx',
   'max-width': '640px',
   'box-sizing': 'border-box',
   position: 'relative'
@@ -136,14 +137,12 @@ const swiperStyle = {
   'padding-top': '64px',
   'padding-bottom': '64px'
 }
-const init = () => {
-  zswiper.value.swiper.on('progress', (s, progress) => {
+const init = (swiper) => {
+  swiper.on('progress', (s, progress) => {
     const max = s.slides.length > 4 ? 360 - (8 - s.slides.length + 1) * 45 : 270
-    planetStyle.value.transform = `translate(-50%, -50%) rotate(${
-      max * -progress
-    }deg)`
+    planetStyle.value.transform = `translate(-50%, -50%) rotate(${max * -progress}deg)`
   })
-  zswiper.value.swiper.on('setTransition', (s, duration) => {
+  swiper.on('setTransition', (s, duration) => {
     const max = s.slides.length > 4 ? 360 - (8 - s.slides.length + 1) * 45 : 270
     planetStyle.value.transitionDuration = `${duration}ms`
   })
@@ -179,16 +178,6 @@ const init = () => {
   box-sizing: border-box;
   width: 100%;
   margin: 0 auto;
-
-  // ::v-deep .swiper {
-  // 	height: 300px;
-  // 	padding-top: 64px;
-  // 	padding-bottom: 64px;
-  // }
-
-  // ::v-deep .swiper-slide {
-
-  // }
 
   &-bg-image {
     position: absolute;

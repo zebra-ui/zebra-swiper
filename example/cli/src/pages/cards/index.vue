@@ -1,137 +1,97 @@
 <template>
   <view class="demo-swiper">
     <demo-block title="切换效果-卡片">
-      <z-swiper v-model="list" :options="options">
-        <z-swiper-item
-          :custom-style="slideCustomStyle"
-          v-for="(item, index) in list"
-          :key="index"
-        >
-          <demo-item :custom-style="itemCustomStyle" :item="item"></demo-item>
-        </z-swiper-item>
-      </z-swiper>
-    </demo-block>
-    <demo-block title="自动播放">
-      <z-swiper v-model="list" :options="optionsAutoplay">
-        <z-swiper-item
-          :custom-style="slideCustomStyle"
-          v-for="(item, index) in list"
-          :key="index"
-        >
-          <demo-item :custom-style="itemCustomStyle" :item="item"></demo-item>
-        </z-swiper-item>
-      </z-swiper>
-    </demo-block>
-    <demo-block title="纵向">
       <z-swiper
-        v-model="list"
-        :custom-style="{ height: '800rpx' }"
-        :options="optionsVertical"
+        effect="cards"
+        :modules="modules"
+        :custom-style="{ width: '500rpx' }"
       >
         <z-swiper-item
-          :custom-style="slideCustomStyle"
-          v-for="(item, index) in list"
-          :key="index"
+          v-for="item in list"
+          :key="item.id"
+          :custom-style="itemCustomStyle"
         >
-          <demo-item :custom-style="itemCustomStyle" :item="item"></demo-item>
+          <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
     </demo-block>
     <demo-block title="关闭旋转">
-      <z-swiper v-model="list" :options="optionsRotate">
+      <z-swiper
+        effect="cards"
+        :cardsEffect="{ rotate: false }"
+        :modules="modules"
+        :custom-style="{ width: '500rpx' }"
+      >
         <z-swiper-item
-          :custom-style="slideCustomStyle"
-          v-for="(item, index) in list"
-          :key="index"
+          v-for="item in list"
+          :key="item.id"
+          :custom-style="itemCustomStyle"
         >
-          <demo-item :custom-style="itemCustomStyle" :item="item"></demo-item>
+          <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
     </demo-block>
     <demo-block title="偏移距离">
-      <z-swiper v-model="list" :options="optionsOffset">
+      <z-swiper
+        effect="cards"
+        :cardsEffect="{ perSlideOffset: 12 }"
+        :modules="modules"
+        :custom-style="{ width: '500rpx' }"
+      >
         <z-swiper-item
-          :custom-style="slideCustomStyle"
-          v-for="(item, index) in list"
-          :key="index"
+          v-for="item in list"
+          :key="item.id"
+          :custom-style="itemCustomStyle"
         >
-          <demo-item :custom-style="itemCustomStyle" :item="item"></demo-item>
+          <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
     </demo-block>
     <demo-block title="旋转角度">
-      <z-swiper v-model="list" :options="optionsRotateNumber">
+      <z-swiper
+        effect="cards"
+        :cardsEffect="{ perSlideRotate: 10 }"
+        :modules="modules"
+        :custom-style="{ width: '500rpx' }"
+      >
         <z-swiper-item
-          :custom-style="slideCustomStyle"
-          v-for="(item, index) in list"
-          :key="index"
+          v-for="item in list"
+          :key="item.id"
+          :custom-style="itemCustomStyle"
         >
-          <demo-item :custom-style="itemCustomStyle" :item="item"></demo-item>
+          <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
     </demo-block>
     <demo-block title="无限循环">
-      <z-swiper v-model="loopList" :options="optionsLoop">
+      <z-swiper
+        v-model:list="loopList"
+        loop
+        effect="cards"
+        :modules="modules"
+        :custom-style="{ width: '500rpx' }"
+      >
         <z-swiper-item
-          :custom-style="slideCustomStyle"
-          v-for="(item, index) in loopList"
-          :key="index"
+          v-for="item in loopList"
+          :key="item.id"
+          :custom-style="itemCustomStyle"
         >
-          <demo-item :custom-style="itemCustomStyle" :item="item"></demo-item>
+          <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
     </demo-block>
   </view>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import data from '../../common/js/data.js'
+import { EffectCards } from '@zebra-ui/swiper/modules'
 
-const slideCustomStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center'
-}
+const modules = ref([EffectCards])
 const itemCustomStyle = {
-  height: '640rpx',
-  width: '480rpx',
   'border-radius': '24rpx'
 }
-const options = {
-  effect: 'cards'
-}
-const optionsAutoplay = {
-  effect: 'cards',
-  autoplay: true
-}
-const optionsVertical = {
-  effect: 'cards',
-  direction: 'vertical'
-}
-const optionsRotate = {
-  effect: 'cards',
-  cardsEffect: {
-    rotate: false
-  }
-}
-const optionsOffset = {
-  effect: 'cards',
-  cardsEffect: {
-    perSlideOffset: 14
-  }
-}
-const optionsRotateNumber = {
-  effect: 'cards',
-  cardsEffect: {
-    perSlideRotate: 20
-  }
-}
-const optionsLoop = {
-  effect: 'cards',
-  loop: true,
-  loopedSlides: 2
-}
-const list = ref(data)
-const loopList = ref(data)
+const list = ref([...data])
+const loopList = ref([...data])
 </script>

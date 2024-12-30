@@ -1,28 +1,35 @@
 <template>
   <view class="demo-switcher">
     <demo-block title="基础用法">
-      <z-swiper v-model="list" :options="options">
-        <z-swiper-item v-for="(item, index) in list" :key="index">
+      <z-swiper navigation :modules="modules">
+        <z-swiper-item v-for="item in list" :key="item.id">
+          <demo-item :item="item"></demo-item>
+        </z-swiper-item>
+      </z-swiper>
+    </demo-block>
+    <demo-block title="点击后隐藏">
+      <z-swiper :navigation="{ hideOnClick: true }" :modules="modules">
+        <z-swiper-item v-for="item in list" :key="item.id">
           <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
     </demo-block>
     <demo-block title="插槽自定义">
-      <z-swiper v-model="list" :options="optionsSlot">
-        <z-swiper-item v-for="(item, index) in list" :key="index">
+      <z-swiper navigation :modules="modules">
+        <z-swiper-item v-for="item in list" :key="item.id">
           <demo-item :item="item"></demo-item>
         </z-swiper-item>
-        <template #pre-button>
+        <template #navigation-prev>
           <view class="custom-switcher"> prev </view>
         </template>
-        <template #next-button>
+        <template #navigation-next>
           <view class="custom-switcher"> next </view>
         </template>
       </z-swiper>
     </demo-block>
     <demo-block title="完全自定义">
-      <z-swiper v-model="loopList" ref="zswiper" :options="optionsCustom">
-        <z-swiper-item v-for="(item, index) in loopList" :key="index">
+      <z-swiper v-model:list="loopList" loop @swiper="onSwiper">
+        <z-swiper-item v-for="item in loopList" :key="item.id">
           <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
@@ -51,32 +58,20 @@
 <script setup>
 import { ref } from 'vue'
 import data from '../../common/js/data.js'
-const options = {
-  navigation: {
-    nextEl: true,
-    prevEl: true
-  }
+import { Navigation } from '@zebra-ui/swiper/modules'
+const list = ref([...data])
+const loopList = ref([...data])
+const swiperInstance = ref(null)
+const onSwiper = (swiper) => {
+  swiperInstance.value = swiper
 }
-const optionsSlot = {
-  navigation: {
-    slot: true
-  }
-}
-const optionsCustom = {
-  navigation: {
-    custom: true
-  },
-  loop: true
-}
-const list = ref(data)
-const loopList = ref(data)
-const zswiper = ref(null)
 const prev = () => {
-  zswiper.value.swiper.slidePrev()
+  swiperInstance.value.slidePrev()
 }
 const next = () => {
-  zswiper.value.swiper.slideNext()
+  swiperInstance.value.slideNext()
 }
+const modules = ref([Navigation])
 </script>
 
 <style scoped lang="scss">

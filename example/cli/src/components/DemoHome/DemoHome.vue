@@ -6,9 +6,10 @@
         class="demo-home__image"
         src="../../static/logo.png"
       />
+      <view class="title-content"> ZebraSwiper </view>
     </view>
     <view class="demo-home__desc">
-      适配多端的高自定义轮播组件，全面对标swiperjs并兼容全端
+      一款专为多端设计的高性能轮播组件库，支持多种复杂的 3D 轮播效果。
     </view>
     <view v-for="(group, index) in props.list" :key="index">
       <demo-home-nav :group="group" />
@@ -41,13 +42,20 @@ const props = defineProps({
 .demo-home__desc {
   padding-left: 32rpx;
   font-weight: normal;
-  line-height: 42rpx;
+  line-height: 48rpx;
   user-select: none;
 }
 
 .demo-home__title {
+  display: flex;
+  align-items: center;
   margin: 0 0 32rpx;
-  font-size: 64rpx;
+  font-size: 62rpx;
+
+  .title-content {
+    font-weight: bold;
+    color: #1874ca;
+  }
 }
 
 .demo-home__image,
@@ -56,8 +64,8 @@ const props = defineProps({
 }
 
 .demo-home__image {
-  width: 500rpx;
-  height: 152rpx;
+  width: 200rpx;
+  height: 200rpx;
 }
 
 .demo-home__text {

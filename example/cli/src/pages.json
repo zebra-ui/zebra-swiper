@@ -64,13 +64,6 @@
       }
     },
     {
-      "path": "pages/indicator-custom/index",
-      "style": {
-        "navigationBarTitleText": "自定义",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
       "path": "pages/switcher/index",
       "style": {
         "navigationBarTitleText": "Switcher",
@@ -95,13 +88,6 @@
       "path": "pages/autoplay/index",
       "style": {
         "navigationBarTitleText": "Autoplay",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/panorama/index",
-      "style": {
-        "navigationBarTitleText": "Panorama",
         "enablePullDownRefresh": false
       }
     },
@@ -147,16 +133,30 @@
       }
     },
     {
-      "path": "pages/demos/carousel/index",
+      "path": "pages/controller/index",
+      "style": {
+        "navigationBarTitleText": "Controller",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/freemode/index",
+      "style": {
+        "navigationBarTitleText": "FreeMode",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/experiment/carousel/index",
       "style": {
         "navigationBarTitleText": "Carousel",
         "enablePullDownRefresh": false
       }
     },
     {
-      "path": "pages/controller/index",
+      "path": "pages/experiment/panorama/index",
       "style": {
-        "navigationBarTitleText": "Controller",
+        "navigationBarTitleText": "Panorama",
         "enablePullDownRefresh": false
       }
     }

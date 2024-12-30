@@ -1,33 +1,26 @@
 <template>
   <view class="demo-swiper">
     <demo-block title="切换效果-淡入">
-      <z-swiper v-model="list" :options="options">
-        <z-swiper-item v-for="(item, index) in list" :key="index">
+      <z-swiper effect="fade" :modules="modules">
+        <z-swiper-item v-for="item in list" :key="item.id">
           <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
     </demo-block>
-    <demo-block title="自动播放">
-      <z-swiper v-model="list" :options="optionsAutoplay">
-        <z-swiper-item v-for="(item, index) in list" :key="index">
-          <demo-item :item="item"></demo-item>
-        </z-swiper-item>
-      </z-swiper>
-    </demo-block>
-    <demo-block title="纵向">
+    <demo-block title="交叉淡入淡出">
       <z-swiper
-        v-model="list"
-        :custom-style="{ height: '300rpx' }"
-        :options="optionsVertical"
+        effect="fade"
+        :fadeEffect="{ crossFade: true }"
+        :modules="modules"
       >
-        <z-swiper-item v-for="(item, index) in list" :key="index">
+        <z-swiper-item v-for="item in list" :key="item.id">
           <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
     </demo-block>
     <demo-block title="无限循环">
-      <z-swiper v-model="loopList" :options="optionsLoop">
-        <z-swiper-item v-for="(item, index) in loopList" :key="index">
+      <z-swiper v-model:list="loopList" loop effect="fade" :modules="modules">
+        <z-swiper-item v-for="item in loopList" :key="item.id">
           <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>
@@ -35,36 +28,12 @@
   </view>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import data from '../../common/js/data.js'
-const options = {
-  effect: 'fade',
-  fadeEffect: {
-    crossFade: true
-  }
-}
-const optionsAutoplay = {
-  effect: 'fade',
-  fadeEffect: {
-    crossFade: true
-  },
-  autoplay: true
-}
-const optionsVertical = {
-  effect: 'fade',
-  fadeEffect: {
-    crossFade: true
-  },
-  direction: 'vertical'
-}
-const optionsLoop = {
-  effect: 'fade',
-  fadeEffect: {
-    crossFade: true
-  },
-  loop: true
-}
-const list = ref(data)
-const loopList = ref(data)
+import { EffectFade } from '@zebra-ui/swiper/modules'
+
+const modules = ref([EffectFade])
+const list = ref([...data])
+const loopList = ref([...data])
 </script>
