@@ -99,9 +99,9 @@ Zebra 官方还维护了多个相关项目，为开发者提供了多样化的�
 
 ## 手机预览
 
-<div style="display:flex;align-items:center;">
+<div>
  <img alt="wx" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/v3/preview-wx.jpg" width="200" />
- <img alt="ali" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/v3/preview-ali.jpg" width="230" />
+ <img alt="ali" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/v3/preview-ali.jpg" width="200" />
  <img alt="h5" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/v3/preview-h5.png" width="200" />
 </div>
 

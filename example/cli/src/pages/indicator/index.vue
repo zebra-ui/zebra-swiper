@@ -16,7 +16,7 @@
     </demo-block>
     <demo-block title="分式类型">
       <z-swiper :pagination="{ type: 'fraction' }" :modules="modules">
-        <z-swiper-item v-for="item in listLoop" :key="item.id">
+        <z-swiper-item v-for="item in list" :key="item.id">
           <demo-item :item="item"></demo-item>
         </z-swiper-item>
       </z-swiper>

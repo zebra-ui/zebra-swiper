@@ -52,14 +52,15 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wx3b5d8dca1e59cb22",
         "setting" : {
             "urlCheck" : false
         },
         "usingComponents" : true
     },
     "mp-alipay" : {
-        "usingComponents" : true
+        "usingComponents" : true,
+        "appid" : "2021003114603720"
     },
     "mp-baidu" : {
         "usingComponents" : true

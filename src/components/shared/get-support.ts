@@ -3,6 +3,7 @@ import type {
   GetSupport,
   CalcSupport
 } from '../../types/components/shared/get-support'
+import { isWeb } from './utils'
 
 let support: Support | undefined
 
@@ -21,10 +22,16 @@ const calcSupport: CalcSupport = () => {
 }
 
 const getSupport: GetSupport = () => {
-  if (!support) {
-    support = calcSupport()
+  if (isWeb()) {
+    if (!support) {
+      support = calcSupport()
+    }
+    return support
   }
-  return support
+  return {
+    smoothScroll: false,
+    touch: true
+  }
 }
 
 export { getSupport }

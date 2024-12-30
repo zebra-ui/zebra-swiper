@@ -1,0 +1,63 @@
+name: DOCS to Docker
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - docs/zebra-swiper-docs/**
+      - example/cli/**
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        run: corepack enable
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build H5 for example-cli
+        run: pnpm run build:h5
+        working-directory: example/cli
+
+      - name: Copy H5 build vitepress
+        run: cp -r example/cli/dist/build/h5 docs/zebra-swiper-docs/public
+
+      - name: Build Site
+        run: pnpm run docs:build
+        working-directory: docs/zebra-swiper-docs
+
+      - name: Upload File via SCP
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: 'docs/zebra-swiper-docs/.vitepress/dist,docs/zebra-swiper-docs/Dockerfile'
+          target: '/www/wwwroot/zebraui-swiper-docs',
+          strip_components: 3,
+          rm: true
+
+      - name: ssh pipelines
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USERNAME }}
+          pass: ${{ secrets.PASSWORD }}
+          last_ssh: |
+            cd /www/wwwroot/zebraui-swiper-docs
+            docker stop zebra-swiper-docs-docker
+            docker rm -f zebra-swiper-docs-docker
+            docker build -t zebra-swiper-docs-docker .
+            docker run --name zebra-swiper-docs-docker -d -p 3002:3002 zebra-swiper-docs-docker
