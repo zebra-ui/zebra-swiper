@@ -59,6 +59,6 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd /www/wwwroot/swiper.zebraui.com
-            rm -rf !(dist)
+            find . -maxdepth 1 -not -name '.' -not -name 'dist' -exec rm -rf {} \;
             mv dist/* .
             rm -rf dist/
