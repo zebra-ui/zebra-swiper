@@ -393,8 +393,12 @@ const elementChildrenByTagIndex: ElementChildrenByTagIndex = (
   selector
 ) => {
   debugConsole('elementChildrenByTagIndex', element, selector)
-  return element.children.filter(
-    (item: SwiperInstance) => item.swiperItemIndex.value == selector
+  return (
+    (element &&
+      element.children.filter(
+        (item: SwiperInstance) => item.swiperItemIndex.value == selector
+      )) ||
+    []
   )
 }
 
