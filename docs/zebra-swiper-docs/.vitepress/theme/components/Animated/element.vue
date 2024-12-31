@@ -59,9 +59,9 @@ onBeforeUnmount(() => observer?.disconnect())
 <style scoped lang="scss">
 // Base element class
 .z-animated-element {
-  //   &.--invisible {
-  //     @apply zebra-invisible;
-  //   }
+  &.--invisible {
+    visibility: hidden;
+  }
 }
 
 // Animation keyframes
