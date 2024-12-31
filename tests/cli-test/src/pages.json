@@ -1,0 +1,39 @@
+{
+  "easycom": {
+    "custom": {
+      "^z-(.*)": "@zebra-ui/swiper/components/z-$1/z-$1.vue"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    },
+    {
+      "path": "pages/clickMethod/index",
+      "style": {
+        "navigationBarTitleText": "点击事件测试"
+      }
+    },
+    {
+      "path": "pages/loopAndPagination/loopAndPagination",
+      "style": {
+        "navigationBarTitleText": "loopAndPagination"
+      }
+    },
+    {
+      "path": "pages/virtualToMore/virtualToMore",
+      "style": {
+        "navigationBarTitleText": "virtualToMore"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  }
+}
