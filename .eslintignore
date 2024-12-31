@@ -2,5 +2,6 @@ dist
 node_modules
 unpackage
 example/normal/*
+tests
 # 暂时忽略
 example 

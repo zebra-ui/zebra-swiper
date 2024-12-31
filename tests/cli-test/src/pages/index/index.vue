@@ -1,0 +1,51 @@
+<template>
+  <view class="content">
+    <view
+      class="content-item"
+      v-for="(item, index) in list"
+      :key="index"
+      @click="goPage(item)"
+      >{{ item.text }}
+    </view>
+  </view>
+</template>
+
+<script setup>
+import { onMounted, ref } from 'vue'
+const list = ref([])
+
+onMounted(() => {
+  list.value = [
+    {
+      url: '/pages/clickMethod/index',
+      text: '点击事件测试'
+    },
+    {
+      url: '/pages/loopAndPagination/loopAndPagination',
+      text: '分页器数量测试'
+    },
+    {
+      url: '/pages/virtualToMore/virtualToMore',
+      text: '虚拟追加数据'
+    }
+  ]
+})
+
+const goPage = (item) => {
+  uni.navigateTo({
+    url: item.url
+  })
+}
+</script>
+
+<style lang="scss">
+.content {
+  padding: 0 30rpx;
+
+  .content-item {
+    margin-top: 30rpx;
+    background-color: rgb(248, 248, 248);
+    padding: 30rpx;
+  }
+}
+</style>

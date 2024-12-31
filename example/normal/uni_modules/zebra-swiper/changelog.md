@@ -184,10 +184,10 @@
 
 ```vue
 <z-swiper>
-        <z-swiper-item v-for="(item,index) in list" :key="index">
-		<image class="image" :src="item" mode="aspectFill">
-		</image>
-	</z-swiper-item>
+    <z-swiper-item v-for="(item,index) in list" :key="index">
+  <image class="image" :src="item" mode="aspectFill">
+  </image>
+ </z-swiper-item>
 </z-swiper>
 ```
 
@@ -195,10 +195,10 @@
 
 ```vue
 <z-swiper v-model="list"> //这里传入的需和下方循环的保持一致
-	<z-swiper-item v-for="(item,index) in list" :key="index">
-		<image class="image" :src="item" mode="aspectFill">
-		</image>
-	</z-swiper-item>
+ <z-swiper-item v-for="(item,index) in list" :key="index">
+  <image class="image" :src="item" mode="aspectFill">
+  </image>
+ </z-swiper-item>
 </z-swiper>
 ```
 
