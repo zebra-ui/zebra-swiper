@@ -28,7 +28,7 @@
 
 ## 安装
 
-**详细安装方法，可参考[文档](https://swiper.zebraui.com/)**
+**详细安装方法，可参考[文档](https://swiper.zebraui.com/guide/quickstart.html)**
 
 ### npm 方式
 
@@ -65,7 +65,7 @@ pnpm add @zebra-ui/swiper
 
 `uniapp`提供了`uni_modules`自动引入，使用此方法不需要再单独对组件进行引入。
 
-### 详细安装及使用方法，可参考[文档](https://swiper.zebraui.com/)
+### 详细安装及使用方法，可参考[文档](https://swiper.zebraui.com/guide/quickstart.html)
 
 ## 文档网站
 
