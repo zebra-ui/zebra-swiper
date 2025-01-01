@@ -1,3 +1,37 @@
+## 3.0.0（2025-01-01）
+
+`2025-01-01`
+
+#### 重要更新 ✨
+
+`zebra-swiper` 组件已基于`vue3` + `TypeScript`重构。
+
+**`zebra-swiper`3.0已不再兼容`vue2`**，同时，2.x版本非重大问题，将不再继续维护，且不再提供新功能。得益于`vue3`的proxy代理机制，`zebra-swiper`组件在性能上得到较大提升。
+
+有关从2.x迁移至3.0的详细内容，请参考文档[从 2.x 迁移](https://swiper.zebraui.com/guide/migrate.html)。
+
+3.0版本主要做出以下重大变更：
+
+- 1.参数传递的结构性调整
+- 2.事件监听机制的优化
+- 3.`v-model` 的使用调整
+- 4.`loop` 逻辑的深度重构
+- 5.模块化按需引入
+
+#### 新功能 ✨
+
+- feat(swiper)：✨ `zebra-swiper` 组件基于`vue3` + `TypeScript`重构 by [@Ru1ers](https://github.com/Ru1ers) in [#33](https://github.com/zebra-ui/zebra-swiper/pull/33)。
+
+#### 文档更新 ✅
+
+- docs: ✅ 组件文档基于`vitepress`重构 by [@Ru1ers](https://github.com/Ru1ers) in [#33](https://github.com/zebra-ui/zebra-swiper/pull/33)。3.0文档提供更为完善的使用方法，以及更直观的展现方式。
+
+#### 其他更改
+
+- ci: ⚡ 新增文档自动构建`github-page`流程。
+- ci: ⚡ 新增文档自动上传服务器流程。
+- ci: ⚡ 新增组件自动发布`github`-`release`流程。
+
 ## 2.2.8（2023-12-21）
 
 `2023-12-21`

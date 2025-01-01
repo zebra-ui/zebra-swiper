@@ -1,9 +1,9 @@
 {
     "name": "@zebra-ui/swiper",
     "id": "zebra-swiper",
-    "displayName": "zebra-swiper 3D轮播，全面对标swiperjs并实现全端兼容。",
-    "version": "3.0.0-beta.1",
-    "description": "适配多端的高自定义轮播组件，多种3D效果。全面对标swiperjs。",
+    "displayName": "zebra-swiper 3D轮播组件库，基于Vue3+TypeScript重构，从心出发。",
+    "version": "3.0.0",
+    "description": "专为多端设计的高性能轮播组件库，支持多种复杂的 3D 轮播效果。",
     "main": "index.ts",
     "types": "index.d.ts",
     "keywords": [
@@ -56,7 +56,8 @@
         "platforms": {
             "cloud": {
                 "tcb": "y",
-                "aliyun": "y"
+                "aliyun": "y",
+                "alipay": "n"
             },
             "client": {
                 "Vue": {
@@ -65,7 +66,9 @@
                 },
                 "App": {
                     "app-vue": "y",
-                    "app-nvue": "n"
+                    "app-nvue": "n",
+                    "app-harmony": "u",
+                    "app-uvue": "u"
                 },
                 "H5-mobile": {
                     "Safari": "y",
