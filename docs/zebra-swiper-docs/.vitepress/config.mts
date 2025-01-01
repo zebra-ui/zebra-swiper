@@ -13,7 +13,12 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/zebra-ui/zebra-swiper' }
     ],
     search: {
-      provider: 'local'
+      provider: 'algolia',
+      options: {
+        appId: 'VX6GY276LN',
+        apiKey: '1390b67f732815b32c1f89221bb014e5',
+        indexName: 'swiper-zebraui'
+      }
     }
   },
   vite: {
