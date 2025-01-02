@@ -21,5 +21,30 @@ export const nav = [
         link: 'https://v2.swiper.zebraui.com/'
       }
     ]
+  },
+  {
+    text: `关于`,
+    items: [
+      {
+        text: 'H5预览',
+        link: 'https://swiper.zebraui.com/h5/#/'
+      },
+      {
+        text: 'uniapp插件市场',
+        link: 'https://ext.dcloud.net.cn/plugin?id=7273'
+      },
+      {
+        text: 'ZebraUI',
+        link: 'https://zebraui.com/'
+      },
+      {
+        text: 'ZebraAxios',
+        link: 'https://axios.zebraui.com/'
+      },
+      {
+        text: 'ZebraColor',
+        link: 'https://color.zebraui.com/'
+      }
+    ]
   }
 ] satisfies DefaultTheme.NavItem[]
