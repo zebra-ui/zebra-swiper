@@ -33,6 +33,14 @@
 - [📘 zebra-swiper 官方文档](https://swiper.zebraui.com/)
 - [📘 zebra-swiper GitHub Pages](https://github.swiper.zebraui.com/)（备用地址）
 
+## 手机预览
+
+<div style="display:flex;flex-wrap:wrap;">
+ <img alt="wx" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/v3/preview-wx.jpg" width="200" />
+ <img alt="ali" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/v3/preview-ali.jpg" width="200" />
+ <img alt="h5" src="https://assets-1256020106.file.myqcloud.com/zebra-swiper/v3/preview-h5.png" width="200" />
+</div>
+
 ## Zebra 生态
 
 Zebra 官方还维护了多个相关项目，为开发者提供了多样化的工具：
