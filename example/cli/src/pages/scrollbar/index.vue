@@ -1,7 +1,5 @@
 <template>
-  <view class="demo-swiper" style="
-
---swiper-scrollbar-size: 20rpx">
+  <view class="demo-swiper" style="--swiper-scrollbar-size: 20rpx">
     <demo-block title="基础用法">
       <z-swiper scrollbar :modules="modules">
         <z-swiper-item v-for="item in list" :key="item.id">

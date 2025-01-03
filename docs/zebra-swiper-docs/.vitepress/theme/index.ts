@@ -12,6 +12,7 @@ import AnimatedElement from './components/Animated/element.vue'
 import AnimatedCounter from './components/Animated/counter.vue'
 import DemoShow from './components/DemoShow/index.vue'
 import DemoHome from './components/DemoHome/index.vue'
+import CodeSandbox from './components/CodeSandbox/index.vue'
 import '@zebra-ui/swiper/index.scss'
 import './main.css'
 import 'animate.css'
@@ -31,6 +32,7 @@ export default {
     app.component('AnimatedCounter', AnimatedCounter)
     app.component('DemoShow', DemoShow)
     app.component('DemoHome', DemoHome)
+    app.component('CodeSandbox', CodeSandbox)
 
     // @ts-ignore
     if (!import.meta.env.SSR) {
