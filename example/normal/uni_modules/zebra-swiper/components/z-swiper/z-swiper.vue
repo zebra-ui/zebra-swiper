@@ -3,8 +3,8 @@
     :id="`swiper${instance.uid}`"
     :class="[classNames]"
     :style="[swiperStyle]"
-    @touchstart.passive="onTouchStart"
-    @touchmove.passive="onTouchMove"
+    @touchstart="onTouchStart"
+    @touchmove="onTouchMove"
     @touchend="onTouchEnd"
     @touchcancel="onTouchEnd"
     @click="onClick"
@@ -221,7 +221,6 @@ if (
     slides: virtualList,
     renderExternal: (data: VirtualData) => {
       virtualData.value = data
-      // emit("update:list", data.data)
     },
     renderExternalUpdate: false
   }
@@ -332,7 +331,6 @@ watch(
   () => props.list,
   () => {
     if (!isWeb() && props.loop && !props.virtual) {
-      // swiperRef.value.update()
       const isSwiperChange = compareArrays(
         props.list as any[],
         operatedList.value
@@ -385,7 +383,6 @@ const resetLoopList = () => {
   wrapperEl.children.sort(
     (a, b) => sortIndexes.indexOf(a.uid) - sortIndexes.indexOf(b.uid)
   )
-  // emit('update:list', originalList.value)
 }
 
 onMounted(() => {
@@ -442,12 +439,6 @@ onMounted(() => {
     }
   }
 })
-
-// function renderSlides(slides) {
-// 	if (swiperParams.virtual) {
-// 		return renderVirtual(swiperRef, slides, virtualData.value);
-// 	}
-// }
 
 onBeforeUnmount(() => {
   if (swiperRef.value && !swiperRef.value.destroyed) {
