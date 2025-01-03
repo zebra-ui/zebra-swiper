@@ -3,6 +3,7 @@ import { guide } from './guide.mjs'
 import { api } from './api.mjs'
 import { modules } from './modules.mjs'
 import { advanced } from './advanced.mjs'
+import { playground } from './playground.mjs'
 
 import { createRequire } from 'node:module'
 const require = createRequire(import.meta.url)
@@ -13,6 +14,7 @@ export const nav = [
   api,
   modules,
   advanced,
+  playground,
   {
     text: `v${packageJson.version}`,
     items: [

@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { sidebar, nav, head } from './configs/index.mjs'
+import { playground } from './configs/playground.mjs'
 
 export default defineConfig({
   title: 'ZebraSwiper',
@@ -8,7 +9,15 @@ export default defineConfig({
   themeConfig: {
     logo: '/logo-line.svg',
     nav,
-    sidebar,
+    sidebar: {
+      '/': sidebar,
+      '/playground/': [playground]
+    },
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright:
+        'Copyright © 2022-present <a href="https://github.com/zebra-ui">Zebra</a>'
+    },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/zebra-ui/zebra-swiper' },
       { icon: 'gitee', link: 'https://gitee.com/zebra-ui/zebra-uniapp-swiper' }
