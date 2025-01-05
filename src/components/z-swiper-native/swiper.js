@@ -669,7 +669,8 @@ const ZSwiperNative = {
           nextEl: nextElRef.value,
           prevEl: prevElRef.value,
           scrollbarEl: scrollbarElRef.value,
-          paginationEl: paginationElRef.value
+          paginationEl: paginationElRef.value,
+          tag: 'native'
         })
       }
       breakpointChanged.value = false

@@ -22,10 +22,16 @@ const updateSlidesOffset: UpdateSlidesOffset = function (
         minusOffset -
         swiper.cssOverflowAdjustment()
     } else {
+      const isVirtual =
+        swiper.virtual &&
+        typeof swiper.params.virtual === 'object' &&
+        swiper.params.virtual.enabled
+      const calcOffsetDiff = isVirtual ? swiper.virtual.offset : 0
       const calcOffset =
         ((slides[i] as SwiperItemInstance).swiperSlideSize +
           Number(swiper.params.spaceBetween)) *
-        i
+          i +
+        calcOffsetDiff
       const slideOffsetLeft =
         (slides[i] as SwiperItemInstance).swiperItemRect?.left || calcOffset
       const slideOffsetTop =

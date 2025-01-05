@@ -9,6 +9,7 @@ export interface UpdateSwiperParams {
   prevEl?: HTMLElement | string | null
   scrollbarEl?: HTMLElement | string | null
   paginationEl?: HTMLElement | string | null
+  tag?: string
 }
 
 export interface UpdateSwiper {

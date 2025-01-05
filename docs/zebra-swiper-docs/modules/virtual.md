@@ -18,11 +18,23 @@ outline: deep
 
   const list = ref([])
 
+   const colorList = [
+  '#7ED321',
+  '#2183D3',
+  '#2128D3',
+  '#431058',
+  '#1E835A',
+  '#B1397B',
+  '#B36021'
+ ]
+
   const virtualList = ref(Array.from({
    length: 1000
   }).map((item, index) => {
+    const randomValue = Math.floor(Math.random() * 7)
     return {
      text: `Slide ${index + 1}` ,
+     background: colorList[randomValue],
      id: index + 1
     }
    }
@@ -100,7 +112,7 @@ const modules = ref([Virtual])
 
 而用户的列表数据则通过`virtualList`传递给swiper。用户应维护此列表，而不是`v-model:list`传给swiper的列表。
 
-此外，`virtual`开启后页面显示的节点固定为`3`个，所以更推荐设置循环的`key`值为`index`。
+此外，`virtual`开启后页面显示的节点数量通常不变，所以应设置循环的`key`值为`index`。
 :::
 
 ::: danger
@@ -115,12 +127,14 @@ const modules = ref([Virtual])
 需要注意的是，`swiper-item`需要绑定数据列表中的样式，`:custom-style="item.props.style"`，这个变量是固定的，由swiper组件维护，开发者无需关注。
 
 此外，`swiper` 还会维护`virtual`的下标，`:virtualIndex="item.virtualIndex"`，这个变量为固定写法，开发者无需修改。
+
+`z-swiper`不支持同时使用`virtual`和3D切换效果，Web平台可使用`z-swiper-native`实现。
 :::
 
 <DemoBlock expanded>
 <z-swiper v-model:list="list" grabCursor virtual :modules="modules" :virtualList="virtualList">
-  <z-swiper-item v-for="(item,index) in list" :key="item.id" :custom-style="item.props.style" :virtualIndex="item.virtualIndex">
-    <DemoItem :text="item.text"></DemoItem>
+  <z-swiper-item v-for="(item,index) in list" :key="index" :custom-style="item.props.style" :virtualIndex="item.virtualIndex">
+    <DemoItem :text="item.text" :custom-style="{backgroundColor:item.background,color:'#ffffff'}"></DemoItem>
   </z-swiper-item>
 </z-swiper>
 
@@ -136,7 +150,7 @@ const modules = ref([Virtual])
 >
   <z-swiper-item
     v-for="item in list"
-    :key="item.id"
+    :key="index"
     :custom-style="item.props.style"
     :virtualIndex="item.virtualIndex"
   >
@@ -186,7 +200,7 @@ web平台也需要传入`virtualIndex`，并且swiper内部在web平台不提供
 
 <DemoBlock expanded>
 <z-swiper-native grabCursor virtual :modules="modules">
-  <z-swiper-item-native v-for="(item,index) in virtualListToWeb" :key="item.id" :virtualIndex="index">
+  <z-swiper-item-native v-for="(item,index) in virtualListToWeb" :key="index" :virtualIndex="index">
     <DemoItem :text="item.text"></DemoItem>
   </z-swiper-item-native>
 </z-swiper-native>
@@ -197,7 +211,7 @@ web平台也需要传入`virtualIndex`，并且swiper内部在web平台不提供
 <z-swiper-native grabCursor virtual :modules="modules">
   <z-swiper-item-native
     v-for="(item,index) in virtualListToWeb"
-    :key="item.id"
+    :key="index"
     :virtualIndex="index"
   >
     <DemoItem :text="item.text"></DemoItem>
