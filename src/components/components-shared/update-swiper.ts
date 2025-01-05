@@ -9,7 +9,8 @@ const updateSwiper: UpdateSwiper = ({
   nextEl,
   prevEl,
   scrollbarEl,
-  paginationEl
+  paginationEl,
+  tag
 }) => {
   const updateParams = changedParams.filter(
     (key) => key !== 'children' && key !== 'direction' && key !== 'wrapperClass'
@@ -176,6 +177,7 @@ const updateSwiper: UpdateSwiper = ({
     typeof currentParams.virtual === 'object' &&
     currentParams.virtual.enabled
   ) {
+    if (tag === 'native') virtual.slides = slides
     virtual.update(true)
   } else if (
     changedParams.includes('virtual') &&
@@ -183,6 +185,7 @@ const updateSwiper: UpdateSwiper = ({
     typeof currentParams.virtual === 'object' &&
     currentParams.virtual.enabled
   ) {
+    if (slides && tag === 'native') virtual.slides = slides
     virtual.update(true)
   }
   if (changedParams.includes('children') && slides && currentParams.loop) {

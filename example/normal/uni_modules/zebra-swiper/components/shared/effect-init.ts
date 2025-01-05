@@ -1,4 +1,4 @@
-import { isWeb } from './utils'
+import { isWeb, simulateRequestAnimationFrame } from './utils'
 import type { EffectInit } from '../../types/components/shared/effect-init'
 import type { SwiperInstance } from '../../types/swiper-instance'
 
@@ -65,12 +65,21 @@ const effectInit: EffectInit = (params) => {
     if (!swiper.slides.length) {
       requireUpdateOnVirtual = true
     }
-    requestAnimationFrame(() => {
-      if (requireUpdateOnVirtual && swiper.slides && swiper.slides.length) {
-        setTranslate()
-        requireUpdateOnVirtual = false
-      }
-    })
+    if (isWeb()) {
+      requestAnimationFrame(() => {
+        if (requireUpdateOnVirtual && swiper.slides && swiper.slides.length) {
+          setTranslate()
+          requireUpdateOnVirtual = false
+        }
+      })
+    } else {
+      simulateRequestAnimationFrame(() => {
+        if (requireUpdateOnVirtual && swiper.slides && swiper.slides.length) {
+          setTranslate()
+          requireUpdateOnVirtual = false
+        }
+      })
+    }
   })
 }
 

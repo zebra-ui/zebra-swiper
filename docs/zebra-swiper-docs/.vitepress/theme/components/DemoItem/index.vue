@@ -10,14 +10,16 @@ const props = defineProps({
   height: {
     type: String,
     default: '200px'
-  }
+  },
+  customStyle: Object
 })
 
 const contentStyle = computed(() => {
   return {
     width: props.width,
     height: props.height,
-    backgroundColor: getRandomColor()
+    backgroundColor: getRandomColor(),
+    ...props.customStyle
   }
 })
 

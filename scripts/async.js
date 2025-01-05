@@ -2,6 +2,7 @@ const fs = require('fs-extra')
 
 const folderMappings = {
   normal: 'example/normal/uni_modules/zebra-swiper',
+  testNormal: 'tests/normal-test/uni_modules/zebra-swiper',
   src: 'src'
 }
 
