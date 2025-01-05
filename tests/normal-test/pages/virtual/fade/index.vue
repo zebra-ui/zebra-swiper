@@ -1,8 +1,8 @@
 <template>
 	<view class="demo-swiper">
 		<demo-block title="normal">
-			<z-swiper v-model:list="list" virtual effect="fade" :modules="modules" :virtualList="virtualList">
-				<z-swiper-item v-for="(item,index) in list" :key="index" :virtualIndex="item.virtualIndex"
+			<z-swiper v-model:list="list" virtual effect="cube" :modules="modules" :virtualList="virtualList">
+				<z-swiper-item v-for="(item,index) in list" :key="item.id" :virtualIndex="item.virtualIndex"
 					:custom-style="item.props.style">
 					<demo-item :item="item"></demo-item>
 				</z-swiper-item>
@@ -10,7 +10,7 @@
 		</demo-block>
 		<!-- #ifdef H5 -->
 		<demo-block title="native">
-			<z-swiper-native loop virtual effect="fade" :modules="modules">
+			<z-swiper-native virtual effect="cube" :modules="modules">
 				<z-swiper-item-native v-for="(item,index) in virtualListNative" :key="index" :virtualIndex="index">
 					<demo-item :item="item"></demo-item>
 				</z-swiper-item-native>
@@ -27,10 +27,11 @@
 	} from 'vue'
 	import {
 		Virtual,
-		EffectFade
+		EffectFade,
+		EffectCube
 	} from '@/uni_modules/zebra-swiper/modules'
 
-	const modules = ref([Virtual, EffectFade])
+	const modules = ref([Virtual, EffectFade, EffectCube])
 	const colorList = [
 		'#7ED321',
 		'#2183D3',

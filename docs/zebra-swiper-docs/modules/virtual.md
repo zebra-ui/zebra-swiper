@@ -127,6 +127,8 @@ const modules = ref([Virtual])
 需要注意的是，`swiper-item`需要绑定数据列表中的样式，`:custom-style="item.props.style"`，这个变量是固定的，由swiper组件维护，开发者无需关注。
 
 此外，`swiper` 还会维护`virtual`的下标，`:virtualIndex="item.virtualIndex"`，这个变量为固定写法，开发者无需修改。
+
+`z-swiper`不支持同时使用`virtual`和3D切换效果，Web平台可使用`z-swiper-native`实现。
 :::
 
 <DemoBlock expanded>
@@ -238,11 +240,3 @@ const modules = ref([Virtual])
   </template>
 
 </DemoBlock>
-
-## virtual支持度
-
-| 功能            |    Loop    |     H5    |  小程序 |  APP  |  备注 |
-| -------------   | :------: |  :------: | :----: |:----: |:----: |
-| 基础            |     ✅    |     ✅    |    ✅  |    ✅  |       |
-| 轮播块          |     ✅    |    ✅    |   ✅    |   ✅   |      |
-| fade          |     ✅    |    ✅    |    ❌    |   ❌   |      |
