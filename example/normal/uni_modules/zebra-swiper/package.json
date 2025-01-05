@@ -2,17 +2,17 @@
   "name": "@zebra-ui/swiper",
   "id": "zebra-swiper",
   "displayName": "zebra-swiper 3D轮播组件库，基于Vue3+TypeScript重构，从心出发。",
-  "version": "3.0.0",
-  "description": "专为多端设计的高性能轮播组件库，支持多种复杂的 3D 轮播效果。",
+  "version": "3.0.1",
+  "description": "专为多端设计的高性能swiper轮播组件库，支持多种复杂的 3D swiper轮播效果。",
   "main": "index.ts",
   "types": "index.d.ts",
   "keywords": [
-    "zebra",
     "swiper",
+    "zebra",
     "轮播",
     "3D",
     "banner"
-  ],
+],
   "repository": "https://github.com/zebra-ui/zebra-swiper",
   "bugs": {
     "url": "https://github.com/zebra-ui/zebra-uniapp-swiper/issues"
@@ -65,10 +65,10 @@
           "vue3": "y"
         },
         "App": {
-          "app-vue": "y",
-          "app-nvue": "n",
-          "app-harmony": "u",
-          "app-uvue": "u"
+            "app-vue": "y",
+            "app-nvue": "n",
+            "app-harmony": "u",
+            "app-uvue": "u"
         },
         "H5-mobile": {
           "Safari": "y",

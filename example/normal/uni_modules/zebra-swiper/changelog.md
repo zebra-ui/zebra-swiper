@@ -1,3 +1,15 @@
+## 3.0.1（2025-01-05）
+`2025-01-05`
+
+#### Bug 修复 ⚙️
+
+- fix(swiper)：⚙️ 修复 因`touchstart` `touchmove` 事件的`passive`修饰符引起的App端无法滑动的问题 by [@Ru1ers](https://github.com/Ru1ers) in [#55](https://github.com/zebra-ui/zebra-swiper/pull/55)，close [#52](https://github.com/zebra-ui/zebra-swiper/issues/52)。
+- fix(swiper-native)：⚙️ 修复 `virtual` 模式下二次赋值时，页面不更新的问题 by [@Ru1ers](https://github.com/Ru1ers) in [#56](https://github.com/zebra-ui/zebra-swiper/pull/56)。
+- fix(swiper)：⚙️ 修复 使用切换效果时，`swiperSlideOffset` 获取不准确的问题 by [@Ru1ers](https://github.com/Ru1ers) in [#56](https://github.com/zebra-ui/zebra-swiper/pull/56)。
+
+#### 文档更新 ✅
+
+- docs: ✅ 组件文档新增[Playground](https://swiper.zebraui.com/playground/base.html) 集成`codesandbox` by [@Ru1ers](https://github.com/Ru1ers) in [#53](https://github.com/zebra-ui/zebra-swiper/pull/53)。
 ## 3.0.0（2025-01-01）
 
 `2025-01-01`
