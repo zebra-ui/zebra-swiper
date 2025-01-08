@@ -4,32 +4,25 @@ import { api } from './api.mjs'
 import { modules } from './modules.mjs'
 import { advanced } from './advanced.mjs'
 import { playground } from './playground.mjs'
-
-import { createRequire } from 'node:module'
-const require = createRequire(import.meta.url)
-const packageJson = require('@zebra-ui/swiper/package.json')
+import { template } from './template.mjs'
 
 export const nav = [
   guide,
   api,
   modules,
   advanced,
+  template,
   playground,
-  {
-    text: `v${packageJson.version}`,
-    items: [
-      {
-        text: '2.x',
-        link: 'https://v2.swiper.zebraui.com/'
-      }
-    ]
-  },
   {
     text: `关于`,
     items: [
       {
         text: 'H5预览',
         link: 'https://swiper.zebraui.com/h5/#/'
+      },
+      {
+        text: '2.x',
+        link: 'https://v2.swiper.zebraui.com/'
       },
       {
         text: 'uniapp插件市场',

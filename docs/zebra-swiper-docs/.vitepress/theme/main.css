@@ -20,3 +20,17 @@ view {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--vp-c-text-3);
 }
+
+:root {
+  --card-shadow-1: rgba(0, 0, 0, 0.1);
+  --card-shadow-2: rgba(0, 0, 0, 0.06);
+}
+
+.dark {
+  --card-shadow-1: rgba(0, 0, 0, 0.3);
+  --card-shadow-2: rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  color: var(--vp-c-text-1);
+}

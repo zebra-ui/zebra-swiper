@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'iconfont'; /* Project id 4804870 */
+  /* Color fonts */
+  src:
+    url('//at.alicdn.com/t/c/font_4804870_dp6l2a5zfqc.woff2?t=1736344175610')
+      format('woff2'),
+    url('//at.alicdn.com/t/c/font_4804870_dp6l2a5zfqc.woff?t=1736344175610')
+      format('woff'),
+    url('//at.alicdn.com/t/c/font_4804870_dp6l2a5zfqc.ttf?t=1736344175610')
+      format('truetype');
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.zebra-template-poster:before {
+  content: '\e66a';
+}
+
+.zebra-template-fanshaped:before {
+  content: '\e669';
+}
+
+.zebra-template-circular:before {
+  content: '\e668';
+}
+
+.zebra-template-panorama:before {
+  content: '\e667';
+}
+
+.zebra-template-stack:before {
+  content: '\e666';
+}

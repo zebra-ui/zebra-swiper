@@ -1,17 +1,19 @@
 import { defineConfig } from 'vitepress'
 import { sidebar, nav, head } from './configs/index.mjs'
 import { playground } from './configs/playground.mjs'
+import { template } from './configs/template.mjs'
 
 export default defineConfig({
   title: 'ZebraSwiper',
   description: '专为多端设计的高性能轮播组件库，支持多种复杂的 3D 轮播效果。',
   head,
   themeConfig: {
-    logo: '/logo-line.svg',
+    logo: { light: '/logo-line.svg', dark: '/logo-line-dark.svg' },
     nav,
     sidebar: {
       '/': sidebar,
-      '/playground/': [playground]
+      '/playground/': [playground],
+      '/template/': [template]
     },
     footer: {
       message: 'Released under the MIT License.',
