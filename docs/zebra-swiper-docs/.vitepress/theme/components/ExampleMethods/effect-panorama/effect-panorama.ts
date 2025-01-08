@@ -24,8 +24,8 @@ export default function EffectPanorama({
 }): void {
   extendParams({
     customEffect: {
-      depth: 300,
-      rotate: 50,
+      depth: 200,
+      rotate: 30,
       stretch: 1
     } as SwiperOptionsPanorama
   })

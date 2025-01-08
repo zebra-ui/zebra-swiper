@@ -111,6 +111,8 @@ export function createApp() {
 
 ::: warning
 两种安装方式都需要引入样式。
+
+如果使用`@use`导入时存在问题，可更换`@import`导入。
 :::
 
 ::: code-group
@@ -118,14 +120,14 @@ export function createApp() {
 ```vue [npm]
 <!-- APP.vue -->
 <style lang="scss">
-@use '@zebra-ui/swiper/index';
+@use '@zebra-ui/swiper/index.scss';
 </style>
 ```
 
 ```vue [uni_modules]
 <!-- APP.vue -->
 <style lang="scss">
-@use '@/uni_modules/zebra-swiper/index';
+@use '@/uni_modules/zebra-swiper/index.scss';
 </style>
 ```
 
