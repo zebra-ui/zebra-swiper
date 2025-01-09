@@ -190,9 +190,15 @@ export default function Autoplay({
         proceed()
       }, delay)
     } else {
-      requestAnimationFrame(() => {
-        proceed()
-      })
+      if (isWeb()) {
+        requestAnimationFrame(() => {
+          proceed()
+        })
+      } else {
+        simulateRequestAnimationFrame(() => {
+          proceed()
+        })
+      }
     }
 
     return delay

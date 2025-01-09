@@ -238,7 +238,7 @@ const itemRemoveEventListener = (
 const itemTransitionEnd = (e: Event) => {
   if (!isWeb()) {
     itemTransitionEndMethod.value.forEach(
-      (func) => func.name == 'transtionend' && func.callback(e)
+      (func) => func.name == 'transitionend' && func.callback(e)
     )
   }
 }

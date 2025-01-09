@@ -436,6 +436,20 @@ onMounted(() => {
         .catch((error) => {
           console.error(error)
         })
+    } else {
+      mountSwiper(
+        {
+          el: swiperElRef.value as unknown as HTMLElement,
+          adapterEl: swiperElRef.value,
+          nextEl: nextElRef.value,
+          prevEl: prevElRef.value,
+          paginationEl: paginationElRef.value,
+          scrollbarEl: scrollbarElRef.value,
+          swiper: swiperRef.value as unknown as SwiperInterface
+        },
+        swiperParams
+      )
+      emit('swiper', swiperRef.value)
     }
   }
 })

@@ -22,6 +22,12 @@
 		}, {
 			url: '/pages/virtual/fade/index',
 			text: 'fade'
+		}, {
+			url: '/pages/transitionend/transitionend',
+			text: 'transitionend'
+		}, {
+			url: '/pages/popup/popup',
+			text: 'popup'
 		}]
 	})
 

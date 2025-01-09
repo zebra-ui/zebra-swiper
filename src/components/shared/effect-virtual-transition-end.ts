@@ -53,7 +53,7 @@ const effectVirtualTransitionEnd: EffectVirtualTransitionEnd = ({
               cancelable: true,
               target: {
                 // @ts-ignore
-                id: el?.uid
+                id: `swiperWrapper${swiper.adapterEl?.uid}`
               }
             } as unknown as Event)
         swiper.wrapperEl.dispatchEvent(evt)

@@ -43,3 +43,13 @@ outline: deep
  @use "@/uni_modules/zebra-swiper/modules/navigation/navigation.scss";
 </style>
 ```
+
+## 小程序在弹窗 `popup` 中使用 `swiper` 时的加载问题 {#swiper-on-popup-error}
+
+在小程序和 H5 中，弹窗`v-show`的加载机制存在显著差异。
+
+小程序在页面加载时，即使弹窗未被显示，其内容也会被加载。然而，此时通过 `uni.createSelectorQuery()` 获取弹窗内容的宽高可能返回 `null`，导致 `swiper` 无法正常加载。
+
+为了解决这一问题，可以通过配置 `width` 或 `height` 属性，预先为 `swiper` 设置固定的宽高值，从而确保其正常加载和渲染。
+
+相关配置：[`width`](/api/basic#width) | [`height`](/api/basic#height)
