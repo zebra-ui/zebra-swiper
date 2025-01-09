@@ -196,10 +196,18 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 ## height
 
 :::warning
-设置swiper高度请使用`custom-style`。
+正常设置swiper高度请使用`custom-style`。
+
+单位为`px`。如果需要设置`rpx`，请通过`uni.rpx2px()`转换后再传给swiper。
 :::
 
-强制设置swiper容器的高度。仅在隐藏时初始化swiper时才有用。
+::: tip
+在 `popup` 中使用 `swiper` 时，小程序与 H5 的弹窗加载机制存在显著差异。在小程序环境中，即使弹窗尚未显示，其内容在页面加载后仍会被预加载。这种情况下，通过 `uni.createSelectorQuery()` 方法获取宽高会返回 `null`。
+
+为了应对这一问题，可以通过预设配置为 `swiper` 设置固定宽度，从而确保其正常显示和功能实现。
+:::
+
+强制设置swiper容器的高度。仅在隐藏时初始化swiper时使用。
 
 <ComponentInfo type="Number" value="-"></ComponentInfo>
 
@@ -275,10 +283,18 @@ Swiper 的初始启用状态。当 Swiper 被禁用时，它将隐藏所有导�
 ## width
 
 :::warning
-设置swiper宽度请使用`custom-style`。
+正常设置swiper宽度请使用`custom-style`。
+
+单位为`px`。如果需要设置`rpx`，请通过`uni.rpx2px()`转换后再传给swiper。
 :::
 
-强制设置swiper容器的宽度。仅在隐藏时初始化swiper时才有用。
+::: tip
+在 `popup` 中使用 `swiper` 时，小程序与 H5 的弹窗加载机制存在显著差异。在小程序环境中，即使弹窗尚未显示，其内容在页面加载后仍会被预加载。这种情况下，通过 `uni.createSelectorQuery()` 方法获取宽高会返回 `null`。
+
+为了应对这一问题，可以通过预设配置为 `swiper` 设置固定宽度，从而确保其正常显示和功能实现。
+:::
+
+强制设置swiper容器的宽度。仅在隐藏时初始化swiper时使用。
 
 <ComponentInfo type="Number" value="-"></ComponentInfo>
 

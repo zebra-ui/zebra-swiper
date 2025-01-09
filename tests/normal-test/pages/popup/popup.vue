@@ -1,9 +1,18 @@
 <template>
 	<view class="demo-swiper">
 		<demo-block title="normal">
-			<view class="">
-				<z-swiper v-model:list="virtualList" loop :modules="modules">
+			<view v-show="showSwiper">
+				<z-swiper :width="swiperWidth" effect="cube" :modules="modules">
 					<z-swiper-item v-for="(item,index) in virtualList" :key="item.id">
+						<demo-item :item="item"></demo-item>
+					</z-swiper-item>
+				</z-swiper>
+			</view>
+		</demo-block>
+		<demo-block title="normal">
+			<view v-if="showSwiperIf">
+				<z-swiper v-model:list="virtualListNative" loop :modules="modules">
+					<z-swiper-item v-for="(item,index) in virtualListNative" :key="item.id">
 						<demo-item :item="item"></demo-item>
 					</z-swiper-item>
 				</z-swiper>
@@ -14,6 +23,7 @@
 
 <script setup>
 	import {
+		onMounted,
 		ref,
 		watch
 	} from 'vue'
@@ -42,6 +52,18 @@
 	]
 	const list = ref([])
 
+	const showSwiper = ref(false)
+	const swiperWidth = ref(300)
+
+	const showSwiperIf = ref(false)
+
+	onMounted(() => {
+		setTimeout(() => {
+			showSwiper.value = true
+			showSwiperIf.value = true
+		}, 2000)
+	})
+
 	const virtualList = ref(
 		Array.from({
 			length: 3
@@ -56,7 +78,7 @@
 	)
 	const virtualListNative = ref(
 		Array.from({
-			length: 1000
+			length: 3
 		}).map((item, index) => {
 			const randomValue = Math.floor(Math.random() * 7)
 			return {
