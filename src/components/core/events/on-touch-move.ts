@@ -235,7 +235,7 @@ const onTouchMove: OnTouchMove = function (this: SwiperInterface, event) {
               bySwiperTouchMove: true
             },
             target: {
-              id: swiper.adapterEl?.uid
+              id: `swiperWrapper${swiper.adapterEl?.uid}`
             }
           }
       // @ts-ignore
