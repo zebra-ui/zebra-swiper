@@ -25,6 +25,9 @@
 		}, {
 			url: '/pages/transitionend/transitionend',
 			text: 'transitionend'
+		}, {
+			url: '/pages/popup/popup',
+			text: 'popup'
 		}]
 	})
 
