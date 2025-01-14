@@ -7,6 +7,7 @@ import {
   Autoplay
 } from '@zebra-ui/swiper/modules'
 import { reactive, ref } from 'vue'
+import SlicerSwiper from '../DemoTemplate/components/Slicer.vue'
 
 const modules = ref([
   EffectCube,
@@ -20,12 +21,23 @@ const list = ref(
   Array.from({
     length: 5
   }).map((item, index) => {
+    const randomNumber = Math.floor(Math.random() * 10) + 1
     return {
-      text: `Slide ${index + 1}`,
+      url: `/images/template/resource/swipe${randomNumber}.jpg`,
       id: index + 1
     }
   })
 )
+
+function generateRandomList() {
+  return Array.from({ length: 5 }).map((_, index) => {
+    const randomNumber = Math.floor(Math.random() * 10) + 1
+    return {
+      url: `/images/template/resource/swipe${randomNumber}.jpg`,
+      id: index + 1
+    }
+  })
+}
 
 const creativeEffectOptions = reactive({
   prev: {
@@ -77,12 +89,8 @@ const creativeEffectOptions2 = reactive({
         :modules="modules"
         :custom-style="{ height: '200px', width: '80%' }"
       >
-        <z-swiper-item v-for="item in list" :key="item.id">
-          <DemoItem
-            class="demo-item"
-            :text="item.text"
-            height="100%"
-          ></DemoItem>
+        <z-swiper-item v-for="item in generateRandomList()" :key="item.id">
+          <img :src="item.url" />
         </z-swiper-item>
       </z-swiper>
     </div>
@@ -98,11 +106,7 @@ const creativeEffectOptions2 = reactive({
         :custom-style="{ height: '200px', width: '80%' }"
       >
         <z-swiper-item v-for="item in list" :key="item.id">
-          <DemoItem
-            class="demo-item"
-            :text="item.text"
-            height="100%"
-          ></DemoItem>
+          <img :src="item.url" />
         </z-swiper-item>
       </z-swiper>
     </div>
@@ -117,12 +121,8 @@ const creativeEffectOptions2 = reactive({
         :creativeEffect="creativeEffectOptions1"
         :custom-style="{ height: '200px', width: '80%' }"
       >
-        <z-swiper-item v-for="item in list" :key="item.id">
-          <DemoItem
-            class="demo-item"
-            :text="item.text"
-            height="100%"
-          ></DemoItem>
+        <z-swiper-item v-for="item in generateRandomList()" :key="item.id">
+          <img :src="item.url" />
         </z-swiper-item>
       </z-swiper>
     </div>
@@ -137,17 +137,14 @@ const creativeEffectOptions2 = reactive({
         :creativeEffect="creativeEffectOptions2"
         :custom-style="{ height: '200px', width: '80%' }"
       >
-        <z-swiper-item v-for="item in list" :key="item.id">
-          <DemoItem
-            class="demo-item"
-            :text="item.text"
-            height="100%"
-          ></DemoItem>
+        <z-swiper-item v-for="item in generateRandomList()" :key="item.id">
+          <img :src="item.url" />
         </z-swiper-item>
       </z-swiper>
     </div>
     <div class="show-item">
-      <z-swiper
+      <SlicerSwiper width="80%" height="200px"></SlicerSwiper>
+      <!-- <z-swiper
         grabCursor
         loop
         autoplay
@@ -156,14 +153,10 @@ const creativeEffectOptions2 = reactive({
         :modules="modules"
         :custom-style="{ height: '200px', width: '80%' }"
       >
-        <z-swiper-item v-for="item in list" :key="item.id">
-          <DemoItem
-            class="demo-item"
-            :text="item.text"
-            height="100%"
-          ></DemoItem>
+        <z-swiper-item v-for="item in generateRandomList()" :key="item.id">
+          <img :src="item.url" />
         </z-swiper-item>
-      </z-swiper>
+      </z-swiper> -->
     </div>
     <div class="show-item">
       <z-swiper
@@ -175,12 +168,8 @@ const creativeEffectOptions2 = reactive({
         :modules="modules"
         :custom-style="{ height: '200px', width: '80%' }"
       >
-        <z-swiper-item v-for="item in list" :key="item.id">
-          <DemoItem
-            class="demo-item"
-            :text="item.text"
-            height="100%"
-          ></DemoItem>
+        <z-swiper-item v-for="item in generateRandomList()" :key="item.id">
+          <img :src="item.url" />
         </z-swiper-item>
       </z-swiper>
     </div>
@@ -213,8 +202,17 @@ const creativeEffectOptions2 = reactive({
     position: relative;
     min-width: 270px;
 
-    .demo-item {
+    img {
+      width: 100%;
+      height: 100%;
       border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .swiper-cube {
+      .swiper-slide-shadow-cube {
+        border-radius: 10px;
+      }
     }
   }
 }
