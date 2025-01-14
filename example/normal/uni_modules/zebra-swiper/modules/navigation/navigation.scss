@@ -29,6 +29,12 @@
   margin-top: calc(0px - (var(--swiper-navigation-size) / 2));
   color: var(--swiper-navigation-color, var(--swiper-theme-color));
   cursor: pointer;
+  svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform-origin: center;
+  }
 
   &.swiper-button-disabled {
     pointer-events: none;
@@ -44,13 +50,6 @@
 
   .swiper-navigation-disabled & {
     display: none !important;
-  }
-
-  svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transform-origin: center;
   }
 
   .swiper-rtl & svg {
