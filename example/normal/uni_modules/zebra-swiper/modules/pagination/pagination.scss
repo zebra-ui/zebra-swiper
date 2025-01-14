@@ -85,14 +85,6 @@
 }
 
 .swiper-pagination-bullet {
-  @at-root button#{&} {
-    padding: 0;
-    margin: 0;
-    appearance: none;
-    border: none;
-    box-shadow: none;
-  }
-
   display: inline-block;
   width: var(
     --swiper-pagination-bullet-width,
@@ -113,7 +105,16 @@
   &:only-child {
     display: none !important;
   }
+
+  @at-root button#{&} {
+    padding: 0;
+    margin: 0;
+    appearance: none;
+    border: none;
+    box-shadow: none;
+  }
 }
+
 
 .swiper-pagination-bullet-active {
   background: var(--swiper-pagination-color, var(--swiper-theme-color));
