@@ -18,10 +18,7 @@ import {
 } from 'vue'
 import { useClass } from '../adapter/index.js'
 import { isWeb } from '../shared/utils.js'
-import type {
-  NavigationListenerMethod,
-  NavigationProps
-} from '../../types/components/z-swiper/z-navigation'
+import type { NavigationListenerMethod } from '../../types/components/z-swiper/z-navigation'
 
 defineOptions({
   name: 'ZNavigation',
@@ -36,9 +33,15 @@ const emit = defineEmits<{
   (e: 'init', uid: number | string): void
 }>()
 
-const props = withDefaults(defineProps<NavigationProps>(), {
-  position: '',
-  useSlot: false
+const props = defineProps({
+  position: {
+    type: String,
+    default: ''
+  },
+  useSlot: {
+    type: Boolean,
+    default: false
+  }
 })
 
 const slotClass = computed(() => (props.useSlot ? 'navigation-slot-show' : ''))

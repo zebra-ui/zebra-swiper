@@ -18,11 +18,7 @@
     >
       <slot name="wrapper-start"></slot>
       <slot></slot>
-      <Shadow
-        v-if="swiperShadowShow"
-        ref="swiperShadowRef"
-        :swiper-ref="swiperRef"
-      ></Shadow>
+      <Shadow v-if="swiperShadowShow" ref="swiperShadowRef"></Shadow>
       <slot name="wrapper-end"></slot>
     </view>
     <template v-if="needsNavigation(props)">
@@ -111,12 +107,11 @@ import Shadow from '../z-swiper-shadow/z-shadow.vue'
 import type {
   WrapperTransitionEndMethod,
   WrapperEl,
-  SwiperProps,
   VirtualData
 } from '../../types/components/z-swiper/z-swiper'
 import type { SwiperInterface } from '../../types/swiper-class'
 import type { VirtualOptions } from '../../types/modules/virtual'
-import defaults from '../core/defaults'
+import swiperProps from './props'
 
 defineOptions({
   options: {
@@ -128,7 +123,7 @@ defineOptions({
 const instance = getCurrentInstance() as ComponentInternalInstance
 const componentName = 'z-swiper'
 const emit = defineEmits([...emitData])
-const props = withDefaults(defineProps<SwiperProps>(), { ...defaults })
+const props = defineProps(swiperProps)
 
 let { children, linkChildren } = useChildren(componentName)
 const containerClasses = ref('swiper')
