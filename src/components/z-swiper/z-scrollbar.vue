@@ -22,12 +22,12 @@ import {
   computed,
   ref,
   onMounted,
-  type ComponentInternalInstance
+  type ComponentInternalInstance,
+  type PropType
 } from 'vue'
 import { ClassList } from '../adapter'
 import { getRect, isWeb } from '../shared/utils'
 import type {
-  ScrollbarProps,
   ScrollbarListenerMethod,
   ScrollbarDragEl,
   ScrollbarRect
@@ -42,8 +42,11 @@ defineOptions({
 })
 
 const instance = getCurrentInstance() as ComponentInternalInstance
-const props = withDefaults(defineProps<ScrollbarProps>(), {
-  swiperRef: null
+const props = defineProps({
+  swiperRef: {
+    type: Object as PropType<any | null>,
+    default: () => null
+  }
 })
 
 const emit = defineEmits<{

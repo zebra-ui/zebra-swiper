@@ -98,20 +98,20 @@
   border-radius: var(--swiper-pagination-bullet-border-radius, 50%);
   opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.2);
 
-  .swiper-pagination-clickable & {
-    cursor: pointer;
-  }
-
-  &:only-child {
-    display: none !important;
-  }
-
   @at-root button#{&} {
     padding: 0;
     margin: 0;
     appearance: none;
     border: none;
     box-shadow: none;
+  }
+
+  .swiper-pagination-clickable & {
+    cursor: pointer;
+  }
+
+  &:only-child {
+    display: none !important;
   }
 }
 

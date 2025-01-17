@@ -38,7 +38,6 @@ import { useExpose } from '../shared/use-expose'
 import { useParent } from '../useRelation/use-parent'
 import { useStyle, useClass } from '../adapter'
 import type {
-  SwiperItemProps,
   ShadowItem,
   ItemTransitionEndMethod
 } from '../../types/components/z-swiper/z-swiper-item'
@@ -63,13 +62,31 @@ const emit = defineEmits<{
   (e: 'click', event: Event): void
 }>()
 
-const props = withDefaults(defineProps<SwiperItemProps>(), {
-  tag: 'div',
-  swiperSlideIndex: undefined,
-  zoom: undefined,
-  lazy: false,
-  virtualIndex: undefined,
-  customStyle: () => ({})
+const props = defineProps({
+  tag: {
+    type: String,
+    default: 'div'
+  },
+  swiperSlideIndex: {
+    type: [String, Number],
+    default: undefined
+  },
+  zoom: {
+    type: Boolean,
+    default: undefined
+  },
+  lazy: {
+    type: Boolean,
+    default: false
+  },
+  virtualIndex: {
+    type: [String, Number],
+    default: undefined
+  },
+  customStyle: {
+    type: Object,
+    default: () => ({})
+  }
 })
 
 const dataSwiperSlideIndex = ref(index.value)

@@ -41,18 +41,17 @@ import {
   computed,
   ref,
   onBeforeMount,
-  type ComponentInternalInstance
+  type ComponentInternalInstance,
+  type PropType
 } from 'vue'
 import { ClassList } from '../adapter/index.js'
 import { isWeb } from '../shared/utils.js'
 import { convertSingleValue } from '../components-shared/utils.js'
 import type {
   PaginationData,
-  PaginationProps,
   PaginationListenerMethod
 } from '../../types/components/z-swiper/z-pagination'
 import type { PaginationOptions } from '../../types/modules/pagination'
-
 defineOptions({
   name: 'ZSwiperPagination',
   options: {
@@ -60,8 +59,11 @@ defineOptions({
   }
 })
 
-const props = withDefaults(defineProps<PaginationProps>(), {
-  swiperRef: null
+const props = defineProps({
+  swiperRef: {
+    type: Object as PropType<any | null>,
+    default: () => null
+  }
 })
 
 const paginationClass = ref('swiper-pagination')
