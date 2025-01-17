@@ -1,3 +1,38 @@
+## 3.0.2（2025-01-17）
+`2025-01-17`
+
+#### 重要更新 ✨
+
+在组件内部实现中，`props` 的声明方式已发生调整。这一变化并不影响开发者的使用方法。
+
+此前的实现方式：
+
+`withDefaults(defineProps<propsType>(), { ... })`
+
+现已更改为传统形式：
+
+`defineProps({...})`
+
+此次变更涉及以下组件：
+- `z-swiper`
+- `z-swiper-item`
+- `z-navigation`
+- `z-pagination`
+- `z-scrollbar`
+
+该调整旨在提升对 `JavaScript` 项目的兼容性与友好性。
+
+#### Bug 修复 ⚙️
+
+- fix(swiper)：⚙️ 修复 小程序中使用特殊切换效果时，`transitionend`不执行的问题 by [@Tanch](https://github.com/Ru1ers) in [#0777fce](https://github.com/zebra-ui/zebra-swiper/pull/58/commits/0777fce88a99633eb0a6502b26f1b02425dfa813)。
+- fix(swiper)：⚙️ 修复 当开启`autoplay`时，设置`delay`为`0`，小程序出现`requestAnimationFrame`相关异常 by [@Tanch](https://github.com/Ru1ers) in [#c9cca9c](https://github.com/zebra-ui/zebra-swiper/pull/58/commits/c9cca9c69697fb4c4684e32567307cd91e9de7a5)。
+- fix(swiper)：⚙️ 修复 在弹窗中使用`swiper`时，小程序无法正常计算宽度与高度的问题 by [@Tanch](https://github.com/Ru1ers) in [#c40f96](https://github.com/zebra-ui/zebra-swiper/pull/58/commits/c40f96ca47d7c561939a8eceb10bbab18a1e3007)。
+小程序在弹窗中使用swiper时，需提前设置`width`,`height`。具体可参考文档：
+[小程序在弹窗 popup 中使用 swiper 时的加载问题](https://swiper.zebraui.com/guide/faq.html#swiper-on-popup-error)。
+
+#### 文档更新 ✅
+
+- docs: ✅ 组件文档新增[Template](https://swiper.zebraui.com/template/) 模板 by [@Tanch](https://github.com/Ru1ers) in [#57](https://github.com/zebra-ui/zebra-swiper/pull/57)。
 ## 3.0.1（2025-01-05）
 `2025-01-05`
 

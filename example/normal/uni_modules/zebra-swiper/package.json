@@ -2,7 +2,7 @@
     "name": "@zebra-ui/swiper",
     "id": "zebra-swiper",
     "displayName": "zebra-swiper 3D轮播组件库，基于Vue3+TypeScript重构，从心出发。",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "专为多端设计的高性能swiper轮播组件库，支持多种复杂的 3D swiper轮播效果。",
     "main": "index.ts",
     "types": "index.d.ts",
