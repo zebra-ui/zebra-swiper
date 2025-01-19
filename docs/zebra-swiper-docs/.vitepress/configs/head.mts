@@ -28,7 +28,13 @@ export const head = [
         'A high-performance carousel component library designed for multiple terminals, supporting a variety of complex 3D carousel effects.'
     }
   ],
-  ['meta', { property: 'og:image', content: '/swiper-cover.png' }],
+  [
+    'meta',
+    {
+      property: 'og:image',
+      content: 'https://swiper.zebraui.com/swiper-cover.png'
+    }
+  ],
   ['meta', { property: 'og:url', content: 'https://swiper.zebraui.com/' }],
   ['meta', { property: 'og:type', content: 'website' }],
   ['meta', { name: 'baidu-site-verification', content: 'codeva-NpHtnN32z6' }],
