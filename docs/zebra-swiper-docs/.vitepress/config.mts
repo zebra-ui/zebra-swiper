@@ -6,6 +6,23 @@ import { template } from './configs/template.mjs'
 export default defineConfig({
   title: 'ZebraSwiper',
   description: '专为多端设计的高性能轮播组件库，支持多种复杂的 3D 轮播效果。',
+  sitemap: {
+    hostname: 'https://swiper.zebraui.com/',
+    transformItems: (items) => {
+      const modifyItems: typeof items = []
+      for (const item of items) {
+        if (item.url.includes('404')) {
+          continue
+        }
+        modifyItems.push({
+          ...item,
+          changefreq: 'daily',
+          priority: 1
+        })
+      }
+      return modifyItems
+    }
+  },
   head,
   themeConfig: {
     logo: { light: '/logo-line.svg', dark: '/logo-line-dark.svg' },
