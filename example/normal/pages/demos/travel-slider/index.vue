@@ -37,6 +37,7 @@
 
 <script setup>
 	import {
+		onMounted,
 		ref
 	} from 'vue'
 	const list = ref([{
@@ -91,14 +92,13 @@
 	const planetStyle = ref({})
 	const itemStyle = {
 		width: '560rpx',
-		'max-width': '640px',
 		'box-sizing': 'border-box',
 		position: 'relative'
 	}
 	const swiperStyle = {
-		height: '300px',
-		'padding-top': '64px',
-		'padding-bottom': '64px'
+		height: '600rpx',
+		'padding-top': '128rpx',
+		'padding-bottom': '128rpx'
 	}
 	const init = (swiper) => {
 		swiper.on('progress', (s, progress) => {
@@ -110,6 +110,26 @@
 			planetStyle.value.transitionDuration = `${duration}ms`
 		})
 	}
+	let interstitialAd = null
+	onMounted(() => {
+		// 在页面onLoad回调事件中创建插屏广告实例
+		if (wx.createInterstitialAd) {
+			interstitialAd = wx.createInterstitialAd({
+				adUnitId: 'adunit-a25f0237d3f4434e'
+			})
+			interstitialAd.onLoad(() => {
+				if (interstitialAd) {
+					interstitialAd.show().catch((err) => {
+						console.error('插屏广告显示失败', err)
+					})
+				}
+			})
+			interstitialAd.onError((err) => {
+				console.error('插屏广告加载失败', err)
+			})
+			interstitialAd.onClose(() => {})
+		}
+	})
 </script>
 
 <style lang="scss" scoped>
@@ -150,10 +170,10 @@
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
-			border-radius: 16px;
+			border-radius: 32rpx;
 			box-shadow:
-				0 10px 20px rgb(0 0 0 / 50%),
-				0 -1px 0 rgb(255 255 255 / 50%);
+				0 20rpx 40rpx rgb(0 0 0 / 50%),
+				0 -2rpx 0 rgb(255 255 255 / 50%);
 		}
 
 		&-content {
@@ -162,23 +182,23 @@
 			bottom: 0;
 			left: 0;
 			box-sizing: border-box;
-			padding: 32px;
+			padding: 64rpx;
 			line-height: 1.25;
 			color: #fff;
-			text-shadow: 1px 1px 1px #000;
+			text-shadow: 2rpx 2rpx 2rpx #000;
 			background-image: linear-gradient(to top,
 					rgb(0 0 0 / 50%),
 					rgb(0 0 0 / 0%));
-			border-radius: 0 0 16px 16px;
+			border-radius: 0 0 32rpx 32rpx;
 		}
 
 		&-title {
-			font-size: 32px;
+			font-size: 64rpx;
 			font-weight: bold;
 		}
 
 		&-subtitle {
-			font-size: 18px;
+			font-size: 36rpx;
 		}
 
 		&-planet {
@@ -198,19 +218,19 @@
 
 		&-cities {
 			.cities-image {
-				--travel-slider-planet-size: calc(300px + 64px * 2);
+				--travel-slider-planet-size: calc(600rpx + 128rpx * 2);
 				--travel-slider-image-rotate: 0deg;
 				--travel-slider-image-scale: 1;
 
 				position: absolute;
 				bottom: 95%;
 				left: 50%;
-				width: 120px;
-				height: 120px;
+				width: 240rpx;
+				height: 240rpx;
 				object-fit: contain;
 				object-position: center bottom;
 				transform: translateX(-50%) scale(var(--travel-slider-image-scale)) rotate(var(--travel-slider-image-rotate));
-				transform-origin: center calc(var(--travel-slider-planet-size) / 2 * 0.95 * 0.95 + 120px * 1);
+				transform-origin: center calc(var(--travel-slider-planet-size) / 2 * 0.95 * 0.95 + 240rpx * 1);
 			}
 
 			&-8 {

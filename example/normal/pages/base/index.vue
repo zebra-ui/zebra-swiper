@@ -7,6 +7,13 @@
         </z-swiper-item>
       </z-swiper>
     </demo-block>
+	<demo-block title="广告轮播">
+	  <z-swiper>
+	    <z-swiper-item v-for="item in list" :key="item.id">
+	      <demo-ad :item="item"></demo-ad>
+	    </z-swiper-item>
+	  </z-swiper>
+	</demo-block>
     <demo-block title="监听事件">
       <z-swiper @slide-change="onChange">
         <z-swiper-item v-for="item in list" :key="item.id">

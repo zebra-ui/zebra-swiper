@@ -11,7 +11,11 @@
 					:resistanceRatio="0" :creativeEffect="options" :modules="modules" @setTranslate="onTranslate"
 					@setTransition="onTransition">
 					<z-swiper-item v-for="item in list" :key="item.id">
-						<view class="slide-inner">
+						<view v-if="item.id == 'ad'" class="slide-ad">
+							<ad-custom style="height: 100%;" unit-id="adunit-e988111fcdba522e"
+								ad-intervals="30"></ad-custom>
+						</view>
+						<view v-else class="slide-inner">
 							<image class="slide-image" :src="item.url" />
 							<view class="slide-title">{{ item.title }}</view>
 							<view class="slide-text">{{ item.text }}</view>
@@ -35,6 +39,14 @@
 	const modules = ref([Pagination, EffectCreative])
 	const list = ref([{
 			id: "paper1",
+			bgColor: '#6002EE',
+			fillStyle: {},
+			url: '../../../static/images/banks.svg',
+			title: 'Banks',
+			text: 'Banks are financial institutions that provide a wide range of financial services, including savings accounts, loans, investment opportunities, and more.'
+		},
+		{
+			id: "ad",
 			bgColor: '#6002EE',
 			fillStyle: {},
 			url: '../../../static/images/banks.svg',
@@ -82,6 +94,8 @@
 
 	const fillsStyle = ref({})
 	const fillStyleList = ref([{
+			fillStyle: {}
+		}, {
 			fillStyle: {}
 		},
 		{
@@ -150,22 +164,22 @@
 			height: 100vh;
 
 			.slide-inner {
-				padding: 16px;
+				padding: 32rpx;
 			}
 
 			.slide-image {
-				width: 128px;
-				height: 128px;
+				width: 256rpx;
+				height: 256rpx;
 			}
 
 			.slide-title {
-				margin: 24px 0;
-				font-size: 28px;
+				margin: 48rpx 0;
+				font-size: 56rpx;
 				font-weight: bold;
 			}
 
 			.slide-text {
-				font-size: 18px;
+				font-size: 36rpx;
 			}
 
 			.paper-onboarding {
@@ -194,8 +208,13 @@
 					justify-content: center;
 					width: 100%;
 					height: 100%;
-					padding: 16px;
+					padding: 32rpx;
 					text-align: center;
+				}
+
+				.slide-ad {
+					width: 100%;
+					height: 100%;
 				}
 
 				.paper-onboarding-fills {

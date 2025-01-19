@@ -10,7 +10,7 @@
 		<demo-block title="阴影偏离">
 			<z-swiper effect="cube" :cubeEffect="{shadowOffset:0}" :modules="modules">
 				<z-swiper-item v-for="item in list" :key="item.id">
-					<demo-item :item="item"></demo-item>
+					<demo-ad :item="item"></demo-ad>
 				</z-swiper-item>
 			</z-swiper>
 		</demo-block>

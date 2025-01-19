@@ -12,6 +12,9 @@
 		<view v-for="(group, index) in props.list" :key="index">
 			<demo-home-nav :group="group" />
 		</view>
+		<view class="demo-ad">
+			<ad-custom unit-id="adunit-ee6c78d4b6fd2f11"></ad-custom>
+		</view>
 	</view>
 </template>
 
@@ -28,6 +31,12 @@
 </script>
 
 <style scoped lang="scss">
+	.demo-ad {
+		position: fixed;
+		right: 30rpx;
+		bottom: 100rpx;
+	}
+
 	.demo-home {
 		box-sizing: border-box;
 		width: 100%;

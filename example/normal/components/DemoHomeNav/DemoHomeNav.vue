@@ -64,7 +64,7 @@ const onClick = (event) => {
 
 .demo-home-nav__title {
   margin: 0 32rpx;
-  font-size: 14px;
+  font-size: 28rpx;
   color: rgb(69 90 100 / 60%);
 }
 

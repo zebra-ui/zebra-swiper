@@ -17,6 +17,14 @@
 				</z-swiper-item>
 			</z-swiper>
 		</demo-block>
+		<demo-block title="全景广告">
+			<z-swiper v-model:list="listAd" loop watchSlidesProgress slidesPerView="auto" centeredSlides
+				@beforeInit="onSwiperBeforeInitAd" @setTranslate="onSetTranslateAd" @setTransition="onSetTransitionAd">
+				<z-swiper-item v-for="item in listAd" :key="item.id" :custom-style="{width:'660rpx'}">
+					<demo-ad :item="item"></demo-ad>
+				</z-swiper-item>
+			</z-swiper>
+		</demo-block>
 	</view>
 </template>
 
@@ -27,6 +35,7 @@
 	import data from '../../../common/js/data.js'
 	const list = ref([...data])
 	const listReverse = ref([...data])
+	const listAd = ref([...data])
 	const options = {
 		panorama: {
 			depth: 300,
@@ -38,6 +47,11 @@
 			rotate: -50,
 			stretch: 1
 		},
+		panoramaAd: {
+			depth: 100,
+			rotate: 50,
+			stretch: 1.5
+		},
 	}
 
 	const onSwiperBeforeInit = (swiper) => {
@@ -45,6 +59,10 @@
 	}
 
 	const onSwiperBeforeInitReverse = (swiper) => {
+		swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);
+	}
+
+	const onSwiperBeforeInitAd = (swiper) => {
 		swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);
 	}
 
@@ -104,6 +122,34 @@
 		}
 	}
 
+	const onSetTranslateAd = (swiper) => {
+		const sizesGrid = swiper.slidesSizesGrid;
+		const {
+			depth,
+			rotate,
+			stretch
+		} = options.panoramaAd;
+		const angleRad = (rotate * Math.PI) / 180;
+		const halfAngleRad = angleRad / 2;
+		const angleModifier = 1 / (180 / rotate);
+
+		for (let i = 0; i < swiper.slides.length; i += 1) {
+			const slideEl = swiper.slides[i];
+			const slideProgress = slideEl.progress;
+			const slideSize = sizesGrid[i];
+			const progressModifier = swiper.params.centeredSlides ?
+				0 :
+				(swiper.params.slidesPerView - 1) * 0.5;
+			const modifiedProgress = slideProgress + progressModifier;
+			const angleCos = 1 - Math.cos(modifiedProgress * angleModifier * Math.PI);
+			const translateX = `${modifiedProgress * (stretch * slideSize / 3) * angleCos}px`;
+			const rotateY = modifiedProgress * rotate;
+			const radius = (slideSize * 0.5) / Math.sin(halfAngleRad);
+			const translateZ = `${radius * angleCos - depth}px`;
+			slideEl.style.transform = `translateX(${translateX}) translateZ(${translateZ}) rotateY(${rotateY}deg)`
+		}
+	}
+
 	const onSetTransition = (swiper, duration) => {
 		swiper.slides.forEach((el) => {
 			el.style.transitionDuration = `${duration}ms`
@@ -111,6 +157,12 @@
 	}
 
 	const onSetTransitionReverse = (swiper, duration) => {
+		swiper.slides.forEach((el) => {
+			el.style.transitionDuration = `${duration}ms`
+		})
+	}
+
+	const onSetTransitionAd = (swiper, duration) => {
 		swiper.slides.forEach((el) => {
 			el.style.transitionDuration = `${duration}ms`
 		})

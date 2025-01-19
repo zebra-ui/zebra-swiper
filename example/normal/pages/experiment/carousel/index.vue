@@ -8,6 +8,14 @@
 				</z-swiper-item>
 			</z-swiper>
 		</demo-block>
+		<demo-block title="广告层叠">
+			<z-swiper v-model:list="listAd" loop watchSlidesProgress slidesPerView="auto" centeredSlides
+				@setTranslate="onSetTranslateAd" @setTransition="onSetTransitionAd">
+				<z-swiper-item v-for="item in listAd" :key="item.id" :custom-style="{width:'640rpx'}">
+					<demo-ad :item="item"></demo-ad>
+				</z-swiper-item>
+			</z-swiper>
+		</demo-block>
 	</view>
 </template>
 
@@ -17,6 +25,7 @@
 	} from 'vue'
 	import data from '../../../common/js/data.js'
 	const list = ref([...data])
+	const listAd = ref([...data])
 	const onSetTranslate = (swiper, translate) => {
 		const scaleStep = 0.2;
 		const zIndexMax = swiper.slides.length;
@@ -43,6 +52,37 @@
 	}
 
 	const onSetTransition = (swiper, duration) => {
+		swiper.slides.forEach((el) => {
+			el.style.transitionDuration = `${duration}ms`
+		})
+	}
+	
+	const onSetTranslateAd = (swiper, translate) => {
+		const scaleStep = 0.2;
+		const zIndexMax = swiper.slides.length;
+		for (let i = 0; i < swiper.slides.length; i += 1) {
+			const slideEl = swiper.slides[i];
+			const slideProgress = swiper.slides[i].progress;
+			const absProgress = Math.abs(slideProgress);
+			let modify = 1;
+			if (absProgress > 1) {
+				modify = (absProgress - 1) * 0.3 + 1;
+			}
+			const translate = `${slideProgress * modify * 50}%`;
+			const scale = 1 - absProgress * scaleStep;
+			const zIndex = zIndexMax - Math.abs(Math.round(slideProgress));
+			const slideTransform = `translateX(${translate}) scale(${scale})`;
+			slideEl.style.transform = slideTransform
+			slideEl.style.zIndex = zIndex
+			if (absProgress > 3) {
+				slideEl.style.opacity = 0
+			} else {
+				slideEl.style.opacity = 1
+			}
+		}
+	}
+	
+	const onSetTransitionAd = (swiper, duration) => {
 		swiper.slides.forEach((el) => {
 			el.style.transitionDuration = `${duration}ms`
 		})

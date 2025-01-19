@@ -24,7 +24,7 @@ const props = defineProps({
 @use '../../common/style/var';
 
 .zebra-doc-demo-block {
-  margin: 30rpx;
+  margin: 20rpx;
   overflow: hidden;
   background: #e4ebf5;
   border-radius: 10rpx;
@@ -43,7 +43,7 @@ const props = defineProps({
   }
 
   &__card {
-    padding: 30rpx;
+    padding: 20rpx;
   }
 
   &__title + &__card {
