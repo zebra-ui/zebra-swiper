@@ -11,6 +11,7 @@ export const head = [
   ['meta', { name: 'apple-mobile-web-app-title', content: 'Zebra-Swiper' }],
   ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
   ['meta', { name: 'og:site_name', content: 'Zebra-Swiper' }],
+  ['meta', { name: 'baidu-site-verification', content: 'codeva-NpHtnN32z6' }],
   [
     'script',
     {
