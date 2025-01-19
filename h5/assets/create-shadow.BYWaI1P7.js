@@ -1,0 +1,1 @@
+import{l as s,p as e}from"./index-Cfs_Z2UQ.js";const i=(i,o,p)=>{const r=`swiper-slide-shadow${p?`-${p}`:""}${i?` swiper-slide-shadow-${i}`:""}`,t=s(o);let d;return d=t.querySelector(`.${r.split(" ").join(".")}`),d||(d=e("div",r.split(" ")),t.append(d)),d};export{i as c};
