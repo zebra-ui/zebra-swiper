@@ -22,5 +22,10 @@ export const head = [
     'script',
     {},
     "window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', 'G-D1CHLNGL5G');"
+  ],
+  [
+    'script',
+    {},
+    "var _hmt = _hmt || [];\n(function() {var hm = document.createElement('script');hm.src = 'https://hm.baidu.com/hm.js?8928bfb993528684081d873da98813ed';var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(hm, s);})();"
   ]
 ] satisfies UserConfig['head']
