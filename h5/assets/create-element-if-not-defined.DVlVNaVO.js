@@ -1,0 +1,1 @@
+import{A as e,p as a}from"./index-Cfs_Z2UQ.js";const s=(s,t,c,o)=>(s.params.createElements&&Object.keys(o).forEach((p=>{if(!c[p]&&!0===c.auto){let r=e(s.el,`.${o[p]}`)[0];r||(r=a("div",o[p]),r.className=o[p],s.el.append(r)),c[p]=r,t[p]=r}})),c);export{s as c};
