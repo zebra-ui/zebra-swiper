@@ -107,19 +107,16 @@ export function createCodeSandbox(page) {
       autoplay
     }
     const codeSandBoxParams = uniappFiles(paramsMap[page], page)
-    fetch(
-      `https://codesandbox.io/api/v1/sandboxes/define?environment=server&json=1`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify({
-          files: codeSandBoxParams
-        })
-      }
-    )
+    fetch(`https://codesandbox.io/api/v1/sandboxes/define?json=1`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        files: codeSandBoxParams
+      })
+    })
       .then((res) => res.json())
       .then(({ sandbox_id }) => {
         resolve(
