@@ -49,7 +49,7 @@ const onTouchMove: OnTouchMove = function (this: SwiperInterface, event) {
   if (!isWeb()) {
     if (swiper.params.nested) {
       // @ts-ignore
-      uni.clearStorageSync('preventedByNestedSwiper')
+      uni.removeStorageSync('preventedByNestedSwiper')
     }
     if (
       !swiper.params.nested &&
