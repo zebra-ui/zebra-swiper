@@ -1,3 +1,14 @@
+## 3.0.3（2025-11-05）
+`2025-11-05`
+
+#### Bug 修复 ⚙️
+
+- fix(swiper-core)：⚙️ 修复 当开启`nested`配置后，项目缓存`Storage`被意外清空的问题 by [@Tanch](https://github.com/Ru1ers) in [#89](https://github.com/zebra-ui/zebra-swiper/pull/89)。
+- fix(swiper-core)：⚙️ 修复小程序中 当设置`allowTouchMove `为`false`时，滑动报错的问题 by [@Tanch](https://github.com/Ru1ers) in [#94](https://github.com/zebra-ui/zebra-swiper/pull/94)。
+
+#### 文档更新 ✅
+
+- docs: ✅ 组件文档 修复[Playground](https://swiper.zebraui.com/playground/base.html) 中`codesandbox`无法编译项目的问题 by [@Tanch](https://github.com/Ru1ers) in [#88](https://github.com/zebra-ui/zebra-swiper/pull/88)。
 ## 3.0.2（2025-01-17）
 `2025-01-17`
 

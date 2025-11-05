@@ -1,104 +1,123 @@
 {
-    "name": "@zebra-ui/swiper",
-    "id": "zebra-swiper",
-    "displayName": "zebra-swiper 3D轮播组件库，基于Vue3+TypeScript重构，从心出发。",
-    "version": "3.0.2",
-    "description": "专为多端设计的高性能swiper轮播组件库，支持多种复杂的 3D swiper轮播效果。",
-    "main": "index.ts",
-    "types": "index.d.ts",
-    "keywords": [
-        "swiper",
-        "zebra",
-        "轮播",
-        "3D",
-        "banner"
-    ],
-    "repository": "https://github.com/zebra-ui/zebra-swiper",
-    "bugs": {
-        "url": "https://github.com/zebra-ui/zebra-uniapp-swiper/issues"
+  "name": "@zebra-ui/swiper",
+  "id": "zebra-swiper",
+  "displayName": "zebra-swiper 3D轮播组件库，基于Vue3+TypeScript重构，从心出发。",
+  "version": "3.0.3",
+  "description": "专为多端设计的高性能swiper轮播组件库，支持多种复杂的 3D swiper轮播效果。",
+  "main": "index.ts",
+  "types": "index.d.ts",
+  "keywords": [
+    "swiper",
+    "zebra",
+    "轮播",
+    "3D",
+    "banner"
+],
+  "repository": "https://github.com/zebra-ui/zebra-swiper",
+  "bugs": {
+    "url": "https://github.com/zebra-ui/zebra-uniapp-swiper/issues"
+  },
+  "homepage": "https://swiper.zebraui.com",
+  "author": "zebra-ui",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "vetur": {
+    "tags": "tags.json",
+    "attributes": "attributes.json"
+  },
+  "engines": {
+    "HBuilderX": "^3.1.0",
+    "uni-app": "^4.14",
+    "uni-app-x": ""
+  },
+  "dcloudext": {
+    "sale": {
+      "regular": {
+        "price": "0.00"
+      },
+      "sourcecode": {
+        "price": "0.00"
+      }
     },
-    "homepage": "https://swiper.zebraui.com",
-    "author": "zebra-ui",
-    "license": "ISC",
-    "publishConfig": {
-        "access": "public"
+    "contact": {
+      "qq": "1608864756"
     },
-    "vetur": {
-        "tags": "tags.json",
-        "attributes": "attributes.json"
+    "declaration": {
+      "ads": "无",
+      "data": "插件不采集任何数据",
+      "permissions": "无"
     },
-    "engines": {
-        "HBuilderX": "^3.1.0"
-    },
-    "dcloudext": {
-        "sale": {
-            "regular": {
-                "price": "0.00"
+    "npmurl": "https://www.npmjs.com/package/@zebra-ui/swiper",
+    "type": "component-vue",
+    "darkmode": "x",
+    "i18n": "x",
+    "widescreen": "√"
+  },
+  "uni_modules": {
+    "dependencies": [],
+    "encrypt": [],
+    "platforms": {
+      "cloud": {
+        "tcb": "x",
+        "aliyun": "x",
+        "alipay": "x"
+      },
+      "client": {
+        "uni-app": {
+          "vue": {
+            "vue2": {
+                "extVersion": "2.2.8",
+                "minVersion": ""
             },
-            "sourcecode": {
-                "price": "0.00"
+            "vue3": {
+                "extVersion": "3.0.0",
+                "minVersion": ""
             }
+          },
+          "web": {
+            "safari": "√",
+            "chrome": "√"
+          },
+          "app": {
+            "vue": "√",
+            "nvue": "x",
+            "android": "-",
+            "ios": "-",
+            "harmony": "-"
+          },
+          "mp": {
+            "weixin": "√",
+            "alipay": "√",
+            "toutiao": "√",
+            "baidu": "-",
+            "kuaishou": "-",
+            "jd": "-",
+            "harmony": "-",
+            "qq": "-",
+            "lark": "-"
+          },
+          "quickapp": {
+            "huawei": "-",
+            "union": "-"
+          }
         },
-        "contact": {
-            "qq": ""
-        },
-        "declaration": {
-            "ads": "无",
-            "data": "插件不采集任何数据",
-            "permissions": "无"
-        },
-        "npmurl": "https://www.npmjs.com/package/@zebra-ui/swiper",
-        "type": "component-vue"
-    },
-    "uni_modules": {
-        "dependencies": [],
-        "encrypt": [],
-        "platforms": {
-            "cloud": {
-                "tcb": "y",
-                "aliyun": "y",
-                "alipay": "n"
-            },
-            "client": {
-                "Vue": {
-                    "vue2": "y",
-                    "vue3": "y"
-                },
-                "App": {
-                    "app-vue": "y",
-                    "app-nvue": "n",
-                    "app-harmony": "u",
-                    "app-uvue": "u"
-                },
-                "H5-mobile": {
-                    "Safari": "y",
-                    "Android Browser": "y",
-                    "微信浏览器(Android)": "y",
-                    "QQ浏览器(Android)": "y"
-                },
-                "H5-pc": {
-                    "Chrome": "y",
-                    "IE": "y",
-                    "Edge": "y",
-                    "Firefox": "y",
-                    "Safari": "y"
-                },
-                "小程序": {
-                    "微信": "y",
-                    "阿里": "y",
-                    "百度": "y",
-                    "字节跳动": "y",
-                    "QQ": "y",
-                    "钉钉": "u",
-                    "快手": "y",
-                    "飞书": "y",
-                    "京东": "u"
-                },
-                "快应用": {
-                    "华为": "y",
-                    "联盟": "y"
-                }
-            }
+        "uni-app-x": {
+          "web": {
+            "safari": "-",
+            "chrome": "-"
+          },
+          "app": {
+            "android": "-",
+            "ios": "-",
+            "harmony": "-"
+          },
+          "mp": {
+            "weixin": "-"
+          }
         }
+      }
     }
+  }
 }

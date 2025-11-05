@@ -1,6 +1,6 @@
 {
     "name": "@zebra-ui/swiper",
-    "version": "3.0.2",
+    "version": "3.0.3",
     "description": "zebra-swiper",
     "main": "index.ts",
     "module": "index.ts",
