@@ -65,8 +65,12 @@ const onTouchMove: OnTouchMove = function (this: SwiperInterface, event) {
   }
 
   if (!swiper.allowTouchMove) {
-    // @ts-ignore
-    if (e.target && !e.target.matches(data.focusableElements || '')) {
+    if (
+      isWeb() &&
+      e.target &&
+      // @ts-ignore
+      !e.target.matches(data.focusableElements || '')
+    ) {
       swiper.allowClick = false
     }
     if (data.isTouched) {
